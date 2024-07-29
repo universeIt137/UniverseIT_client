@@ -1,18 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import AddressNavbar from './Shared/AddressNavbar/AddressNavbar'
+import Navbar from './Shared/Navbar/Navbar'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1 className="text-4xl font-bold underline">
-        Universe IT
-        Ashikur is working
-        Junayet is Working
-    </h1>
+      <AddressNavbar/>
+      <Navbar/>
     </>
   )
 }
