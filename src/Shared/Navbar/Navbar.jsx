@@ -7,6 +7,10 @@ const Navbar = () => {
         <li className='text-base font-semibold'><a>About us</a></li>
         <li className='text-base font-semibold'><a>Success Story</a></li>
         <li className='text-base font-semibold'><a>Contact</a></li>
+        <div className='relative block lg:hidden'>
+                    <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full lg:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
+                    <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
+                </div>
     </>
     return (
         <div className="w-full border-b-[3px] border-gray-300">
@@ -29,17 +33,17 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-72 p-2 shadow bg-primary text-white">
                             {navLi}
                         </ul>
                     </div>
                     <div className='flex gap-5'>
-                        <img className='w-40' src={logo} alt="" />
+                        <img className='w-24 sm:w-40' src={logo} alt="" />
 
                     </div>
                 </div>
-                <div className='relative'>
-                    <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-[300px] lg:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
+                <div className='relative hidden lg:block'>
+                    <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full lg:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
                     <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
                 </div>
                 <div className="hidden lg:flex  ">
@@ -48,7 +52,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="">
-                    <button className=" bg-primary text-white hover:bg-primary px-4 py-3 flex gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses <FaAngleDown/></button>
+                    <button className="text-sm sm:text-base bg-primary text-white hover:bg-primary px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses <FaAngleDown/></button>
                 </div>
             </div>
         </div>
