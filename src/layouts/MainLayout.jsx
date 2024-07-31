@@ -7,7 +7,7 @@ const MainLayout = () => {
     return (
         <div className='relative'>
             <AddressNavbar />
-            <div>
+            <div className='sticky top-0 z-50'>
                 <Navbar/>
             </div>
             <Outlet></Outlet>
