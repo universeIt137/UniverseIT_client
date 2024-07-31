@@ -5,7 +5,7 @@ const CourseCard = ({ course = {} }) => {
     const { title, category, rating, reviews, price, courseImage, instructor = {} } = course;
     const { name, enrolled, profileImage } = instructor;
     return (
-        <div className="card bg-base-100 w-[70vw] max-w-[280px] sm:w-[340px] sm:max-w-[340px] shadow-xl border-gray-300 rounded-[30px] mx-auto">
+        <div className="card bg-base-100 w-[70vw] max-w-[280px] sm:w-[340px] sm:max-w-[340px] border-gray-300 rounded-[30px] mx-auto">
             <figure>
                 <img
                     src={courseImage}
