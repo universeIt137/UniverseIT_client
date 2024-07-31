@@ -3,7 +3,7 @@ import ButtonStrong from "../Button/ButtonStrong";
 import bannerImg from '../../assets/banner.png'
 const Banner = () => {
     return (
-        <div className="px-5 lg:px-16 xl:px-20 flex gap-10 min-h-[70vh] md:min-h-[73vh] md:max-h-[73vh] max-w-7xl mx-auto">
+        <div className="px-5 lg:px-16 xl:px-20 flex gap-10 min-h-[70vh] md:min-h-[73vh] md:max-h-[73vh] max-w-7xl mx-auto bg-[#fefaee]">
             <div className="md:min-h-[73vh] md:max-h-[73vh] flex justify-center items-center">
                 <div className="max-w-[532px] space-y-6 mx-auto">
                     <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold ">Grow Your Skills, Secure <span className="text-primary">Your Future</span></h1>
