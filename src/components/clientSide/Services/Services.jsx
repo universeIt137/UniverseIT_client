@@ -1,29 +1,29 @@
-import rewardIcon from '../../assets/ServicesImg/reward.png'
-import classIcon from '../../assets/ServicesImg/class.png'
-import affordablepriceIcon from '../../assets/ServicesImg/affordableprice.png'
-import educationIcon from '../../assets/ServicesImg/education.png'
-import realtimeProjectIcons from '../../assets/ServicesImg/realtimeProject.png'
-const Services = () => {
+import rewardIcon from '../../../assets/ServicesImg/reward.png'
+import classIcon from '../../../assets/ServicesImg/class.png'
+import affordablepriceIcon from '../../../assets/ServicesImg/affordableprice.png'
+import educationIcon from '../../../assets/ServicesImg/education.png'
+import realtimeProjectIcons from '../../../assets/ServicesImg/realtimeProject.png'
+const Services = () => { 
     const services = [
         {
             text: 'Industry Expert Mentor',
             icon: rewardIcon
         },
         {
-            text: 'Industry Expert Mentor',
-            icon: rewardIcon
+            text: 'Quality Learning',
+            icon: educationIcon
         },
         {
-            text: 'Industry Expert Mentor',
-            icon: rewardIcon
+            text: 'Recorded Classes',
+            icon: classIcon
         },
         {
-            text: 'Industry Expert Mentor',
-            icon: rewardIcon
+            text: 'Affordable Prices',
+            icon: affordablepriceIcon
         },
         {
-            text: 'Industry Expert Mentor',
-            icon: rewardIcon
+            text: 'Real project assignment',
+            icon: realtimeProjectIcons
         },
     ]
     return (

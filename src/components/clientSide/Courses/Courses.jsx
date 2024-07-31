@@ -1,10 +1,10 @@
 import { useState } from "react";
 import CourseCard from "./CourseCard";
-import digitalMarketingImage from '../../assets/coursesImg/digital marketing.jpg'
-import webDesignImage from '../../assets/coursesImg/web.jpg'
-import graphicsDesignImage from '../../assets/coursesImg/grphic.jpg'
-import seoImage from '../../assets/coursesImg/seo.jpg'
-import fullStackImage from '../../assets/coursesImg/fulStack.jpg'
+import digitalMarketingImage from '../../../assets/coursesImg/digital marketing.jpg'
+import webDesignImage from '../../../assets/coursesImg/web.jpg'
+import graphicsDesignImage from '../../../assets/coursesImg/grphic.jpg'
+import seoImage from '../../../assets/coursesImg/seo.jpg'
+import fullStackImage from '../../../assets/coursesImg/fulStack.jpg'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -16,7 +16,7 @@ const Courses = () => {
 
 
 
-
+ 
 
     const allCourses = [
         {

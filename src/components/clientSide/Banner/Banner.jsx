@@ -1,6 +1,6 @@
-import ButtonLight from "../Button/ButtonLight";
-import ButtonStrong from "../Button/ButtonStrong";
-import bannerImg from '../../assets/banner.png'
+import bannerImg from '../../../assets/banner.png' 
+import ButtonLight from '../../../Shared/Button/ButtonLight';
+import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 const Banner = () => {
     return (
         <div className="px-5 lg:px-16 xl:px-20 flex gap-10 min-h-[70vh] md:min-h-[73vh] md:max-h-[73vh] max-w-7xl mx-auto bg-[#fefaee]">
