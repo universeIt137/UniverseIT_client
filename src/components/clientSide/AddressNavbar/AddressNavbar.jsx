@@ -2,7 +2,7 @@ import { IoIosMail } from "react-icons/io";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io5";
-import { useState } from "react";
+import { useState } from "react"; 
 const AddressNavbar = () => {
     const [language, setLanguage] = useState('eng')
     const handleEnglishLanguage = () => setLanguage('eng')
