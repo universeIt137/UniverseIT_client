@@ -85,24 +85,7 @@ const Courses = () => {
             }
         }
     ];
-    const shopKeeperResponsibilitiesAndQualities = [
-        {
-            firstText: "Get All Products",
-            secondText: "You Need"
-        },
-        {
-            firstText: "Best Quality",
-            secondText: "You Want"
-        },
-        {
-            firstText: "Excellent Service",
-            secondText: "You Deserve"
-        },
-        {
-            firstText: "Always Fresh",
-            secondText: "You Expect"
-        }
-    ];
+   
     return (
         <div className="bg-gray-100">
             <div className=" py-10 space-y-5 max-w-7xl mx-auto">

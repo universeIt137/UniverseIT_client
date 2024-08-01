@@ -1,4 +1,4 @@
-import bannerImg from '../../../assets/banner.png' 
+import bannerImg from '../../../assets/banner/banner.png' 
 import ButtonLight from '../../../Shared/Button/ButtonLight';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 const Banner = () => {

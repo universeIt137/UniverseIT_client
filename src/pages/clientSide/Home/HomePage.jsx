@@ -3,6 +3,7 @@ import Courses from '../../../components/clientSide/Courses/Courses';
 import Services from '../../../components/clientSide/Services/Services';
 import { Helmet } from 'react-helmet-async';
 import Milestones from '../../../components/clientSide/Milestones/Milestones';
+import FreeSeminar from '../../../components/clientSide/FreeSeminar/FreeSeminar';
 
 const HomePage = () => {
     return (
@@ -14,6 +15,7 @@ const HomePage = () => {
             <Courses />
             <Services />
             <Milestones />
+            <FreeSeminar />
         </>
     );
 };

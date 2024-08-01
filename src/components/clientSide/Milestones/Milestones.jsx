@@ -8,8 +8,8 @@ const Milestones = () => {
             <p className="font-medium text-center pt-5">Explore our significant achievements, success stories, and impressive statistics all in one place</p>
 
             <div className='grid grid-cols-1 lg:grid-cols-2 pt-10 gap-10'>
-                <img src={banner} alt="" />
-                <div className='grid grid-cols-1 sm:grid-cols-2 w-max h-max gap-10 mx-auto'>
+                <img className='order-2 lg:order-1 w-full max-w-[650px] mx-auto' src={banner} alt="" />
+                <div className='flex flex-wrap sm:grid sm:grid-cols-2 sm:w-max sm:h-max gap-10 mx-auto justify-center items-center'>
                     <div className={`${countStyle} bg-[#E0F7FA]`}>
                        <span> <CountUp end={500} duration={9} /> +</span>
                         <p className='text-base font-medium sm:text-lg'>Enrolled Students</p>

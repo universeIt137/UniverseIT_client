@@ -4,7 +4,7 @@ import affordablepriceIcon from '../../../assets/ServicesImg/affordableprice.png
 import educationIcon from '../../../assets/ServicesImg/education.png'
 import realtimeProjectIcons from '../../../assets/ServicesImg/realtimeProject.png'
 import { useState } from 'react'
-import serviceImage from '../../../assets/coursesImg/digital marketing.jpg'
+import serviceImage from '../../../assets/banner/servicesBanner.jpg'
 const Services = () => {
     const [servicesActive, setServicesActive] = useState('Industry Expert Mentor')
     const services = [
