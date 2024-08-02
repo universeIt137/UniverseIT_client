@@ -4,6 +4,8 @@ import Services from '../../../components/clientSide/Services/Services';
 import { Helmet } from 'react-helmet-async';
 import Milestones from '../../../components/clientSide/Milestones/Milestones';
 import FreeSeminar from '../../../components/clientSide/FreeSeminar/FreeSeminar';
+import SuccessStories from '../../../components/clientSide/SuccessStories/SuccessStories';
+import Testimonials from '../../../components/clientSide/Testimonials/Testimonials';
 
 const HomePage = () => {
     return (
@@ -16,6 +18,8 @@ const HomePage = () => {
             <Services />
             <Milestones />
             <FreeSeminar />
+            <SuccessStories />
+            <Testimonials />
         </>
     );
 };

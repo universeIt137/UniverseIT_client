@@ -8,6 +8,7 @@ import fullStackImage from '../../../assets/coursesImg/fulStack.jpg'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import ComponentsTitle from "../../../Shared/ComponentsTitle/ComponentsTitle";
 const Courses = () => {
     const [tabName, setTabName] = useState('All Courses')
     const tabStyle = (incomingTabName) => {
@@ -16,7 +17,7 @@ const Courses = () => {
 
 
 
- 
+
 
     const allCourses = [
         {
@@ -85,16 +86,13 @@ const Courses = () => {
             }
         }
     ];
-   
+
     return (
         <div className="bg-gray-100">
-            <div className=" py-10 space-y-5 max-w-7xl mx-auto">
-                <div className="space-y-5 px-20 text-center">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">Our Demanding Courses</h2>
-                    <p className="font-medium">Elevate your skills with our demanding courses designed to push your boundaries and unlock your full potential.</p>
-                </div>
+            <div className=" py-10 pb-20 sm:pb-10 space-y-5 max-w-7xl mx-auto">
+                <ComponentsTitle title={'Our Demanding Courses'} description={'Elevate your skills with our demanding courses designed to push your boundaries and unlock your full potential.'} />
                 <div className="px-5 space-y-10">
-                    <div className="bg-white shadow-xl rounded-lg flex gap-5 flex-wrap max-w-max mx-auto">
+                    <div className="bg-white shadow-xl rounded-lg flex gap-5 flex-wrap max-w-max mx-auto ">
                         <button
                             className={`${tabStyle('All Courses')}`}
                             onClick={() => setTabName('All Courses')}
@@ -115,40 +113,42 @@ const Courses = () => {
                     </div>
                     <div className="sm:px-16">
                         <div className="relative">
-                            <div className="absolute w-full flex justify-between z-10 h-full items-center">
-                                <div className="swiper-button-prev-custom text-xl p-2 sm:p-3 rounded-full  cursor-pointer bg-primary/40 shadow-2xl hover:bg-primary/50 transition-all duration-100 active:scale-90 ml-[-15px] md:ml-[-50px]"><GrFormPrevious /></div>
-                                <div className="swiper-button-next-custom text-xl p-2 sm:p-3 rounded-full  cursor-pointer bg-primary/40 shadow-2xl hover:bg-primary/50 transition-all duration-100 active:scale-90 mr-[-15px] md:mr-[-50px]"><GrFormNext /></div>
+                            <div className="absolute w-full flex sm:justify-between h-full items-end justify-center sm:items-center top-14 gap-7 sm:top-0">
+                                <div className="courses-prev-btn text-xl p-2 sm:p-3 rounded-full  cursor-pointer bg-primary/40 shadow-2xl hover:bg-primary/50 transition-all duration-100 active:scale-90 "><GrFormPrevious /></div>
+                                <div className="courses-next-btn text-xl p-2 sm:p-3 rounded-full  cursor-pointer bg-primary/40 shadow-2xl hover:bg-primary/50 transition-all duration-100 active:scale-90"><GrFormNext /></div>
                             </div>
-                            <Swiper
-                                navigation={{
-                                    nextEl: '.swiper-button-next-custom',
-                                    prevEl: '.swiper-button-prev-custom',
-                                }}
-                                modules={[Navigation]}
-                                spaceBetween={0}
-                                breakpoints={{
-                                    640: {
-                                        slidesPerView: 1,
-                                    },
-                                    868: {
-                                        slidesPerView: 2,
-                                    },
-                                    1230: {
-                                        slidesPerView: 3,
-                                    },
-                                }}
-
-
-                                speed={300}
-
-                            >
-                                {
-                                    allCourses?.map((course, idx) => <SwiperSlide key={idx}>
-                                        <CourseCard key={idx} course={course} />
-                                    </SwiperSlide>)
-                                }
-
-                            </Swiper>
+                          <div className="sm:px-16">
+                                <Swiper
+                                    navigation={{
+                                        nextEl: '.courses-next-btn',
+                                        prevEl: '.courses-prev-btn',
+                                    }}
+                                    modules={[Navigation]}
+                                    spaceBetween={0}
+                                    breakpoints={{
+                                        640: {
+                                            slidesPerView: 1,
+                                        },
+                                        890: {
+                                            slidesPerView: 2,
+                                        },
+                                        1280: {
+                                            slidesPerView: 3,
+                                        },
+                                    }}
+    
+    
+                                    speed={300}
+                                    className=""
+                                >
+                                    {
+                                        allCourses?.map((course, idx) => <SwiperSlide key={idx}>
+                                            <CourseCard key={idx} course={course} />
+                                        </SwiperSlide>)
+                                    }
+    
+                                </Swiper>
+                          </div>
                         </div>
                     </div>
                 </div>
