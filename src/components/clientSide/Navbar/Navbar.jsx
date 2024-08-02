@@ -1,4 +1,4 @@
-import logo from '../../../assets/logo.png'
+import logo from '../../../assets/logo/mainLogo.png'
 import { FiSearch } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6"; 
 const Navbar = () => {
