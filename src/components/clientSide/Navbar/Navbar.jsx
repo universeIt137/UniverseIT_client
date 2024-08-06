@@ -3,7 +3,7 @@ import { FiSearch } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6";
 import { NavLink } from 'react-router-dom';
 const Navbar = () => {
-    const navStyle = `text-base font-semibold hover:text-primary ml-3 px-1 py-2 rounded-lg relative navbarStylingComponentsParent`
+    const navStyle = `text-base font-semibold hover:text-primary ml-3 px-1 py-1 xl:py-2 rounded-lg relative navbarStylingComponentsParent w-max`
     const stylingComponents = <div className='h-[2px] bg-primary absolute bottom-0 left-0 navbarStylingComponents transition-all duration-300'></div>
     const navli = <>
         <NavLink to={'/'} className={`${navStyle}`}>
@@ -25,7 +25,7 @@ const Navbar = () => {
             {stylingComponents}
         </NavLink>
         <div className='relative block xl:hidden'>
-            <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full lg:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
+            <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full xl:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
             <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
         </div>
     </>
@@ -60,7 +60,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className='relative hidden xl:block'>
-                    <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full lg:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
+                    <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full xl:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
                     <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
                 </div>
                 <div className="hidden xl:flex  ">

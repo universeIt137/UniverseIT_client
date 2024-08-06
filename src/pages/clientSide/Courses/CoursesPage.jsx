@@ -10,6 +10,7 @@ import { IoFilter } from "react-icons/io5";
 import Rating from 'react-rating'
 import { FaRegStar, FaStar } from 'react-icons/fa'
 import { FaChevronDown } from "react-icons/fa";
+import { Helmet } from 'react-helmet-async'
 const CoursesPage = () => {
     const [tabName, setTabName] = useState('All Courses')
     const [showAllRating, setShowAllRating] = useState(false);
@@ -126,7 +127,7 @@ const CoursesPage = () => {
             duration: '8-10',
             videos: 5678
         },
-       
+
     ]
 
     const toggleShowAllRating = () => {
@@ -184,7 +185,7 @@ const CoursesPage = () => {
                     <div onClick={() => handleSelectVideosDuration(item.duration)} key={idx} className={`relative flex gap-2 font-medium items-center cursor-pointer`}>
 
                         <div className={`size-3 border-2  ${selectedVideosDurations === item.duration ? 'bg-primary border-primary' : 'border-black'}`}></div>
-                        
+
                         <p className=''>{item?.duration} Hours ({item.videos})</p>
                     </div>
                 ))
@@ -198,61 +199,66 @@ const CoursesPage = () => {
         </div>
     </div>
     return (
-        <div className="bg-gray-100">
-            <div className=" py-2 max-w-7xl mx-auto">
+        <>
+            <Helmet>
+                <title>Universe IT | Courses</title>
+            </Helmet>
+            <div className="bg-gray-100">
+                <div className=" py-2 max-w-7xl mx-auto">
 
-                <div className='flex gap-5'>
-                    <div className='min-w-[240px] py-5 px-2 bg-white hidden md:block'>
-                        <div className='flex gap-3'>
-                            <div className='border-[2.5px] border-black max-w-max flex gap-2 justify-center items-center py-2 px-2'>
-                                Filter
-                                <IoFilter />
+                    <div className='flex gap-5'>
+                        <div className='min-w-[240px] py-5 px-2 bg-white hidden md:block'>
+                            <div className='flex gap-3'>
+                                <div className='border-[2.5px] border-black max-w-max flex gap-2 justify-center items-center py-2 px-2'>
+                                    Filter
+                                    <IoFilter />
+                                </div>
+                                <div className='bg-white w-max py-1 px-2'>
+                                    <p className='text-sm font-medium'>Sort By</p>
+                                    <select className='font-medium cursor-pointer' name="" id="">
+                                        <option>Most Popular</option>
+                                        <option>Most Rated</option>
+                                        <option>Good</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div className='bg-white w-max py-1 px-2'>
-                                <p className='text-sm font-medium'>Sort By</p>
-                                <select className='font-medium cursor-pointer' name="" id="">
-                                    <option>Most Popular</option>
-                                    <option>Most Rated</option>
-                                    <option>Good</option>
-                                </select>
+                            <hr className='border-gray-500 my-5 border-[1px]' />
+
+                            {rating}
+                            <hr className='border-gray-500 my-5 border-[1px]' />
+                            {videoDuration}
+                        </div>
+                        <div>
+                            <ComponentsTitle title={'Our Demanding Courses'} description={'Elevate your skills with our demanding courses designed to push your boundaries and unlock your full potential.'} />
+                            <div className="bg-white shadow-xl rounded-lg flex gap-5 flex-wrap max-w-max mx-auto ">
+                                <button
+                                    className={`${tabStyle('All Courses')}`}
+                                    onClick={() => setTabName('All Courses')}
+                                >All Courses</button>
+                                <button
+                                    className={`${tabStyle('Digital Marketing')}`}
+                                    onClick={() => setTabName('Digital Marketing')}
+                                >Digital Marketing</button>
+                                <button
+                                    className={`${tabStyle('Design & Development')}`}
+                                    onClick={() => setTabName('Design & Development')}
+                                >Design & Development</button>
+                                <button
+                                    className={`${tabStyle('Networking')}`}
+                                    onClick={() => setTabName('Networking')}
+                                >Networking</button>
+
                             </div>
-                        </div>
-                        <hr className='border-gray-500 my-5 border-[1px]' />
-
-                        {rating}
-                        <hr className='border-gray-500 my-5 border-[1px]' />
-                        {videoDuration}
-                    </div>
-                    <div>
-                        <ComponentsTitle title={'Our Demanding Courses'} description={'Elevate your skills with our demanding courses designed to push your boundaries and unlock your full potential.'} />
-                        <div className="bg-white shadow-xl rounded-lg flex gap-5 flex-wrap max-w-max mx-auto ">
-                            <button
-                                className={`${tabStyle('All Courses')}`}
-                                onClick={() => setTabName('All Courses')}
-                            >All Courses</button>
-                            <button
-                                className={`${tabStyle('Digital Marketing')}`}
-                                onClick={() => setTabName('Digital Marketing')}
-                            >Digital Marketing</button>
-                            <button
-                                className={`${tabStyle('Design & Development')}`}
-                                onClick={() => setTabName('Design & Development')}
-                            >Design & Development</button>
-                            <button
-                                className={`${tabStyle('Networking')}`}
-                                onClick={() => setTabName('Networking')}
-                            >Networking</button>
-
-                        </div>
-                        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
-                            {
-                                allCourses?.map((course, idx) => <CourseCard key={idx} course={course} isCoursePage={true} />)
-                            }
+                            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
+                                {
+                                    allCourses?.map((course, idx) => <CourseCard key={idx} course={course} isCoursePage={true} />)
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
