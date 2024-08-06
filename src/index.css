@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbarStylingComponents {
+    width: 0px;
+}
+
+.navbarStylingComponentsParent:hover .navbarStylingComponents {
+    width: 100%;
+}
+
+.active {
+    color: #F49401;
+}
+.active .navbarStylingComponents {
+    width: 100%;
+}

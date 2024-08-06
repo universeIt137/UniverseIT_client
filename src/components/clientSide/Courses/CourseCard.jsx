@@ -1,11 +1,14 @@
+/* eslint-disable react/prop-types */
 import { LuArrowUpRight } from "react-icons/lu";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import Rating from "react-rating";
-const CourseCard = ({ course = {} }) => {
+const CourseCard = ({ course = {}, isCoursePage = false }) => {
     const { title, category, rating, reviews, price, courseImage, instructor = {} } = course;
     const { name, enrolled, profileImage } = instructor;
+    const cardStyle = 'w-[80vw] max-w-[280px] sm:w-[340px] sm:max-w-[300px]';
+    const cardStyleForCoursePage = 'w-full max-w-[80vw] sm:max-w-[400px] '
     return (
-        <div className="card bg-base-100 w-[80vw] max-w-[280px] sm:w-[340px] sm:max-w-[300px] border-gray-300 rounded-[30px] mx-auto">
+        <div className={`card bg-base-100 mx-auto ${isCoursePage ? cardStyleForCoursePage : cardStyle}`}>
             <figure>
                 <img
                     src={courseImage}

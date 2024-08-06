@@ -6,7 +6,9 @@ import MainLayout from "../layouts/MainLayout";
 import Profile from "../pages/adminSide/Profile";
 import DashboardLayout from "../layouts/DashboardLayout";
 import HomePage from "../pages/clientSide/Home/HomePage";
-  
+import AboutUs from "../pages/clientSide/AboutUs/AboutUs";
+import CoursesPage from "../pages/clientSide/Courses/CoursesPage";
+
 
 const BasicRoutes = createBrowserRouter([
     {
@@ -16,7 +18,15 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "/",
                 element: <HomePage></HomePage>
-            }
+            },
+            {
+                path: 'aboutUs',
+                element: <AboutUs />
+            },
+            {
+                path: 'courses',
+                element: <CoursesPage />
+            },
         ]
     },
     {
