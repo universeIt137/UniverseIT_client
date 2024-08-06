@@ -33,33 +33,53 @@ const CourseDetails = () => {
 
             <section className='mt-4'>
                 <p className='font-bold text-xl mb-2' >Technologies you will learn</p>
-                <div className='flex gap-16'>
-                    <div className="">
+                <div className='grid grid-cols-3 gap-3'>
+                    <div className="flex justify-center items-center gap-2">
                         <div className="avatar">
                             <div className="w-24 rounded-full">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1722946907/UniverseIT/technologies/mvwtcz9phzjcunlqwasd.png" />
                             </div>
                         </div>
-                        <p className='font-bold  mb-2 text-center'>Tailwind</p>
+                        <p className='font-bold  mb-2 text-center'>Adobe InDesign</p>
                     </div>
 
-                    <div className="">
+                    <div className="flex justify-center items-center gap-2">
                         <div className="avatar">
                             <div className="w-24 rounded-full">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1722946907/UniverseIT/technologies/q3nexwmhmp5o9hugongh.png" />
                             </div>
                         </div>
-                        <p className='font-bold  mb-2 text-center'>Tailwind</p>
+                        <p className='font-bold  mb-2 text-center'>Adobe Photoshop</p>
                     </div>
 
-                    <div className="">
+                    <div className="flex justify-center items-center gap-2">
                         <div className="avatar">
                             <div className="w-24 rounded-full">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1722946907/UniverseIT/technologies/mwjlofwuru4lh9wyj7uk.png" />
                             </div>
                         </div>
-                        <p className='font-bold  mb-2 text-center'>Tailwind</p>
+                        <p className='font-bold  mb-2 text-center'>Adobe XD</p>
                     </div>
+
+                    <div className="flex justify-center items-center gap-2">
+                        <div className="avatar">
+                            <div className="w-24 rounded-full">
+                                <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1722946907/UniverseIT/technologies/hffdvkkiy3maq6k6t9ce.png" />
+                            </div>
+                        </div>
+                        <p className='font-bold  mb-2 text-center'>Adobe Illustrator</p>
+                    </div>
+
+                    <div className="flex justify-center items-center gap-2">
+                        <div className="avatar">
+                            <div className="w-24 rounded-full">
+                                <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1722946907/UniverseIT/technologies/tnwe31nhteiwsie2vvfz.png" />
+                            </div>
+                        </div>
+                        <p className='font-bold  mb-2 text-center'>Microsoft Office PowerPoint</p>
+                    </div>
+
+
                 </div>
             </section>
 

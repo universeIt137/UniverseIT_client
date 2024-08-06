@@ -1,4 +1,4 @@
-import logo from '../../../assets/logo.png'
+import logo from '../../../assets/logo/mainLogo.png'
 import { FiSearch } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6"; 
 const Navbar = () => {
@@ -13,7 +13,7 @@ const Navbar = () => {
                 </div>
     </>
     return (
-        <div className="w-full border-b-[3px] border-gray-300">
+        <div className="bg-white w-full border-b-[3px] border-gray-300">
             <div className="navbar bg-base-100 max-w-7xl mx-auto flex justify-between items-center">
                 <div className=" ">
                     <div className="dropdown">
