@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 import Profile from "../pages/adminSide/Profile";
 import DashboardLayout from "../layouts/DashboardLayout";
 import HomePage from "../pages/clientSide/Home/HomePage";
+import CourseDetails from "../pages/clientSide/courseDetails/CourseDetails";
   
 
 const BasicRoutes = createBrowserRouter([
@@ -16,6 +17,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "/",
                 element: <HomePage></HomePage>
+            },
+            {
+                path: "/courseDetails",
+                element: <CourseDetails></CourseDetails>
             }
         ]
     },

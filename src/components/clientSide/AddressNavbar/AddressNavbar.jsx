@@ -7,9 +7,9 @@ const AddressNavbar = () => {
     const [language, setLanguage] = useState('eng')
     const handleEnglishLanguage = () => setLanguage('eng')
     const handleBanglaLanguage = () => setLanguage('ban')
-    const socialIconsStyle = `text-lg sm:text-2xl size-7 sm:size-9 bg-black/20 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 active:scale-90`
+    const socialIconsStyle = `text-lg sm:text-sm size-7 sm:size-9 bg-black/20 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 active:scale-90`
     const socialIcons = <>
-        <div className="flex gap-4">
+        <div className="flex gap-4 ">
             <p className={`${socialIconsStyle}`}><FaFacebookF /></p>
             <p className={`${socialIconsStyle}`}><FaLinkedinIn /></p>
             <p className={`${socialIconsStyle}`}><IoLogoYoutube /></p>
