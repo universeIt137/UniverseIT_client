@@ -1,15 +1,43 @@
 import React from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
+import ReactPlayer from 'react-player';
 
 
 const CourseDetails = () => {
+    const axiosPublic = useAxiosPublic();
+
+    const { data: courseData = {}, isLoading } = useQuery({
+        queryKey: ['course'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/course/66939bd52f063a96b809d3b0`);
+            return res?.data;
+        }
+    })
+
+    const { title, subtitle, videoUrl, bannerImages, subVideos, notice, bangla, admissionNotice, courseFee } = courseData;
+
+    console.log(courseData);
+
     return (
         <section className='w-11/12 mx-auto'>
+            {/* banner */}
             <div className='flex flex-col lg:flex-row  my-5 gap-1 md:gap-5'>
                 {/* video and technology section  */}
                 <div className="lg:w-4/6 bg-yellow-100 p-5 rounded-2xl">
-                    <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1722937499/UniverseIT/kbutig6llqdd7fyaobpy.jpg" className='rounded-2xl' alt="" />
+                    {/* main video  */}
+                <div className="relative w-[80vw] h-[45.9vw] z-10 sm:w-full sm:h-[37vw] lg:h-[470px]  lg:mx-auto rounded-2xl p-2
+                bg-black">
+                  <ReactPlayer
+                    controls="true"
+                    playing={true}
+                    url= 'https://www.youtube.com/watch?v=hqCcnboWN60'
+                    width="100%"
+                    height="100%"
+                  />
+                </div>
                     <section className=' my-4 bg-gray-200 rounded-xl p-5'>
                         <p className='font-bold text-xl mb-2' >Technologies you will learn</p>
                         <div className='grid lg:grid-cols-3 gap-3'>
@@ -98,6 +126,29 @@ const CourseDetails = () => {
 
                 </div>
             </div>
+
+            {/* sub video and success story  */}
+            <section className='flex flex-col lg:flex-row gap-6 my-5'>
+                <div className='lg:w-4/6 border border-black rounded-xl'>Sub video</div>
+                <div className='w-auto border border-black rounded-xl'>
+
+                    <div className="card bg-base-100  shadow-xl">
+                        <figure className="px-10 pt-10">
+                            <img
+                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                                alt="Shoes"
+                                className="rounded-xl" />
+                        </figure>
+                        <div className="card-body items-center text-center">
+                            <h2 className="card-title">Shoes!</h2>
+                            <p>If a dog chews shoes whose shoes does he choose?</p>
+                            <div className="card-actions">
+                                <button className="btn btn-primary">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
 
