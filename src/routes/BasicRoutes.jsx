@@ -6,9 +6,14 @@ import MainLayout from "../layouts/MainLayout";
 import Profile from "../pages/adminSide/Profile";
 import DashboardLayout from "../layouts/DashboardLayout";
 import HomePage from "../pages/clientSide/Home/HomePage";
+<<<<<<< HEAD
 import AboutUs from "../pages/clientSide/AboutUs/AboutUs";
 import CoursesPage from "../pages/clientSide/Courses/CoursesPage";
 
+=======
+import CourseDetails from "../pages/clientSide/courseDetails/CourseDetails";
+  
+>>>>>>> 29036248a860fdb12b9cbfa5f6296ef91180bbc7
 
 const BasicRoutes = createBrowserRouter([
     {
@@ -20,6 +25,7 @@ const BasicRoutes = createBrowserRouter([
                 element: <HomePage></HomePage>
             },
             {
+<<<<<<< HEAD
                 path: 'aboutUs',
                 element: <AboutUs />
             },
@@ -27,6 +33,11 @@ const BasicRoutes = createBrowserRouter([
                 path: 'courses',
                 element: <CoursesPage />
             },
+=======
+                path: "/courseDetails",
+                element: <CourseDetails></CourseDetails>
+            }
+>>>>>>> 29036248a860fdb12b9cbfa5f6296ef91180bbc7
         ]
     },
     {
