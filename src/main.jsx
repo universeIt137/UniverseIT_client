@@ -10,23 +10,22 @@ import 'swiper/css/a11y';
 import BasicRoutes from './routes/BasicRoutes.jsx';
 import { RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async'
+import { Toaster } from 'react-hot-toast'
 
 import {
   QueryClient,
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
-
 const queryClient = new QueryClient();
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient} >
       <HelmetProvider>
         <RouterProvider router={BasicRoutes} />
+        <Toaster />
       </HelmetProvider>
     </QueryClientProvider>
-
   </React.StrictMode>,
 )

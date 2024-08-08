@@ -1,22 +1,35 @@
 import React from 'react';
+import { FaRegStar, FaStar } from 'react-icons/fa';
+import Rating from 'react-rating';
 
-const RelatedCourseCard = () => {
+const RelatedCourseCard = ({imageLink}) => {
     return (
         <>
-            <div className="bg-white shadow-xl rounded-xl flex">
-                <div className='border border-black w-1/4'>
+            <div className="bg-white shadow-xl rounded-xl flex gap-2 justify-center items-center p-2">
+                <div className='w-2/4'>
                     <img
-                        className=''
-                        src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                        className='h-auto w-full '
+                        src={imageLink}
                         alt="Movie" />
                 </div>
 
-                <div className="border border-black w-3/4">
-                    <h2 className="">New movie is released!</h2>
-                    <p>Click the button to watch on Jetflix app.</p>
-                    <div className="">
-                        <button className="btn btn-primary">Watch</button>
+                <div className="w-2/4">
+                    <p className='font-bold text-[10px]'>Typography Masterclass</p>
+                    <p className='font-bold text-[10px]'>প্রশিক্ষকঃ Dinar Minhaj</p>
+                    <p className='text-primary'>
+                        <Rating
+                            className="space-x-1"
+                            emptySymbol={<FaRegStar />}
+                            fullSymbol={<FaStar />}
+                            initialRating={4}
+                            readonly
+                        />
+                    </p>
+                    <div className='flex gap-2 justify-center items-center'>
+                        <p className='text-[10px] font-bold'>৩০০০ টাকা</p>
+                        <button className='text-[10px] bg-primary text-white p-2 rounded-lg'>কোর্সটি কিনুন</button>
                     </div>
+
                 </div>
 
             </div>

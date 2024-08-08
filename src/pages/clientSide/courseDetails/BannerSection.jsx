@@ -101,7 +101,7 @@ const BannerSection = () => {
                         </ul>
                         <p className='lg:mt-5 font-bold text-2xl hidden md:block lg:text-start'>ফি ৩০০০ টাকা</p>
                     </div>
-                    <div className="flex justify-between  mb-4 lg:p-0 mx-4">
+                    <div className="flex justify-center">
                         <button className='btn hover:rounded-xl hover:bg-primary  bg-primary text-white px-6'>ENROLL NOW</button>
                         <button className='btn hover:rounded-xl hover:bg-primary  bg-primary text-white px-6'>CALL NOW</button>
                     </div>

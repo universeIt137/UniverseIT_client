@@ -1,6 +1,5 @@
 import axios from "axios";
-import { backendURL } from "../BackendURL";
-
+import backendURL from '../backendURL'
 const axiosPublic = axios.create({
     baseURL: backendURL
 })

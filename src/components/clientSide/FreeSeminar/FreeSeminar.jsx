@@ -1,8 +1,21 @@
 import { useState } from "react";
 import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import seminarBanner from '../../../assets/banner/seminarBanner.jpg'
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 const FreeSeminar = () => {
     const [seeMore, setSeeMore] = useState(false)
+    const axiosPublic = useAxiosPublic()
+
+    const { data: allSeminar = [], isLoading } = useQuery({
+        queryKey: ['seminar'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/seminar`)
+            return res?.data
+        }
+    })
+    console.log(allSeminar);
+
     const seminarSchedule = [
         {
             id: 1,
@@ -40,6 +53,25 @@ const FreeSeminar = () => {
             title: "Content Writing"
         }
     ];
+    const weekDays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+    const returnDate = (date) => {
+        const months = ['Jan', 'Fab', 'Mar', 'Apr', 'May', 'Jun', ' July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        const newDate = new Date(date).getDate()
+        const month = new Date(date).getMonth()
+        const year = new Date(date).getFullYear().toString()
+        return <>
+            <span className="text-xl sm:text-2xl font-bold">{newDate}</span>
+            <span className="text-sm lg:text-base font-bold text-primary">
+                {months[month]}, {year[2]}{year[3]}
+            </span>
+        </>
+    }
+    const returnTime = (time) => {
+        const [hour, minutes] = time.split(':');
+        const useableTime = hour % 12 || 12;
+        const theAbbreviation = hour < 12 || hour === 24 ? 'AM' : 'PM';
+        return `${useableTime}:${minutes} ${theAbbreviation}`;
+      }
     return (
         <div className="bg-gray-100">
             <div className="max-w-7xl mx-auto py-10 px-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -51,17 +83,14 @@ const FreeSeminar = () => {
                     <div className="py-5 space-y-5">
                         <div className={`space-y-4 ${seeMore ? 'max-h-[2000px]' : 'max-h-[300px]'} overflow-hidden transition-all duration-500`}>
                             {
-                                seminarSchedule?.map((seminar, idx) => <div className="w-full  bg-primary/35 rounded-xl flex overflow-hidden gap-3" key={idx}>
+                                allSeminar?.map((seminar, idx) => <div className="w-full  bg-primary/35 rounded-xl flex overflow-hidden gap-3" key={idx}>
                                     <p className="flex flex-col min-w-max max-w-max justify-center items-center pl-5 pr-2 sm:pr-4">
-                                        <span className="text-xl sm:text-2xl font-bold">{seminar.date.split(' ')[1].split(',')[0]}</span>
-                                        <span className="text-sm lg:text-base font-bold text-primary">
-                                            {seminar.date.split(' ')[0]},  {seminar.date.split(' ')[2]}
-                                        </span>
+                                        {returnDate(seminar?.date)}
                                     </p>
                                     <div className="w-full h-full bg-white py-5 rounded-xl flex justify-between items-center flex-wrap gap-3 pl-3 sm:pl-5 pr-5 sm:pr-10">
                                         <div>
                                             <h2 className="text-sm sm:text-base font-bold">{seminar?.title}</h2>
-                                            <p className="text-xs sm:text-sm font-medium">{seminar?.day} | Time: {seminar?.time}</p>
+                                            <p className="text-xs sm:text-sm font-medium">{weekDays[new Date(seminar?.date).getDay()] || 0} | Time: {returnTime(seminar?.time)}</p>
                                         </div>
                                         <ButtonStrong text={'Register Now'} />
                                     </div>
