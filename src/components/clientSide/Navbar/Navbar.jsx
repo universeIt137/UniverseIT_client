@@ -1,7 +1,7 @@
 import logo from '../../../assets/logo/mainLogo.png'
 import { FiSearch } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6";
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 const Navbar = () => {
     const navStyle = `text-base font-semibold hover:text-primary ml-3 px-1 py-1 xl:py-2 rounded-lg relative navbarStylingComponentsParent w-max`
     const stylingComponents = <div className='h-[2px] bg-primary absolute bottom-0 left-0 navbarStylingComponents transition-all duration-300'></div>
@@ -14,7 +14,7 @@ const Navbar = () => {
             <a>Courses</a>
             {stylingComponents}
         </NavLink>
-        <NavLink to={'/aboutUs'} className={`${navStyle}`}>
+        <NavLink to={'/courseDetails'} className={`${navStyle}`}>
             <a>About us</a>
             {stylingComponents}
         </NavLink>
@@ -69,7 +69,9 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="">
-                    <button className="text-sm sm:text-base bg-primary text-white hover:bg-primary px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses <FaAngleDown /></button>
+                    <Link to="/courses">
+                        <button className="text-sm sm:text-base bg-primary text-white hover:bg-primary px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses <FaAngleDown /></button>
+                    </Link>
                 </div>
             </div>
         </div>
