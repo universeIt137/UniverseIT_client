@@ -11,7 +11,7 @@ const BannerSection = () => {
         <>
             <div className='flex flex-col lg:flex-row  my-5 gap-1 md:gap-5'>
                 {/* video and technology section  */}
-                <div className="lg:w-3/4 bg-yellow-100 p-5 rounded-2xl">
+                <div className="lg:w-3/4 bg-white p-5 rounded-2xl">
                     {/* main video  */}
                     <div className="relative w-[80vw] h-[45.9vw] z-10 sm:w-full sm:h-[37vw] lg:h-[470px]  lg:mx-auto rounded-2xl p-2
                 bg-black">
@@ -78,7 +78,7 @@ const BannerSection = () => {
                 </div>
 
                 {/* sidebar */}
-                <div className="lg:w-1/4 lg:py-14 bg-yellow-100 rounded-2xl">
+                <div className="lg:w-1/4 lg:py-14 bg-white rounded-2xl">
                     <div className='p-4 md:p-8'>
                         <p className='text-primary'>
                             <Rating
@@ -89,7 +89,7 @@ const BannerSection = () => {
                                 readonly
                             />
                         </p>
-                        <p className='lg:my-5 font-bold text-2xl md:hidden lg:text-start'>ফি ৩০০০ টাকা</p>
+                        <p className='lg:my-5 font-bold text-xl md:hidden lg:text-start'>ফি ৩০০০ টাকা</p>
                         <ul className='lg:list-disc text-sm md:text-xl  lg:text-start'>
                             <li className='my-2 lg:my-5'>৪+ ঘন্টা প্রোজেক্ট বেসড টিউটোরিয়াল</li>
                             <li className='my-2 lg:my-5'>৩০+ ভিডিও</li>

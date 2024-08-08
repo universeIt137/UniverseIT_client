@@ -14,7 +14,7 @@ const Navbar = () => {
             <a>Courses</a>
             {stylingComponents}
         </NavLink>
-        <NavLink to={'/courseDetails/66939bd52f063a96b809d3b0'} className={`${navStyle}`}>
+        <NavLink to={'/courseDetails'} className={`${navStyle}`}>
             <a>About us</a>
             {stylingComponents}
         </NavLink>

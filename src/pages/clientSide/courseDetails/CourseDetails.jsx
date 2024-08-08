@@ -16,12 +16,13 @@ const CourseDetails = () => {
     const { data: courseData = {}, isLoading } = useQuery({
         queryKey: ['course'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/course/66939bd52f063a96b809d3b0`);
+            const res = await axiosPublic.get(`/course/66b34a0dac872b90572f77aa`);
             return res?.data;
         }
     })
 
     const { title, subtitle, videoUrl, bannerImages, subVideos, notice, bangla, admissionNotice, courseFee } = courseData;
+    console.log(subVideos);
 
     const videoDivStyle = 'rounded-md overflow-hidden k w-[230px] h-[130px]';
     const titleStyle = 'text-black font-medium py-1 max-w-[230px]';
@@ -34,7 +35,8 @@ const CourseDetails = () => {
             {/* sub video and success story  */}
             <section>
             <section className='flex flex-col lg:flex-row my-5 gap-1 md:gap-5'>
-                <div className='lg:w-3/4 bg-white rounded-xl'>
+                    <div className='lg:w-3/4 bg-white rounded-xl'>
+                        
                     {/* four related video  */}
 
                     <div className="relative hidden  mr-3 lg:flex pt-10 z-10">
