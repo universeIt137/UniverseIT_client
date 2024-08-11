@@ -20,9 +20,9 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
                     alt="Shoes" />
             </figure>
             <div className="card-body pt-5 px-3 sm:px-8">
-                <p className="bg-primary/40 w-max px-1.5 rounded-sm text-xs py-0.5">{category}</p>
+                <p className="bg-primary/40 w-max px-1.5 rounded-sm text-xs py-0.5 ">{category}</p>
                 <div className="flex justify-between w-full">
-                    <h2 className="font-bold text-base sm:text-xl">{title}</h2>
+                    <h2 className="font-bold text-base sm:text-xl ">{title}</h2>
                     <Link to={`/courseDetails/${_id}`}><p className="flex justify-end text-xl sm:text-2xl"><LuArrowUpRight /></p></Link>
                 </div>
                 <div className="flex gap-2 font-medium text-sm sm:text-base items-center">
