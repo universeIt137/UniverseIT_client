@@ -55,7 +55,7 @@ const BasicRoutes = createBrowserRouter([
                 element: <CoursesPage />
             },
             {
-                path: "/courseDetails",
+                path: "/courseDetails/:id",
                 element: <CourseDetails></CourseDetails>
             }
         ]

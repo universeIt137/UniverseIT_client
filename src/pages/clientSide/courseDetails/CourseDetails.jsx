@@ -4,22 +4,28 @@ import Rating from 'react-rating';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import ReactPlayer from 'react-player';
-
+import Marquee from "react-fast-marquee";
+import Share from './Share';
+import { useParams } from 'react-router-dom';
+import CourseDetailsTab from './CourseDetailsTab';
+import SuccessStories from '../../../components/clientSide/SuccessStories/SuccessStories';
 
 const CourseDetails = () => {
     const axiosPublic = useAxiosPublic();
-
+    const {id} = useParams()
+    const videoDivStyle = 'rounded-md overflow-hidden k w-[230px] h-[130px]'
+    const titleStyle = 'text-black font-medium py-1 max-w-[230px]'
     const { data: courseData = {}, isLoading } = useQuery({
         queryKey: ['course'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/course/66939bd52f063a96b809d3b0`);
+            const res = await axiosPublic.get(`/course/${id}`);
             return res?.data;
         }
     })
 
     const { title, subtitle, videoUrl, bannerImages, subVideos, notice, bangla, admissionNotice, courseFee } = courseData;
 
-    console.log(courseData);
+    console.log(bannerImages);
 
     return (
         <section className='w-11/12 mx-auto'>
@@ -28,16 +34,16 @@ const CourseDetails = () => {
                 {/* video and technology section  */}
                 <div className="lg:w-4/6 bg-yellow-100 p-5 rounded-2xl">
                     {/* main video  */}
-                <div className="relative w-[80vw] h-[45.9vw] z-10 sm:w-full sm:h-[37vw] lg:h-[470px]  lg:mx-auto rounded-2xl p-2
+                    <div className="relative w-[80vw] h-[45.9vw] z-10 sm:w-full sm:h-[37vw] lg:h-[470px]  lg:mx-auto rounded-2xl p-2
                 bg-black">
-                  <ReactPlayer
-                    controls="true"
-                    playing={true}
-                    url= 'https://www.youtube.com/watch?v=hqCcnboWN60'
-                    width="100%"
-                    height="100%"
-                  />
-                </div>
+                        <ReactPlayer
+                            controls="true"
+                            playing={true}
+                            url='https://www.youtube.com/watch?v=hqCcnboWN60'
+                            width="100%"
+                            height="100%"
+                        />
+                    </div>
                     <section className=' my-4 bg-gray-200 rounded-xl p-5'>
                         <p className='font-bold text-xl mb-2' >Technologies you will learn</p>
                         <div className='grid lg:grid-cols-3 gap-3'>
@@ -129,24 +135,42 @@ const CourseDetails = () => {
 
             {/* sub video and success story  */}
             <section className='flex flex-col lg:flex-row gap-6 my-5'>
-                <div className='lg:w-4/6 border border-black rounded-xl'>Sub video</div>
-                <div className='w-auto border border-black rounded-xl'>
+                <div className='lg:w-4/6'>
+                    <div className="relative hidden  lg:flex pt-10 z-10">
+                        <Marquee pauseOnHover={true}>
+                            <div className="flex gap-10 pr-10">
+                                {
+                                    subVideos?.map((video, idx) => <div key={idx}>
+                                        <div className={`${videoDivStyle}`}>
+                                            <ReactPlayer
+                                                controls="true"
 
-                    <div className="card bg-base-100  shadow-xl">
-                        <figure className="px-10 pt-10">
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes"
-                                className="rounded-xl" />
-                        </figure>
-                        <div className="card-body items-center text-center">
-                            <h2 className="card-title">Shoes!</h2>
-                            <p>If a dog chews shoes whose shoes does he choose?</p>
-                            <div className="card-actions">
-                                <button className="btn btn-primary">Buy Now</button>
+                                                url={video?.url}
+                                                width="100%"
+                                                height='100%'
+                                            />
+                                        </div>
+
+                                        <p className={`${titleStyle}`}>{video?.title}</p>
+                                    </div>)
+                                }
                             </div>
-                        </div>
+                        </Marquee>
+
                     </div>
+                    <div className="pt-20 z-10 relative">
+                        <div className="flex justify-between flex-col sm:flex-row">
+                            <p className="lg:text-2xl font-bold py-5">Course Details</p>
+                            <div className="w-full md:w-max flex justify-end items-end"><Share /></div>
+                        </div>
+                        <CourseDetailsTab></CourseDetailsTab>
+
+                    </div>
+                </div>
+                <div className='w-auto rounded-xl'>
+
+                    <h2 className='text-lg font-bold'>Success Story</h2>
+                    <SuccessStories/>
                 </div>
             </section>
 
