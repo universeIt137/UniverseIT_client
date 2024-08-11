@@ -1,8 +1,4 @@
-import digitalMarketingImage from '../../../assets/coursesImg/digital marketing.jpg'
-import webDesignImage from '../../../assets/coursesImg/web.jpg'
-import graphicsDesignImage from '../../../assets/coursesImg/grphic.jpg'
-import seoImage from '../../../assets/coursesImg/seo.jpg'
-import fullStackImage from '../../../assets/coursesImg/fulStack.jpg'
+
 import ComponentsTitle from '../../../Shared/ComponentsTitle/ComponentsTitle'
 import CourseCard from '../../../components/clientSide/Courses/CourseCard'
 import { useState } from 'react'
@@ -11,7 +7,10 @@ import Rating from 'react-rating'
 import { FaRegStar, FaStar } from 'react-icons/fa'
 import { FaChevronDown } from "react-icons/fa";
 import { Helmet } from 'react-helmet-async'
+import useAxiosPublic from '../../../hooks/useAxiosPublic'
+import { useQuery } from '@tanstack/react-query'
 const CoursesPage = () => {
+    const axiosPublic = useAxiosPublic();
     const [tabName, setTabName] = useState('All Courses')
     const [showAllRating, setShowAllRating] = useState(false);
     const [selectedRating, setSelectedRating] = useState(0)
@@ -20,73 +19,16 @@ const CoursesPage = () => {
     const tabStyle = (incomingTabName) => {
         return `bg-primary/95 font-medium  rounded-t-lg px-7 py-2.5 active:scale-90 transition-all duration-300 hover:bg-primary ${incomingTabName === tabName ? 'bg-primary text-white' : 'bg-white hover:bg-primary/30'}`
     }
-    const allCourses = [
-        {
-            title: "Digital Marketing",
-            category: "Digital Marketing",
-            rating: 4.3,
-            reviews: 1025,
-            price: 10000,
-            courseImage: digitalMarketingImage,
-            instructor: {
-                name: "Md Masud Rana",
-                enrolled: 300,
-                profileImage: "https://i.ibb.co/Y39KLDp/client1.jpg"
-            }
-        },
-        {
-            title: "Web Design",
-            category: "Web Design",
-            rating: 4.3,
-            reviews: 1155,
-            price: 10000,
-            courseImage: webDesignImage,
-            instructor: {
-                name: "Atik Md Alavi",
-                enrolled: 300,
-                profileImage: "https://i.ibb.co/D4Sx9Wk/client2.jpg"
-            }
-        },
-        {
-            title: "Graphic Design",
-            category: "Graphic Design",
-            rating: 4.3,
-            reviews: 930,
-            price: 10000,
-            courseImage: graphicsDesignImage,
-            instructor: {
-                name: "Fahim Ahammed Riyad",
-                enrolled: 250,
-                profileImage: "https://i.ibb.co/fD16FGy/client5.jpg"
-            }
-        },
-        {
-            title: "SEO Mastery",
-            category: "Digital Marketing",
-            rating: 4.5,
-            reviews: 850,
-            price: 12000,
-            courseImage: seoImage,
-            instructor: {
-                name: "Nusrat Jahan",
-                enrolled: 200,
-                profileImage: "https://i.ibb.co/HBnLgL6/client8.webp"
-            }
-        },
-        {
-            title: "Full Stack Development",
-            category: "Development",
-            rating: 4.7,
-            reviews: 1300,
-            price: 15000,
-            courseImage: fullStackImage,
-            instructor: {
-                name: "Shakib Khan",
-                enrolled: 350,
-                profileImage: "https://i.ibb.co/zP8cG18/client10.jpg"
-            }
+
+
+    const { data: courses = [], isLoading } = useQuery({
+        queryKey: ['courses'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/course');
+            return res.data;
         }
-    ];
+    })
+    console.log(courses);
 
     const ratingArray = [
         {
@@ -251,7 +193,7 @@ const CoursesPage = () => {
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
                                 {
-                                    allCourses?.map((course, idx) => <CourseCard key={idx} course={course} isCoursePage={true} />)
+                                    courses?.map((course, idx) => <CourseCard key={idx} course={course}  isCoursePage={true} />)
                                 }
                             </div>
                         </div>

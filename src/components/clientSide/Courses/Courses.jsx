@@ -9,83 +9,26 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import ComponentsTitle from "../../../Shared/ComponentsTitle/ComponentsTitle";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const Courses = () => {
+    const axiosPublic = useAxiosPublic()
     const [tabName, setTabName] = useState('All Courses')
     const tabStyle = (incomingTabName) => {
         return `bg-primary/95 font-medium  rounded-t-lg px-7 py-2.5 active:scale-90 transition-all duration-300 hover:bg-primary ${incomingTabName === tabName ? 'bg-primary text-white' : 'bg-white hover:bg-primary/30'}`
     }
 
-
-
-
-
-    const allCourses = [
-        {
-            title: "Digital Marketing",
-            category: "Digital Marketing",
-            rating: 4.3,
-            reviews: 1025,
-            price: 10000,
-            courseImage: digitalMarketingImage,
-            instructor: {
-                name: "Md Masud Rana",
-                enrolled: 300,
-                profileImage: "https://i.ibb.co/Y39KLDp/client1.jpg"
-            }
-        },
-        {
-            title: "Web Design",
-            category: "Web Design",
-            rating: 4.3,
-            reviews: 1155,
-            price: 10000,
-            courseImage: webDesignImage,
-            instructor: {
-                name: "Atik Md Alavi",
-                enrolled: 300,
-                profileImage: "https://i.ibb.co/D4Sx9Wk/client2.jpg"
-            }
-        },
-        {
-            title: "Graphic Design",
-            category: "Graphic Design",
-            rating: 4.3,
-            reviews: 930,
-            price: 10000,
-            courseImage: graphicsDesignImage,
-            instructor: {
-                name: "Fahim Ahammed Riyad",
-                enrolled: 250,
-                profileImage: "https://i.ibb.co/fD16FGy/client5.jpg"
-            }
-        },
-        {
-            title: "SEO Mastery",
-            category: "Digital Marketing",
-            rating: 4.5,
-            reviews: 850,
-            price: 12000,
-            courseImage: seoImage,
-            instructor: {
-                name: "Nusrat Jahan",
-                enrolled: 200,
-                profileImage: "https://i.ibb.co/HBnLgL6/client8.webp"
-            }
-        },
-        {
-            title: "Full Stack Development",
-            category: "Development",
-            rating: 4.7,
-            reviews: 1300,
-            price: 15000,
-            courseImage: fullStackImage,
-            instructor: {
-                name: "Shakib Khan",
-                enrolled: 350,
-                profileImage: "https://i.ibb.co/zP8cG18/client10.jpg"
-            }
+    const { data: courses = [], isLoading } = useQuery({
+        queryKey: ['courses'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/course');
+            return res.data;
         }
-    ];
+    })
+
+
+
+    
 
     return (
         <div className="bg-gray-100">
@@ -117,7 +60,7 @@ const Courses = () => {
                                 <div className="courses-prev-btn text-xl p-2 sm:p-3 rounded-full  cursor-pointer bg-primary/40 shadow-2xl hover:bg-primary/50 transition-all duration-100 active:scale-90 "><GrFormPrevious /></div>
                                 <div className="courses-next-btn text-xl p-2 sm:p-3 rounded-full  cursor-pointer bg-primary/40 shadow-2xl hover:bg-primary/50 transition-all duration-100 active:scale-90"><GrFormNext /></div>
                             </div>
-                          <div className="sm:px-16">
+                            <div className="sm:px-16">
                                 <Swiper
                                     navigation={{
                                         nextEl: '.courses-next-btn',
@@ -136,19 +79,19 @@ const Courses = () => {
                                             slidesPerView: 3,
                                         },
                                     }}
-    
-    
+
+
                                     speed={300}
                                     className=""
                                 >
                                     {
-                                        allCourses?.map((course, idx) => <SwiperSlide key={idx}>
+                                        courses?.map((course, idx) => <SwiperSlide key={idx}>
                                             <CourseCard key={idx} course={course} />
                                         </SwiperSlide>)
                                     }
-    
+
                                 </Swiper>
-                          </div>
+                            </div>
                         </div>
                     </div>
                 </div>

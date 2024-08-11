@@ -10,13 +10,13 @@ const Footer = () => {
                     <form >
                         <img className='w-40' src={logo} alt="" />
                         <p className="max-w-[400px] font-medium text-gray-300">Universe IT is dedicated to providing IT training that equips students with the skills and expertise to thrive in today's competitive marketplace.</p>
-                        <fieldset className="form-control w-80">
+                        <fieldset className="form-control sm:w-80">
                             <div className="join">
                                 <input
                                     type="text"
                                     placeholder="username@site.com"
-                                    className="input input-bordered join-item" />
-                                <button className="btn btn-primary join-item  bg-primary/95 border-none hover:bg-primary">Subscribe</button>
+                                    className="input input-bordered join-item  w-[80%]" />
+                                <button className="btn btn-primary join-item  bg-primary/95 border-none hover:bg-primary px-1 sm:px-5">Subscribe</button>
                             </div>
                         </fieldset>
                     </form>

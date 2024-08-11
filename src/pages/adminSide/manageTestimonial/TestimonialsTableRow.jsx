@@ -49,7 +49,7 @@ const TestimonialsTableRow = ({ idx, testimonial, refetch }) => {
                 <div className="flex items-center gap-3">
                     <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
-                            <img src={image || "https://bifdt-4b534.web.app/assets/teacher2-CqON6YkW.jpg"} />
+                            <img src={image || "https://UniverseIT-4b534.web.app/assets/teacher2-CqON6YkW.jpg"} />
                         </div>
                     </div>
                 </div>
