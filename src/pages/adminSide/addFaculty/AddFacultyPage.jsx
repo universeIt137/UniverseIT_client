@@ -140,7 +140,7 @@ const AddFacultyPage = () => {
 
 
                                     <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-                                        <a className="text-indigo-500">info@bifdt.com</a>
+                                        <a className="text-indigo-500">info@UniverstIT.com</a>
                                         <p className="leading-normal my-5">House # 3/GA,
                                             <br />Shyamoli, Road # 1. Dhaka-1207.
                                         </p>

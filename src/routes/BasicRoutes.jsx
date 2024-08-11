@@ -35,6 +35,13 @@ import UpdateCourseCategory from "../pages/adminSide/UpdateCourseCategory/Update
 import ManageCourseSemester from "../pages/adminSide/ManageCourseSemester/ManageCourseSemester";
 import UpdateCourseSemester from "../pages/adminSide/UpdateCourseSemester/UpdateCourseSemester";
 import ManageCourseObjective from "../pages/adminSide/ManageCourseObjective/ManageCourseObjective";
+import BlogPage from "../pages/clientSide/blog/BlogPage";
+import BlogDetails from "../pages/clientSide/blog/BlogDetails";
+import AdmissionPage from "../pages/clientSide/onlineAdmission/AdmissionPage";
+import Seminar from "../pages/clientSide/Seminar/Seminar";
+import SeminarForm from "../pages/clientSide/SeminarForm/SeminarForm";
+import SuccessStoryPage from "../pages/clientSide/SuccessStoryPage/SuccessStoryPage";
+import Faculties from "../pages/clientSide/Faculties/Faculties";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -55,9 +62,38 @@ const BasicRoutes = createBrowserRouter([
                 element: <CoursesPage />
             },
             {
+                path: "blogs",
+                element: <BlogPage />
+            },
+            {
+                path: "blogDetails/:id",
+                element: <BlogDetails />
+            },
+            {
+                path: "faculties",
+                element: <Faculties />
+            },
+            {
                 path: "/courseDetails/:id",
                 element: <CourseDetails></CourseDetails>
-            }
+            },
+            {
+                path: "/onlineAdmission",
+                element: <AdmissionPage></AdmissionPage>
+            },
+            {
+                path: "/freeSeminar",
+                element: <Seminar/>
+            },
+            {
+                path: "/seminarForm/:id",
+                element: <SeminarForm/>
+            },
+            {
+                path: "/successStory",
+                element: <SuccessStoryPage/>
+            },
+
         ]
     },
     {
