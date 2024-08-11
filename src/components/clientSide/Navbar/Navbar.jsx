@@ -6,10 +6,7 @@ const Navbar = () => {
     const navStyle = `text-base font-semibold hover:text-primary ml-3 px-1 py-1 xl:py-2 rounded-lg relative navbarStylingComponentsParent w-max`
     const stylingComponents = <div className='h-[2px] bg-primary absolute bottom-0 left-0 navbarStylingComponents transition-all duration-300'></div>
     const navli = <>
-        <NavLink to={'/'} className={`${navStyle}`}>
-            <a>Home</a>
-            {stylingComponents}
-        </NavLink>
+
         <NavLink to={'/courses'} className={`${navStyle}`}>
             <a>Courses</a>
             {stylingComponents}
@@ -29,9 +26,7 @@ const Navbar = () => {
         <NavLink to={'/successStory'} className={`${navStyle}`}><a>Success Story</a>
             {stylingComponents}
         </NavLink>
-        <NavLink to={'/contact'} className={`${navStyle}`}><a>Contact</a>
-            {stylingComponents}
-        </NavLink>
+        
         <div className='relative block xl:hidden'>
             <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full xl:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
             <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
@@ -63,8 +58,9 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className='flex gap-5'>
-                        <img className='w-24 sm:w-40' src={logo} alt="" />
-
+                        <Link to={"/"}>
+                            <img className='w-24 sm:w-40' src={logo} alt="" />
+                        </Link>
                     </div>
                 </div>
                 <div className='relative hidden xl:block'>
