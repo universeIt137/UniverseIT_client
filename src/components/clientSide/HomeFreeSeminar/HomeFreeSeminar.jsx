@@ -3,7 +3,8 @@ import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import seminarBanner from '../../../assets/banner/seminarBanner.jpg'
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-const FreeSeminar = () => {
+import { Link } from "react-router-dom";
+const HomeFreeSeminar = () => {
     const [seeMore, setSeeMore] = useState(false)
     const axiosPublic = useAxiosPublic()
 
@@ -71,7 +72,7 @@ const FreeSeminar = () => {
         const useableTime = hour % 12 || 12;
         const theAbbreviation = hour < 12 || hour === 24 ? 'AM' : 'PM';
         return `${useableTime}:${minutes} ${theAbbreviation}`;
-      }
+    }
     return (
         <div className="bg-gray-100">
             <div className="max-w-7xl mx-auto py-10 px-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -89,10 +90,10 @@ const FreeSeminar = () => {
                                     </p>
                                     <div className="w-full h-full bg-white py-5 rounded-xl flex justify-between items-center flex-wrap gap-3 pl-3 sm:pl-5 pr-5 sm:pr-10">
                                         <div>
-                                            <h2 className="text-sm sm:text-base font-bold">{seminar?.title}</h2>
+                                            <h2 className="text-sm sm:text-base font-bold">{seminar?.topic}</h2>
                                             <p className="text-xs sm:text-sm font-medium">{weekDays[new Date(seminar?.date).getDay()] || 0} | Time: {returnTime(seminar?.time)}</p>
                                         </div>
-                                        <ButtonStrong text={'Register Now'} />
+                                        <Link to={`/seminarForm/${seminar?._id}`}><ButtonStrong text={'Register Now'} /></Link>
                                     </div>
 
                                 </div>)
@@ -113,4 +114,4 @@ const FreeSeminar = () => {
     );
 };
 
-export default FreeSeminar;
+export default HomeFreeSeminar;

@@ -7,100 +7,47 @@ import CourseCard from '../../../components/clientSide/Courses/CourseCard'
 import Rating from 'react-rating'
 import { FaRegStar, FaStar } from 'react-icons/fa'
 import ButtonStrong from '../../../Shared/Button/ButtonStrong'
+import { Link, useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import useAxiosPublic from '../../../hooks/useAxiosPublic'
 const RelatedCourse = () => {
-    const allCourses = [
-        {
-            title: "Digital Marketing",
-            category: "Digital Marketing",
-            rating: 4.3,
-            reviews: 1025,
-            price: 10000,
-            courseImage: digitalMarketingImage,
-            instructor: {
-                name: "Md Masud Rana",
-                enrolled: 300,
-                profileImage: "https://i.ibb.co/Y39KLDp/client1.jpg"
-            }
-        },
-        {
-            title: "Web Design",
-            category: "Web Design",
-            rating: 4.3,
-            reviews: 1155,
-            price: 10000,
-            courseImage: webDesignImage,
-            instructor: {
-                name: "Atik Md Alavi",
-                enrolled: 300,
-                profileImage: "https://i.ibb.co/D4Sx9Wk/client2.jpg"
-            }
-        },
-        {
-            title: "Graphic Design",
-            category: "Graphic Design",
-            rating: 4.3,
-            reviews: 930,
-            price: 10000,
-            courseImage: graphicsDesignImage,
-            instructor: {
-                name: "Fahim Ahammed Riyad",
-                enrolled: 250,
-                profileImage: "https://i.ibb.co/fD16FGy/client5.jpg"
-            }
-        },
-        {
-            title: "SEO Mastery",
-            category: "Digital Marketing",
-            rating: 4.5,
-            reviews: 850,
-            price: 12000,
-            courseImage: seoImage,
-            instructor: {
-                name: "Nusrat Jahan",
-                enrolled: 200,
-                profileImage: "https://i.ibb.co/HBnLgL6/client8.webp"
-            }
-        },
-        {
-            title: "Full Stack Development",
-            category: "Development",
-            rating: 4.7,
-            reviews: 1300,
-            price: 15000,
-            courseImage: fullStackImage,
-            instructor: {
-                name: "Shakib Khan",
-                enrolled: 350,
-                profileImage: "https://i.ibb.co/zP8cG18/client10.jpg"
-            }
+    const { id } = useParams();
+    console.log(id);
+    const { data: courses = [], isLoading } = useQuery({
+        queryKey: ['courses'],
+        queryFn: async () => {
+            const res = await useAxiosPublic.get('/course');
+            return res.data;
         }
-    ];
+    })
+    const filteredCourse = courses?.filter(course => course?._id !== id)
+
     return (
         <div className=" py-5">
             <h2 className='text-lg font-bold'>Related Courses</h2>
             <div className='flex flex-col gap-5 py-5 overflow-hidden '>
                 {
-                    allCourses?.map((course, idx) => <div key={idx} className='flex flex-col sm:flex-row  gap-5 max-w-[500px]'>
-                        <img className='object-cover rounded-md sm:size-[130px]' src={course?.courseImage} alt="" />
+                    filteredCourse?.map((course, idx) => <div key={idx} className='flex flex-col sm:flex-row  gap-5 max-w-[500px]'>
+                        <img className='object-cover rounded-md sm:size-[130px]' src={course?.bannerImages[0] || ''} alt="" />
                         <div className='flex flex-wrap  gap-5 lg:gap-0 justify-between w-full'>
                             <div>
                                 <h2 className='font-bold'>{course?.title}</h2>
-                                <p className='text-sm'>{course?.instructor?.name}</p>
+                                <p className='text-sm'>Atik Md Alavi</p>
                                 <div className="text-base sm:text-xl text-primary">
                                     <Rating
                                         className="space-x-1"
                                         emptySymbol={<FaRegStar />}
                                         fullSymbol={<FaStar />}
-                                        initialRating={course?.rating}
+                                        initialRating={4.6}
                                         readonly
                                     />
                                 </div>
                             </div>
                             <div className='flex items-center justify-end gap-3'>
-                                <p>{course?.price}</p>
-                                <button>
+                                <p>{course?.courseFee}৳</p>
+                                <Link to={'/onlineAdmission'}>
                                     <ButtonStrong text={'Enroll Now'} />
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>)

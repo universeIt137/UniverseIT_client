@@ -6,12 +6,12 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 const CourseTab = ({ tabName, setTabName, isCoursePage=false }) => {
 
     const tabStyle = (incomingTabName) => {
-        return `text-sm sm:text-base bg-primary/95 font-medium  rounded-t-lg py-2.5 active:scale-90 transition-all duration-300 hover:bg-primary ${incomingTabName === tabName ? 'bg-primary text-white' : 'bg-white hover:bg-primary/30'} w-full max-w-[210px]`
+        return `text-sm sm:text-base bg-primary/95 font-medium  rounded-t-lg py-2.5 active:scale-90 transition-all duration-300 hover:bg-primary ${incomingTabName === tabName ? 'bg-primary text-white' : 'bg-white hover:bg-primary/30'} w-full w-full`
     }
 
-    const categories = ['Digital Marketing', 'Design & Development', 'Networking']
+    const categories = ['Online', 'Offline', 'Corporate']
     return (
-        <div className={`${isCoursePage && 'w-[90vw] md:w-[calc(95vw-240px)]'} max-w-[1000px] mx-auto relative px-12 bg-white rounded-t-lg`}>
+        <div className={`${isCoursePage && 'w-[90vw] md:w-[calc(95vw-240px)]'} max-w-[800px] mx-auto relative px-12 `}>
             <Swiper
                 spaceBetween={10}
 
@@ -19,13 +19,13 @@ const CourseTab = ({ tabName, setTabName, isCoursePage=false }) => {
                     0: { // when window width is >= 0px
                         slidesPerView: 1,
                     },
-                    470: { // when window width is >= 550px
+                    380: { // when window width is >= 550px
                         slidesPerView: 2,
                     },
-                    700: { // when window width is >= 790px
+                    620: { // when window width is >= 790px
                         slidesPerView: 3,
                     },
-                    930: { // when window width is >= 1024px
+                    780: { // when window width is >= 1024px
                         slidesPerView: 4,
                     },
                     // 1270: { // when window width is >= 1024px
@@ -39,7 +39,7 @@ const CourseTab = ({ tabName, setTabName, isCoursePage=false }) => {
                     prevEl: '.tabs-prev-btn',
                 }}
                 modules={[FreeMode, Pagination, Navigation]}
-                className=" bg-white"
+                className=" bg-white rounded-t-lg"
             >
                 <SwiperSlide>
                     <button

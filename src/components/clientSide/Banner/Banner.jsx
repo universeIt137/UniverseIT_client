@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import bannerImg from '../../../assets/banner/banner.png' 
 import ButtonLight from '../../../Shared/Button/ButtonLight';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
@@ -10,8 +11,8 @@ const Banner = () => {
                         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold ">Grow Your Skills, Secure <span className="text-primary">Your Future</span></h1>
                         <p className="text-justify text-xs sm:text-base font-medium">At Future IT and Language Training Institute, we're dedicated to shaping you future through cutting-edge IT education and comprehensive language training.</p>
                         <div className="flex gap-5">
-                            <div className="h-max rounded-md" style={{ boxShadow: `0px 0px 50px 50px #F4940140` }}><ButtonStrong text={'Get Started'} /></div>
-                            <ButtonLight text={'Join Free Seminar'} />
+                            <div className="h-max rounded-md" style={{ boxShadow: `0px 0px 50px 50px #F4940140` }}><Link to={'/courses'}><ButtonStrong text={'Get Started'} /></Link></div>
+                            <Link to={'/freeSeminar'}><ButtonLight text={'Join Free Seminar'} /></Link>
                         </div>
                     </div>
                 </div>

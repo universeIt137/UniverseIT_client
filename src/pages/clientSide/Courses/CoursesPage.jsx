@@ -143,6 +143,8 @@ const CoursesPage = () => {
             </button>
         </div>
     </div>
+
+    const filteredCourse = tabName === 'All Courses' ? courses : courses?.filter(course=> course?.category === tabName)
     return (
         <>
             <Helmet>
@@ -178,7 +180,7 @@ const CoursesPage = () => {
                             <CourseTab setTabName={setTabName} tabName={tabName} isCoursePage={true} />
                             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
                                 {
-                                    courses?.map((course, idx) => <CourseCard key={idx} course={course}  isCoursePage={true} />)
+                                    filteredCourse?.map((course, idx) => <CourseCard key={idx} course={course}  isCoursePage={true} />)
                                 }
                             </div>
                         </div>

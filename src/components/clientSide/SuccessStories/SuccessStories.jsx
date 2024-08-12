@@ -8,7 +8,7 @@ import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import { Link } from "react-router-dom";
 
 const SuccessStories = ({ isHomePage = false }) => {
-    const [seeMore, setSeeMore] = useState(false)
+    const [seeMore, setSeeMore] = useState(false);
     const videos = [
         { id: 1, src: demoVideo1 },
         { id: 2, src: demoVideo2 },
@@ -45,6 +45,13 @@ const SuccessStories = ({ isHomePage = false }) => {
                 videoElement.pause();
             } else {
                 videoElement.play();
+                if (videoElement.requestFullscreen) {
+                    videoElement.requestFullscreen();
+                } else if (videoElement.webkitRequestFullscreen) { // Safari
+                    videoElement.webkitRequestFullscreen();
+                } else if (videoElement.msRequestFullscreen) { // IE11
+                    videoElement.msRequestFullscreen();
+                }
             }
             setVideoStates(prev => {
                 const newStates = [...prev];
@@ -71,10 +78,7 @@ const SuccessStories = ({ isHomePage = false }) => {
                                     Your browser does not support the video tag.
                                 </video>
                                 <div onClick={() => handleTogglePlay(index)} className={`absolute inset-0 flex items-center justify-center ${videoStates[index] && 'hidden'} cursor-pointer `}>
-                                    <button
-
-                                        className="relative"
-                                    >
+                                    <button className="relative">
                                         <span className="absolute size-4 bg-white top-4 left-4 z-0"></span>
                                         <IoPlayCircleSharp className=" text-5xl rounded-full text-red-600 relative z-10" />
                                     </button>
