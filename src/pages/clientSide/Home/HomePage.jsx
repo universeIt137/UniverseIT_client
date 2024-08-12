@@ -4,7 +4,7 @@ import Courses from '../../../components/clientSide/Courses/Courses';
 import Services from '../../../components/clientSide/Services/Services';
 import { Helmet } from 'react-helmet-async';
 import Milestones from '../../../components/clientSide/Milestones/Milestones';
-import FreeSeminar from '../../../components/clientSide/FreeSeminar/FreeSeminar';
+import HomeFreeSeminar from '../../../components/clientSide/HomeFreeSeminar/HomeFreeSeminar';
 import SuccessStories from '../../../components/clientSide/SuccessStories/SuccessStories';
 import Testimonials from '../../../components/clientSide/Testimonials/Testimonials';
 import CallUs from '../../../components/clientSide/CallUs/CallUs';
@@ -59,7 +59,7 @@ const HomePage = () => {
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <FreeSeminar />
+                <HomeFreeSeminar />
             </motion.div>
             <motion.div
                 initial="hidden"
@@ -67,7 +67,7 @@ const HomePage = () => {
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <SuccessStories />
+                <SuccessStories isHomePage={true} />
             </motion.div>
             <motion.div
                 initial="hidden"

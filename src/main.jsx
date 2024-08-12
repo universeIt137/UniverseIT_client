@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/a11y';
+
 import BasicRoutes from './routes/BasicRoutes.jsx';
 import { RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async'
