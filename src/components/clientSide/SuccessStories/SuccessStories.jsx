@@ -5,8 +5,9 @@ import demoVideo2 from '../../../assets/demoVideo/demo2.mp4';
 import demoVideo3 from '../../../assets/demoVideo/demo3.mp4';
 import { IoPlayCircleSharp } from "react-icons/io5";
 import ButtonStrong from "../../../Shared/Button/ButtonStrong";
+import { Link } from "react-router-dom";
 
-const SuccessStories = () => {
+const SuccessStories = ({ isHomePage = false }) => {
     const [seeMore, setSeeMore] = useState(false)
     const videos = [
         { id: 1, src: demoVideo1 },
@@ -83,8 +84,13 @@ const SuccessStories = () => {
                     ))}
                 </div>
                 <div className="flex justify-center items-center pt-10">
-                    <div className="w-max" onClick={() => setSeeMore(!seeMore)}>
-                        <ButtonStrong text={seeMore ? 'View Less' : 'View All'} /></div>
+                    {
+                        !isHomePage ? <div className="w-max" onClick={() => setSeeMore(!seeMore)}>
+                            <ButtonStrong text={seeMore ? 'View Less' : 'View All'} /></div> : <Link to={'/successStory'}>
+                            <div className="w-max">
+                                <ButtonStrong text={'View All'} /></div>
+                        </Link>
+                    }
                 </div>
             </div>
 

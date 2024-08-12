@@ -11,12 +11,11 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import ComponentsTitle from "../../../Shared/ComponentsTitle/ComponentsTitle";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import CourseTab from "../../../Shared/CourseTab/CourseTab";
 const Courses = () => {
     const axiosPublic = useAxiosPublic()
     const [tabName, setTabName] = useState('All Courses')
-    const tabStyle = (incomingTabName) => {
-        return `bg-primary/95 font-medium  rounded-t-lg px-7 py-2.5 active:scale-90 transition-all duration-300 hover:bg-primary ${incomingTabName === tabName ? 'bg-primary text-white' : 'bg-white hover:bg-primary/30'}`
-    }
+
 
     const { data: courses = [], isLoading } = useQuery({
         queryKey: ['courses'],
@@ -28,32 +27,14 @@ const Courses = () => {
 
 
 
-    
+
 
     return (
         <div className="bg-gray-100">
             <div className=" py-10 pb-20 sm:pb-10 space-y-5 max-w-7xl mx-auto">
                 <ComponentsTitle title={'Our Demanding Courses'} description={'Elevate your skills with our demanding courses designed to push your boundaries and unlock your full potential.'} />
                 <div className="px-5 space-y-10">
-                    <div className="bg-white shadow-xl rounded-lg flex gap-5 flex-wrap max-w-max mx-auto ">
-                        <button
-                            className={`${tabStyle('All Courses')}`}
-                            onClick={() => setTabName('All Courses')}
-                        >All Courses</button>
-                        <button
-                            className={`${tabStyle('Digital Marketing')}`}
-                            onClick={() => setTabName('Digital Marketing')}
-                        >Digital Marketing</button>
-                        <button
-                            className={`${tabStyle('Design & Development')}`}
-                            onClick={() => setTabName('Design & Development')}
-                        >Design & Development</button>
-                        <button
-                            className={`${tabStyle('Networking')}`}
-                            onClick={() => setTabName('Networking')}
-                        >Networking</button>
-
-                    </div>
+                    <CourseTab setTabName={setTabName} tabName={tabName} />
                     <div className="sm:px-16">
                         <div className="relative">
                             <div className="absolute w-full flex sm:justify-between h-full items-end justify-center sm:items-center top-14 gap-7 sm:top-0">
@@ -85,7 +66,7 @@ const Courses = () => {
                                     className=""
                                 >
                                     {
-                                        courses?.map((course, idx) => <SwiperSlide key={idx}>
+                                        courses?.map((course, idx) => <SwiperSlide key={idx} className="">
                                             <CourseCard key={idx} course={course} />
                                         </SwiperSlide>)
                                     }

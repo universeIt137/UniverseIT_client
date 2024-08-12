@@ -67,7 +67,7 @@ const HomePage = () => {
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <SuccessStories />
+                <SuccessStories isHomePage={true} />
             </motion.div>
             <motion.div
                 initial="hidden"

@@ -6,6 +6,7 @@ import { IoPlayCircleSharp } from "react-icons/io5";
 import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
+import { Link } from "react-router-dom";
 const SuccessStory = () => {
     const [seeMore, setSeeMore] = useState(false)
     const videos = [
@@ -55,7 +56,7 @@ const SuccessStory = () => {
         <div className="space-y-3">
             <div className="flex justify-between">
                 <h2 className='text-lg font-bold'>Success Story</h2>
-                <p className="text-red-700 font-bold text-sm">See More</p>
+                <Link to={'/successStory'}><p className="text-red-700 font-bold text-sm">See More</p></Link>
             </div>
             <div className="w-full">
                 <Swiper
