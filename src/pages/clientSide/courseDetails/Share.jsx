@@ -2,8 +2,8 @@ import { FaFacebook, FaWhatsapp, FaTwitter, FaLinkedin, FaTelegram, FaViber } fr
 import { IoMdMail } from "react-icons/io";
 import { BsMessenger } from "react-icons/bs";
 import toast from "react-hot-toast";
- 
-const Share = () => {
+
+const Share = ({ isCoursePage = false }) => {
     const shareText = "Check out this awesome course!";
     const shareUrl = window.location.href;
     const openModal = () => document.getElementById('shareNowModal').showModal()
@@ -53,7 +53,7 @@ const Share = () => {
     const handleCopy = () => {
         navigator.clipboard.writeText(shareUrl)
             .then(() => {
-               toast.success('Copied!!')
+                toast.success('Copied!!')
             })
             .catch(err => {
                 toast.error(err.message)
@@ -63,9 +63,11 @@ const Share = () => {
 
     return (
         <>
-            <div className="space-y-3 pr-5 pb-3 text-end">
-                <button onClick={openModal} className="lg:p-3 p-1 rounded-lg bg-primary text-white hover:text-black  active:bg-white-700 focus:outline-none focus:ring focus:ring-red-300 focus:text-white w-max ">Share now</button>
+            <div className={`space-y-3 pb-3 text-end ${isCoursePage ? '' : 'pr-5'}`}>
 
+                {
+                    isCoursePage ? <button onClick={openModal} className="transition-all duration-300 active:scale-90  border border-primary w-full  my-2 rounded-sm py-1" >Share</button> : <button onClick={openModal} className="lg:p-3 p-1 rounded-lg bg-primary text-white hover:text-black  active:bg-white-700 focus:outline-none focus:ring focus:ring-red-300 focus:text-white w-max ">Share now</button>
+                }
 
             </div>
             <dialog id="shareNowModal" className="modal">
@@ -87,7 +89,7 @@ const Share = () => {
                             <p onClick={shareOnViber} className={`${shareIconsStyle} text-blue-600`}><FaViber /></p>
                             <p onClick={shareOnMessenger} className={`${shareIconsStyle} text-blue-600`}><BsMessenger /></p>
                         </div>
-                        <div className="border border-gray-500 rounded-lg px-2 flex gap-5 py-1">
+                        <div className="border border-gray-500 rounded-lg px-2 flex gap-5 py-1 justify-between">
                             <p className="text-xs sm:text-sm font-medium   py-2 overflow-hidden">{shareUrl}</p>
                             <button onClick={handleCopy} className=" px-4 rounded-full text-sm bg-primary/95 text-white hover:bg-primary active:scale-95 transition-all duration-100">Copy</button>
                         </div>

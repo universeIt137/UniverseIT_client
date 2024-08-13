@@ -12,16 +12,12 @@ import { Helmet } from 'react-helmet-async'
 import useAxiosPublic from '../../../hooks/useAxiosPublic'
 import { useQuery } from '@tanstack/react-query'
 import CourseTab from '../../../Shared/CourseTab/CourseTab';
+import CoursesRadioStyle from './CoursesRadioStyle';
+import Share from '../courseDetails/Share';
 const CoursesPage = () => {
     const axiosPublic = useAxiosPublic();
     const [tabName, setTabName] = useState('All Courses')
-    const [showAllRating, setShowAllRating] = useState(false);
-    const [selectedRating, setSelectedRating] = useState(0)
-    const [showAllVideosDurations, setShowAllVideosDurations] = useState(false);
-    const [selectedVideosDurations, setSelectedVideosDurations] = useState(0)
-    const tabStyle = (incomingTabName) => {
-        return `bg-primary/95 font-medium  rounded-t-lg px-7 py-2.5 active:scale-90 transition-all duration-300 hover:bg-primary ${incomingTabName === tabName ? 'bg-primary text-white' : 'bg-white hover:bg-primary/30'}`
-    }
+
 
 
     const { data: courses = [], isLoading } = useQuery({
@@ -33,118 +29,19 @@ const CoursesPage = () => {
     })
     console.log(courses);
 
-    const ratingArray = [
-        {
-            rating: 4.5,
-            clients: 10000
-        },
-        {
-            rating: 4,
-            clients: 10000
-        },
-        {
-            rating: 3.5,
-            clients: 10000
-        },
-        {
-            rating: 3,
-            clients: 10000
-        }
-    ]
-    const videoDurationArray = [
-        {
-            duration: '0-1',
-            videos: 3333
-        },
-        {
-            duration: '1-3',
-            videos: 12654
-        },
-        {
-            duration: '3-6',
-            videos: 3433
-        },
-        {
-            duration: '6-8',
-            videos: 1234
-        },
-        {
-            duration: '8-10',
-            videos: 5678
-        },
 
-    ]
 
-    const toggleShowAllRating = () => {
-        setShowAllRating(!showAllRating);
-    };
-    const handleSelectRating = (value) => {
-        setSelectedRating(value)
+
+
+
+    const filteredCourse = tabName === 'All Courses' ? courses : courses?.filter(course => course?.category === tabName)
+    const handleCategoryChange = (e) => {
+        e.preventDefault();
+        console.log(e.target.value);
+
+        setTabName(e.target.value)
+
     }
-    const toggleShowAllVideosDuration = () => {
-        setShowAllVideosDurations(!showAllVideosDurations);
-    };
-    const handleSelectVideosDuration = (value) => {
-        setSelectedVideosDurations(value)
-    }
-    const rating = <div className='space-y-3'>
-        <div onClick={toggleShowAllRating} className={`flex justify-between items-center py-1 hover:bg-gray-200 transition-all duration-200 cursor-pointer px-2 `}>
-            <p className='font-bold'>Rating</p>
-            <p className={`${!showAllRating ? 'rotate-0' : 'rotate-180'} transition-all duration-300`}><FaChevronDown /></p>
-        </div>
-        <div className={` ${!showAllRating ? 'max-h-[70px] overflow-hidden' : 'max-h-[500px]'} transition-all duration-300 relative`}>
-            {
-                ratingArray?.map((item, idx) => (
-                    <div onClick={() => handleSelectRating(item.rating)} key={idx} className={`relative flex gap-1 font-medium items-center cursor-pointer`}>
-
-                        <div className={`size-2 rounded-full border  ${selectedRating === item.rating ? 'bg-primary border-primary' : 'border-black'}`}></div>
-                        <p className='text-primary'>
-                            <Rating
-                                className="space-x-1"
-                                emptySymbol={<FaRegStar />}
-                                fullSymbol={<FaStar />}
-                                initialRating={item?.rating}
-                                readonly
-                            />
-                        </p>
-                        <p className='text-sm'>{item?.rating} & Up ({item.clients})</p>
-                    </div>
-                ))
-            }
-            <div className={`h-[20px] w-full absolute  bg-gradient-to-b from-white/50 to-white z-10  bottom-0 ${showAllRating ? 'hidden' : 'block'}`}></div>
-        </div>
-        <div className='text-center'>
-            <button onClick={toggleShowAllRating} className='text-sm font-medium'>
-                {showAllRating ? 'Show Less' : 'Show All'}
-            </button>
-        </div>
-    </div>
-    const videoDuration = <div className='space-y-3'>
-        <div onClick={toggleShowAllVideosDuration} className={`flex justify-between items-center py-1 hover:bg-gray-200 transition-all duration-200 cursor-pointer px-2 `}>
-            <p className='font-bold'>Video Duration</p>
-            <p className={`${!showAllVideosDurations ? 'rotate-0' : 'rotate-180'} transition-all duration-300`}><FaChevronDown /></p>
-        </div>
-        <div className={` ${!showAllVideosDurations ? 'max-h-[70px] overflow-hidden' : 'max-h-[500px]'} transition-all duration-300 relative`}>
-            {
-                videoDurationArray?.map((item, idx) => (
-                    <div onClick={() => handleSelectVideosDuration(item.duration)} key={idx} className={`relative flex gap-2 font-medium items-center cursor-pointer`}>
-
-                        <div className={`size-3 border-2  ${selectedVideosDurations === item.duration ? 'bg-primary border-primary' : 'border-black'}`}></div>
-
-                        <p className=''>{item?.duration} Hours ({item.videos})</p>
-                    </div>
-                ))
-            }
-            <div className={`h-[20px] w-full absolute  bg-gradient-to-b from-white/50 to-white z-10  bottom-0 ${showAllVideosDurations ? 'hidden' : 'block'}`}></div>
-        </div>
-        <div className='text-center'>
-            <button onClick={toggleShowAllVideosDuration} className='text-sm font-medium'>
-                {showAllVideosDurations ? 'Show Less' : 'Show All'}
-            </button>
-        </div>
-    </div>
-
-    const filteredCourse = tabName === 'All Courses' ? courses : courses?.filter(course=> course?.category === tabName)
     return (
         <>
             <Helmet>
@@ -154,33 +51,41 @@ const CoursesPage = () => {
                 <div className=" py-2 max-w-7xl mx-auto">
 
                     <div className='flex gap-5'>
-                        <div className='min-w-[240px] py-5 px-2 bg-white hidden md:block'>
-                            <div className='flex gap-3'>
-                                <div className='border-[2.5px] border-black max-w-max flex gap-2 justify-center items-center py-2 px-2'>
-                                    Filter
-                                    <IoFilter />
-                                </div>
-                                <div className='bg-white w-max py-1 px-2'>
-                                    <p className='text-sm font-medium'>Sort By</p>
-                                    <select className='font-medium cursor-pointer' name="" id="">
-                                        <option>Most Popular</option>
-                                        <option>Most Rated</option>
-                                        <option>Good</option>
-                                    </select>
-                                </div>
+                        <div className='min-w-[240px] bg-white hidden md:block rounded-sm overflow-hidden'>
+                            <div className='bg-primary text-white  flex gap-1 items-center'>
+                                <select className='bg-primary py-2 max-w-[95px]' name="" id="">
+                                    <option value="">Country</option>
+                                    <option>Bangladesh</option>
+                                    <option>India</option>
+                                    <option>America</option>
+                                    <option>Pakistan</option>
+                                    <option>England</option>
+                                </select>
+                                <select className='bg-primary py-2 max-w-[95px]' name="" id="">
+                                    <option value="">Work Type</option>
+                                    <option >Front-End Developer</option>
+                                    <option >Back-End Developer</option>
+                                    <option>Full Stack Developer</option>
+                                    <option>UI/UX Designer</option>
+                                    <option>QA Engineer</option>
+                                </select>
+                                <p>Filter</p>
                             </div>
-                            <hr className='border-gray-500 my-5 border-[1px]' />
+                            <div className='px-2'><Share isCoursePage={true} /></div>
+                            <div className='p-5 space-y-2'>
+                                <CoursesRadioStyle tabName={tabName} setTabName={setTabName} name={'All Courses'} />
+                                <CoursesRadioStyle tabName={tabName} setTabName={setTabName} name={'Online'} />
+                                <CoursesRadioStyle tabName={tabName} setTabName={setTabName} name={'Offline'} />
+                                <CoursesRadioStyle tabName={tabName} setTabName={setTabName} name={'Corporate'} />
 
-                            {rating}
-                            <hr className='border-gray-500 my-5 border-[1px]' />
-                            {videoDuration}
+                            </div>
                         </div>
                         <div>
                             <ComponentsTitle title={'Our Demanding Courses'} description={'Elevate your skills with our demanding courses designed to push your boundaries and unlock your full potential.'} />
                             <CourseTab setTabName={setTabName} tabName={tabName} isCoursePage={true} />
                             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
                                 {
-                                    filteredCourse?.map((course, idx) => <CourseCard key={idx} course={course}  isCoursePage={true} />)
+                                    filteredCourse?.map((course, idx) => <CourseCard key={idx} course={course} isCoursePage={true} />)
                                 }
                             </div>
                         </div>
