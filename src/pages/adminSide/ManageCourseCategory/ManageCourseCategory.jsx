@@ -5,7 +5,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import CourseCategories from "./CourseCategories";
- 
+
 const ManageCourseCategory = () => {
     const axiosPublic = useAxiosPublic()
     const { register, handleSubmit, reset } = useForm();
@@ -46,7 +46,7 @@ const ManageCourseCategory = () => {
                 toast.error(err?.message, { id: toastId });
             })
     };
-
+    const inputStyle = "w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
     return (
         <>
             <Helmet>
@@ -66,7 +66,7 @@ const ManageCourseCategory = () => {
                                 <input
                                     type="text"
                                     {...register("name", { required: true })}
-                                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    className={`${inputStyle}`}
                                 />
 
                             </div>
@@ -78,13 +78,13 @@ const ManageCourseCategory = () => {
                                         type="number"
                                         placeholder="Number"
                                         {...register("timeNumber", { required: true })}
-                                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                        className={`${inputStyle}`}
                                     />
                                     <select
                                         name="" id=""
                                         placeholder="period"
                                         {...register("timePeriod", { required: true })}
-                                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                        className={`${inputStyle}`}
                                     >
                                         <option value="Month">Month</option>
                                         <option value="Year">Year</option>
@@ -99,7 +99,7 @@ const ManageCourseCategory = () => {
                                         type="text"
                                         placeholder="Type"
                                         {...register("type", { required: true })}
-                                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                        className={`${inputStyle}`}
                                     />
 
                                 </div>
@@ -111,7 +111,7 @@ const ManageCourseCategory = () => {
                                 <textarea
                                     type="text"
                                     {...register("durationDetails", { required: true })}
-                                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    className={`${inputStyle}`}
                                 />
 
                             </div>
@@ -121,7 +121,7 @@ const ManageCourseCategory = () => {
                                 <label className="leading-7 text-sm text-gray-600 font-bold">Course Fee</label>
                                 <textarea
                                     {...register("courseFee", { required: true })}
-                                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    className={`${inputStyle}`}
                                 />
 
                             </div>
@@ -131,7 +131,7 @@ const ManageCourseCategory = () => {
                                 <label className="leading-7 text-sm text-gray-600 font-bold">Total Class</label>
                                 <textarea
                                     {...register("totalClass", { required: true })}
-                                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    className={`${inputStyle}`}
                                 />
 
                             </div>
@@ -142,7 +142,7 @@ const ManageCourseCategory = () => {
                                 <textarea
                                     type="text"
                                     {...register("regularBatch", { required: true })}
-                                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    className={`${inputStyle}`}
                                 />
 
                             </div>
@@ -153,7 +153,7 @@ const ManageCourseCategory = () => {
                                 <textarea
                                     type="text"
                                     {...register("executiveBatch", { required: true })}
-                                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    className={`${inputStyle}`}
                                 />
 
                             </div>
@@ -164,7 +164,7 @@ const ManageCourseCategory = () => {
                                 <textarea
                                     type="text"
                                     {...register("qualification", { required: true })}
-                                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    className={`${inputStyle}`}
                                 />
 
                             </div>

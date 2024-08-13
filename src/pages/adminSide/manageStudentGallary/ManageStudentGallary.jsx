@@ -8,6 +8,7 @@ import AddCategory from './AddCategory';
 import { useState } from 'react';
 import { Grommet, Tab, Tabs } from 'grommet';
 import toast from 'react-hot-toast';
+import StudentGalleryTabs from './StudentGalleryTabs';
  
 const ManageStudentGallary = () => {
     const axiosPublic = useAxiosPublic();
@@ -107,15 +108,7 @@ const ManageStudentGallary = () => {
                 </div>
                 <div className="mt-10">
                     <div className='w-full lg:w-[1000px] lg:max-w-[calc(100vw-400px)]'>
-                        <Grommet Grommet theme={customTheme}>
-                            <Tabs justify="start">
-                                <Tab className='text-red-500' title={<div className={`${btnStyle} ${categoryName === 'All' ? 'font-bold bg-primary' : 'bg-primary/80'}`}><p className='tabBtnText transition-all duration-300'>All</p></div>} onClick={() => setCategoryName('All')}></Tab>
-                                {
-                                    allCategory?.map(category => <Tab onClick={() => setCategoryName(category?.category_name)} key={category?._id} title={<div className={`${btnStyle} ${categoryName === category?.category_name ? 'font-bold bg-primary' : 'bg-primary/80'}`}><p className='tabBtnText transition-all duration-300'>{category?.category_name}</p></div>}></Tab>)
-                                }
-
-                            </Tabs>
-                        </Grommet>
+                       <div className=' pb-10'><StudentGalleryTabs tabName={categoryName} setTabName={setCategoryName} studentCategory={allCategory} /></div>
                     </div>
                     {
                         showingGallery?.length > 0 ? <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>

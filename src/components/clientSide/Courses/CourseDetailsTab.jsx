@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import 'react-tabs/style/react-tabs.css';
-import { Component } from 'react';
 import Faq from 'react-faq-component';
 import { Grommet, Tab, Tabs } from 'grommet';
 import { useQuery } from '@tanstack/react-query';
