@@ -19,46 +19,49 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
                     src={bannerImages[0]}
                     alt="Shoes" />
             </figure>
-            <div className="card-body pt-5 px-3 sm:px-8">
-               <div className="space-y-3 flex flex-col justify-between min-h-full">
-                    <div className="space-y-2"> 
-                        <div>
-                            <p className=" w-max px-1.5 rounded-sm text-xs bg-primary/40 py-0.5">{category}</p>
-                        </div>
-                        <div className="flex justify-between w-full">
-                            <h2 className="font-bold text-base sm:text-xl">{title}</h2>
-                            <Link to={`/courseDetails/${_id}`}><p className="flex justify-end text-xl sm:text-2xl"><LuArrowUpRight /></p></Link>
-                        </div>
-                        <div className="flex gap-2 font-medium text-sm sm:text-base items-center">
-                            <span className="py-0.5">{4.6}</span>
-                            <div className="text-base sm:text-xl text-primary">
-                                <Rating
-                                    className="space-x-1"
-                                    emptySymbol={<FaRegStar />}
-                                    fullSymbol={<FaStar />}
-                                    initialRating={4.6}
-                                    readonly
-                                />
+            <Link to={`/courseDetails/${_id}`}>
+                <div className="card-body pt-5 px-3 sm:px-8">
+                    <div className="space-y-3 flex flex-col justify-between min-h-full">
+                        <div className="space-y-2">
+                            <div>
+                                <p className=" w-max px-1.5 rounded-sm text-xs bg-primary/40 py-0.5">{category}</p>
                             </div>
-                            <span className="text-gray-500 py-1">(1155)</span>
-                        </div>
-                    </div>
-                    <div className="flex items-end">
-                        <div className="flex gap-2 sm:gap-4">
-                            <img className="size-11 sm:size-12 rounded-full object-cover" src={'https://i.ibb.co/zP8cG18/client10.jpg'} alt="" />
-                            <div className="text-xs sm:text-sm font-medium">
-                                <p>Atik Md Alavi</p>
-                                <p className="text-gray-500 font-normal">300 Enrolled</p>
+                            <div className="flex justify-between w-full">
+                                <h2 className="font-bold text-base sm:text-xl">{title}</h2>
+                                <Link to={`/courseDetails/${_id}`}><p className="flex justify-end text-xl sm:text-2xl"><LuArrowUpRight /></p></Link>
+                            </div>
+                            <div className="flex gap-2 font-medium text-sm sm:text-base items-center">
+                                <span className="py-0.5">{4.6}</span>
+                                <div className="text-base sm:text-xl text-primary">
+                                    <Rating
+                                        className="space-x-1"
+                                        emptySymbol={<FaRegStar />}
+                                        fullSymbol={<FaStar />}
+                                        initialRating={4.6}
+                                        readonly
+                                    />
+                                </div>
+                                <span className="text-gray-500 py-1">(1155)</span>
                             </div>
                         </div>
-                        <p className="text-end text-base sm:text-xl font-bold text-primary">
-                            BDT
-                            <br />
-                            {courseFee}
-                        </p>
+                        <div className="flex items-end">
+                            <div className="flex gap-2 sm:gap-4">
+                                <img className="size-11 sm:size-12 rounded-full object-cover" src={'https://i.ibb.co/zP8cG18/client10.jpg'} alt="" />
+                                <div className="text-xs sm:text-sm font-medium">
+                                    <p>Atik Md Alavi</p>
+                                    <p className="text-gray-500 font-normal">300 Enrolled</p>
+                                </div>
+                            </div>
+                            <p className="text-end text-base sm:text-xl font-bold text-primary">
+                                BDT
+                                <br />
+                                {courseFee}
+                            </p>
+                        </div>
                     </div>
-               </div>
-            </div>
+                </div>
+            </Link>
+
         </div>
     );
 };
