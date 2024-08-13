@@ -42,6 +42,7 @@ import Seminar from "../pages/clientSide/Seminar/Seminar";
 import SeminarForm from "../pages/clientSide/SeminarForm/SeminarForm";
 import SuccessStoryPage from "../pages/clientSide/SuccessStoryPage/SuccessStoryPage";
 import Faculties from "../pages/clientSide/Faculties/Faculties";
+import CertificateVerification from "../pages/clientSide/certificateVerification/CertificateVerification";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -56,6 +57,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: 'aboutUs',
                 element: <AboutUs />
+            },
+            {
+                path: 'certified',
+                element: <CertificateVerification />
             },
             {
                 path: 'courses',
