@@ -7,8 +7,13 @@ import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Link } from "react-router-dom";
+import VideoPlayingModal from "../../../Shared/VideoPlayingModal";
+
+// Modal Component
+
+
 const SuccessStory = () => {
-    const [seeMore, setSeeMore] = useState(false)
+    const [modalVideoSrc, setModalVideoSrc] = useState(null);
     const videos = [
         { id: 1, src: demoVideo1 },
         { id: 2, src: demoVideo2 },
@@ -37,26 +42,23 @@ const SuccessStory = () => {
             }
         });
     }, []);
-    const handleTogglePlay = (index) => {
-        const videoElement = videoRefs.current[index];
-        if (videoElement) {
-            if (videoStates[index]) {
-                videoElement.pause();
-            } else {
-                videoElement.play();
-            }
-            setVideoStates(prev => {
-                const newStates = [...prev];
-                newStates[index] = !newStates[index];
-                return newStates;
-            });
-        }
+
+
+    const handlePlayButtonClick = (videoSrc) => {
+        setModalVideoSrc(videoSrc);
     };
+
+    const handleCloseModal = () => {
+        setModalVideoSrc(null);
+    };
+
     return (
         <div className="space-y-3">
             <div className="flex justify-between">
                 <h2 className='text-lg font-bold'>Success Story</h2>
-                <Link to={'/successStory'}><p className="text-red-700 font-bold text-sm">See More</p></Link>
+                <Link to={'/successStory'}>
+                    <p className="text-red-700 font-bold text-sm">See More</p>
+                </Link>
             </div>
             <div className="w-full">
                 <Swiper
@@ -72,19 +74,16 @@ const SuccessStory = () => {
                             <div className="relative">
                                 <video
                                     ref={el => videoRefs.current[index] = el}
-                                    className="rounded-lg shadow-lg w-full "
-                                    controls
+                                    className="rounded-lg shadow-lg w-full"
+                                    muted
                                 >
                                     <source src={video.src} type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
-                                <div onClick={() => handleTogglePlay(index)} className={`absolute inset-0 flex items-center justify-center ${videoStates[index] && 'hidden'} cursor-pointer `}>
-                                    <button
-
-                                        className="relative"
-                                    >
+                                <div onClick={() => handlePlayButtonClick(video.src)} className={`absolute inset-0 flex items-center justify-center ${videoStates[index] && 'hidden'} cursor-pointer`}>
+                                    <button className="relative">
                                         <span className="absolute size-4 bg-white top-4 left-4 z-0"></span>
-                                        <IoPlayCircleSharp className=" text-5xl rounded-full text-red-600 relative z-10" />
+                                        <IoPlayCircleSharp className="text-5xl rounded-full text-red-600 relative z-10" />
                                     </button>
                                 </div>
                             </div>
@@ -92,6 +91,10 @@ const SuccessStory = () => {
                     ))}
                 </Swiper>
             </div>
+
+            {modalVideoSrc && (
+                <VideoPlayingModal videoSrc={modalVideoSrc} onClose={handleCloseModal} />
+            )}
         </div>
     );
 };
