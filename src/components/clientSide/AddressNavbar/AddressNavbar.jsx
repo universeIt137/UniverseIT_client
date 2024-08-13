@@ -2,7 +2,8 @@ import { IoIosMail } from "react-icons/io";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io5";
-import { useState } from "react"; 
+import { useState } from "react";
+import { Link } from "react-router-dom";
 const AddressNavbar = () => {
     const [language, setLanguage] = useState('eng')
     const handleEnglishLanguage = () => setLanguage('eng')
@@ -41,7 +42,10 @@ const AddressNavbar = () => {
                             </button>
                         </div>
                         <button className="h-10 px-7 bg-white text-primary rounded-md text-sm font-bold">Log In</button>
-                        <button className="h-10 px-7 bg-white text-primary rounded-md text-sm font-bold">Certificate Verification</button>
+                        <Link to={"/certified"}>
+                            <button className="h-10 px-7 bg-white text-primary rounded-md text-sm font-bold">Certificate Verification</button>
+                        </Link>
+
                     </dib>
                 </div>
             </div>
