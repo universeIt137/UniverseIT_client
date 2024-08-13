@@ -2,51 +2,19 @@ import React, { useEffect, useState } from 'react';
 
 // import 'react-tabs/style/react-tabs.css';
 import Faq from 'react-faq-component';
-import { Grommet, Tab, Tabs } from 'grommet';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import CourseCategory from '../../../Shared/CourseCategory';
 import SemesterTable from '../../../Shared/SemesterTable';
+import Tabs from './Tabs';
 
 
 const CourseDetailsTab = () => {
     const { id } = useParams();
     const axiosPublic = useAxiosPublic()
-    const [TabName, setTabName] = useState('2nd')
+    const [TabName, setTabName] = useState('Career Objective')
     const [rows, setRowsOption] = useState(null)
-    const customTheme = {
-        tab: {
-            active: {
-                color: 'black',
-            },
-            border: {
-                side: 'bottom',
-                size: 'small',
-                color: 'border',
-                active: {
-                    color: '#FF4e00',
-                },
-                hover: {
-                    color: '#FF4e00',
-                },
-            },
-            color: 'text',
-            margin: {
-                vertical: 'xsmall',
-                horizontal: 'small',
-            },
-            pad: {
-                bottom: 'xsmall',
-            },
-            extend: ({ theme }) => `
-            color: ${theme.global.colors['accent-1']};
-            &:hover {
-              background-color: ${theme.global.colors['']};
-            }
-          `,
-        },
-    };
     const { data: courseSemesters = [], isLoading: courseSemestersIsLoading } = useQuery({
         queryKey: ['singleCourseIdForSemester', id],
         queryFn: async () => {
@@ -115,24 +83,16 @@ const CourseDetailsTab = () => {
         collapseIcon: "-",
     };
 
-    const btnStyle = 'border-primary hover:bg-primary btn text-white border  md:px-5 px-3 rounded-md  py-1 transition-all duration-300 hover:font-bold  md:h-16 md:w-[190px] flex justify-center items-center tabBtn active:border-2 active:border-gray-500 text-xs sm:text-sm md:text-base'
+
+
+
+    console.log(TabName);
+
+
     return (
-        <div className='overflow-x-hidden'>
-            <Grommet Grommet theme={customTheme}>
-                <Tabs justify="start">
-                    {
-                        courseCategories?.map(category => <Tab key={category?._id} className='text-red-500' title={<div className={`${btnStyle} ${TabName === category?._id ? 'font-bold bg-primary' : 'bg-primary/80'}`}>
-                            <p className='transition-all duration-300 '>{category.duration} <br /> <span className="text-xs sm:text-sm">({category?.type || 'Type not available'})</span></p>
-                        </div>} onClick={() => setTabName(category?._id)}>
-                        </Tab>)
-                    }
-
-                    <Tab className='text-red-500' title={<div className={`${btnStyle} ${TabName === '4th' ? 'font-bold bg-primary' : 'bg-primary/80'}`}><p className='tabBtnText transition-all duration-300'>Semester Details</p></div>} onClick={() => setTabName('4th')}></Tab>
-                    <Tab className='text-red-500' title={<div className={`${btnStyle} ${TabName === '1st' ? 'font-bold bg-primary' : 'bg-primary/80'}`}><p className='tabBtnText transition-all duration-300'>Career objective</p></div>} onClick={() => setTabName('1st')}></Tab>
-
-                </Tabs>
-            </Grommet>
-            {TabName === '1st' && <div className='pl-2  '>
+        <div className='overflow-x-hidden bg-white rounded-lg'>
+            <Tabs tabName={TabName} setTabName={setTabName} courseCategories={courseCategories} />
+            {TabName === 'Career Objective' && <div className='pl-2  '>
                 {
                     objectiveFAQ.length < 1 ? <p className="pb-10 pt-5 text-center">No FAQ Found</p> : <Faq config={config} getRowOptions={setRowsOption} data={showingDataAtFAQ} />
                 }
@@ -140,7 +100,7 @@ const CourseDetailsTab = () => {
             {
                 showingCategory?.name && <CourseCategory category={showingCategory} />
             }
-            {TabName === '4th' && <div>
+            {TabName === 'Semester Details' && <div>
                 <div >
                     {
                         courseSemesters.map(semester => <SemesterTable key={semester._id} semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} />)
