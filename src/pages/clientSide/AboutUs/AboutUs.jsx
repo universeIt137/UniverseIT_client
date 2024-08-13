@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import Testimonials from '../../../components/clientSide/Testimonials/Testimonials';
-import FreeSeminar from '../../../components/clientSide/FreeSeminar/FreeSeminar';
 import Courses from '../../../components/clientSide/Courses/Courses';
 import Banner from '../../../components/clientSide/Banner/Banner';
+import HomeFreeSeminar from '../../../components/clientSide/HomeFreeSeminar/HomeFreeSeminar';
 const AboutUs = () => {
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 50 },
@@ -38,7 +38,7 @@ const AboutUs = () => {
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <FreeSeminar />
+                <HomeFreeSeminar />
             </motion.div>
             <motion.div
                 initial="hidden"

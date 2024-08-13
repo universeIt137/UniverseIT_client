@@ -1,6 +1,8 @@
 
 import ComponentsTitle from '../../../Shared/ComponentsTitle/ComponentsTitle'
 import CourseCard from '../../../components/clientSide/Courses/CourseCard'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 import { useState } from 'react'
 import { IoFilter } from "react-icons/io5";
 import Rating from 'react-rating'
@@ -9,6 +11,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { Helmet } from 'react-helmet-async'
 import useAxiosPublic from '../../../hooks/useAxiosPublic'
 import { useQuery } from '@tanstack/react-query'
+import CourseTab from '../../../Shared/CourseTab/CourseTab';
 const CoursesPage = () => {
     const axiosPublic = useAxiosPublic();
     const [tabName, setTabName] = useState('All Courses')
@@ -140,6 +143,8 @@ const CoursesPage = () => {
             </button>
         </div>
     </div>
+
+    const filteredCourse = tabName === 'All Courses' ? courses : courses?.filter(course=> course?.category === tabName)
     return (
         <>
             <Helmet>
@@ -172,28 +177,10 @@ const CoursesPage = () => {
                         </div>
                         <div>
                             <ComponentsTitle title={'Our Demanding Courses'} description={'Elevate your skills with our demanding courses designed to push your boundaries and unlock your full potential.'} />
-                            <div className="bg-white shadow-xl rounded-lg flex gap-5 flex-wrap max-w-max mx-auto ">
-                                <button
-                                    className={`${tabStyle('All Courses')}`}
-                                    onClick={() => setTabName('All Courses')}
-                                >All Courses</button>
-                                <button
-                                    className={`${tabStyle('Digital Marketing')}`}
-                                    onClick={() => setTabName('Digital Marketing')}
-                                >Digital Marketing</button>
-                                <button
-                                    className={`${tabStyle('Design & Development')}`}
-                                    onClick={() => setTabName('Design & Development')}
-                                >Design & Development</button>
-                                <button
-                                    className={`${tabStyle('Networking')}`}
-                                    onClick={() => setTabName('Networking')}
-                                >Networking</button>
-
-                            </div>
+                            <CourseTab setTabName={setTabName} tabName={tabName} isCoursePage={true} />
                             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
                                 {
-                                    courses?.map((course, idx) => <CourseCard key={idx} course={course}  isCoursePage={true} />)
+                                    filteredCourse?.map((course, idx) => <CourseCard key={idx} course={course}  isCoursePage={true} />)
                                 }
                             </div>
                         </div>

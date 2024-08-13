@@ -1,14 +1,14 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import { useQuery } from '@tanstack/react-query';
 import ReactPlayer from 'react-player';
-import Marquee from 'react-fast-marquee';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { Link } from 'react-router-dom';
 
 const BannerSection = ({ videoUrl }) => {
+    const handleClick = () => {
+        window.location.href = `tel:+8801755450127`;
+      };
     return (
         <div className='flex flex-col lg:flex-row  my-5 gap-1 md:gap-5'>
             {/* video and technology section  */}
@@ -18,7 +18,6 @@ const BannerSection = ({ videoUrl }) => {
                 bg-black">
                     <ReactPlayer
                         controls="true"
-                        playing={true}
                         url={videoUrl}
                         width="100%"
                         height="100%"
@@ -106,16 +105,16 @@ const BannerSection = ({ videoUrl }) => {
                     <Link to={'/onlineAdmission'}>
                         <ButtonStrong text={'ENROLL NOW'} />
                     </Link>
-                    <button>
+                    <button onClick={handleClick}>
                         <ButtonStrong text={'CALL NOW'} />
                     </button>
 
 
                 </div>
                 <div className='flex items-center justify-center w-full mx-auto mb-4 lg:mb-0'>
-                    <button>
+                    <Link to={'/freeSeminar'}>
                         <ButtonStrong text={'JOIN FREE SEMINAR'} />
-                    </button>
+                    </Link>
                 </div>
 
             </div>

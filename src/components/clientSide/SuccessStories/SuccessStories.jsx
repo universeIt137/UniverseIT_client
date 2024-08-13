@@ -5,9 +5,10 @@ import demoVideo2 from '../../../assets/demoVideo/demo2.mp4';
 import demoVideo3 from '../../../assets/demoVideo/demo3.mp4';
 import { IoPlayCircleSharp } from "react-icons/io5";
 import ButtonStrong from "../../../Shared/Button/ButtonStrong";
+import { Link } from "react-router-dom";
 
-const SuccessStories = () => {
-    const [seeMore, setSeeMore] = useState(false)
+const SuccessStories = ({ isHomePage = false }) => {
+    const [seeMore, setSeeMore] = useState(false);
     const videos = [
         { id: 1, src: demoVideo1 },
         { id: 2, src: demoVideo2 },
@@ -44,6 +45,13 @@ const SuccessStories = () => {
                 videoElement.pause();
             } else {
                 videoElement.play();
+                if (videoElement.requestFullscreen) {
+                    videoElement.requestFullscreen();
+                } else if (videoElement.webkitRequestFullscreen) { // Safari
+                    videoElement.webkitRequestFullscreen();
+                } else if (videoElement.msRequestFullscreen) { // IE11
+                    videoElement.msRequestFullscreen();
+                }
             }
             setVideoStates(prev => {
                 const newStates = [...prev];
@@ -70,10 +78,7 @@ const SuccessStories = () => {
                                     Your browser does not support the video tag.
                                 </video>
                                 <div onClick={() => handleTogglePlay(index)} className={`absolute inset-0 flex items-center justify-center ${videoStates[index] && 'hidden'} cursor-pointer `}>
-                                    <button
-
-                                        className="relative"
-                                    >
+                                    <button className="relative">
                                         <span className="absolute size-4 bg-white top-4 left-4 z-0"></span>
                                         <IoPlayCircleSharp className=" text-5xl rounded-full text-red-600 relative z-10" />
                                     </button>
@@ -83,8 +88,13 @@ const SuccessStories = () => {
                     ))}
                 </div>
                 <div className="flex justify-center items-center pt-10">
-                    <div className="w-max" onClick={() => setSeeMore(!seeMore)}>
-                        <ButtonStrong text={seeMore ? 'View Less' : 'View All'} /></div>
+                    {
+                        !isHomePage ? <div className="w-max" onClick={() => setSeeMore(!seeMore)}>
+                            <ButtonStrong text={seeMore ? 'View Less' : 'View All'} /></div> : <Link to={'/successStory'}>
+                            <div className="w-max">
+                                <ButtonStrong text={'View All'} /></div>
+                        </Link>
+                    }
                 </div>
             </div>
 
