@@ -41,6 +41,7 @@ const AddressNavbar = () => {
                             </button>
                         </div>
                         <button className="h-10 px-7 bg-white text-primary rounded-md text-sm font-bold">Log In</button>
+                        <button className="h-10 px-7 bg-white text-primary rounded-md text-sm font-bold">Certificate Verification</button>
                     </dib>
                 </div>
             </div>
