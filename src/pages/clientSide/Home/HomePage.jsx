@@ -29,6 +29,8 @@ const HomePage = () => {
             >
                 <Banner />
             </motion.div>
+
+            
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -37,6 +39,8 @@ const HomePage = () => {
             >
                 <Courses />
             </motion.div>
+
+            
             <motion.div
                 initial="hidden"
                 whileInView="visible"
