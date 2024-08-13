@@ -6,7 +6,6 @@ const FormButton = () => {
     return (
         <div className="fixed bottom-36 lg:bottom-20 right-3 p-3 z-50"> {/* Adjust Tailwind classes as needed */}
             <a
-
                 target="_blank"
                 rel="noopener noreferrer"
             >
