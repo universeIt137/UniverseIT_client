@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const TestimonialsTableRow = ({ idx, testimonial, refetch }) => {
     const axiosPublic = useAxiosPublic()
-    const { name, designation, opinion, image, _id } = testimonial;
+    const { name, designation, opinion, image, _id, rating = 0 } = testimonial;
 
     const handleDelete = () => {
 
@@ -54,6 +54,7 @@ const TestimonialsTableRow = ({ idx, testimonial, refetch }) => {
                     </div>
                 </div>
             </td>
+            <td>{rating}</td>
             <td>{opinion || 'Not Given'}</td>
 
             <td className='text-2xl text-green-500'>

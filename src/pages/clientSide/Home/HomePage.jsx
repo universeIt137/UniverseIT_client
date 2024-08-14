@@ -9,12 +9,28 @@ import SuccessStories from '../../../components/clientSide/SuccessStories/Succes
 import Testimonials from '../../../components/clientSide/Testimonials/Testimonials';
 import CallUs from '../../../components/clientSide/CallUs/CallUs';
 import { motion } from 'framer-motion';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const HomePage = () => {
+    const axiosPublic = useAxiosPublic()
+    const { data: homepageContent = [], refetch: homepageContentRefetch, isLoading } = useQuery({
+        queryKey: ['homepageContent'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/homepageContent')
+            return res?.data
+        }
+    })
+    if (isLoading) {
+        return ''
+    }
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
     };
+    console.log(homepageContent);
+    const data = homepageContent[0] || [];
+    console.log(data?.notice);
 
     return (
         <>
@@ -27,10 +43,10 @@ const HomePage = () => {
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <Banner />
+                <Banner bannerImg={data?.imageUrl || ''} notice={data?.notice || ''} />
             </motion.div>
 
-            
+
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -40,7 +56,7 @@ const HomePage = () => {
                 <Courses />
             </motion.div>
 
-            
+
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -55,7 +71,7 @@ const HomePage = () => {
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <Milestones />
+                <Milestones data={data} />
             </motion.div>
             <motion.div
                 initial="hidden"

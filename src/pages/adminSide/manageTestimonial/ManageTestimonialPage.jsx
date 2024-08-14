@@ -33,6 +33,7 @@ const ManageTestimonialPage = () => {
                                 <th>Name</th>
                                 <th>Designation</th>
                                 <th>Image</th>
+                                <th>Rating</th>
                                 <th>Opinion</th>
                                 <th>Edit</th>
                                 <th>Delete</th>

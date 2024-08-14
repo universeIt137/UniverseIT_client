@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { BiLogoTwitter } from 'react-icons/bi';
 import { TbBrandYoutubeFilled } from 'react-icons/tb';
-import { FaFacebook } from 'react-icons/fa';
+import { FaFacebook, FaRegStar, FaStar } from 'react-icons/fa';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
@@ -10,18 +10,22 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { uploadImg } from '../../../UploadFile/uploadImg';
+import Rating from 'react-rating';
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const imgHostingApi = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddTestimonialPage = () => {
 
     const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, reset } = useForm();
-
+    const [ratingValue, setRatingValue] = useState(0);
+    const [ratingErr, setRatingErr] = useState('')
     const onSubmit = async (data) => {
+        setRatingErr('')
         const { name, designation, opinion } = data;
-
+        if (!ratingValue) {
+            setRatingErr('Give a rating!!')
+            return
+        }
         const imageFile = data.image[0];
         let testimonialsImage = ''
         if (!imageFile?.name) {
@@ -30,7 +34,7 @@ const AddTestimonialPage = () => {
             testimonialsImage = await uploadImg(imageFile);
         }
 
-        const allData = { name, designation, opinion, image: testimonialsImage };
+        const allData = { name, designation, opinion, image: testimonialsImage, rating: ratingValue };
         axiosPublic.post('/testimonial', allData)
             .then(res => {
                 if (res.data.insertedId) {
@@ -42,6 +46,7 @@ const AddTestimonialPage = () => {
                         timer: 1500
                     });
                     reset()
+                    setRatingErr('')
                 }
             })
             .catch(err => {
@@ -49,8 +54,20 @@ const AddTestimonialPage = () => {
             })
     }
 
+    const handleRatingChange = value => {
+        setRatingValue(value)
+    }
+    // Object to map rating values to their corresponding colors
+    const starColorMap = {
+        1: 'text-red-500',        // Bright Red
+        2: 'text-orange-600',     // Dark Orange
+        3: 'text-orange-500',     // Bright Orange
+        4: 'text-orange-300',     // Lighter Orange
+        5: 'text-primary',     // Yellow
+    };
 
-
+    // Function to get the star color using optional chaining
+    const getStarColor = (rating) => starColorMap[rating] ?? 'text-gray-400';
     return (
         <>
             <Helmet>
@@ -70,28 +87,46 @@ const AddTestimonialPage = () => {
                                 <div className="   rounded-2xl">
                                     <form action="" onSubmit={handleSubmit(onSubmit)} className='flex flex-wrap -m-2'>
 
-                                        {/* Name  */}
-                                        <div className="p-2 w-1/3">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Name</label>
-                                                <input type="text" {...register("name")} name="name" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                        <div className='grid grid-cols-1 md:grid-cols-2 w-full'>
+                                            {/* Name  */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Name</label>
+                                                    <input type="text" {...register("name", { required: true })} name="name" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        {/* image url  */}
-                                        <div className="p-2 w-1/3">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Image</label><br />
-                                                <input type="file" {...register("image")} className="file-input file-input-bordered file-input-md w-full max-w-xs" />
+                                            {/* image url  */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Image</label><br />
+                                                    <input type="file" {...register("image", { required: true })} className="file-input file-input-bordered file-input-md w-full" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        {/* Designation  */}
-                                        <div className="p-2 w-1/3">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Designation</label>
-                                                <input type="text" {...register("designation")} name="designation" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                            {/* Designation  */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Designation</label>
+                                                    <input type="text" {...register("designation", { required: true })} name="designation" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
+                                            </div>
+                                            {/*Rating   */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Rating</label>
+                                                    <div className={`text-xl ${getStarColor(ratingValue)}`}>
+                                                        <Rating
+                                                            onChange={handleRatingChange}
+                                                            className="space-x-1"
+                                                            emptySymbol={<FaRegStar />}
+                                                            fullSymbol={<FaStar />}
+                                                            initialRating={ratingValue}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <p>{ratingErr}</p>
                                             </div>
                                         </div>
 
@@ -99,7 +134,7 @@ const AddTestimonialPage = () => {
                                         <div className="p-2 w-full mx-auto">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600">Your Opinion</label>
-                                                <textarea name="opinion" {...register("opinion")} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                                                <textarea name="opinion" {...register("opinion", { required: true })} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                                             </div>
                                         </div>
 

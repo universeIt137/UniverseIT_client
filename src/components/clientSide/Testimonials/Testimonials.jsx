@@ -4,7 +4,19 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 const Testimonials = () => {
+    const axiosPublic = useAxiosPublic();
+    const { data: testimonialss = [], refetch, isLoading } = useQuery({
+        queryKey: ['testimonials'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/testimonial');
+            return res.data;
+        }
+    });
+    console.log(testimonialss);
+
     const testimonials = [
         {
             name: "David Nyoman",
@@ -77,24 +89,24 @@ const Testimonials = () => {
                                     className=""
                                 >
                                     {
-                                        testimonials.map((feedback, idx) => <SwiperSlide key={idx}>
+                                        testimonialss.map((feedback, idx) => <SwiperSlide key={idx}>
                                             <div className="w-full p-10 bg-white space-y-5 mx-auto min-h-[300px]" key={idx}>
                                                 <div className="text-base sm:text-xl text-primary">
                                                     <Rating
                                                         className="space-x-1"
                                                         emptySymbol={<FaRegStar />}
                                                         fullSymbol={<FaStar />}
-                                                        initialRating={feedback?.rating}
+                                                        initialRating={feedback?.rating || ''}
                                                         readonly
                                                     />
 
                                                 </div>
-                                                <p className="font-medium">{feedback.review}</p>
+                                                <p className="font-medium">{feedback.opinion || ''}</p>
                                                 <div className="flex gap-2 sm:gap-4">
-                                                    <img className="size-11 sm:size-12 rounded-full object-cover" src={feedback?.imageUrl} alt="" />
+                                                    <img className="size-11 sm:size-12 rounded-full object-cover" src={feedback?.image || ''} alt="" />
                                                     <div className="text-sm font-medium">
-                                                        <p className="font-bold">{feedback?.name}</p>
-                                                        <p className="text-gray-500 font-normal">{feedback?.role}</p>
+                                                        <p className="font-bold">{feedback?.name || ''}</p>
+                                                        <p className="text-gray-500 font-normal">{feedback?.designation || ''}</p>
                                                     </div>
                                                 </div>
                                             </div>
