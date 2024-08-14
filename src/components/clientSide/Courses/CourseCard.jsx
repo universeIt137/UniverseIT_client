@@ -27,7 +27,7 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
                                 <p className=" w-max px-1.5 rounded-sm text-xs bg-primary/40 py-0.5">{category}</p>
                             </div>
                             <div className="flex justify-between w-full">
-                                <h2 className="font-bold text-base sm:text-xl">{title}</h2>
+                                <h2 className="font-bold text-text_color text-base sm:text-xl">{title}</h2>
                                 <Link to={`/courseDetails/${_id}`}><p className="flex justify-end text-xl sm:text-2xl"><LuArrowUpRight /></p></Link>
                             </div>
                             <div className="flex gap-2 font-medium text-sm sm:text-base items-center">

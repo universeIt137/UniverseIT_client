@@ -6,7 +6,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 const CourseTab = ({ tabName, setTabName, isCoursePage=false }) => {
 
     const tabStyle = (incomingTabName) => {
-        return `text-sm sm:text-base bg-primary/95 font-medium  rounded-t-lg py-2.5 active:scale-90 transition-all duration-300 hover:bg-primary ${incomingTabName === tabName ? 'bg-primary text-white' : 'bg-white hover:bg-primary/30'} w-full w-full`
+        return `text-sm sm:text-base bg-primary/95 font-medium  rounded-t-lg py-2.5 active:scale-90 transition-all duration-300 hover:bg-text_color hover:text-white ${incomingTabName === tabName ? 'bg-text_color text-white' : 'bg-white hover:bg-primary/30'} w-full w-full`
     }
 
     const categories = ['Online', 'Offline', 'Corporate']

@@ -78,8 +78,8 @@ const HomeFreeSeminar = () => {
             <div className="max-w-7xl mx-auto py-10 px-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <div className="space-y-10 max-w-[600px]">
                     <div className="space-y-4">
-                        <h2 className="text-3xl sm:text-5xl font-bold">Free Seminar Schedule</h2>
-                        <p className="font-medium text-sm sm:text-base text-justify">Need guidelines to choose a suitable course? Unlock new insights and opportunities by joining our complimentary seminars.</p>
+                        <h2 className="text-3xl sm:text-5xl font-bold text-text_color">Free Seminar Schedule</h2>
+                        <p className="font-medium text-sm sm:text-base text-justify text-text_color">Need guidelines to choose a suitable course? Unlock new insights and opportunities by joining our complimentary seminars.</p>
                     </div>
                     <div className="py-5 space-y-5">
                         <div className={`space-y-4 ${seeMore ? 'max-h-[2000px]' : 'max-h-[300px]'} overflow-hidden transition-all duration-500`}>
