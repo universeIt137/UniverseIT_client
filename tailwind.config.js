@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         primary: '#F49401',
+        text_color: '#2C265F',
       }
     },
   },

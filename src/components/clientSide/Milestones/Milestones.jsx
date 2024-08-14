@@ -9,9 +9,9 @@ const Milestones = () => {
             <div className='grid grid-cols-1 lg:grid-cols-2 pt-10 gap-10'>
                 <img className='order-2 lg:order-1 w-full max-w-[650px] mx-auto' src={banner} alt="" />
                 <div className='flex flex-wrap sm:grid sm:grid-cols-2 sm:w-max sm:h-max gap-10 mx-auto justify-center items-center'>
-                    <div className={`${countStyle} bg-[#E0F7FA]`}>
-                        <span> <CountUp end={500} duration={9} /> +</span>
-                        <p className='text-base font-medium sm:text-lg'>Enrolled Students</p>
+                    <div className={`${countStyle} bg-text_color`}>
+                        <span className='text-white'> <CountUp end={500} duration={9} /> +</span>
+                        <p className='text-white font-medium sm:text-lg'>Enrolled Students</p>
                     </div>
                     <div className={`${countStyle} bg-[#FFEBEE]`}>
                         <span><CountUp end={30} duration={9} /> +</span>
@@ -21,9 +21,9 @@ const Milestones = () => {
                         <span><CountUp end={350} duration={9} /> +</span>
                         <p className='text-base font-medium sm:text-lg'>Industry Experts</p>
                     </div>
-                    <div className={`${countStyle} bg-[#f3edaf]`}>
-                        <span><CountUp end={90} duration={9} />%</span>
-                        <p className='text-base font-medium sm:text-lg'>Successful ratio</p>
+                    <div className={`${countStyle} bg-text_color`}>
+                        <span className='text-white'><CountUp end={90} duration={9} />%</span>
+                        <p className='text-white font-medium sm:text-lg'>Successful ratio</p>
                     </div>
                 </div>
             </div>
