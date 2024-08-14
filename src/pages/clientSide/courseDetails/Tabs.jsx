@@ -10,7 +10,7 @@ const Tabs = ({ tabName, setTabName, isCoursePage = false, courseCategories }) =
     }
 
     return (
-        <div className={` max-w-[800px] mx-auto relative px-12 `}>
+        <div className={` max-w-[800px] mx-auto relative px-12`}>
             <Swiper
                 spaceBetween={10}
 
