@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { useLoaderData, useParams } from 'react-router-dom';
 import logo from '../../../assets/logo/mainLogo.png'
 import { useQuery } from '@tanstack/react-query';
+import ButtonLight from '../../../Shared/Button/ButtonLight';
+import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 const SeminarForm = () => {
     const { id } = useParams()
     const axiosPublic = useAxiosPublic();
@@ -66,20 +68,20 @@ const SeminarForm = () => {
                             <div className="flex flex-col text-center w-full ">
                                 <p className="lg:w-2/3 mx-auto  leading-relaxed text-sm pb-2">Fill up the form to attend our free seminar</p>
                             </div>
-                            <div className="w-full   mx-auto bg-white lg:px-10 py-5 rounded-xl  ">
+                            <div className="w-8/12 mx-auto bg-white lg:px-10 py-5 rounded-xl">
 
                                 <div className=" rounded-2xl w-full">
                                     <form action="" onSubmit={handleSubmit} className='flex flex-wrap -m-2 w-full'>
-                                        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   w-full'>
+                                        <div className='w-2/3 mx-auto mt-5'>
                                             {/* name  */}
-                                            <div className="p-2 w-full  ">
+                                            <div className="p-2 w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-[12px] lg:text-sm text-gray-600">Name</label>
                                                     <input type="text" id="name" name="name" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                                 </div>
                                             </div>
                                             {/* email  */}
-                                            <div className="p-2 w-full  ">
+                                            <div className="p-2 w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-[12px] lg:text-sm text-gray-600">Email</label>
                                                     <input type="email" id="email" name="email" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
@@ -127,8 +129,8 @@ const SeminarForm = () => {
 
 
 
-                                        <div className="p-2 w-full">
-                                            <button className="flex mx-auto text-white bg-primary border-0 py-1 lg:py-2 px-1 lg:px-8 focus:outline-none hover:bg-indigo-600 rounded text-sm lg:text-lg">Submit</button>
+                                        <div className="p-2 relative w-full flex justify-center items-center mx-auto">
+                                            <ButtonStrong text={'Submit'} />
                                         </div>
 
 

@@ -14,19 +14,20 @@ const Milestones = ({ data }) => {
                 <div className='flex flex-wrap sm:grid sm:grid-cols-2 sm:w-max sm:h-max gap-10 mx-auto justify-center items-center'>
                     <div className={`${countStyle} bg-[#E0F7FA]`}>
                         <span> <CountUp end={enrolled || 0} duration={9} /> +</span>
-                        <p className='text-base font-medium sm:text-lg'>Enrolled Students</p>
+                        <p className='text-text_color font-medium sm:text-lg'>Enrolled Students</p>
                     </div>
+                    
                     <div className={`${countStyle} bg-[#FFEBEE]`}>
                         <span><CountUp end={instructors || 0} duration={9} /> +</span>
-                        <p className='text-base font-medium sm:text-lg'>Instructors</p>
+                        <p className='text-text_color font-medium sm:text-lg'>Instructors</p>
                     </div>
                     <div className={`${countStyle} bg-[#E1BEE7]`}>
                         <span><CountUp end={expert || 0} duration={9} /> +</span>
-                        <p className='text-base font-medium sm:text-lg'>Industry Experts</p>
+                        <p className='text-text_color font-medium sm:text-lg'>Industry Experts</p>
                     </div>
                     <div className={`${countStyle} bg-[#f3edaf]`}>
                         <span><CountUp end={successRatio || 0} duration={9} />%</span>
-                        <p className='text-base font-medium sm:text-lg'>Successful ratio</p>
+                        <p className='text-text_color font-medium sm:text-lg'>Successful ratio</p>
                     </div>
                 </div>
             </div>
