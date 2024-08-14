@@ -20,21 +20,20 @@ const ManageCountDown = () => {
         return ''
     }
     console.log(homepageContent);
-    const { since: incomingSince, student: incomingStudent, rating: incomingRating, instructor: incomingInstructor, guarantee: incomingGuarantee, ratio: incomingRatio } = homepageContent[0];
+    const { enrolled: incomingEnrolled, instructors: incomingInstructors, expert: incomingExpert, successRatio: incomingSuccessRatio } = homepageContent[0];
     const handleSubmit = (event) => {
 
         event.preventDefault();
         const form = event.target;
-        const since = form.since.value;
-        const student = form.student.value;
-        const rating = form.rating.value;
-        const instructor = form.instructor.value;
-        const guarantee = form.guarantee.value;
-        const ratio = form.ratio.value;
+        const enrolled = form.enrolled.value;
+        const instructors = form.instructors.value;
+        const expert = form.expert.value;
+        const successRatio = form.successRatio.value;
+
 
 
         const toastId = toast.loading("Home page content is updating...");
-        const data = { since, student, rating, instructor, guarantee, ratio };
+        const data = { enrolled, instructors, expert, successRatio };
         axiosPublic.post(`/updateHomepageContent/${homepageContent[0]?._id || 'notAvailable'}`, data)
             .then(res => {
                 toast.success("Home page Countdown Updated Successfully!!", { id: toastId });
@@ -67,58 +66,40 @@ const ManageCountDown = () => {
                                 <p className='text-center text-2xl font-bold pt-3'>Manage CountDown</p>
 
                                 <div className="shadow-2xl my-10 px-5 rounded-2xl">
-                                    <form action="" onSubmit={handleSubmit} className='flex flex-wrap -m-2'>
+                                    <form action="" onSubmit={handleSubmit} >
 
-                                        {/* Since  */}
-                                        <div className="p-2 w-1/3">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Since when</label>
-                                                <input defaultValue={incomingSince} type="number" name="since" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                        <div className='grid grid-cols-1 md:grid-cols-2 -m-2'>
+                                            {/* enrolled  */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Enrolled Students</label>
+                                                    <input defaultValue={incomingEnrolled} type="number" name="enrolled" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
+                                            </div>
+                                            {/* Instructors  */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">No. of Instructors</label>
+                                                    <input defaultValue={incomingInstructors} type="number" name="instructors" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
+                                            </div>
+
+                                            {/* expert  */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Industry Experts</label>
+                                                    <input defaultValue={incomingExpert} type="number" name="expert" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
+                                            </div>
+
+                                            {/*Successful ratio*/}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Successful ratio</label>
+                                                    <input defaultValue={incomingSuccessRatio} type="number" name="successRatio" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
                                             </div>
                                         </div>
-                                        {/* Students  */}
-                                        <div className="p-2 w-1/3">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">No. of Students</label>
-                                                <input defaultValue={incomingStudent} type="number" name="student" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                                            </div>
-                                        </div>
-
-                                        {/* Ratings  */}
-                                        <div className="p-2 w-1/3">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Ratings</label>
-                                                <input defaultValue={incomingRating} type="number" name="rating" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                                            </div>
-                                        </div>
-
-                                        {/*Instructor No.*/}
-                                        <div className="p-2 w-1/3">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">No. of Instructor</label>
-                                                <input defaultValue={incomingInstructor} type="number" name="instructor" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                                            </div>
-                                        </div>
-
-                                        {/*Ed. guarantee*/}
-                                        <div className="p-2 w-1/3">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Education guarantee</label>
-                                                <input defaultValue={incomingGuarantee} type="number" name="guarantee" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                                            </div>
-                                        </div>
-
-
-                                        {/*Success ratio*/}
-                                        <div className="p-2 w-1/3">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Job success ratio</label>
-                                                <input defaultValue={incomingRatio} type="number" name="ratio" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                                            </div>
-                                        </div>
-
-
-
 
                                         <div className="p-2 w-full">
                                             <button className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Update</button>
