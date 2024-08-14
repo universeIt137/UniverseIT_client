@@ -62,39 +62,7 @@ const ManageStudentGallary = () => {
 
     }
 
-    const customTheme = {
-        tab: {
-            active: {
-                color: 'black',
-            },
-            border: {
-                side: 'bottom',
-                size: 'small',
-                color: 'border',
-                active: {
-                    color: '#FF4e00',
-                },
-                hover: {
-                    color: '#FF4e00',
-                },
-            },
-            color: 'text',
-            margin: {
-                vertical: 'xsmall',
-                horizontal: 'small',
-            },
-            pad: {
-                bottom: 'xsmall',
-            },
-            extend: ({ theme }) => `
-            color: ${theme.global.colors['accent-1']};
-            &:hover {
-              background-color: ${theme.global.colors['']};
-            }
-          `,
-        },
-    };
-    const btnStyle = 'border-primary hover:bg-primary px-6 py-1.5 text-white border text-base   rounded-md transition-all duration-300 hover:font-bold flex justify-center items-center tabBtn active:border-2 active:border-gray-500'
+    
     return (
         <>
             <Helmet>

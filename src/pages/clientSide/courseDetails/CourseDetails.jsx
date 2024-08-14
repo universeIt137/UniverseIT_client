@@ -33,7 +33,7 @@ const CourseDetails = () => {
     return (
         <section className='w-11/12 mx-auto'>
             {/* banner */}
-            <BannerSection videoUrl={videoUrl} />
+            <BannerSection courseData={courseData} videoUrl={videoUrl} />
 
             {/* sub video and success story  */}
             <section className='flex flex-col lg:flex-row gap-6 my-5'>
