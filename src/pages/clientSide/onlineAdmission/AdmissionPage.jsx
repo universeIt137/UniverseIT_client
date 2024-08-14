@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import logo from '../../../assets/logo/mainLogo.png'
+import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 
 const AdmissionPage = () => {
     const axiosPublic = useAxiosPublic();
@@ -80,7 +81,7 @@ const AdmissionPage = () => {
 
                                 <div className="   rounded-2xl">
                                     <form action="" onSubmit={handleSubmit} className='   w-full -m-2'>
-                                        <div className='grid grid-cols-1 sm:grid-cols-2'>
+                                        <div className='w-1/2 mx-auto'>
                                             {/* name  */}
                                             <div className="p-2 w-full">
                                                 <div className="relative">
@@ -130,21 +131,15 @@ const AdmissionPage = () => {
                                                 <label className="leading-7 text-[12px] lg:text-sm text-gray-600">Gender</label>
                                                 <div className="relative flex justify-start gap-5">
                                                     <br />
-                                                    <input type="radio" name="gender" value={"male"} className="radio radio-secondary border-primary text-[12px] lg:text-sm" /> Male
-                                                    <input type="radio" name="gender" value={"female"} className="radio radio-secondary border-primary text-[12px] lg:text-sm" /> Female
+                                                    <input type="radio" name="gender" value={"male"} className="radio radio-secondary border-primary text-[10px] lg:text-sm" /> Male
+                                                    <input type="radio" name="gender" value={"female"} className="radio radio-secondary border-primary text-[10px] lg:text-sm" /> Female
                                                 </div>
 
                                             </div>
                                         </div>
 
 
-                                        {/* website  */}
-                                        {/* <div className="p-2 w-full">
-                                            <div className="relative">
-                                                <label className="leading-7 text-[12px] lg:text-sm text-gray-600">How you know About Our Website?</label>
-                                                <input type="text"  name="website" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                                            </div>
-                                        </div> */}
+                                        
 
                                         {/* website  */}
                                         <div className="p-2 sm:w-1/2 mx-auto">
@@ -153,8 +148,8 @@ const AdmissionPage = () => {
                                                 <textarea name="website" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                                             </div>
                                         </div>
-                                        <div className="p-2 w-full">
-                                            <button className="flex mx-auto text-white bg-primary border-0 py-1 lg:py-2 px-1 lg:px-8 focus:outline-none hover:bg-orange-800 rounded lg:text-lg">Submit</button>
+                                        <div className="p-2 flex justify-center items-center mx-auto">
+                                            <ButtonStrong text={'Submit'} />
                                         </div>
                                     </form>
 
