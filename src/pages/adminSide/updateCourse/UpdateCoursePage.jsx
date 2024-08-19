@@ -11,6 +11,7 @@ import SubVideos from "../../../Shared/SubVideos";
 import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import { uploadImg } from "../../../UploadFile/uploadImg";
 import AddTechnology from "../addCourse/AddTechnology";
+import KeyFeatures from "../addCourse/KeyFeatures";
 
 
 const UpdateCoursePage = () => {
@@ -24,7 +25,7 @@ const UpdateCoursePage = () => {
     const [subVideoUrl, setSubVideoUrl] = useState('')
     const [subVideoErr, setSubVideoErr] = useState('')
     const [allTechnology, setAllTechnology] = useState([])
-
+    const [allKeyFeatures, setAllKeyFeatures] = useState([])
     const { data: courseData = {}, refetch: courseDataRefetch, isLoading } = useQuery({
         queryKey: ['course', id],
         queryFn: async () => {
@@ -36,6 +37,7 @@ const UpdateCoursePage = () => {
         if (courseData) {
             setAllTechnology(courseData?.technologies || [])
             setSubVideos(courseData.subVideos || [])
+            setAllKeyFeatures(courseData.keyFeatures || [])
         }
     }, [courseData, isLoading])
     if (isLoading) {
@@ -120,7 +122,7 @@ const UpdateCoursePage = () => {
         //     const data = { category, image: imageUrl };
         //     return axiosPublic.post('/studentGallery', data);
         // });
-        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology };
+        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology,keyFeatures: allKeyFeatures };
         console.log(data);
 
         axiosPublic.put(`/course/${id}`, data)
@@ -240,6 +242,8 @@ const UpdateCoursePage = () => {
                                             </div>
                                             {/* Add Technology */}
                                             <AddTechnology allTechnology={allTechnology} setAllTechnology={setAllTechnology} />
+                                            {/* Key Features */}
+                                            <KeyFeatures allKeyFeatures={allKeyFeatures} setAllKeyFeatures={setAllKeyFeatures} />
                                         </div>
 
 

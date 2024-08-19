@@ -26,19 +26,18 @@ const CourseDetails = () => {
         }
     })
 
-    const { title, subtitle, videoUrl, bannerImages, subVideos, notice, bangla, admissionNotice, courseFee } = courseData;
-    console.log(videoUrl);
+    const { title, subtitle, videoUrl, bannerImages, subVideos, notice, bangla, admissionNotice, courseFee,  } = courseData;
 
 
     return (
         <section className='w-11/12 mx-auto'>
             {/* banner */}
-            <BannerSection courseData={courseData} videoUrl={videoUrl} />
+            <BannerSection courseData={courseData} />
 
             {/* sub video and success story  */}
             <section className='flex flex-col lg:flex-row gap-6 my-5'>
                 <div className='lg:w-4/6'>
-                    
+
                     <div className="p-5 bg-white rounded-2xl z-10 relative">
                         <div className="flex justify-between flex-col sm:flex-row">
                             <p className="lg:text-4xl font-bold py-5">Course Details</p>

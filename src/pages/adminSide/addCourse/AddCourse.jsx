@@ -6,6 +6,7 @@ import SubVideos from '../../../Shared/SubVideos';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { uploadImg } from '../../../UploadFile/uploadImg';
 import AddTechnology from './AddTechnology';
+import KeyFeatures from './KeyFeatures';
 
 const AddCourse = () => {
     const axiosPublic = useAxiosPublic()
@@ -17,6 +18,7 @@ const AddCourse = () => {
     const [subVideoUrl, setSubVideoUrl] = useState('')
     const [subVideoErr, setSubVideoErr] = useState('')
     const [allTechnology, setAllTechnology] = useState([])
+    const [allKeyFeatures, setAllKeyFeatures] = useState([])
 
 
 
@@ -87,7 +89,7 @@ const AddCourse = () => {
         }
 
 
-        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology };
+        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures };
 
         axiosPublic.post(`/course`, data)
             .then(res => {
@@ -205,6 +207,8 @@ const AddCourse = () => {
 
                                             {/* Add Technology */}
                                             <AddTechnology allTechnology={allTechnology} setAllTechnology={setAllTechnology} />
+                                            {/* Key Features */}
+                                            <KeyFeatures allKeyFeatures={allKeyFeatures} setAllKeyFeatures={setAllKeyFeatures} />
                                         </div>
 
 
