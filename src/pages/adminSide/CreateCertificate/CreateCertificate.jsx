@@ -117,7 +117,7 @@ const CreateCertificate = () => {
     return (
         <>
             <Helmet>
-                <title>Dashboard | Add Faculty</title>
+                <title>Dashboard | Create Certificate</title>
             </Helmet>
             <div className='bg-gray-100 text-black'>
 
