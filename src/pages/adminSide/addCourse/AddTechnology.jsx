@@ -26,14 +26,16 @@ const AddTechnology = ({ allTechnology, setAllTechnology }) => {
             <div className='w-full'>
                 <div className="p-2 w-full">
                     <div className="relative space-y-2">
-                        <div>
-                            <label className="leading-7 text-sm text-gray-600 font-medium">Technology Name</label><br />
-                            <input onChange={(e) => setTechnologyName(e.target.value)} value={technologyName} className="file-input file-input-bordered file-input-md w-full" type="text" />
-                        </div>
-                        <div>
-                            <label className="leading-7 text-sm text-gray-600 font-medium">Technology Image</label><br />
-                            <input id='technologyImageInputField' onChange={(e) => setTechnologyImg(e.target.files[0])} type="file" name='image1' className="file-input file-input-bordered file-input-md w-full" />
-                        </div>
+                       <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
+                            <div>
+                                <label className="leading-7 text-sm text-gray-600 font-medium">Technology Name</label><br />
+                                <input onChange={(e) => setTechnologyName(e.target.value)} value={technologyName} className="file-input file-input-bordered file-input-md w-full" type="text" />
+                            </div>
+                            <div>
+                                <label className="leading-7 text-sm text-gray-600 font-medium">Technology Image</label><br />
+                                <input id='technologyImageInputField' onChange={(e) => setTechnologyImg(e.target.files[0])} type="file" name='image1' className="file-input file-input-bordered file-input-md w-full" />
+                            </div>
+                       </div>
                         <p className='text-red-500 text-sm'>{err}</p>
                         {/* <p className='text-red-600'>{imageInputErr}</p> */}
                         <p onClick={handleStoreTechnology} className='btn flex flex-col justify-center items-center px-7 py-1 rounded-md bg-primary text-white hover:font-bold transition-all duration-300 hover:bg-orange-700  active:bg-primary focus:outline-none focus:ring focus:ring-red-300 active:scale-90 focus:text-white w-max'>Add</p>
