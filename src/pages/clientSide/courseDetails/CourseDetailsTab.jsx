@@ -13,7 +13,7 @@ import Tabs from './Tabs';
 const CourseDetailsTab = () => {
     const { id } = useParams();
     const axiosPublic = useAxiosPublic()
-    const [TabName, setTabName] = useState('Career Objective')
+    const [TabName, setTabName] = useState('Course Details')
     const [rows, setRowsOption] = useState(null)
     const { data: courseSemesters = [], isLoading: courseSemestersIsLoading } = useQuery({
         queryKey: ['singleCourseIdForSemester', id],
@@ -42,13 +42,7 @@ const CourseDetailsTab = () => {
             rows && rows[0].expand()
         }
     }, [courseObjectives, rows])
-    useEffect(() => {
-        if (courseCategories?.length > 0) {
-            setTabName(courseCategories[0]?._id)
-        } else {
-            setTabName('4th')
-        }
-    }, [courseCategories])
+
     if (courseSemestersIsLoading || courseCategoriesIsLoading || courseObjectivesIsLoading) {
         return ''
     }
@@ -103,27 +97,11 @@ const CourseDetailsTab = () => {
             {TabName === 'Course Details' && <div>
                 <div >
                     {
-                        courseSemesters.map(semester => <SemesterTable key={semester._id} semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} />)
+                        courseSemesters.map((semester, idx) => <SemesterTable classNum={idx + 1} key={semester._id} semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} />)
                     }
-                    <table className=" border-collapse border border-gray-200 bg-primary/20 text-xs xs:text-sm sm:text-base w-full max-w-[800px] mx-auto">
-                        <thead>
-                            <tr className="">
-                                <th colSpan="2" className="border border-gray-200 px-2 sm:px-4 py-2 text-left"></th>
-                                <th className="border border-gray-200 px-2 sm:px-4 py-2 text-left"></th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className='bg-primary/20 '>
-                                <td className="px-2 sm:px-4 py-2 border-r-2 border-0 border-black border-b-[1.5px] border-b-primary border-l-[2px]">Total</td>
-                                <td className="border-0 border-r-2 border-black px-2 sm:px-4 py-2 border-b-[1.5px] border-b-primary "></td>
-                                <td className="border border-gray-200 px-2 sm:px-4 py-2 font-medium border-b-[1.5px border-b-primary border-r-[2px] border-r-black">{totalCredits} Credits</td>
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-
+                    {
+                        courseSemesters?.length < 1 && <p className='py-5 text-center'>No Class Available!!</p>
+                    }
                 </div>
             </div>}
         </div>

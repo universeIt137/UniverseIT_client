@@ -86,19 +86,19 @@ const ManageCourseSemester = () => {
     return (
         <>
             <Helmet>
-                <title>Dashboard | Manage Course Semester</title>
+                <title>Dashboard | Manage Course Class</title>
             </Helmet>
             <div className='w-full lg:w-[1000px] lg:max-w-[calc(100vw-400px)] mx-auto'>
                 <div className="shadow-2xl px-10 rounded-2xl lg:w-full mx-auto bg-white mt-2">
-                    <p className='text-center text-2xl font-bold py-2'>Manage Course Semester of {`"${course?.title}"`}</p>
-                    <p className='text-lg font-bold pt-10'>Add Semester</p>
+                    <p className='text-center text-2xl font-bold py-2'>Manage Class of {`"${course?.title}"`}</p>
+                    <p className='text-lg font-bold pt-10'>Add Class</p>
                     <div className='flex flex-wrap -m-2'>
                         {/* Title */}
                         <div className="grid grid-cols-1 w-full">
                             {/* category title  */}
                             <div className="p-2 w-full">
 
-                                <label className="leading-7 text-sm text-gray-600 font-bold">Semester Title</label>
+                                <label className="leading-7 text-sm text-gray-600 font-bold">Class Title</label>
                                 <input
                                     type="text"
                                     onChange={handleSemester}
@@ -108,26 +108,18 @@ const ManageCourseSemester = () => {
                                 <p className="text-sm text-red-500">{semesterTitleErr}</p>
                             </div>
                             <div className="w-full">
-                                <label className="leading-7 text-base text-gray-600 font-bold">Add Subject</label>
+                                
                                 <form className="grid grid-cols-1 md:grid-cols-2 w-full" action="" onSubmit={handleSubmit(onSubmit)}>
                                     <div className="p-2 w-full">
-                                        <label className="leading-7 text-sm text-gray-600 font-bold">Name</label>
+                                        <label className="leading-7 text-sm text-gray-600 font-bold">Topic</label>
                                         <input
                                             type="text"
                                             {...register("name", { required: true })}
                                             className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                         />
                                     </div>
-                                    <div className="p-2 w-full">
-                                        <label className="leading-7 text-sm text-gray-600 font-bold">Credit</label>
-                                        <input
-                                            type="number"
-                                            {...register("credit", { required: true })}
-                                            className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                        />
-                                    </div>
                                     <div className="pt-3">
-                                        <button className="flex flex-col justify-center items-center px-5 py-1.5 rounded-md bg-primary text-white hover:font-bold transition-all duration-300 hover:bg-[#e55633]  active:bg-primary focus:outline-none focus:ring focus:ring-red-300 active:scale-90 focus:text-white w-max">Add Subject</button>
+                                        <button className="flex flex-col justify-center items-center px-5 py-1.5 rounded-md bg-primary text-white hover:font-bold transition-all duration-300 hover:bg-[#e55633]  active:bg-primary focus:outline-none focus:ring focus:ring-red-300 active:scale-90 focus:text-white w-max">Add Topic</button>
                                     </div>
                                 </form>
 
