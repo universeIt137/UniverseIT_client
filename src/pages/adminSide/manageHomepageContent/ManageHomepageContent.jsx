@@ -3,19 +3,15 @@ import { Link } from 'react-router-dom';
 import { BiLogoTwitter } from 'react-icons/bi';
 import { TbBrandYoutubeFilled } from 'react-icons/tb';
 import { FaFacebook } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import toast from 'react-hot-toast';
-import axios from 'axios';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
-import { Editor } from '@tinymce/tinymce-react';
 import Swal from 'sweetalert2';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { uploadImg } from '../../../UploadFile/uploadImg';
 
 const ManageHomepageContent = () => {
-    const [usableDescription, setDescription] = useState('');
-    const [usableNotice, setNotice] = useState('')
 
     const axiosPublic = useAxiosPublic()
     const { data: homepageContent = [], refetch: homepageContentRefetch, isLoading } = useQuery({
@@ -25,21 +21,8 @@ const ManageHomepageContent = () => {
             return res?.data
         }
     })
-    useEffect(() => {
-        setDescription(homepageContent[0]?.description || '');
-        setNotice(homepageContent[0]?.notice || '');
 
-    }, [homepageContent, isLoading])
-    const { description: incomingDescription, imageUrl: incomingImageUrl, notice: incomingNotice, video_url: incomingVideo_url, video_section_video: incomingVideo_section_video, courseImages: incomingCourseImages = [] } = homepageContent[0] || []
-    const handleNoticeChange = (value) => {
-        setNotice(value)
-    };
-
-    const handleDescriptionChange = (value) => {
-        setDescription(value)
-    };
-
-    console.log(incomingCourseImages);
+    const { title: incomingTitle, imageUrl: incomingImageUrl, subtitle: incomingSubtitle, video_url: incomingVideo_url, video_section_video: incomingVideo_section_video, courseImages: incomingCourseImages = [], milestoneImage: incomingMilestoneImg, seminarImage: incomingFreeSeminarImg } = homepageContent[0] || []
 
 
 
@@ -53,11 +36,14 @@ const ManageHomepageContent = () => {
         const video_section_video = form.video_section_video.value || '';
         const selectedImage = form.image.files[0] || {};
         const selectedCourseImage = form.courseImage.files[0] || {};
-        const notice = usableNotice || '';
-        const description = usableDescription || '';
+        const title = form.title.value || '';
+        const subtitle = form.subtitle.value || '';
+        const milestoneImage = form.milestoneImage.files[0] || {};
+        const seminarImage = form.seminarImage.files[0] || {};
         let imageUrl = '';
         let secondImageUrl = '';
-
+        let milestoneImageUrl = '';
+        let seminarImageUrl = '';
         if (!selectedImage?.name) {
             imageUrl = incomingImageUrl;
         } else {
@@ -70,13 +56,25 @@ const ManageHomepageContent = () => {
             secondImageUrl = await uploadImg(selectedCourseImage);
         }
 
-        console.log(secondImageUrl);
+        if (!milestoneImage?.name) {
+            milestoneImageUrl = incomingMilestoneImg;
+        } else {
+            milestoneImageUrl = await uploadImg(milestoneImage);
+        }
+        console.log(milestoneImageUrl);
+        if (!seminarImage?.name) {
+            seminarImageUrl = incomingFreeSeminarImg;
+        } else {
+            seminarImageUrl = await uploadImg(seminarImage);
+        }
+
+        console.log(seminarImageUrl);
         let courseImagesArray = [...incomingCourseImages];
         if (secondImageUrl) {
             courseImagesArray = [...incomingCourseImages, { image: secondImageUrl, id: new Date().getTime() }];
         }
 
-        const data = { video_url, notice, imageUrl: imageUrl ? imageUrl : '', description, video_section_video, courseImages: courseImagesArray };
+        const data = { video_url, title, imageUrl: imageUrl ? imageUrl : '', subtitle, video_section_video, courseImages: courseImagesArray, milestoneImage: milestoneImageUrl, seminarImage: seminarImageUrl };
         console.log(data);
 
         axiosPublic.post(`/updateHomepageContent/${homepageContent[0]?._id || 'notAvailable'}`, data)
@@ -148,35 +146,62 @@ const ManageHomepageContent = () => {
 
 
 
-                                        <div className='w-full grid grid-cols-1 sm:grid-cols-2'>
+                                        <div className='w-full grid grid-cols-1 sm:grid-cols-2 gap-5'>
+                                            <div className=" w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Title</label><br />
+                                                    <input defaultValue={incomingTitle} name='title' type="text" placeholder='Title' className="file-input file-input-bordered file-input-md w-full px-2" />
+                                                </div>
+                                            </div>
+                                            <div className=" w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Subtitle</label><br />
+                                                    <textarea defaultValue={incomingSubtitle} name='subtitle' type="text" placeholder='Subtitle' className="file-input file-input-bordered file-input-md w-full px-2 h-[100px]" />
+                                                </div>
+                                            </div>
+
                                             {/* video upload  */}
-                                            <div className="p-2 w-full">
+                                            <div className=" w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Homepage section video</label><br />
-                                                    <input defaultValue={incomingVideo_url} name='video_url' type="text" placeholder='Video Url' className="file-input file-input-bordered file-input-md w-full max-w-xs px-2" />
+                                                    <input defaultValue={incomingVideo_url} name='video_url' type="text" placeholder='Video Url' className="file-input file-input-bordered file-input-md w-full px-2" />
                                                 </div>
                                             </div>
 
                                             {/* image upload  */}
-                                            <div className="p- w-full">
+                                            <div className=" w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Homepage section Image</label><br />
-                                                    <input name='image' type="file" className="file-input file-input-bordered file-input-md w-full max-w-xs" />
+                                                    <input name='image' type="file" className="file-input file-input-bordered file-input-md w-full" />
+                                                </div>
+                                            </div>
+                                            {/* milestone image upload  */}
+                                            <div className=" w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Milestone section Image</label><br />
+                                                    <input name='milestoneImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
+                                                </div>
+                                            </div>
+                                            {/* seminar image upload  */}
+                                            <div className=" w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Free Seminar section Image</label><br />
+                                                    <input name='seminarImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
                                             </div>
 
                                             {/* video section video upload upload  */}
-                                            <div className="p-2 w-full">
+                                            <div className=" w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Video section's video</label><br />
-                                                    <input defaultValue={incomingVideo_section_video || ''} name='video_section_video' type="text" placeholder='Video Url' className="file-input file-input-bordered file-input-md w-full max-w-xs px-2" />
+                                                    <input defaultValue={incomingVideo_section_video || ''} name='video_section_video' type="text" placeholder='Video Url' className="file-input file-input-bordered file-input-md w-full px-2" />
                                                 </div>
                                             </div>
                                             {/* course Images  */}
-                                            <div className="p-2 w-full">
+                                            <div className=" w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Add Course Images</label><br />
-                                                    <input name='courseImage' type="file" placeholder='Video Url' className="file-input file-input-bordered file-input-md w-full max-w-xs" />
+                                                    <input name='courseImage' type="file" placeholder='Video Url' className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
                                                 <div className='border border-gray-500 rounded-md mt-5 p-2'>
                                                     <p className=''>Already added Images</p>
@@ -192,61 +217,6 @@ const ManageHomepageContent = () => {
                                                     {
                                                         incomingCourseImages?.length < 1 && <p className='text-sm text-center pt-5'>No image Found!!</p>
                                                     }
-                                                </div>
-
-                                            </div>
-                                            <div className="p-2 w-full  mb-10 h-full">
-                                                <div className="relative">
-                                                    <label className="leading-7 text-sm font-bold text-gray-600">Add Notice</label>
-
-                                                    <Editor
-                                                        apiKey='rcgwgkgfl2fboctr4kanu1wyo0q2768tzdj3sxx94rb4s4es'
-                                                        init={{
-                                                            height: 500,
-                                                            max_height: "500",
-                                                            width: '100%',
-                                                            border: "0px",
-                                                            //    menubar: false,
-                                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                                            tinycomments_mode: 'embedded',
-                                                            tinycomments_author: 'Author name',
-                                                            // mergetags_list: [
-                                                            //   { value: 'First.Name', title: 'First Name' },
-                                                            //   { value: 'Email', title: 'Email' },
-                                                            // ],
-                                                            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-                                                        }}
-                                                        value={usableNotice}
-                                                        onEditorChange={handleNoticeChange} />
-                                                </div>
-                                            </div>
-
-
-
-
-                                            {/* Description */}
-                                            <div className="p-2 h-full w-full  mb-20">
-                                                <div className="relative">
-                                                    <label className="leading-7 text-sm font-bold text-gray-600">Homepage Description</label>
-                                                    <Editor
-                                                        apiKey='rcgwgkgfl2fboctr4kanu1wyo0q2768tzdj3sxx94rb4s4es'
-                                                        init={{
-                                                            height: 500,
-                                                            max_height: "500",
-                                                            width: '100%',
-                                                            border: "0px",
-                                                            //    menubar: false,
-                                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                                            tinycomments_mode: 'embedded',
-                                                            tinycomments_author: 'Author name',
-                                                            // mergetags_list: [
-                                                            //   { value: 'First.Name', title: 'First Name' },
-                                                            //   { value: 'Email', title: 'Email' },
-                                                            // ],
-                                                            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-                                                        }}
-                                                        value={usableDescription}
-                                                        onEditorChange={handleDescriptionChange} />
                                                 </div>
 
                                             </div>

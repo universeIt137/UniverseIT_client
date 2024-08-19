@@ -2,14 +2,26 @@
 import { Link } from 'react-router-dom';
 import ButtonLight from '../../../Shared/Button/ButtonLight';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
-const Banner = ({ bannerImg = '', notice = '' }) => {
+const Banner = ({ bannerImg = '', data = {} }) => {
+    const [FirstTitleArray, SecondTitleArray] = data.title.split(' ').reduce(
+        (acc, word, index, array) => {
+            index < array.length - 2 ? acc[0].push(word) : acc[1].push(word);
+            return acc;
+        },
+        [[], []]
+    );
+
+    const firstTitle = FirstTitleArray?.join(' ');
+    const secondTitle = SecondTitleArray?.join(' ');
     return (
         <div className='bg-[#fefaee]'>
-            <div className="px-5 lg:px-16 xl:px-20 flex gap-10 min-h-[70vh] md:min-h-[73vh] md:max-h-[73vh] max-w-7xl mx-auto ">
-                <div className="md:min-h-[73vh] md:max-h-[73vh] flex justify-center items-center">
+            <div className="px-5 lg:px-16 xl:px-20 flex gap-10 min-h-[70vh] md:min-h-[73vh] max-w-7xl mx-auto ">
+                <div className="md:min-h-[73vh] flex justify-center items-center">
                     <div className="max-w-[532px] space-y-6 mx-auto">
-                        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-text_color">Grow Your Skills, Secure <span className="text-primary">Your Future</span></h1>
-                        <div dangerouslySetInnerHTML={{ __html: notice }}></div>
+                        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-text_color">
+                            {firstTitle} <span className="text-primary">{secondTitle}</span>
+                        </h1>
+                        <p className='font-medium'>{data?.subtitle}</p>
                         <div className="flex gap-5">
                             <div className="h-max rounded-md" style={{ boxShadow: `0px 0px 50px 50px #F4940140` }}><Link to={'/courses'}><ButtonStrong text={'Get Started'} /></Link></div>
                             <Link to={'/freeSeminar'}><ButtonLight text={'Join Free Seminar'} /></Link>

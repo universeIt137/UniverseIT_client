@@ -15,45 +15,18 @@ const HomeFreeSeminar = () => {
             return res?.data
         }
     })
-    console.log(allSeminar);
 
-    const seminarSchedule = [
-        {
-            id: 1,
-            date: "Oct 13, 23",
-            day: "Friday",
-            time: "09:00 AM",
-            title: "Web Design"
-        },
-        {
-            id: 2,
-            date: "Oct 13, 23",
-            day: "Friday",
-            time: "02:00 PM",
-            title: "Graphic Design"
-        },
-        {
-            id: 3,
-            date: "Oct 13, 23",
-            day: "Friday",
-            time: "05:00 PM",
-            title: "Digital Marketing"
-        },
-        {
-            id: 4,
-            date: "Oct 14, 23",
-            day: "Saturday",
-            time: "10:00 AM",
-            title: "SEO Fundamentals"
-        },
-        {
-            id: 5,
-            date: "Oct 14, 23",
-            day: "Saturday",
-            time: "01:00 PM",
-            title: "Content Writing"
+    const { data: homepageContent = [], refetch: homepageContentRefetch, isLoading: homeDataIsLoading } = useQuery({
+        queryKey: ['homepageContent'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/homepageContent')
+            return res?.data
         }
-    ];
+    })
+    if (isLoading || homeDataIsLoading) {
+        return ''
+    }
+    const data = homepageContent[0] || [];
     const weekDays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     const returnDate = (date) => {
         const months = ['Jan', 'Fab', 'Mar', 'Apr', 'May', 'Jun', ' July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -74,7 +47,7 @@ const HomeFreeSeminar = () => {
         return `${useableTime}:${minutes} ${theAbbreviation}`;
     }
 
-    
+
     return (
         <div className="bg-gray-100">
             <div className="max-w-7xl mx-auto py-10 px-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -109,7 +82,7 @@ const HomeFreeSeminar = () => {
 
                 </div>
                 <div className="flex justify-end">
-                    <img src={seminarBanner} className=' w-full max-w-[650px] mx-auto rounded-lg sm:rounded-3xl object-cover' alt="" />
+                    <img src={data?.seminarImage} className=' w-full max-w-[650px] mx-auto rounded-lg sm:rounded-3xl object-cover' alt="" />
                 </div>
             </div>
         </div>

@@ -24,13 +24,12 @@ const HomePage = () => {
     if (isLoading) {
         return ''
     }
+    const data = homepageContent[0] || [];
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
     };
-    console.log(homepageContent);
-    const data = homepageContent[0] || [];
-    console.log(data?.notice);
+    
 
     return (
         <>
@@ -43,7 +42,7 @@ const HomePage = () => {
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <Banner bannerImg={data?.imageUrl || ''} notice={data?.notice || ''} />
+                <Banner bannerImg={data?.imageUrl || ''} data={data} notice={data?.notice || ''} />
             </motion.div>
 
 
@@ -71,7 +70,7 @@ const HomePage = () => {
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <Milestones data={data} />
+                <Milestones />
             </motion.div>
             <motion.div
                 initial="hidden"

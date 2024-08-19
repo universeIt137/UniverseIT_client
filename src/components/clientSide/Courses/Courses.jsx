@@ -26,7 +26,7 @@ const Courses = () => {
     })
 
 
-
+    const filteredCourse = tabName === 'All Courses' ? courses : courses?.filter(course => course?.category === tabName)
 
 
     return (
@@ -66,7 +66,7 @@ const Courses = () => {
                                     className=""
                                 >
                                     {
-                                        courses?.map((course, idx) => <SwiperSlide key={idx} className="">
+                                        filteredCourse?.map((course, idx) => <SwiperSlide key={idx} className="">
                                             <CourseCard key={idx} course={course} />
                                         </SwiperSlide>)
                                     }
