@@ -158,7 +158,7 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Certificate Number</label>
-                                                <input value={givenCertificateNumber} type="number" {...register('certificateNumber', {
+                                                <input value={givenCertificateNumber} type="text" {...register('certificateNumber', {
                                                     required: true, onChange: (e) => {
                                                         setGivenCertificateNumber(e.target.value);
 
