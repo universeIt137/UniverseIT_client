@@ -7,10 +7,6 @@ const Navbar = () => {
     const stylingComponents = <div className='h-[2px] bg-primary absolute bottom-0 left-0 navbarStylingComponents transition-all duration-300'></div>
     const navli = <>
 
-        <NavLink to={'/courses'} className={`${navStyle}`}>
-            <a>Courses</a>
-            {stylingComponents}
-        </NavLink>
         <NavLink to={'/aboutUs'} className={`${navStyle}`}>
             <a>About us</a>
             {stylingComponents}
