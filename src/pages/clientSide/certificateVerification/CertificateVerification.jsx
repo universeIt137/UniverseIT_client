@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
@@ -9,7 +9,7 @@ const scrollAnimationVariants = {
 
 const CertificateVerification = () => {
     const axiosPublic = useAxiosPublic();
-    let student;
+    const [student, setStudent] = useState({});
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -20,12 +20,15 @@ const CertificateVerification = () => {
         axiosPublic.post(`/certificateSerial`, data)
             .then(res => {
                 if (res.data) {
-                    student = res.data;
+                    setStudent(res.data);
             }
         })
         form.reset();
-        console.log('student', student);
+        
     }
+
+    console.log(student);
+    
     return (
         <div className=' mx-auto '>
             <div className=' bg-white shadow-lg p-6 flex gap-6 border rounded-md '>
@@ -77,15 +80,16 @@ const CertificateVerification = () => {
                         <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
                             <img
                                 className="object-cover  object-center h-32"
-                                src="https://ichef.bbci.co.uk/news/976/cpsprodpb/186A/production/_90805260_image_00005.jpg"
+                                src={student?.studentProfile || 'https://placehold.co/600x400' }
                                 alt="Woman looking front"
                             />
                         </div>
                         <div className="text-center mt-2  p-4 pb-20 justify-center items-center">
-                            <h2 className="font-bold text-2xl">Ishan Rana</h2>
-                            <p className="">Batch No: Diploma-101</p>
-                            <p className="">Course: <span>Frontend Development with React.js</span></p>
-                            <p className="text-gray-500">
+                            <h2 className="font-bold text-2xl">{ student?.studentName }</h2>
+                            <p className=""><span className='font-bold'>Batch No:</span> { student?.batch }</p>
+                            <p className=""><span className='font-bold'>Course:</span> <span>{ student?.courseName }</span></p>
+                            <p className=""><span className='font-bold'>Certificate No:</span> <span>{ student?.certificateNumber }</span></p>
+                            <p className="text-gray-500 font-bold">
                                 Universe IT Institute
                             </p>
                         </div>
