@@ -38,10 +38,10 @@ const CourseDetails = () => {
             {/* sub video and success story  */}
             <section className='flex flex-col lg:flex-row gap-6 my-5'>
                 <div className='lg:w-4/6'>
-                    <SubVideos subVideos={subVideos} />
-                    <div className="pt-20 z-10 relative">
+                    
+                    <div className="p-5 bg-white rounded-2xl z-10 relative">
                         <div className="flex justify-between flex-col sm:flex-row">
-                            <p className="lg:text-2xl font-bold py-5">Course Details</p>
+                            <p className="lg:text-4xl font-bold py-5">Course Details</p>
                             <div className="w-full md:w-max flex justify-end items-end"><Share /></div>
                         </div>
                         <CourseDetailsTab></CourseDetailsTab>

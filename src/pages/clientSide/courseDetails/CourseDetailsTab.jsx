@@ -100,7 +100,7 @@ const CourseDetailsTab = () => {
             {
                 showingCategory?.name && <CourseCategory category={showingCategory} />
             }
-            {TabName === 'Semester Details' && <div>
+            {TabName === 'Course Details' && <div>
                 <div >
                     {
                         courseSemesters.map(semester => <SemesterTable key={semester._id} semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} />)
