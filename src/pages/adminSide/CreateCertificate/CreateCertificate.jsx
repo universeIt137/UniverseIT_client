@@ -18,8 +18,8 @@ const CreateCertificate = () => {
     const [selectedYear, setSelectedYear] = useState('')
     // const [selectedDuration, setSelectedDuration] = useState('')
     const [givenCertificateNumber, setGivenCertificateNumber] = useState('');
-    // const [studentIdLoading, setStudentIDLoading] = useState(false);
-    // const [studentIdErr, setStudentIDErr] = useState(false);
+    const [certificateNumLoading, setCertificateNumLoading] = useState(false);
+    const [certificateNumErr, setCertificateNumErr] = useState(false);
     // const [studentID, setStudentID] = useState('')
     const { register, handleSubmit, reset } = useForm();
     const { data: courses = [], isLoading } = useQuery({
@@ -56,20 +56,39 @@ const CreateCertificate = () => {
     //     }
     // }, [selectedCourse, selectedDuration, selectedYear, givenCertificateNumber])
 
-    // useEffect(,[])
+    useEffect(() => {
+        if (givenCertificateNumber) {
+
+            setCertificateNumLoading(true)
+            axiosPublic.get('/certificate')
+                .then(res => {
+                    console.log(res?.data);
+                    const isIdUnique = !res?.data?.find(item => item?.certificateNumber === givenCertificateNumber);
+                    console.log(isIdUnique);
+                    setCertificateNumErr(!isIdUnique)
+                    setCertificateNumLoading(false)
+                })
+                .catch(() => {
+                    setCertificateNumLoading(false)
+                })
+        } else {
+            // setStudentID('')
+            setCertificateNumErr(false)
+        }
+    }, [givenCertificateNumber])
     if (isLoading) {
         return ''
     }
 
 
     const onSubmit = async (data) => {
-        // if (studentIdErr) {
-        //     return Swal.fire({
-        //         icon: "error",
-        //         title: "Oops...",
-        //         text: "take a unique Student Id",
-        //     });
-        // }
+        if (certificateNumErr) {
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "take a unique Student Id",
+            });
+        }
         const finalData = {
             ...data,
             // studentID: studentID
@@ -144,8 +163,9 @@ const CreateCertificate = () => {
                                                     }
                                                 })} className={`${inputFieldStyle}`} />
                                             </div>
-                                            {/* {givenCertificateNumber && <p className='text-sm'>{studentIdLoading ? <span>checking student ID <span className="loading loading-spinner loading-xs ml-2"></span></span> : studentIdErr ? <span className='text-red-500'>The Student is not available. Use another serial number</span> : <span className='text-green-500'>The Student Id is available</span>}</p>} */}
+                                            {givenCertificateNumber && <p className='text-sm'>{certificateNumLoading ? <span>checking Certificate Number<span className="loading loading-spinner loading-xs ml-2"></span></span> : certificateNumErr ? <span className='text-red-500'>The Certificate Number is not available. Use another Certificate Number</span> : <span className='text-green-500'>The Certificate Number is available</span>}</p>}
                                         </div>
+                                        
                                         {/* Student ID */}
                                         {/* <div className="p-2 w-full">
                                             <div className="relative">

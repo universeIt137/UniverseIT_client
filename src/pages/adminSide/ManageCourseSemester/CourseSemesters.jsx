@@ -40,9 +40,9 @@ const CourseSemesters = ({ courseSemesters, courseSemestersRefetch }) => {
     }
     return (
         <div className="py-10">
-            <h2 className="text-xl pb-5 font-bold">Already added Semester</h2>
+            <h2 className="text-xl pb-5 font-bold">Already added Classes</h2>
             {
-                courseSemesters.length > 0 ? courseSemesters?.map(semester => <div key={semester?._id}>
+                courseSemesters.length > 0 ? courseSemesters?.map((semester, idx) => <div key={semester?._id}>
                     <div className=" p-1 border-2 border-primary w-max ml-auto my-2 mr-5 px-5 flex gap-5 rounded-lg">
                         <td className='text-2xl text-green-500'>
                             <Link to={`/dashboard/updateCourseSemester/${id}/${semester?._id}`}><MdEditSquare /></Link>
@@ -52,7 +52,7 @@ const CourseSemesters = ({ courseSemesters, courseSemestersRefetch }) => {
                             <button onClick={() => handleDelete(semester?._id)}><MdDelete className="text-2xl text-red-600" /></button>
                         </td>
                     </div>
-                    <SemesterTable semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} /></div>) : <p className="pb-10 pt-5 text-center">No Semester Found</p>
+                    <SemesterTable semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} classNum={idx + 1} /></div>) : <p className="pb-10 pt-5 text-center">No Semester Found</p>
             }
         </div>
     );
