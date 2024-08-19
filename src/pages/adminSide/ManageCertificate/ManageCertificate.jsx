@@ -10,14 +10,8 @@ import CertificateRow from './CertificateRow';
 
 const ManageCertificate = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: testimonials = [], refetch } = useQuery({
-        queryKey: ['testimonials'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/testimonial');
-            return res.data;
-        }
-    })
-    const { data: certificates = [] } = useQuery({
+
+    const { data: certificates = [], refetch, isLoading } = useQuery({
         queryKey: ['certificate'],
         queryFn: async () => {
             const res = await axiosPublic.get('/certificate');
@@ -41,11 +35,11 @@ const ManageCertificate = () => {
                                 <th>#</th>
                                 <th>Student Name</th>
                                 <th>Student Email</th>
-                                <th>Student ID</th>
+                                {/* <th>Student ID</th> */}
                                 <th>Certificate number</th>
                                 <th>Course Name</th>
                                 <th>Batch</th>
-                                <th>Duration</th>
+                                {/* <th>Duration</th> */}
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
