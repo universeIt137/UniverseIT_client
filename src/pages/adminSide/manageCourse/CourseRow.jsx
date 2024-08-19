@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { MdDelete, MdEditSquare } from "react-icons/md";
+import { MdAddBox, MdDelete, MdEditSquare } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import ReactPlayer from "react-player";
 import Marquee from "react-fast-marquee";
-import { TbCategoryPlus } from "react-icons/tb";
+import { TbCategoryPlus, TbInfoHexagonFilled } from "react-icons/tb";
 import semesterImg from '../../../assets/icons/semister.png'
 import { PiTargetBold } from "react-icons/pi";
 const CourseRow = ({ course, idx, coursesRefetch }) => {
@@ -66,10 +66,10 @@ const CourseRow = ({ course, idx, coursesRefetch }) => {
 
             <td className={` sm:min-w-[190px] sticky left-6  z-10 ${idx % 2 === 0 ? 'bg-gray-50' : 'bg-base-300'}`}>{title}</td>
 
-            <td>
+            <td >
                 <div className="flex items-center gap-3">
                     <div className="avatar">
-                        <div className="mask mask-squircle w-28 h-28">
+                        <div className="mask mask-squircle w-10 ">
                             <img className="" src={bannerImages[0] || ''} />
                         </div>
                     </div>
@@ -86,72 +86,27 @@ const CourseRow = ({ course, idx, coursesRefetch }) => {
                 </p>
             </td>
 
-            <td>
-                <p className="w-[200px] max-h-[50px] overflow-hidden">
+            <td className="">
+                <p className="  overflow-hidden">
                     {category}
                 </p>
             </td>
 
-            <td>
-                <p className="w-[200px] max-h-[50px] overflow-hidden" dangerouslySetInnerHTML={{ __html: notice }}></p>
-            </td>
 
-            <td>
-                <p className="w-[200px] max-h-[50px] overflow-hidden" dangerouslySetInnerHTML={{ __html: admissionNotice }}>
-                </p>
-            </td>
 
-            <td>
-                <p className="w-[200px] max-h-[50px] overflow-hidden" dangerouslySetInnerHTML={{ __html: bangla }}>
-                </p>
-            </td>
-
-            <td>
-                <div id="homePageFirstSection" className="w-[230px] h-[130px]">
-
-                    <ReactPlayer
-                        controls="true"
-                        height="100%"
-                        url={videoUrl}
-                        width="100%"
-                    />
-                </div>
-            </td>
-
-            <td>
-                <div className="hidden  lg:flex w-[250px]">
-                    <Marquee pauseOnHover={true}>
-                        <div className="flex gap-5 pr-5">
-                            {
-                                subVideos?.map((video, idx) => <div className="w-[150px]" key={idx}>
-                                    <div className={`${videoDivStyle} w-[150px] h-[80px]`}>
-                                        <ReactPlayer
-                                            controls="true"
-
-                                            url={video.url}
-                                            width="100%"
-                                            height='100%'
-                                        />
-                                    </div>
-                                    <p className={`${titleStyle}`}>{video.title}</p>
-                                </div>)
-                            }
-                        </div>
-                    </Marquee>
-
-                </div>
-            </td>
-            <td className='text-2xl text-yellow-600'>
-                <Link to={`/dashboard/manageCourseCategory/${_id}`}><TbCategoryPlus /></Link>
-            </td>
-
-            <td className='text-2xl text-yellow-600'>
+            <td className='text-2xl text-yellow-600 text-center'>
                 <Link to={`/dashboard/manageCourseSemester/${_id}`}>
-                    <img className="w-6 h-6" src={semesterImg} alt="" />
+                    <div className="text-green-600 flex justify-center">
+                        <MdAddBox />
+                    </div>
                 </Link>
             </td>
-            <td className='text-2xl text-blue-600'>
-                <Link to={`/dashboard/manageCourseObjective/${_id}`}><PiTargetBold /></Link>
+            <td className='text-2xl '>
+                <Link to={`/dashboard/manageCourseObjective/${_id}`}>
+                    <div className="text-green-600 flex justify-center">
+                    <TbInfoHexagonFilled />
+                    </div>
+                </Link>
             </td>
             <td className='text-2xl text-green-500'>
                 <Link to={`/dashboard/updateCourse/${_id}`}><MdEditSquare /></Link>

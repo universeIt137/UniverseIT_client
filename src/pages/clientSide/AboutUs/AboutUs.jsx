@@ -10,6 +10,9 @@ import AboutBanner from './AboutBanner';
 import Milestones from '../../../components/clientSide/Milestones/Milestones';
 import CertifiedInstitute from './CertifiedInstitute';
 import Services from '../../../components/clientSide/Services/Services';
+import StudentGalleryTabs from '../../adminSide/manageStudentGallary/StudentGalleryTabs';
+import AddStudentGallery from '../../adminSide/addStudentGallary/AddStudentGallary';
+import SuccessStories from '../../../components/clientSide/SuccessStories/SuccessStories';
 const AboutUs = () => {
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 50 },
@@ -63,6 +66,17 @@ const AboutUs = () => {
             >
                 <HomeFreeSeminar />
             </motion.div>
+
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={scrollAnimationVariants}
+                viewport={{ once: false, amount: 0.2 }}
+            >
+                <SuccessStories></SuccessStories>
+            </motion.div>
+
+
             <motion.div
                 initial="hidden"
                 whileInView="visible"
