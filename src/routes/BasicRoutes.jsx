@@ -45,6 +45,7 @@ import Faculties from "../pages/clientSide/Faculties/Faculties";
 import CertificateVerification from "../pages/clientSide/certificateVerification/CertificateVerification";
 import ManageCertificate from "../pages/adminSide/ManageCertificate/ManageCertificate";
 import CreateCertificate from "../pages/adminSide/CreateCertificate/CreateCertificate";
+import UpdateCertificate from "../pages/adminSide/UpdateCertificate/UpdateCertificate";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -228,6 +229,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "manageCertificate",
                 element: <ManageCertificate/>
+            },
+            {
+                path: "/dashboard/updateCertificate/:id",
+                element: <UpdateCertificate/>
             },
 
 

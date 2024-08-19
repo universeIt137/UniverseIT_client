@@ -1,11 +1,6 @@
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { GiConfirmed } from 'react-icons/gi';
-import { MdDelete, MdUpdate } from 'react-icons/md';
-import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
-import TestimonialsTableRow from '../manageTestimonial/TestimonialsTableRow';
 import CertificateRow from './CertificateRow';
 
 const ManageCertificate = () => {
@@ -23,10 +18,10 @@ const ManageCertificate = () => {
     return (
         <>
             <Helmet>
-                <title>Dashboard | Manage Testimonial</title>
+                <title>Dashboard | Manage Certificate</title>
             </Helmet>
             <div className="bg-white rounded-lg  w-full lg:w-[calc(100vw-300px)] overflow-x-auto mx-auto overflow-y-auto">
-                <p className='text-2xl font-bold text-center'>Manage Testimonial</p>
+                <p className='text-2xl font-bold text-center'>Manage Certificate</p>
                 <div className="overflow-x-auto">
                     <table className="table table-zebra">
                         {/* head */}

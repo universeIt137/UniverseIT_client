@@ -54,7 +54,7 @@ const CertificateRow = ({ idx, certificate, refetch }) => {
             {/* <td>{courseDuration || 'Not Given'}</td> */}
 
             <td className='text-2xl text-green-500'>
-                <Link to={`/dashboard/updateTestimonial/${_id}`}><MdEditSquare /></Link>
+                <Link to={`/dashboard/updateCertificate/${_id}`}><MdEditSquare /></Link>
             </td>
             <td className='text-2xl text-red-500'><button onClick={handleDelete}><MdDelete /></button></td>
         </tr>

@@ -1,24 +1,31 @@
-import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import { BiLogoTwitter } from 'react-icons/bi';
-import { TbBrandYoutubeFilled } from 'react-icons/tb';
-import { FaFacebook } from 'react-icons/fa';
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import Swal from 'sweetalert2';
-import { useForm } from 'react-hook-form';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { uploadImg } from '../../../UploadFile/uploadImg';
+import { Link, useParams } from "react-router-dom";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
+import { BiLogoTwitter } from "react-icons/bi";
+import { TbBrandYoutubeFilled } from "react-icons/tb";
+import { FaFacebook } from "react-icons/fa";
+import { uploadImg } from "../../../UploadFile/uploadImg";
+import Swal from "sweetalert2";
 
-const CreateCertificate = () => {
+const UpdateCertificate = () => {
+    const { id } = useParams();
+    const { register, handleSubmit, reset } = useForm();
     const axiosPublic = useAxiosPublic();
     const [givenCertificateNumber, setGivenCertificateNumber] = useState('');
     const [certificateNumLoading, setCertificateNumLoading] = useState(false);
     const [certificateNumErr, setCertificateNumErr] = useState(false);
-    // const [studentID, setStudentID] = useState('')
-    const { register, handleSubmit, reset } = useForm();
-    const { data: courses = [], isLoading } = useQuery({
+    const { data: certificate = {}, refetch: certificateRefetch, isLoading } = useQuery({
+        queryKey: ['certificate', id],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/certificate/${id}`)
+            return res?.data
+        }
+    })
+    const { data: courses = [], isLoading: coursesIsLoading } = useQuery({
         queryKey: ['courses'],
         queryFn: async () => {
             const res = await axiosPublic.get('/course');
@@ -26,31 +33,12 @@ const CreateCertificate = () => {
         }
     })
 
-
-    // useEffect(() => {
-    //     if (selectedCourse && selectedDuration && selectedYear && givenCertificateNumber) {
-    //         const courseNameFirstLetter = selectedCourse.split(' ').map(item => item[0]).join('');
-    //         const durationFirstLetter = `${selectedDuration.split(' ')[0]}${selectedDuration.split(' ')[1][0].toUpperCase()}`;
-    //         const yearFirstLetter = selectedYear.slice(-2);
-    //         const createdStudentID = courseNameFirstLetter + durationFirstLetter + yearFirstLetter + givenCertificateNumber.toString().padStart(4, '0');
-    //         // setStudentID(createdStudentID)
-    //         setStudentIDLoading(true)
-    //         axiosPublic.get('/certificate')
-    //             .then(res => {
-    //                 console.log(res?.data);
-    //                 const isIdUnique = !res?.data?.find(item => item?.studentID === createdStudentID);
-    //                 console.log(isIdUnique);
-    //                 setStudentIDErr(!isIdUnique)
-    //                 setStudentIDLoading(false)
-    //             })
-    //             .catch(() => {
-    //                 setStudentIDLoading(false)
-    //             })
-    //     } else {
-    //         // setStudentID('')
-    //         setStudentIDErr(false)
-    //     }
-    // }, [selectedCourse, selectedDuration, selectedYear, givenCertificateNumber])
+    // const [studentID, setStudentID] = useState('')
+    useEffect(() => {
+        if (certificate?._id) {
+            setGivenCertificateNumber(certificate?.certificateNumber)
+        }
+    }, [certificate])
 
     useEffect(() => {
         if (givenCertificateNumber) {
@@ -59,7 +47,8 @@ const CreateCertificate = () => {
             axiosPublic.get('/certificate')
                 .then(res => {
                     console.log(res?.data);
-                    const isIdUnique = !res?.data?.find(item => item?.certificateNumber === givenCertificateNumber);
+                    const filteredData = res?.data?.filter(item => item?._id !== id)
+                    const isIdUnique = !filteredData.find(item => item?.certificateNumber === givenCertificateNumber);
                     console.log(isIdUnique);
                     setCertificateNumErr(!isIdUnique)
                     setCertificateNumLoading(false)
@@ -72,10 +61,10 @@ const CreateCertificate = () => {
             setCertificateNumErr(false)
         }
     }, [givenCertificateNumber])
-    if (isLoading) {
+
+    if (isLoading || coursesIsLoading) {
         return ''
     }
-
 
     const onSubmit = async (data) => {
         if (certificateNumErr) {
@@ -85,9 +74,14 @@ const CreateCertificate = () => {
                 text: "take a unique Student Id",
             });
         }
-        const image = data?.studentProfile[0];
-        const toastId = toast.loading("Certificate is creating...");
-        const studentProfile = await uploadImg(image)
+        const inputImage = data?.studentProfile[0] || {};
+        const toastId = toast.loading("Certificate is updating...");
+        let studentProfile = ''
+        if (!inputImage?.name) {
+            studentProfile = certificate?.studentProfile || ''
+        } else {
+            studentProfile = await uploadImg(inputImage)
+        }
         // console.log(finalData);
 
         const finalData = {
@@ -96,13 +90,13 @@ const CreateCertificate = () => {
         };
         console.log(finalData);
 
-        axiosPublic.post('/certificate', finalData)
+        axiosPublic.put(`/certificate/${id}`, finalData)
             .then(res => {
-                if (res.data.insertedId) {
-                    toast.success('Certificate created successfully', { id: toastId })
+                if (res.data.modifiedCount>0) {
+                    toast.success('Certificate updated successfully', { id: toastId })
                     reset()
                     // setSelectedDuration('');
-                    setGivenCertificateNumber('')
+                    // setGivenCertificateNumber('')
                 }
             })
             .catch(err => {
@@ -112,8 +106,6 @@ const CreateCertificate = () => {
     };
 
     const inputFieldStyle = 'w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out h-[40px]'
-
-
     return (
         <>
             <Helmet>
@@ -140,7 +132,7 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Student Name</label>
-                                                <input type="text" {...register("studentName", { required: true })} className={`${inputFieldStyle}`} />
+                                                <input defaultValue={certificate?.studentName} type="text" {...register("studentName", { required: true })} className={`${inputFieldStyle}`} />
                                             </div>
                                         </div>
 
@@ -148,14 +140,14 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Student Email</label>
-                                                <input type="email" {...register('email', { required: true })} className={`${inputFieldStyle}`} />
+                                                <input defaultValue={certificate?.email} type="email" {...register('email', { required: true })} className={`${inputFieldStyle}`} />
                                             </div>
                                         </div>
                                         {/* image  */}
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Student Profile</label>
-                                                <input type="file" {...register('studentProfile', { required: true })} className={`file-input file-input-bordered file-input-md w-full`} />
+                                                <input type="file" {...register('studentProfile')} className={`file-input file-input-bordered file-input-md w-full`} />
                                             </div>
                                         </div>
                                         {/* Certificate Number  */}
@@ -188,7 +180,7 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Course</label>
-                                                <select type="text" {...register('courseName', {
+                                                <select defaultValue={certificate?.courseName} type="text" {...register('courseName', {
                                                     required: true
                                                 })} className={`${inputFieldStyle}`}>
                                                     <option value="">Select A course</option>
@@ -203,7 +195,7 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Batch Name</label>
-                                                <input type="text" {...register('batch', {
+                                                <input defaultValue={certificate?.batch} type="text" {...register('batch', {
                                                     required: true,
                                                 })} className={`${inputFieldStyle}`} />
                                             </div>
@@ -213,7 +205,7 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Course Duration</label>
-                                                <input type="text" {...register('courseDuration')} className={`${inputFieldStyle}`} />
+                                                <input defaultValue={certificate?.courseDuration} type="text" {...register('courseDuration')} className={`${inputFieldStyle}`} />
                                             </div>
                                         </div>
 
@@ -253,4 +245,4 @@ const CreateCertificate = () => {
     );
 };
 
-export default CreateCertificate;
+export default UpdateCertificate;
