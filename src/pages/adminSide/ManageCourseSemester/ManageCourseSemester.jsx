@@ -118,8 +118,8 @@ const ManageCourseSemester = () => {
                                             className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                         />
                                     </div>
-                                    <div className="pt-3">
-                                        <button className="flex flex-col justify-center items-center px-5 py-1.5 rounded-md bg-primary text-white hover:font-bold transition-all duration-300 hover:bg-[#e55633]  active:bg-primary focus:outline-none focus:ring focus:ring-red-300 active:scale-90 focus:text-white w-max">Add Topic</button>
+                                    <div className="pt-9">
+                                        <button className="flex flex-col justify-center items-center px-5 py-2 rounded-md bg-primary text-white hover:font-bold transition-all duration-300 hover:bg-[#e55633]  active:bg-primary focus:outline-none focus:ring focus:ring-red-300 active:scale-90 focus:text-white w-max">Add Topic</button>
                                     </div>
                                 </form>
 
@@ -130,7 +130,7 @@ const ManageCourseSemester = () => {
                             </div>
                         </div>
                         <div className="p-2 w-full">
-                            <button onClick={handleAddSemester} type="submit" className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                            <button onClick={handleAddSemester} type="submit" className="flex mx-auto text-white bg-primary border-0 py-2 px-8 focus:outline-none hover:bg-primary rounded text-lg">
                                 Submit
                             </button>
                         </div>

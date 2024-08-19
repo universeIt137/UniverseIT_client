@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const scrollAnimationVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -7,6 +8,24 @@ const scrollAnimationVariants = {
 };
 
 const CertificateVerification = () => {
+    const axiosPublic = useAxiosPublic();
+    let student;
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const serial = form.certificate_number.value;
+        console.log(serial);
+        const data = { serial };
+        axiosPublic.post(`/certificateSerial`, data)
+            .then(res => {
+                if (res.data) {
+                    student = res.data;
+            }
+        })
+        form.reset();
+        console.log('student', student);
+    }
     return (
         <div className=' mx-auto '>
             <div className=' bg-white shadow-lg p-6 flex gap-6 border rounded-md '>
@@ -24,16 +43,20 @@ const CertificateVerification = () => {
 
                     {/* Input Fields Section */}
                     <div className="flex flex-col space-y-4 border w-10/12 p-8 rounded-2xl mx-auto ">
+                        <form action="" onSubmit={handleSubmit}>
+                            <label htmlFor="certificate_name" className='text-text_color font-bold text-2xl text-center'>Certificate Serial No</label>
+                            <input
+                                type="text"
+                                placeholder="Enter your Certificate Number"
+                                className="w-full p-3 border bg-gray-300 rounded-2xl focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-text_color"
+                                name='certificate_number'
+                            />
 
-                        <label htmlFor="certificate_name" className='text-text_color font-bold text-2xl text-center'>Certificate Serial No</label>
-                        <input
-                            type="text"
-                            placeholder="Enter your Certificate Number"
-                            className="w-full p-3 border bg-gray-300 rounded-2xl focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-text_color"
-                            name='certificate_name'
-                        />
+                            <div className='flex justify-center mt-1'>
+                            <button className='bg-primary w-1/2 mx-auto btn rounded-3xl border-none text-white text-lg hover:bg-text_color'>Check Now</button>
+                            </div>
+                        </form>
 
-                        <button className='bg-primary w-1/2 mx-auto btn rounded-3xl border-none text-white text-lg hover:bg-text_color'>Check Now</button>
                     </div>
 
                 </motion.div>
