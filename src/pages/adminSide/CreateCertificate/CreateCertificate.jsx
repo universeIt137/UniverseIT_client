@@ -95,28 +95,6 @@ const CreateCertificate = () => {
 
     const inputFieldStyle = 'w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out h-[40px]'
 
-    const handleCourseChange = (e) => {
-        const courseID = courses?.find(item => item?.title === e.target.value)?._id || '';
-        setSelectedCourse(e.target.value);
-        // setSelectedDuration('')
-        if (courseID) {
-            setDurationLoading(true)
-            axiosPublic.get(`/courseCategory/course/${courseID}`)
-                .then(res => {
-                    const durationArray = res.data.map(item => item?.duration);
-                    console.log(durationArray);
-                    // setCourseDurations(durationArray)
-                    setDurationLoading(false)
-                })
-                .catch(() => {
-                    setDurationLoading(false)
-                })
-        } else {
-            // setCourseDurations([])
-        }
-
-
-    }
 
     return (
         <>
@@ -166,6 +144,7 @@ const CreateCertificate = () => {
                                                     }
                                                 })} className={`${inputFieldStyle}`} />
                                             </div>
+                                            {/* {givenCertificateNumber && <p className='text-sm'>{studentIdLoading ? <span>checking student ID <span className="loading loading-spinner loading-xs ml-2"></span></span> : studentIdErr ? <span className='text-red-500'>The Student is not available. Use another serial number</span> : <span className='text-green-500'>The Student Id is available</span>}</p>} */}
                                         </div>
                                         {/* Student ID */}
                                         {/* <div className="p-2 w-full">
@@ -183,8 +162,8 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Course</label>
-                                                <select value={selectedCourse} type="text" {...register('courseName', {
-                                                    required: true, onChange: (e) => handleCourseChange(e)
+                                                <select type="text" {...register('courseName', {
+                                                    required: true
                                                 })} className={`${inputFieldStyle}`}>
                                                     <option value="">Select A course</option>
                                                     {
@@ -198,12 +177,9 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Batch Name</label>
-                                                <input value={selectedYear} type="text" {...register('batch', {
-                                                    required: true, onChange: (e) => {
-                                                        setSelectedYear(e.target.value);
-
-                                                    }
-                                                })} className={`${inputFieldStyle}`}/>
+                                                <input type="text" {...register('batch', {
+                                                    required: true,
+                                                })} className={`${inputFieldStyle}`} />
                                             </div>
                                         </div>
                                         {/* Course Duration*/}
@@ -211,7 +187,7 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Course Duration {durationLoading && <span className="loading loading-spinner loading-xs ml-2"></span>}</label>
-                                                <input  type="text" {...register('courseDuration')} className={`${inputFieldStyle}`}/>
+                                                <input type="text" {...register('courseDuration')} className={`${inputFieldStyle}`} />
                                             </div>
                                         </div>
 

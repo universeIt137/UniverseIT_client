@@ -10,13 +10,12 @@ import { useParams } from "react-router-dom";
 import SubVideos from "../../../Shared/SubVideos";
 import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import { uploadImg } from "../../../UploadFile/uploadImg";
+import AddTechnology from "../addCourse/AddTechnology";
 
 
 const UpdateCoursePage = () => {
     const axiosPublic = useAxiosPublic()
     const { id } = useParams()
-    const imgHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-    const imgHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
     const [imageInput, setImageInput] = useState('')
     const [imageInputErr, setImageInputErr] = useState('')
     const [allImages, setAllImages] = useState([])
@@ -24,16 +23,7 @@ const UpdateCoursePage = () => {
     const [subVideoTitle, setSubVideoTitle] = useState('');
     const [subVideoUrl, setSubVideoUrl] = useState('')
     const [subVideoErr, setSubVideoErr] = useState('')
-    const [formData, setFormData] = useState({
-        notice: '',
-        bangla: '',
-        admissionNotice: ''
-    });
-    const [formDataErr, setFormDataErr] = useState({
-        notice: '',
-        bangla: '',
-        admissionNotice: ''
-    });
+    const [allTechnology, setAllTechnology] = useState([])
 
     const { data: courseData = {}, refetch: courseDataRefetch, isLoading } = useQuery({
         queryKey: ['course', id],
@@ -44,30 +34,16 @@ const UpdateCoursePage = () => {
     })
     useEffect(() => {
         if (courseData) {
-            setFormData({
-                notice: courseData?.notice,
-                bangla: courseData?.bangla,
-                admissionNotice: courseData?.admissionNotice
-            })
+            setAllTechnology(courseData?.technologies || [])
             setSubVideos(courseData.subVideos || [])
-            // setAllImages(courseData.bannerImages)
         }
     }, [courseData, isLoading])
     if (isLoading) {
         return ''
     }
-    console.log(courseData);
-    const handleNoticeChange = (value) => {
-        setFormData({ ...formData, notice: value });
-    };
 
 
-    const handleBanglaChange = (value) => {
-        setFormData({ ...formData, bangla: value });
-    };
-    const handleAdmissionNotice = (value) => {
-        setFormData({ ...formData, admissionNotice: value });
-    };
+
 
 
 
@@ -105,30 +81,12 @@ const UpdateCoursePage = () => {
         const title = form.title.value;
         const videoUrl = form.videoUrl.value;
         const courseFee = form.courseFee.value
-        const description = form.description.value
         let isValid = true;
-        const newFormDataErr = {
-            notice: '',
-            bangla: '',
-            admissionNotice: ''
-        };
-        setFormDataErr(newFormDataErr)
+
         setImageInputErr('');
         setSubVideoErr('')
-        if (formData.notice === '') {
-            newFormDataErr.notice = 'Notice cannot be empty';
-            isValid = false;
-        }
-        if (formData.bangla === '') {
-            newFormDataErr.bangla = 'Bangla cannot be empty';
-            isValid = false;
-        }
-        if (formData.admissionNotice === '') {
-            newFormDataErr.admissionNotice = 'Admission notice cannot be empty';
-            isValid = false;
-        }
 
-        setFormDataErr(newFormDataErr);
+
 
         if (subVideosArray.length < 1) {
             setSubVideoErr('Please add minimum 1 sub Video');
@@ -162,11 +120,13 @@ const UpdateCoursePage = () => {
         //     const data = { category, image: imageUrl };
         //     return axiosPublic.post('/studentGallery', data);
         // });
-        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, notice: formData.notice, bangla: formData.bangla, admissionNotice: formData.admissionNotice, courseFee, description };
+        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology };
         console.log(data);
 
         axiosPublic.put(`/course/${id}`, data)
             .then(res => {
+                console.log(res);
+
                 if (res.data.modifiedCount) {
                     toast.success("Course has updated Successfully!!", { id: toastId });
                     setAllImages([])
@@ -197,7 +157,7 @@ const UpdateCoursePage = () => {
                                             <div className="p-2 w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Course Category</label>
-                                                    
+
                                                     <select defaultValue={courseData?.category} required name="courseCategory" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out h-[40px]" >
                                                         <option value="">Select</option>
                                                         <option value="Online">Online</option>
@@ -278,108 +238,12 @@ const UpdateCoursePage = () => {
 
                                                 <SubVideos subVideosArray={subVideosArray} setSubVideos={setSubVideos} />
                                             </div>
-                                        </div>
-                                        {/* Description */}
-                                        <div className="p-2 w-full md:col-span-2">
-                                            <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Course Description</label>
-                                                <textarea defaultValue={courseData.description} required type="text" name="description" placeholder='Description' className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out min-h-[200px]" />
-                                            </div>
+                                            {/* Add Technology */}
+                                            <AddTechnology allTechnology={allTechnology} setAllTechnology={setAllTechnology} />
                                         </div>
 
 
-                                        <div className='flex pb-20'>
 
-                                            {/* Notice */}
-                                            <div className="p-2 w-1/2">
-                                                <div className="relative">
-                                                    <label className="leading-7 text-sm font-bold text-gray-600">Course Notice</label>
-                                                    <Editor
-                                                        apiKey='rcgwgkgfl2fboctr4kanu1wyo0q2768tzdj3sxx94rb4s4es'
-                                                        init={{
-                                                            height: 400,
-                                                            max_height: "500",
-                                                            width: '100%',
-                                                            border: "0px",
-                                                            //    menubar: false,
-                                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                                            tinycomments_mode: 'embedded',
-                                                            tinycomments_author: 'Author name',
-                                                            // mergetags_list: [
-                                                            //   { value: 'First.Name', title: 'First Name' },
-                                                            //   { value: 'Email', title: 'Email' },
-                                                            // ],
-                                                            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-                                                        }}
-                                                        value={formData.notice}
-                                                        onEditorChange={handleNoticeChange} />
-                                                </div>
-                                                <p className='text-red-600'>{formDataErr.notice}</p>
-                                            </div>
-
-
-                                            {/* admission Notice */}
-                                            <div className="p-2 w-1/2">
-                                                <div className="relative">
-                                                    <label className="leading-7 text-sm font-bold text-gray-600">Admission Notice</label>
-
-                                                    <Editor
-                                                        apiKey='rcgwgkgfl2fboctr4kanu1wyo0q2768tzdj3sxx94rb4s4es'
-                                                        init={{
-                                                            height: 400,
-                                                            max_height: "300",
-                                                            width: '100%',
-                                                            border: "0px",
-                                                            //    menubar: false,
-                                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                                            tinycomments_mode: 'embedded',
-                                                            tinycomments_author: 'Author name',
-                                                            // mergetags_list: [
-                                                            //   { value: 'First.Name', title: 'First Name' },
-                                                            //   { value: 'Email', title: 'Email' },
-                                                            // ],
-                                                            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-                                                        }}
-                                                        value={formData.admissionNotice}
-                                                        onEditorChange={handleAdmissionNotice} />
-
-                                                </div>
-                                                <p className='text-red-600'>{formDataErr.admissionNotice}</p>
-                                            </div>
-                                        </div>
-                                        <div className='flex pb-20'>
-
-                                            {/* Bangla Text */}
-                                            <div className="p-2 w-1/2">
-                                                <div className="relative">
-                                                    <label className="leading-7 text-sm font-bold text-gray-600">Bangla Text</label>
-                                                    <Editor
-                                                        apiKey='rcgwgkgfl2fboctr4kanu1wyo0q2768tzdj3sxx94rb4s4es'
-                                                        init={{
-                                                            height: 400,
-                                                            max_height: "500",
-                                                            width: '100%',
-                                                            border: "0px",
-                                                            //    menubar: false,
-                                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                                            tinycomments_mode: 'embedded',
-                                                            tinycomments_author: 'Author name',
-                                                            // mergetags_list: [
-                                                            //   { value: 'First.Name', title: 'First Name' },
-                                                            //   { value: 'Email', title: 'Email' },
-                                                            // ],
-                                                            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-                                                        }}
-                                                        value={formData.bangla}
-                                                        onEditorChange={handleBanglaChange} />
-
-                                                </div>
-                                                <p className='text-red-600'>{formDataErr.bangla}</p>
-                                            </div>
-
-
-
-                                        </div>
 
 
 
