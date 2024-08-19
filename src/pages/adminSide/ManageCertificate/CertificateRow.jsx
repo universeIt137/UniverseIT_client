@@ -48,10 +48,10 @@ const CertificateRow = ({ idx, certificate, refetch }) => {
             <td>
                {certificateNumber || 'Not Given'}
             </td>
-            <td>{studentID || ''}</td>
+            {/* <td>{studentID || ''}</td> */}
             <td>{courseName || 'Not Given'}</td>
             <td>{batch || 'Not Given'}</td>
-            <td>{courseDuration || 'Not Given'}</td>
+            {/* <td>{courseDuration || 'Not Given'}</td> */}
 
             <td className='text-2xl text-green-500'>
                 <Link to={`/dashboard/updateTestimonial/${_id}`}><MdEditSquare /></Link>

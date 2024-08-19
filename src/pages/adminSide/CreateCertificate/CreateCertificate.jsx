@@ -13,14 +13,14 @@ import toast from 'react-hot-toast';
 const CreateCertificate = () => {
     const axiosPublic = useAxiosPublic();
     const [durationLoading, setDurationLoading] = useState(false)
-    const [courseDurations, setCourseDurations] = useState([]);
+    // const [courseDurations, setCourseDurations] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState('')
     const [selectedYear, setSelectedYear] = useState('')
-    const [selectedDuration, setSelectedDuration] = useState('')
+    // const [selectedDuration, setSelectedDuration] = useState('')
     const [givenCertificateNumber, setGivenCertificateNumber] = useState('');
-    const [studentIdLoading, setStudentIDLoading] = useState(false);
-    const [studentIdErr, setStudentIDErr] = useState(false);
-    const [studentID, setStudentID] = useState('')
+    // const [studentIdLoading, setStudentIDLoading] = useState(false);
+    // const [studentIdErr, setStudentIDErr] = useState(false);
+    // const [studentID, setStudentID] = useState('')
     const { register, handleSubmit, reset } = useForm();
     const { data: courses = [], isLoading } = useQuery({
         queryKey: ['courses'],
@@ -31,47 +31,48 @@ const CreateCertificate = () => {
     })
 
 
-    useEffect(() => {
-        if (selectedCourse && selectedDuration && selectedYear && givenCertificateNumber) {
-            const courseNameFirstLetter = selectedCourse.split(' ').map(item => item[0]).join('');
-            const durationFirstLetter = `${selectedDuration.split(' ')[0]}${selectedDuration.split(' ')[1][0].toUpperCase()}`;
-            const yearFirstLetter = selectedYear.slice(-2);
-            const createdStudentID = courseNameFirstLetter + durationFirstLetter + yearFirstLetter + givenCertificateNumber.toString().padStart(4, '0');
-            setStudentID(createdStudentID)
-            setStudentIDLoading(true)
-            axiosPublic.get('/certificate')
-                .then(res => {
-                    console.log(res?.data);
-                    const isIdUnique = !res?.data?.find(item => item?.studentID === createdStudentID);
-                    console.log(isIdUnique);
-                    setStudentIDErr(!isIdUnique)
-                    setStudentIDLoading(false)
-                })
-                .catch(() => {
-                    setStudentIDLoading(false)
-                })
-        } else {
-            setStudentID('')
-            setStudentIDErr(false)
-        }
-    }, [selectedCourse, selectedDuration, selectedYear, givenCertificateNumber])
+    // useEffect(() => {
+    //     if (selectedCourse && selectedDuration && selectedYear && givenCertificateNumber) {
+    //         const courseNameFirstLetter = selectedCourse.split(' ').map(item => item[0]).join('');
+    //         const durationFirstLetter = `${selectedDuration.split(' ')[0]}${selectedDuration.split(' ')[1][0].toUpperCase()}`;
+    //         const yearFirstLetter = selectedYear.slice(-2);
+    //         const createdStudentID = courseNameFirstLetter + durationFirstLetter + yearFirstLetter + givenCertificateNumber.toString().padStart(4, '0');
+    //         // setStudentID(createdStudentID)
+    //         setStudentIDLoading(true)
+    //         axiosPublic.get('/certificate')
+    //             .then(res => {
+    //                 console.log(res?.data);
+    //                 const isIdUnique = !res?.data?.find(item => item?.studentID === createdStudentID);
+    //                 console.log(isIdUnique);
+    //                 setStudentIDErr(!isIdUnique)
+    //                 setStudentIDLoading(false)
+    //             })
+    //             .catch(() => {
+    //                 setStudentIDLoading(false)
+    //             })
+    //     } else {
+    //         // setStudentID('')
+    //         setStudentIDErr(false)
+    //     }
+    // }, [selectedCourse, selectedDuration, selectedYear, givenCertificateNumber])
 
+    // useEffect(,[])
     if (isLoading) {
         return ''
     }
 
 
     const onSubmit = async (data) => {
-        if (studentIdErr) {
-            return Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "take a unique Student Id",
-            });
-        }
+        // if (studentIdErr) {
+        //     return Swal.fire({
+        //         icon: "error",
+        //         title: "Oops...",
+        //         text: "take a unique Student Id",
+        //     });
+        // }
         const finalData = {
             ...data,
-            studentID: studentID
+            // studentID: studentID
         };
         console.log(finalData);
         const toastId = toast.loading("Certificate is creating...");
@@ -81,7 +82,7 @@ const CreateCertificate = () => {
                     toast.success('Certificate created successfully', { id: toastId })
                     reset()
                     setSelectedCourse('');
-                    setSelectedDuration('');
+                    // setSelectedDuration('');
                     setSelectedYear('');
                     setGivenCertificateNumber('')
                 }
@@ -97,21 +98,21 @@ const CreateCertificate = () => {
     const handleCourseChange = (e) => {
         const courseID = courses?.find(item => item?.title === e.target.value)?._id || '';
         setSelectedCourse(e.target.value);
-        setSelectedDuration('')
+        // setSelectedDuration('')
         if (courseID) {
             setDurationLoading(true)
             axiosPublic.get(`/courseCategory/course/${courseID}`)
                 .then(res => {
                     const durationArray = res.data.map(item => item?.duration);
                     console.log(durationArray);
-                    setCourseDurations(durationArray)
+                    // setCourseDurations(durationArray)
                     setDurationLoading(false)
                 })
                 .catch(() => {
                     setDurationLoading(false)
                 })
         } else {
-            setCourseDurations([])
+            // setCourseDurations([])
         }
 
 
@@ -158,7 +159,7 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Certificate Number</label>
-                                                <input value={givenCertificateNumber} type="number" {...register('certificateNumber', {
+                                                <input value={givenCertificateNumber} type="text" {...register('certificateNumber', {
                                                     required: true, onChange: (e) => {
                                                         setGivenCertificateNumber(e.target.value);
 
@@ -167,7 +168,7 @@ const CreateCertificate = () => {
                                             </div>
                                         </div>
                                         {/* Student ID */}
-                                        <div className="p-2 w-full">
+                                        {/* <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Student ID</label>
                                                 <div className={`${inputFieldStyle} h-max`}>
@@ -175,7 +176,7 @@ const CreateCertificate = () => {
                                                 </div>
                                             </div>
                                             {studentID && <p className='text-sm'>{studentIdLoading ? <span>checking student ID <span className="loading loading-spinner loading-xs ml-2"></span></span> : studentIdErr ? <span className='text-red-500'>The Student is not available. Use another serial number</span> : <span className='text-green-500'>The Student Id is available</span>}</p>}
-                                        </div>
+                                        </div> */}
                                         {/* course Info*/}
                                         <h2 className='sm:col-span-2 text-lg font-bold'>Course Info.</h2>
                                         {/* CourseName  */}
@@ -196,23 +197,13 @@ const CreateCertificate = () => {
                                         {/* Batch Year*/}
                                         <div className="p-2 w-full">
                                             <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Year</label>
-                                                <select value={selectedYear} type="text" {...register('batch', {
+                                                <label className="leading-7 text-sm text-gray-600 font-bold">Batch Name</label>
+                                                <input value={selectedYear} type="text" {...register('batch', {
                                                     required: true, onChange: (e) => {
                                                         setSelectedYear(e.target.value);
 
                                                     }
-                                                })} className={`${inputFieldStyle}`}>
-                                                    <option value="">Select Year</option>
-                                                    <option value="2020">2020</option>
-                                                    <option value="2021">2021</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2023">2023</option>
-                                                    <option value="2024">2024</option>
-                                                    <option value="2025">2025</option>
-                                                    <option value="2026">2026</option>
-                                                    <option value="2027">2027</option>
-                                                </select>
+                                                })} className={`${inputFieldStyle}`}/>
                                             </div>
                                         </div>
                                         {/* Course Duration*/}
@@ -220,19 +211,7 @@ const CreateCertificate = () => {
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Course Duration {durationLoading && <span className="loading loading-spinner loading-xs ml-2"></span>}</label>
-                                                <select value={selectedDuration} type="text" {...register('courseDuration', {
-                                                    required: true, onChange: (e) => {
-                                                        setSelectedDuration(e.target.value);
-
-                                                    }
-                                                })} className={`${inputFieldStyle}`}>
-                                                    <option value="">Select Duration</option>
-                                                    <option value="6 month">6 month</option>
-                                                    <option value="12 month">12 month</option>
-                                                    {
-                                                        courseDurations?.map((item, idx) => <option key={idx} value={item}>{item}</option>)
-                                                    }
-                                                </select>
+                                                <input  type="text" {...register('courseDuration')} className={`${inputFieldStyle}`}/>
                                             </div>
                                         </div>
 
