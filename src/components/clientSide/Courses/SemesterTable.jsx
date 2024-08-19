@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 const SemesterTable = ({ semesterTitle, subjects = [], editable = false, handleDeleteSubject }) => {
-    return (
+    return ( 
         <div className="overflow-x-auto max-w-[800px] mx-auto relative">
             <div className="absolute top-0 left-0  bg-white w-full h-full"></div>
             <table className="min-w-full border-collapse border border-gray-200 bg-primary/20 text-xs xs:text-sm sm:text-base z-10 relative">
                 <thead>
                     <tr className="bg-primary/90 text-white">
-                        <th colSpan="2" className="border border-gray-200 px-2 sm:px-4 py-2 text-left">{semesterTitle}</th>
+                        <th colSpan="2" className="border-gray-200 px-2 sm:px-4 py-2 text-left border-2">{semesterTitle}</th>
                         <th className="border border-gray-200 px-2 sm:px-4 py-2 text-left">Credits</th>
                         {
                             editable && <>

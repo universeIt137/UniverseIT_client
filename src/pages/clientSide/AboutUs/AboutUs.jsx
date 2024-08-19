@@ -16,14 +16,7 @@ const AboutUs = () => {
                 <title>Universe IT | About Us</title>
             </Helmet>
 
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                variants={scrollAnimationVariants}
-                viewport={{ once: false, amount: 0.2 }}
-            >
-                <Banner />
-            </motion.div>
+           
             <motion.div
                 initial="hidden"
                 whileInView="visible"
