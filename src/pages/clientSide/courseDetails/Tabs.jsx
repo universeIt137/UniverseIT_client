@@ -4,7 +4,7 @@ import { FreeMode, Pagination, Navigation } from 'swiper/modules';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 const Tabs = ({ tabName, setTabName, isCoursePage = false, courseCategories }) => {
 
-    const categories = ['Semester Details', 'Career Objective']
+    const categories = ['Course Details', 'Career Objective']
     const tabStyle = (incomingTabName) => {
         return `text-sm sm:text-base bg-primary/95 font-medium  rounded-t-lg active:scale-90 transition-all duration-300 hover:bg-primary ${incomingTabName === tabName ? 'bg-primary text-white' : 'bg-white hover:bg-primary/30'} w-full h-[50px]`
     }

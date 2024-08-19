@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { FaRegHourglass } from 'react-icons/fa6';
 import { MdOutlineAccessTimeFilled, MdQuiz, MdVideoLibrary } from 'react-icons/md';
 import { AiFillSafetyCertificate } from 'react-icons/ai';
+import SubVideos from './SubVideos';
 
 const BannerSection = ({ courseData }) => {
     const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee } = courseData;
@@ -16,7 +17,7 @@ const BannerSection = ({ courseData }) => {
     return (
         <div className='flex flex-col lg:flex-row  my-5 gap-1 md:gap-5'>
             {/* video and technology section  */}
-            <div className="lg:w-4/6 bg-yellow-100 p-5 rounded-2xl ">
+            <div className="lg:w-4/6 bg-white p-5 rounded-2xl ">
                 {/* main video  */}
                 <div className="relative w-[80vw] h-[45.9vw] z-10 sm:w-full sm:h-[37vw] lg:h-[470px]  lg:mx-auto rounded-2xl p-2
                 bg-black">
@@ -79,6 +80,11 @@ const BannerSection = ({ courseData }) => {
 
                     </div>
                 </section>
+
+                {/* sub video  */}
+                <div className='rounded-2xl'>
+                    <SubVideos subVideos={subVideos} />
+                </div>
             </div>
 
             {/* sidebar */}
@@ -106,34 +112,45 @@ const BannerSection = ({ courseData }) => {
                         />
                     </p>
                     <p className='lg:my-5 font-bold text-2xl md:hidden lg:text-start'>ফি ৩০০০ টাকা</p>
-                    <p className='text-lg font-bold py-2'>This course includes:</p>
-                    <ul className=' text-sm md:text-base  lg:text-start space-y-3'>
-                        <li className='  flex items-center text-primary gap-2'><FaHourglass className='text-primary text-lg' /> <span>৪+ ঘন্টা প্রোজেক্ট বেসড টিউটোরিয়াল</span></li>
-                        <hr className='border-primary' />
-                        <li className='  flex items-center text-primary gap-2'><MdVideoLibrary className='text-primary text-lg' /> <span>৩০+ ভিডিও</span></li>
-                        <hr className='border-primary' />
-                        <li className='  flex items-center text-primary gap-2'><FaBrain className='text-primary text-lg' /> <span>৫০+ কুইজ</span></li>
-                        <hr className='border-primary' />
-                        <li className='  flex items-center text-primary gap-2'><MdQuiz className='text-primary text-lg' /> <span>৪ সেট কুইজ</span></li>
-                        <hr className='border-primary' />
-                        <li className='  flex items-center text-primary gap-2'><MdOutlineAccessTimeFilled className='text-primary text-lg' /> <span>লাইফ টাইম এক্সেস</span></li>
-                        <hr className='border-primary' />
-                        <li className='  flex items-center text-primary gap-2'><AiFillSafetyCertificate className='text-primary text-lg' /> <span>কোর্স শেষে সার্টিফিকেট</span></li>
-                        <hr className='border-primary' />
-                    </ul>
-                    <Link to={'/onlineAdmission'}>
-                        <div className='py-5'><ButtonStrong text={'ENROLL NOW'} isWidthFull={true} /></div>
-                    </Link>
+                   
+                    <div className='flex flex-col justify-between min-h-full'>
+                        <div className='mt-20'>
+                            <p className='text-lg font-bold py-2'>This course includes:</p>
+                            <ul className=' text-sm md:text-base  lg:text-start space-y-3'>
+                                <li className='  flex items-center text-primary gap-2'><FaHourglass className='text-primary text-lg' /> <span>৪+ ঘন্টা প্রোজেক্ট বেসড টিউটোরিয়াল</span></li>
+                                <hr className='border-primary' />
+                                <li className='  flex items-center text-primary gap-2'><MdVideoLibrary className='text-primary text-lg' /> <span>৩০+ ভিডিও</span></li>
+                                <hr className='border-primary' />
+                                <li className='  flex items-center text-primary gap-2'><FaBrain className='text-primary text-lg' /> <span>৫০+ কুইজ</span></li>
+                                <hr className='border-primary' />
+                                <li className='  flex items-center text-primary gap-2'><MdQuiz className='text-primary text-lg' /> <span>৪ সেট কুইজ</span></li>
+                                <hr className='border-primary' />
+                                <li className='  flex items-center text-primary gap-2'><MdOutlineAccessTimeFilled className='text-primary text-lg' /> <span>লাইফ টাইম এক্সেস</span></li>
+                                <hr className='border-primary' />
+                                <li className='  flex items-center text-primary gap-2'><AiFillSafetyCertificate className='text-primary text-lg' /> <span>কোর্স শেষে সার্টিফিকেট</span></li>
+                                <hr className='border-primary' />
+                            </ul>
+                        </div>
 
-                    <p className='text-center'>Or</p>
-                    <div className='grid grid-cols-1  sm:grid-cols-2 gap-5 py-5'>
-                        <button className='w-full' onClick={handleClick}>
-                            <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm py-0.5'>CALL NOW</span>} />
-                        </button>
-                        <Link to={'/freeSeminar'}>
-                            <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm lg:text-xs xl:text-sm py-0.5 lg:py-1 xl:py-0.5'>JOIN FREE SEMINAR</span>} />
-                        </Link>
+
+                        <div className='mt-20'>
+                            <div className='grid grid-cols-1  sm:grid-cols-2 gap-5 '>
+                                <button className='w-full' onClick={handleClick}>
+                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm py-0.5'>CALL NOW</span>} />
+                                </button>
+                                <Link to={'/freeSeminar'}>
+                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm lg:text-xs xl:text-sm py-0.5 lg:py-1 xl:py-0.5'>JOIN FREE SEMINAR</span>} />
+                                </Link>
+                            </div>
+
+                            <Link to={'/onlineAdmission'}>
+                                <div className='py-3'><ButtonStrong text={'ENROLL NOW'} isWidthFull={true} /></div>
+                            </Link>
+                        </div>
                     </div>
+
+
+
                 </div>
 
             </div>
