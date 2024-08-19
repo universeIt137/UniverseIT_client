@@ -4,17 +4,36 @@ import Testimonials from '../../../components/clientSide/Testimonials/Testimonia
 import Courses from '../../../components/clientSide/Courses/Courses';
 import Banner from '../../../components/clientSide/Banner/Banner';
 import HomeFreeSeminar from '../../../components/clientSide/HomeFreeSeminar/HomeFreeSeminar';
+import { Link } from 'react-router-dom';
+import { FaAngleDown } from 'react-icons/fa';
+import AboutBanner from './AboutBanner';
+import Milestones from '../../../components/clientSide/Milestones/Milestones';
+import CertifiedInstitute from './CertifiedInstitute';
+import Services from '../../../components/clientSide/Services/Services';
 const AboutUs = () => {
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
     };
-    
+
     return (
         <div>
             <Helmet>
                 <title>Universe IT | About Us</title>
             </Helmet>
+
+
+
+
+
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={scrollAnimationVariants}
+                viewport={{ once: false, amount: 0.2 }}
+            >
+                <AboutBanner></AboutBanner>
+            </motion.div>
 
            
             <motion.div
@@ -23,8 +42,19 @@ const AboutUs = () => {
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <Courses />
+                <Milestones/>
             </motion.div>
+
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={scrollAnimationVariants}
+                viewport={{ once: false, amount: 0.2 }}
+            >
+                <Services />
+            </motion.div>
+
+
             <motion.div
                 initial="hidden"
                 whileInView="visible"
