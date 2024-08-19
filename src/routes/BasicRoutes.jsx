@@ -43,6 +43,8 @@ import SeminarForm from "../pages/clientSide/SeminarForm/SeminarForm";
 import SuccessStoryPage from "../pages/clientSide/SuccessStoryPage/SuccessStoryPage";
 import Faculties from "../pages/clientSide/Faculties/Faculties";
 import CertificateVerification from "../pages/clientSide/certificateVerification/CertificateVerification";
+import ManageCertificate from "../pages/adminSide/ManageCertificate/ManageCertificate";
+import CreateCertificate from "../pages/adminSide/CreateCertificate/CreateCertificate";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -218,6 +220,14 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "manageCourseObjective/:id",
                 element: <ManageCourseObjective />
+            },
+            {
+                path: "createCertificate",
+                element: <CreateCertificate/>
+            },
+            {
+                path: "manageCertificate",
+                element: <ManageCertificate/>
             },
 
 
