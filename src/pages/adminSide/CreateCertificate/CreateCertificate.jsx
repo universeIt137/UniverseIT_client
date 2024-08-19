@@ -9,14 +9,10 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { uploadImg } from '../../../UploadFile/uploadImg';
 
 const CreateCertificate = () => {
     const axiosPublic = useAxiosPublic();
-    const [durationLoading, setDurationLoading] = useState(false)
-    // const [courseDurations, setCourseDurations] = useState([]);
-    const [selectedCourse, setSelectedCourse] = useState('')
-    const [selectedYear, setSelectedYear] = useState('')
-    // const [selectedDuration, setSelectedDuration] = useState('')
     const [givenCertificateNumber, setGivenCertificateNumber] = useState('');
     const [certificateNumLoading, setCertificateNumLoading] = useState(false);
     const [certificateNumErr, setCertificateNumErr] = useState(false);
@@ -89,20 +85,23 @@ const CreateCertificate = () => {
                 text: "take a unique Student Id",
             });
         }
+        const image = data?.studentProfile[0];
+        const toastId = toast.loading("Certificate is creating...");
+        const studentProfile = await uploadImg(image)
+        // console.log(finalData);
+
         const finalData = {
             ...data,
-            // studentID: studentID
+            studentProfile: studentProfile || ''
         };
         console.log(finalData);
-        const toastId = toast.loading("Certificate is creating...");
+
         axiosPublic.post('/certificate', finalData)
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Certificate created successfully', { id: toastId })
                     reset()
-                    setSelectedCourse('');
                     // setSelectedDuration('');
-                    setSelectedYear('');
                     setGivenCertificateNumber('')
                 }
             })
@@ -152,6 +151,13 @@ const CreateCertificate = () => {
                                                 <input type="email" {...register('email', { required: true })} className={`${inputFieldStyle}`} />
                                             </div>
                                         </div>
+                                        {/* image  */}
+                                        <div className="p-2 w-full">
+                                            <div className="relative">
+                                                <label className="leading-7 text-sm text-gray-600 font-bold">Student Profile</label>
+                                                <input type="file" {...register('studentProfile', { required: true })} className={`file-input file-input-bordered file-input-md w-full`} />
+                                            </div>
+                                        </div>
                                         {/* Certificate Number  */}
                                         <div className="p-2 w-full">
                                             <div className="relative">
@@ -165,7 +171,7 @@ const CreateCertificate = () => {
                                             </div>
                                             {givenCertificateNumber && <p className='text-sm'>{certificateNumLoading ? <span>checking Certificate Number<span className="loading loading-spinner loading-xs ml-2"></span></span> : certificateNumErr ? <span className='text-red-500'>The Certificate Number is not available. Use another Certificate Number</span> : <span className='text-green-500'>The Certificate Number is available</span>}</p>}
                                         </div>
-                                        
+
                                         {/* Student ID */}
                                         {/* <div className="p-2 w-full">
                                             <div className="relative">
@@ -206,7 +212,7 @@ const CreateCertificate = () => {
 
                                         <div className="p-2 w-full">
                                             <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Course Duration {durationLoading && <span className="loading loading-spinner loading-xs ml-2"></span>}</label>
+                                                <label className="leading-7 text-sm text-gray-600 font-bold">Course Duration</label>
                                                 <input type="text" {...register('courseDuration')} className={`${inputFieldStyle}`} />
                                             </div>
                                         </div>
