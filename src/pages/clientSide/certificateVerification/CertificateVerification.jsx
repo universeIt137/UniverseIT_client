@@ -25,7 +25,7 @@ const CertificateVerification = () => {
                     {/* Input Fields Section */}
                     <div className="flex flex-col space-y-4 border w-10/12 p-8 rounded-2xl mx-auto ">
 
-                        <label htmlFor="certificate_name" className='text-text_color font-bold text-2xl text-center'>Certificate No</label>
+                        <label htmlFor="certificate_name" className='text-text_color font-bold text-2xl text-center'>Certificate Serial No</label>
                         <input
                             type="text"
                             placeholder="Enter your Certificate Number"
