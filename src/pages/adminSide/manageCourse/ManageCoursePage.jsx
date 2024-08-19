@@ -38,14 +38,11 @@ const ManageCoursePage = () => {
                                 <th>Course Image</th>
                                 <th>Course Fee</th>
                                 <th>Category</th>
-                                <th>Notice</th>
-                                <th>Admission Notice</th>
-                                <th>Bangla</th>
-                                <th>Main Video</th>
-                                <th>Sub Videos</th>
-                                <th>Manage Durations</th>
-                                <th>Manage Semester</th>
-                                <th>Manage Objective</th>
+                                
+                                
+                                
+                                <th>Add Course Details</th>
+                                <th>Add Course Objective</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
