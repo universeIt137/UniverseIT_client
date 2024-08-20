@@ -17,12 +17,12 @@ const KeyFeatures = ({ allKeyFeatures, setAllKeyFeatures }) => {
         setAllKeyFeatures(newFeatures)
     }
     return (
-        <div className='w-full md:col-span-2'>
+        <div className='w-full'>
             <label className="leading-7 text-sm text-gray-600 font-bold">Add Key Features</label>
             <div className='w-full'>
                 <div className="p-2 w-full">
                     <div className="relative space-y-2">
-                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
+                        <div className=' gap-2'>
                             <div>
                                 <label className="leading-7 text-sm text-gray-600 font-medium">Feature</label><br />
                                 <input onChange={(e) => setFeature(e.target.value)} value={feature} className="file-input file-input-bordered file-input-md w-full" type="text" />
@@ -33,7 +33,7 @@ const KeyFeatures = ({ allKeyFeatures, setAllKeyFeatures }) => {
                         <p>Added Key Feature</p>
                         {allKeyFeatures?.length < 1 && <p>No Feature Added!!</p>}
 
-                        <div className="grid sm:grid-cols-2">
+                        <div className="grid">
                             <div className="flex flex-col gap-5 pb-5">
                                 {allKeyFeatures.map((item, index) => (
                                     <div key={index} className="gap-2 relative">

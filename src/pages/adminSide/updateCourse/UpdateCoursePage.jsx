@@ -12,6 +12,7 @@ import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import { uploadImg } from "../../../UploadFile/uploadImg";
 import AddTechnology from "../addCourse/AddTechnology";
 import KeyFeatures from "../addCourse/KeyFeatures";
+import AddInstructors from "../addCourse/AddInstructors";
 
 
 const UpdateCoursePage = () => {
@@ -25,7 +26,8 @@ const UpdateCoursePage = () => {
     const [subVideoUrl, setSubVideoUrl] = useState('')
     const [subVideoErr, setSubVideoErr] = useState('')
     const [allTechnology, setAllTechnology] = useState([])
-    const [allKeyFeatures, setAllKeyFeatures] = useState([])
+    const [allKeyFeatures, setAllKeyFeatures] = useState([]);
+    const [allInstructors, setAllInstructors] = useState([])
     const { data: courseData = {}, refetch: courseDataRefetch, isLoading } = useQuery({
         queryKey: ['course', id],
         queryFn: async () => {
@@ -38,6 +40,7 @@ const UpdateCoursePage = () => {
             setAllTechnology(courseData?.technologies || [])
             setSubVideos(courseData.subVideos || [])
             setAllKeyFeatures(courseData.keyFeatures || [])
+            setAllInstructors(courseData?.instructors || [])
         }
     }, [courseData, isLoading])
     if (isLoading) {
@@ -79,11 +82,12 @@ const UpdateCoursePage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
-        const category = form.courseCategory.value;
+        const category = form.category.value;
         const title = form.title.value;
         const videoUrl = form.videoUrl.value;
         const courseFee = form.courseFee.value
         let isValid = true;
+        console.log(category);
 
         setImageInputErr('');
         setSubVideoErr('')
@@ -122,7 +126,7 @@ const UpdateCoursePage = () => {
         //     const data = { category, image: imageUrl };
         //     return axiosPublic.post('/studentGallery', data);
         // });
-        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology,keyFeatures: allKeyFeatures };
+        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures, instructors: allInstructors };
         console.log(data);
 
         axiosPublic.put(`/course/${id}`, data)
@@ -159,8 +163,9 @@ const UpdateCoursePage = () => {
                                             <div className="p-2 w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Course Category</label>
-
-                                                    <select defaultValue={courseData?.category} required name="courseCategory" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out h-[40px]" >
+                                                    {console.log(courseData?.category)
+                                                    }
+                                                    <select defaultValue={courseData?.category} required name="category" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out h-[40px]" >
                                                         <option value="">Select</option>
                                                         <option value="Online">Online</option>
                                                         <option value="Offline">Offline</option>
@@ -244,6 +249,8 @@ const UpdateCoursePage = () => {
                                             <AddTechnology allTechnology={allTechnology} setAllTechnology={setAllTechnology} />
                                             {/* Key Features */}
                                             <KeyFeatures allKeyFeatures={allKeyFeatures} setAllKeyFeatures={setAllKeyFeatures} />
+                                            {/* add instructors  */}
+                                            <AddInstructors allInstructors={allInstructors} setAllInstructors={setAllInstructors} />
                                         </div>
 
 

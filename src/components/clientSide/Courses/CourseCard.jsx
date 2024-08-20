@@ -4,9 +4,10 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 const CourseCard = ({ course = {}, isCoursePage = false }) => {
-    const { bannerImages, category, title, courseFee, _id } = course
+    const { bannerImages, category, title, courseFee, _id, instructors = [] } = course
     console.log(_id);
-
+    console.log(instructors);
+    const firstInstructor = instructors[0] || {}
     // const { title, category, rating, reviews, price, courseImage, instructor = {} } = course;
     // const { name, enrolled, profileImage } = instructor;
     // console.log(profileImage);
@@ -14,8 +15,9 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
     const cardStyleForCoursePage = 'w-full max-w-[80vw] sm:max-w-[400px] '
     return (
         <div className={`card bg-base-100 mx-auto ${isCoursePage ? cardStyleForCoursePage : cardStyle}`}>
-            <figure>
+            <figure className="h-[180px]">
                 <img
+                className="h-full object-cover w-full"
                     src={bannerImages[0]}
                     alt="Shoes" />
             </figure>
@@ -45,11 +47,12 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
                             </div>
                         </div>
                         <div className="flex items-end">
+
                             <div className="flex gap-2 sm:gap-4">
-                                <img className="size-11 sm:size-12 rounded-full object-cover" src={'https://i.ibb.co/zP8cG18/client10.jpg'} alt="" />
+                                <img className="size-11 sm:size-12 rounded-full object-cover" src={firstInstructor?.image} alt="" />
                                 <div className="text-xs sm:text-sm font-medium">
-                                    <p>Atik Md Alavi</p>
-                                    <p className="text-gray-500 font-normal">300 Enrolled</p>
+                                    <p>{firstInstructor?.name}</p>
+                                    {/* <p className="text-gray-500 font-normal">300 Enrolled</p> */}
                                 </div>
                             </div>
                             <p className="text-end text-base sm:text-xl font-bold text-primary">

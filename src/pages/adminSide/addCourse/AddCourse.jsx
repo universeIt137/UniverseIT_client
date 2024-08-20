@@ -7,6 +7,7 @@ import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { uploadImg } from '../../../UploadFile/uploadImg';
 import AddTechnology from './AddTechnology';
 import KeyFeatures from './KeyFeatures';
+import AddInstructors from './AddInstructors';
 
 const AddCourse = () => {
     const axiosPublic = useAxiosPublic()
@@ -18,7 +19,8 @@ const AddCourse = () => {
     const [subVideoUrl, setSubVideoUrl] = useState('')
     const [subVideoErr, setSubVideoErr] = useState('')
     const [allTechnology, setAllTechnology] = useState([])
-    const [allKeyFeatures, setAllKeyFeatures] = useState([])
+    const [allKeyFeatures, setAllKeyFeatures] = useState([]);
+    const [allInstructors, setAllInstructors] = useState([])
 
 
 
@@ -52,7 +54,7 @@ const AddCourse = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
-        const category = form.courseCategory.value;
+        const category = form.category.value;
         const title = form.title.value;
         const videoUrl = form.videoUrl.value;
         const courseFee = form.courseFee.value
@@ -89,7 +91,7 @@ const AddCourse = () => {
         }
 
 
-        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures };
+        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures, instructors: allInstructors };
 
         axiosPublic.post(`/course`, data)
             .then(res => {
@@ -97,7 +99,10 @@ const AddCourse = () => {
                     toast.success("Course has added Successfully!!", { id: toastId });
                     form.reset()
                     setAllImages([]);
-                    setSubVideos([])
+                    setSubVideos([]);
+                    setAllTechnology([]);
+                    setAllInstructors([]);
+                    setAllKeyFeatures([])
                 }
 
             })
@@ -124,7 +129,7 @@ const AddCourse = () => {
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Course Category</label>
 
-                                                    <select required name="courseCategory" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out h-[40px]" >
+                                                    <select required name="category" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out h-[40px]" >
                                                         <option value="">Select</option>
                                                         <option value="Online">Online</option>
                                                         <option value="Offline">Offline</option>
@@ -209,6 +214,8 @@ const AddCourse = () => {
                                             <AddTechnology allTechnology={allTechnology} setAllTechnology={setAllTechnology} />
                                             {/* Key Features */}
                                             <KeyFeatures allKeyFeatures={allKeyFeatures} setAllKeyFeatures={setAllKeyFeatures} />
+                                            {/* add instructors  */}
+                                            <AddInstructors allInstructors={allInstructors} setAllInstructors={setAllInstructors} />
                                         </div>
 
 
