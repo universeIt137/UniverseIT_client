@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import {  FaRegStar, FaStar } from 'react-icons/fa';
+import { FaRegStar, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
 import ReactPlayer from 'react-player';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { Link } from 'react-router-dom';
 import SubVideos from './SubVideos';
+import MainVideo from './MainVideo';
 
 const BannerSection = ({ courseData }) => {
     const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee, technologies = [], keyFeatures = [], instructors = [] } = courseData;
@@ -18,15 +19,7 @@ const BannerSection = ({ courseData }) => {
             {/* video and technology section  */}
             <div className="lg:w-4/6 bg-white p-5 rounded-2xl ">
                 {/* main video  */}
-                <div className="relative w-[80vw] h-[45.9vw] z-10 sm:w-full sm:h-[37vw] lg:h-[470px]  lg:mx-auto rounded-2xl p-2
-                bg-black">
-                    <ReactPlayer
-                        controls="true"
-                        url={videoUrl}
-                        width="100%"
-                        height="100%"
-                    />
-                </div>
+                <MainVideo videoUrl={videoUrl} />
                 <section className=' my-4 bg-gray-200 rounded-xl p-5'>
                     <p className='font-bold text-xl mb-2' >Technologies you will learn</p>
                     <div className='grid lg:grid-cols-3 gap-3'>
@@ -79,20 +72,20 @@ const BannerSection = ({ courseData }) => {
                         />
                     </p>
                     <div>
-                    <p className='text-lg font-bold py-2'>Instructors:</p>
-                   <div className='space-y-4 py-4'>
-                        {instructors.map((item, index) => (
-                        <div key={index} className="flex gap-2 sm:gap-4 relative">
-    
-                            <img className="size-16 rounded-full object-cover" src={item?.image} alt="" />
-                            <div className="text-base font-medium">
-                               
-                                <p>{item?.name}</p>
-    
-                            </div>
+                        <p className='text-lg font-bold py-2'>Instructors:</p>
+                        <div className='space-y-4 py-4'>
+                            {instructors.map((item, index) => (
+                                <div key={index} className="flex gap-2 sm:gap-4 relative">
+
+                                    <img className="size-16 rounded-full object-cover" src={item?.image} alt="" />
+                                    <div className="text-base font-medium">
+
+                                        <p>{item?.name}</p>
+
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                   </div>
                     </div>
 
                     <div className='flex flex-col justify-between min-h-full'>

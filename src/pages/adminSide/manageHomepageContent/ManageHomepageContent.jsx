@@ -12,27 +12,31 @@ import { useEffect, useState } from 'react';
 import AddBenefits from './AddBenefits';
 
 const ManageHomepageContent = () => {
-    const [allBenefits, setAllBenefits] = useState([])
-    const axiosPublic = useAxiosPublic()
+    const [allBenefits, setAllBenefits] = useState([]);
+    const axiosPublic = useAxiosPublic();
     const { data: homepageContent = [], refetch: homepageContentRefetch, isLoading } = useQuery({
         queryKey: ['homepageContent'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/homepageContent')
-            return res?.data
+            const res = await axiosPublic.get('/homepageContent');
+            return res?.data;
         }
-    })
-
+    });
 
     useEffect(() => {
         if (homepageContent[0]?.benefits) {
-            setAllBenefits(homepageContent[0]?.benefits)
+            setAllBenefits(homepageContent[0]?.benefits);
         }
-    }, [homepageContent, isLoading])
-    const { title: incomingTitle, imageUrl: incomingImageUrl, subtitle: incomingSubtitle, video_url: incomingVideo_url, milestoneImage: incomingMilestoneImg, seminarImage: incomingFreeSeminarImg } = homepageContent[0] || []
+    }, [homepageContent, isLoading]);
 
-
-
-
+    const {
+        title: incomingTitle,
+        imageUrl: incomingImageUrl,
+        subtitle: incomingSubtitle,
+        video_url: incomingVideo_url,
+        milestoneImage: incomingMilestoneImg,
+        seminarImage: incomingFreeSeminarImg,
+        servicesImage: incomingServicesImg // Added
+    } = homepageContent[0] || [];
 
     const handleSubmit = async (event) => {
         const toastId = toast.loading("Home page content is updating...");
@@ -44,9 +48,12 @@ const ManageHomepageContent = () => {
         const subtitle = form.subtitle.value || '';
         const milestoneImage = form.milestoneImage.files[0] || {};
         const seminarImage = form.seminarImage.files[0] || {};
+        const servicesImage = form.servicesImage.files[0] || {}; // Added
         let imageUrl = '';
         let milestoneImageUrl = '';
         let seminarImageUrl = '';
+        let servicesImageUrl = ''; // Added
+
         if (!selectedImage?.name) {
             imageUrl = incomingImageUrl;
         } else {
@@ -58,23 +65,35 @@ const ManageHomepageContent = () => {
         } else {
             milestoneImageUrl = await uploadImg(milestoneImage);
         }
-        console.log(milestoneImageUrl);
+
         if (!seminarImage?.name) {
             seminarImageUrl = incomingFreeSeminarImg;
         } else {
             seminarImageUrl = await uploadImg(seminarImage);
         }
 
-        console.log(seminarImageUrl);
+        // Handle Services Image Upload
+        if (!servicesImage?.name) {
+            servicesImageUrl = incomingServicesImg;
+        } else {
+            servicesImageUrl = await uploadImg(servicesImage);
+        }
 
-        const data = { video_url, title, imageUrl: imageUrl ? imageUrl : '', subtitle, milestoneImage: milestoneImageUrl, seminarImage: seminarImageUrl, benefits: allBenefits };
-        console.log(data);
+        const data = {
+            video_url,
+            title,
+            imageUrl: imageUrl ? imageUrl : '',
+            subtitle,
+            milestoneImage: milestoneImageUrl,
+            seminarImage: seminarImageUrl,
+            servicesImage: servicesImageUrl, // Added
+            benefits: allBenefits
+        };
 
         axiosPublic.post(`/updateHomepageContent/${homepageContent[0]?._id || 'notAvailable'}`, data)
             .then(res => {
                 toast.success("Home page Content Updated Successfully!!", { id: toastId });
                 if (res.data?.modifiedCount || res.data?.insertedId) {
-                    console.log(res.data);
                     homepageContentRefetch();
                 }
             })
@@ -83,6 +102,7 @@ const ManageHomepageContent = () => {
                 toast.error(err?.message, { id: toastId });
             });
     };
+
     return (
         <>
             <Helmet>
@@ -101,8 +121,6 @@ const ManageHomepageContent = () => {
 
                                 <div className="shadow-2xl  px-10 rounded-2xl">
                                     <form action="" onSubmit={handleSubmit} className='flex flex-wrap -m-2'>
-
-
 
                                         <div className='w-full grid grid-cols-1 sm:grid-cols-2 gap-5'>
                                             <div className=" w-full">
@@ -149,12 +167,20 @@ const ManageHomepageContent = () => {
                                                     <input name='seminarImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
                                             </div>
+                                            {/* services image upload  */}
+                                            <div className=" w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Services Image</label><br />
+                                                    <input name='servicesImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
+                                                </div>
+                                            </div>
 
                                         </div>
                                         <div className="p-2 w-full">
                                             <div className='flex justify-center items-center'><ButtonStrong text={'Submit'} /></div>
                                         </div>
                                     </form>
+
 
 
                                     <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
