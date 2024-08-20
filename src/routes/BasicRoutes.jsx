@@ -46,6 +46,9 @@ import CertificateVerification from "../pages/clientSide/certificateVerification
 import ManageCertificate from "../pages/adminSide/ManageCertificate/ManageCertificate";
 import CreateCertificate from "../pages/adminSide/CreateCertificate/CreateCertificate";
 import UpdateCertificate from "../pages/adminSide/UpdateCertificate/UpdateCertificate";
+import AddSuccessStory from "../pages/adminSide/AddSuccessStory/AddSuccessStory";
+import ManageSuccessStory from "../pages/adminSide/ManageSuccessStory/ManageSuccessStory";
+import UpdateSuccessStory from "../pages/adminSide/UpdateSuccessStory/UpdateSuccessStory";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -233,6 +236,18 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "/dashboard/updateCertificate/:id",
                 element: <UpdateCertificate/>
+            },
+            {
+                path: "addSuccessStory",
+                element: <AddSuccessStory/>
+            },
+            {
+                path: "manageSuccessStory",
+                element: <ManageSuccessStory/>
+            },
+            {
+                path: "/dashboard/updateSuccessStory/:id",
+                element: <UpdateSuccessStory/>
             },
 
 

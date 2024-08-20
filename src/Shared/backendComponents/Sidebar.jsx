@@ -65,6 +65,11 @@ const Sidebar = () => {
             <NavigationItem to="/dashboard/createCertificate" icon={MdAddCircle} label="Create Certificate" />
             <NavigationItem to="/dashboard/manageCertificate" icon={SiNginxproxymanager} label="Manage Certificate" />
         </>
+    const addsSuccessStory =
+        <>
+            <NavigationItem to="/dashboard/addSuccessStory" icon={MdAddCircle} label="Add Success Story" />
+            <NavigationItem to="/dashboard/manageSuccessStory" icon={SiNginxproxymanager} label="Manage Success Story" />
+        </>
 
     return (
       <>
@@ -130,6 +135,12 @@ const Sidebar = () => {
                 <Dropdown
                   buttonText="Certificate"
                   urls={CertificateUrls}
+                />
+              </li>
+              <li className="mb-4">
+                <Dropdown
+                  buttonText="Success Story"
+                  urls={addsSuccessStory}
                 />
               </li>
             </ul>
