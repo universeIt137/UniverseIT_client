@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 import { BiLogoTwitter } from 'react-icons/bi';
 import { TbBrandYoutubeFilled } from 'react-icons/tb';
 import { FaFacebook } from 'react-icons/fa';
-import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
-import Swal from 'sweetalert2';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { uploadImg } from '../../../UploadFile/uploadImg';
+import { useEffect, useState } from 'react';
+import AddBenefits from './AddBenefits';
 
 const ManageHomepageContent = () => {
-
+    const [allBenefits, setAllBenefits] = useState([])
     const axiosPublic = useAxiosPublic()
     const { data: homepageContent = [], refetch: homepageContentRefetch, isLoading } = useQuery({
         queryKey: ['homepageContent'],
@@ -22,7 +22,13 @@ const ManageHomepageContent = () => {
         }
     })
 
-    const { title: incomingTitle, imageUrl: incomingImageUrl, subtitle: incomingSubtitle, video_url: incomingVideo_url, video_section_video: incomingVideo_section_video, courseImages: incomingCourseImages = [], milestoneImage: incomingMilestoneImg, seminarImage: incomingFreeSeminarImg } = homepageContent[0] || []
+
+    useEffect(() => {
+        if (homepageContent[0]?.benefits) {
+            setAllBenefits(homepageContent[0]?.benefits)
+        }
+    }, [homepageContent, isLoading])
+    const { title: incomingTitle, imageUrl: incomingImageUrl, subtitle: incomingSubtitle, video_url: incomingVideo_url, milestoneImage: incomingMilestoneImg, seminarImage: incomingFreeSeminarImg } = homepageContent[0] || []
 
 
 
@@ -33,27 +39,18 @@ const ManageHomepageContent = () => {
         event.preventDefault();
         const form = event.target;
         const video_url = form.video_url.value || '';
-        const video_section_video = form.video_section_video.value || '';
         const selectedImage = form.image.files[0] || {};
-        const selectedCourseImage = form.courseImage.files[0] || {};
         const title = form.title.value || '';
         const subtitle = form.subtitle.value || '';
         const milestoneImage = form.milestoneImage.files[0] || {};
         const seminarImage = form.seminarImage.files[0] || {};
         let imageUrl = '';
-        let secondImageUrl = '';
         let milestoneImageUrl = '';
         let seminarImageUrl = '';
         if (!selectedImage?.name) {
             imageUrl = incomingImageUrl;
         } else {
             imageUrl = await uploadImg(selectedImage);
-        }
-
-        if (!selectedCourseImage?.name) {
-            secondImageUrl = '';
-        } else {
-            secondImageUrl = await uploadImg(selectedCourseImage);
         }
 
         if (!milestoneImage?.name) {
@@ -69,12 +66,8 @@ const ManageHomepageContent = () => {
         }
 
         console.log(seminarImageUrl);
-        let courseImagesArray = [...incomingCourseImages];
-        if (secondImageUrl) {
-            courseImagesArray = [...incomingCourseImages, { image: secondImageUrl, id: new Date().getTime() }];
-        }
 
-        const data = { video_url, title, imageUrl: imageUrl ? imageUrl : '', subtitle, video_section_video, courseImages: courseImagesArray, milestoneImage: milestoneImageUrl, seminarImage: seminarImageUrl };
+        const data = { video_url, title, imageUrl: imageUrl ? imageUrl : '', subtitle, milestoneImage: milestoneImageUrl, seminarImage: seminarImageUrl, benefits: allBenefits };
         console.log(data);
 
         axiosPublic.post(`/updateHomepageContent/${homepageContent[0]?._id || 'notAvailable'}`, data)
@@ -90,41 +83,6 @@ const ManageHomepageContent = () => {
                 toast.error(err?.message, { id: toastId });
             });
     };
-
-    const handleDelete = (image) => {
-
-        console.log(image);
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const toastId = toast.loading("Image Deleting...");
-                const afterDeleteArray = incomingCourseImages?.filter(img => img.id !== image.id);
-                const data = { courseImages: afterDeleteArray }
-                axiosPublic.post(`/updateHomepageContent/${homepageContent[0]?._id || 'notAvailable'}`, data)
-                    .then(res => {
-                        toast.success("Deleted Successfully!!", { id: toastId });
-                        if (res.data?.modifiedCount || res.data?.insertedId) {
-                            console.log(res.data);
-                            homepageContentRefetch();
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        toast.error(err?.message, { id: toastId });
-                    });
-
-            }
-        });
-
-    }
-
     return (
         <>
             <Helmet>
@@ -159,11 +117,13 @@ const ManageHomepageContent = () => {
                                                     <textarea defaultValue={incomingSubtitle} name='subtitle' type="text" placeholder='Subtitle' className="file-input file-input-bordered file-input-md w-full px-2 h-[100px]" />
                                                 </div>
                                             </div>
+                                            {/* benefits */}
+                                            <AddBenefits allBenefits={allBenefits} setAllBenefits={setAllBenefits} />
 
                                             {/* video upload  */}
                                             <div className=" w-full">
                                                 <div className="relative">
-                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Homepage section video</label><br />
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Main Video</label><br />
                                                     <input defaultValue={incomingVideo_url} name='video_url' type="text" placeholder='Video Url' className="file-input file-input-bordered file-input-md w-full px-2" />
                                                 </div>
                                             </div>
@@ -171,72 +131,26 @@ const ManageHomepageContent = () => {
                                             {/* image upload  */}
                                             <div className=" w-full">
                                                 <div className="relative">
-                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Homepage section Image</label><br />
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Banner Image</label><br />
                                                     <input name='image' type="file" className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
                                             </div>
                                             {/* milestone image upload  */}
                                             <div className=" w-full">
                                                 <div className="relative">
-                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Milestone section Image</label><br />
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Milestone Image</label><br />
                                                     <input name='milestoneImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
                                             </div>
                                             {/* seminar image upload  */}
                                             <div className=" w-full">
                                                 <div className="relative">
-                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Free Seminar section Image</label><br />
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Free Seminar Image</label><br />
                                                     <input name='seminarImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
                                             </div>
 
-                                            {/* video section video upload upload  */}
-                                            <div className=" w-full">
-                                                <div className="relative">
-                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Video section's video</label><br />
-                                                    <input defaultValue={incomingVideo_section_video || ''} name='video_section_video' type="text" placeholder='Video Url' className="file-input file-input-bordered file-input-md w-full px-2" />
-                                                </div>
-                                            </div>
-                                            {/* course Images  */}
-                                            <div className=" w-full">
-                                                <div className="relative">
-                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Add Course Images</label><br />
-                                                    <input name='courseImage' type="file" placeholder='Video Url' className="file-input file-input-bordered file-input-md w-full" />
-                                                </div>
-                                                <div className='border border-gray-500 rounded-md mt-5 p-2'>
-                                                    <p className=''>Already added Images</p>
-                                                    <div className='flex gap-2 flex-wrap'>
-                                                        {
-                                                            incomingCourseImages?.map((image, idx) => <div className='w-[100px] p-2 rounded-md border border-black overflow-hidden' key={idx}>
-                                                                <div className='flex justify-end pb-2'> <p onClick={() => handleDelete(image)} className=' w-7 h-7 rounded-md bg-gray-200 hover:bg-red-500 hover:text-white active:scale-90 flex justify-center items-center'>X</p></div>
-                                                                <img src={image?.image} className=' w-full h-[70px] object-cover' />
-                                                            </div>)
-                                                        }
-
-                                                    </div>
-                                                    {
-                                                        incomingCourseImages?.length < 1 && <p className='text-sm text-center pt-5'>No image Found!!</p>
-                                                    }
-                                                </div>
-
-                                            </div>
                                         </div>
-
-                                        {/* Notice */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                         <div className="p-2 w-full">
                                             <div className='flex justify-center items-center'><ButtonStrong text={'Submit'} /></div>
                                         </div>
