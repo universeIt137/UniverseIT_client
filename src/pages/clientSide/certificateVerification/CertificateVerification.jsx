@@ -78,11 +78,13 @@ const CertificateVerification = () => {
 
                         </div>
                         <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-                            <img
+                        <img
                                 className="object-cover  object-center h-32"
-                                src={student?.studentProfile || 'https://placehold.co/600x400' }
-                                alt="Woman looking front"
-                            />
+                                src={student?.studentProfile }
+                                alt="without link"
+                                />
+
+                            
                         </div>
                         <div className="text-center mt-2  p-4 pb-20 justify-center items-center">
                             <h2 className="font-bold text-2xl">{ student?.studentName }</h2>
