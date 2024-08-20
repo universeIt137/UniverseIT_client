@@ -8,7 +8,7 @@ const Faculties = () => {
     const [cardPerSlice, setCardPerSlice] = useState(6);
     const axiosPublic = useAxiosPublic();
     const { data: faculties = [] } = useQuery({
-        queryKey: ['facuties'],
+        queryKey: ['faculties'],
         queryFn: async () => {
             const res = await axiosPublic.get('/faculty');
             return res.data;

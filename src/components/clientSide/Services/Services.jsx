@@ -3,10 +3,13 @@ import classIcon from '../../../assets/ServicesImg/class.png'
 import affordablepriceIcon from '../../../assets/ServicesImg/affordableprice.png'
 import educationIcon from '../../../assets/ServicesImg/education.png'
 import realtimeProjectIcons from '../../../assets/ServicesImg/realtimeProject.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import serviceImage from '../../../assets/banner/servicesBanner.jpg'
+import { useQuery } from '@tanstack/react-query'
+import useAxiosPublic from '../../../hooks/useAxiosPublic'
 const Services = () => {
     const [servicesActive, setServicesActive] = useState('Industry Expert Mentor')
+    const [allBenefits, setAllBenefits] = useState([])
     const services = [
         {
             text: 'Industry Expert Mentor',
@@ -29,6 +32,25 @@ const Services = () => {
             icon: realtimeProjectIcons
         },
     ]
+
+
+    const axiosPublic = useAxiosPublic()
+    const { data: homepageContent = [], isLoading } = useQuery({
+        queryKey: ['homepageContent'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/homepageContent')
+            return res?.data
+        }
+    })
+    useEffect(() => {
+        if (homepageContent[0]?.benefits) {
+            setAllBenefits(homepageContent[0]?.benefits)
+            setServicesActive(homepageContent[0]?.benefits[0])
+        }
+    }, [homepageContent, isLoading]);
+    if (isLoading) {
+        return ''
+    }
     return (
         <div className="bg-[#fefaee] ">
             <div className="space-y-4  max-w-7xl mx-auto py-10 px-10">
@@ -37,9 +59,9 @@ const Services = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-10'>
                     <div className='space-y-5'>
                         {
-                            services?.map((service, idx) => <div onClick={() => setServicesActive(service?.text)} key={idx} className={`w-full max-w-[400px] h-14 border rounded-md flex gap-3 items-center px-5 ${servicesActive === service.text ? 'bg-text_color text-white' : 'bg-white'} transition-all duration-300 cursor-pointer active:scale-90`}>
-                                <img className='size-7 object-cover' src={service?.icon} alt="" />
-                                <p className='text-base sm:text-lg font-medium'>{service?.text}</p>
+                            allBenefits?.map((item, idx) => <div onClick={() => setServicesActive(item)} key={idx} className={`w-full max-w-[400px] h-14 border rounded-md flex gap-3 items-center px-5 ${servicesActive === item ? 'bg-text_color text-white' : 'bg-white'} transition-all duration-300 cursor-pointer active:scale-90`}>
+
+                                <p className='text-base sm:text-lg font-medium'>{item}</p>
                             </div>)
                         }
                     </div>

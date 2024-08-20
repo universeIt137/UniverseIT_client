@@ -10,10 +10,12 @@ import { AiFillSafetyCertificate } from 'react-icons/ai';
 import SubVideos from './SubVideos';
 
 const BannerSection = ({ courseData }) => {
-    const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee, technologies = [], keyFeatures = [] } = courseData;
+    const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee, technologies = [], keyFeatures = [], instructors = [] } = courseData;
     const handleClick = () => {
         window.location.href = `tel:+8801755450127`;
     };
+    console.log(instructors);
+
     return (
         <div className='flex flex-col lg:flex-row  my-5 gap-1 md:gap-5'>
             {/* video and technology section  */}
@@ -79,7 +81,22 @@ const BannerSection = ({ courseData }) => {
                             readonly
                         />
                     </p>
-                    <p className='lg:my-5 font-bold text-2xl md:hidden lg:text-start'>ফি ৩০০০ টাকা</p>
+                    <div>
+                    <p className='text-lg font-bold py-2'>Instructors:</p>
+                   <div className='space-y-4 py-4'>
+                        {instructors.map((item, index) => (
+                        <div key={index} className="flex gap-2 sm:gap-4 relative">
+    
+                            <img className="size-16 rounded-full object-cover" src={item?.image} alt="" />
+                            <div className="text-base font-medium">
+                               
+                                <p>{item?.name}</p>
+    
+                            </div>
+                        </div>
+                    ))}
+                   </div>
+                    </div>
 
                     <div className='flex flex-col justify-between min-h-full'>
                         <div className='mt-20'>
@@ -92,9 +109,9 @@ const BannerSection = ({ courseData }) => {
                                     </>)
                                 }
                                 {
-                                    keyFeatures?.length < 1 && 
+                                    keyFeatures?.length < 1 &&
                                     <>
-                                        <li  className=' text-primary text-center'> No key features added!!</li>
+                                        <li className=' text-primary text-center'> No key features added!!</li>
                                         <hr className='border-primary' />
                                     </>
                                 }
