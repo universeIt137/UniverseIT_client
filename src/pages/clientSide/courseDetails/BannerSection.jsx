@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
-import { FaBrain, FaHourglass, FaRegStar, FaStar } from 'react-icons/fa';
+import {  FaRegStar, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
 import ReactPlayer from 'react-player';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { Link } from 'react-router-dom';
-import { FaRegHourglass } from 'react-icons/fa6';
-import { MdOutlineAccessTimeFilled, MdQuiz, MdVideoLibrary } from 'react-icons/md';
-import { AiFillSafetyCertificate } from 'react-icons/ai';
 import SubVideos from './SubVideos';
 
 const BannerSection = ({ courseData }) => {

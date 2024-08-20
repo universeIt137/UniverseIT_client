@@ -1,47 +1,31 @@
 import { useRef, useState, useEffect } from "react";
-import demoVideo1 from '../../../assets/demoVideo/demo1.mp4';
-import demoVideo2 from '../../../assets/demoVideo/demo2.mp4';
-import demoVideo3 from '../../../assets/demoVideo/demo3.mp4';
 import { IoPlayCircleSharp } from "react-icons/io5";
-import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Link } from "react-router-dom";
 import VideoPlayingModal from "../../../Shared/VideoPlayingModal";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 // Modal Component
 
 
 const SuccessStory = () => {
     const [modalVideoSrc, setModalVideoSrc] = useState(null);
-    const videos = [
-        { id: 1, src: demoVideo1 },
-        { id: 2, src: demoVideo2 },
-        { id: 3, src: demoVideo3 },
-    ];
+
+    const axiosPublic = useAxiosPublic();
+    const { data: successStories = [], refetch } = useQuery({
+        queryKey: ['successStory'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/successStory');
+            return res.data;
+        }
+    });
+    
 
     const videoRefs = useRef([]);
-    const [videoStates, setVideoStates] = useState(videos.map(() => false));
 
-    useEffect(() => {
-        videos.forEach((video, index) => {
-            const handlePause = () => {
-                setVideoStates(prev => {
-                    const newStates = [...prev];
-                    newStates[index] = false;
-                    return newStates;
-                });
-            };
-
-            const videoElement = videoRefs.current[index];
-            if (videoElement) {
-                videoElement.addEventListener('pause', handlePause);
-                return () => {
-                    videoElement.removeEventListener('pause', handlePause);
-                };
-            }
-        });
-    }, []);
+   
 
 
     const handlePlayButtonClick = (videoSrc) => {
@@ -69,7 +53,7 @@ const SuccessStory = () => {
                     slidesPerView={1}
                     speed={300}
                 >
-                    {videos.map((video, index) => (
+                    {successStories.map((video, index) => (
                         <SwiperSlide key={index}>
                             <div className="relative">
                                 <video
@@ -77,10 +61,10 @@ const SuccessStory = () => {
                                     className="rounded-lg shadow-lg w-full"
                                     muted
                                 >
-                                    <source src={video.src} type="video/mp4" />
+                                    <source src={video?.video} type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
-                                <div onClick={() => handlePlayButtonClick(video.src)} className={`absolute inset-0 flex items-center justify-center ${videoStates[index] && 'hidden'} cursor-pointer`}>
+                                <div onClick={() => handlePlayButtonClick(video?.video)} className={`absolute inset-0 flex items-center justify-center  cursor-pointer`}>
                                     <button className="relative">
                                         <span className="absolute size-4 bg-white top-4 left-4 z-0"></span>
                                         <IoPlayCircleSharp className="text-5xl rounded-full text-red-600 relative z-10" />

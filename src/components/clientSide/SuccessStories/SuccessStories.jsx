@@ -8,17 +8,23 @@ import { IoPlayCircleSharp } from "react-icons/io5";
 import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import { Link } from "react-router-dom";
 import VideoPlayingModal from "../../../Shared/VideoPlayingModal";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 
 
 const SuccessStories = ({ isHomePage = false }) => {
     const [seeMore, setSeeMore] = useState(false);
     const [modalVideoSrc, setModalVideoSrc] = useState(null);
-    const videos = [
-        { id: 1, src: demoVideo1 },
-        { id: 2, src: demoVideo2 },
-        { id: 3, src: demoVideo3 },
-    ];
+    const axiosPublic = useAxiosPublic();
+    const { data: successStories = [], refetch } = useQuery({
+        queryKey: ['successStory'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/successStory');
+            return res.data;
+        }
+    });
+
 
     const handlePlayButtonClick = (videoSrc) => {
         setModalVideoSrc(videoSrc);
@@ -33,16 +39,16 @@ const SuccessStories = ({ isHomePage = false }) => {
             <div className="max-w-7xl mx-auto">
                 <ComponentsTitle title={'Success Stories'} description={'Shine a spotlight on the stories of our determined students who have achieved remarkable feats through their unwavering dedication.'} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-wrap px-5 sm:px-10 pt-10">
-                    {videos.slice(0, seeMore ? videos.length : 2).map((video) => (
-                        <div className="min-h-full" key={video.id}>
+                    {successStories.slice(0, seeMore ? successStories.length : 2).map((video) => (
+                        <div className="min-h-full" key={video._id}>
                             <div className="relative">
                                 <div className="relative">
                                     <video
                                         className="rounded-lg shadow-lg w-full md:h-[25.5vw] xl:h-[329px]"
-                                        src={video.src}
+                                        src={video?.video}
                                         muted
                                     />
-                                    <div onClick={() => handlePlayButtonClick(video.src)} className="absolute inset-0 flex items-center justify-center cursor-pointer">
+                                    <div onClick={() => handlePlayButtonClick(video?.video)} className="absolute inset-0 flex items-center justify-center cursor-pointer">
                                         <button className="relative">
                                             <span className="absolute size-4 bg-white top-4 left-4 z-0"></span>
                                             <IoPlayCircleSharp className="text-5xl rounded-full text-red-600 relative z-10" />
