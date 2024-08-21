@@ -52,7 +52,7 @@ const CoursesPage = () => {
 
                     <div className='flex gap-5'>
                         <div className='min-w-[240px] bg-white hidden md:block rounded-sm overflow-hidden'>
-                            <div className='bg-primary text-white  flex gap-1 items-center'>
+                            {/* <div className='bg-primary text-white  flex gap-1 items-center'>
                                 <select className='bg-primary py-2 max-w-[95px]' name="" id="">
                                     <option value="">Country</option>
                                     <option>Bangladesh</option>
@@ -70,7 +70,7 @@ const CoursesPage = () => {
                                     <option>QA Engineer</option>
                                 </select>
                                 <p>Filter</p>
-                            </div>
+                            </div> */}
                             <div className='px-2'><Share isCoursePage={true} /></div>
                             <div className='p-5 space-y-2'>
                                 <CoursesRadioStyle tabName={tabName} setTabName={setTabName} name={'All Courses'} />
