@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 import CourseDetailsTab from './CourseDetailsTab';
 import SuccessStories from '../../../components/clientSide/SuccessStories/SuccessStories';
 import BannerSection from './BannerSection';
-import SubVideos from './SubVideos';
+import CourseDetailsPageSubVideos from './CourseDetailsPageSubVideos';
 import SuccessStory from './SuccessStory';
 import RelatedCourse from './RelatedCourse';
 
@@ -26,7 +26,6 @@ const CourseDetails = () => {
         }
     })
 
-    const { title, subtitle, videoUrl, bannerImages, subVideos, notice, bangla, admissionNotice, courseFee,  } = courseData;
 
 
     return (

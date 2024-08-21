@@ -4,10 +4,12 @@ import Rating from 'react-rating';
 import ReactPlayer from 'react-player';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { Link } from 'react-router-dom';
-import SubVideos from './SubVideos';
+import CourseDetailsPageSubVideos from './CourseDetailsPageSubVideos';
 import MainVideo from './MainVideo';
+import { useState } from 'react';
 
 const BannerSection = ({ courseData }) => {
+   
     const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee, technologies = [], keyFeatures = [], instructors = [] } = courseData;
     const handleClick = () => {
         window.location.href = `tel:+8801755450127`;
@@ -43,7 +45,7 @@ const BannerSection = ({ courseData }) => {
 
                 {/* sub video  */}
                 <div className='rounded-2xl'>
-                    <SubVideos subVideos={subVideos} />
+                    <CourseDetailsPageSubVideos subVideos={subVideos} />
                 </div>
             </div>
 

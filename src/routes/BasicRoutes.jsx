@@ -49,6 +49,9 @@ import UpdateCertificate from "../pages/adminSide/UpdateCertificate/UpdateCertif
 import AddSuccessStory from "../pages/adminSide/AddSuccessStory/AddSuccessStory";
 import ManageSuccessStory from "../pages/adminSide/ManageSuccessStory/ManageSuccessStory";
 import UpdateSuccessStory from "../pages/adminSide/UpdateSuccessStory/UpdateSuccessStory";
+import Login from "../pages/clientSide/Login/Login";
+import Register from "../pages/clientSide/Register/Register";
+import PrivateRouts from "../PrivateRouts/PrivateRouts";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -94,22 +97,31 @@ const BasicRoutes = createBrowserRouter([
             },
             {
                 path: "/freeSeminar",
-                element: <Seminar/>
+                element: <Seminar />
             },
             {
                 path: "/seminarForm/:id",
-                element: <SeminarForm/>
+                element: <SeminarForm />
             },
             {
                 path: "/successStory",
-                element: <SuccessStoryPage/>
+                element: <SuccessStoryPage />
+            },
+            {
+                path: "login",
+                element: <Login />
+            },
+            {
+                path: "register",
+                element: <Register />
             },
 
         ]
     },
+
     {
         path: "/dashboard",
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRouts><DashboardLayout></DashboardLayout></PrivateRouts>,
         children: [
             {
                 path: "/dashboard",
@@ -227,27 +239,27 @@ const BasicRoutes = createBrowserRouter([
             },
             {
                 path: "createCertificate",
-                element: <CreateCertificate/>
+                element: <CreateCertificate />
             },
             {
                 path: "manageCertificate",
-                element: <ManageCertificate/>
+                element: <ManageCertificate />
             },
             {
                 path: "/dashboard/updateCertificate/:id",
-                element: <UpdateCertificate/>
+                element: <UpdateCertificate />
             },
             {
                 path: "addSuccessStory",
-                element: <AddSuccessStory/>
+                element: <AddSuccessStory />
             },
             {
                 path: "manageSuccessStory",
-                element: <ManageSuccessStory/>
+                element: <ManageSuccessStory />
             },
             {
                 path: "/dashboard/updateSuccessStory/:id",
-                element: <UpdateSuccessStory/>
+                element: <UpdateSuccessStory />
             },
 
 

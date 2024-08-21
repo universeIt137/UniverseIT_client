@@ -1,35 +1,25 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
-
-const ShowingVideoModal = ({ video }) => {
-    const [isPlaying, setIsPlaying] = useState(true);
-
-    const closeModal = () => {
-        setIsPlaying(false);  // Pause the video
-        document.getElementById('showYTVideo').close();
-    };
+import {
+    Button,
+    Dialog,
+    DialogHeader,
+    DialogBody,
+    DialogFooter,
+} from "@material-tailwind/react";
+const ShowingVideoModal = ({ handleOpen, open, video }) => {
 
     return (
-        <dialog id="showYTVideo" className="modal">
-            <div className="modal-box min-w-[80%] min-h-[80%] bg-black">
-                <button
-                    onClick={closeModal}
-                    className="btn btn-sm btn-circle btn-ghost absolute right-1 top-0 text-white"
-                >
-                    ✕
-                </button>
-                <div className='h-[70vh]'>
-                    <ReactPlayer
-                        controls={true}
-                        url={video}
-                        width="100%"
-                        height="100%"
-                        playing={isPlaying}  // Control video playback with state
-                    />
-                </div>
-            </div>
-        </dialog>
+        <Dialog size='xl' open={open} handler={handleOpen} className='h-[70vh] relative'>
+            <ReactPlayer
+                controls="true"
+                url={video}
+                width="100%"
+                height="100%"
+            />
+            <button onClick={handleOpen} className='text-white text-3xl border size-10  rounded-full absolute top-[-50px] right-[-10px] transition-all duration-300 active:scale-90 hover:bg-primary/20'>X</button>
+        </Dialog>
     );
 };
 

@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import Marquee from "react-fast-marquee";
 import ReactPlayer from "react-player";
+import SingleSubVideos from "../../../Shared/SingleSubVideos";
 
-const SubVideos = ({ subVideos }) => {
-    const videoDivStyle = 'rounded-md overflow-hidden k w-[230px] h-[130px]'
+const CourseDetailsPageSubVideos = ({ subVideos }) => {
+   
     const titleStyle = 'text-black font-medium py-1 max-w-[230px]'
     return (
         <div className="relative hidden  lg:flex pt-10 z-10">
@@ -11,15 +12,7 @@ const SubVideos = ({ subVideos }) => {
                 <div className="flex gap-10 pr-10">
                     {
                         subVideos?.map((video, idx) => <div key={idx}>
-                            <div className={`${videoDivStyle}`}>
-                                <ReactPlayer
-                                    controls="true"
-
-                                    url={video?.url}
-                                    width="100%"
-                                    height='100%'
-                                />
-                            </div>
+                            <SingleSubVideos video={video?.url} />
 
                             <p className={`${titleStyle}`}>{video?.title}</p>
                         </div>)
@@ -31,4 +24,4 @@ const SubVideos = ({ subVideos }) => {
     );
 };
 
-export default SubVideos;
+export default CourseDetailsPageSubVideos;

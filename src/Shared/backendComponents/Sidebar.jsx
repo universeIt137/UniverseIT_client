@@ -8,6 +8,7 @@ import { SiNginxproxymanager } from 'react-icons/si';
 import Dropdown from './Dropdown';
 import { FaRegComments } from "react-icons/fa";
 import logo from '../../assets/logo/mainLogo.png'
+import LogOut from '../../components/adminSide/LogOut/LogOut';
 const Sidebar = () => {
  
     const courseUrls =
@@ -143,6 +144,7 @@ const Sidebar = () => {
                   urls={addsSuccessStory}
                 />
               </li>
+              <div className='ml-4'>   <LogOut/></div>
             </ul>
           </nav>
         </div>

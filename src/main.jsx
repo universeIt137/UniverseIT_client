@@ -18,15 +18,21 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
+import { ThemeProvider } from '@material-tailwind/react';
+import AuthProviders from './AuthProviders/AuthProviders.jsx';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient} >
-      <HelmetProvider>
-        <RouterProvider router={BasicRoutes} />
-        <Toaster />
-      </HelmetProvider>
+      <ThemeProvider>
+      <AuthProviders>
+        <HelmetProvider>
+          <RouterProvider router={BasicRoutes} />
+          <Toaster />
+        </HelmetProvider>
+        </AuthProviders>
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 )
