@@ -51,6 +51,7 @@ const Services = () => {
     if (isLoading) {
         return ''
     }
+    const data = homepageContent[0] || {};
     return (
         <div className="bg-[#fefaee] ">
             <div className="space-y-4  max-w-7xl mx-auto py-10 px-10">
@@ -66,7 +67,7 @@ const Services = () => {
                         }
                     </div>
                     <div className='lg:col-span-2'>
-                        <img src={serviceImage} className=' w-full max-w-[650px] mx-auto' alt="" />
+                        <img src={data?.servicesImage} className=' w-full max-w-[650px] mx-auto' alt="" />
                     </div>
                 </div>
             </div>

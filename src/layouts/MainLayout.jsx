@@ -10,7 +10,7 @@ const MainLayout = () => {
         <div className='relative bg-gray-100'>
             <ScrollToTop />
             <AddressNavbar />
-            <div className='sticky top-0 z-50'>
+            <div className='sticky top-0 z-40'>
                 <Navbar />
             </div>
             <Outlet></Outlet>
