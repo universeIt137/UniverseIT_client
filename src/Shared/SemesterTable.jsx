@@ -8,7 +8,7 @@ const SemesterTable = ({ semesterTitle, subjects = [], editable = false, handleD
             <table className="min-w-full border-collapse border border-gray-200 bg-primary/20 text-xs xs:text-sm sm:text-base z-10 relative">
                 <thead>
                     <tr className="bg-primary/90 text-white">
-                        <th colSpan="1" className="border border-gray-200 px-2 sm:px-4 py-2 text-left">Class {classNum}</th>
+                        <th colSpan="1" className="border border-gray-200 px-2 sm:px-4 py-2 text-left w-[100px]">Class {classNum}</th>
                         <th colSpan="1" className="border border-gray-200 px-2 sm:px-4 py-2 text-left">{semesterTitle}</th>
                         {
                             editable && <>
