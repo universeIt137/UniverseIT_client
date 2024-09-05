@@ -1,34 +1,47 @@
 /* eslint-disable react/prop-types */
-
+import log from '../../../assets/logo/shortLogo.png'
+import log21 from '../../../assets/logo/mainLogo.png'
 const FacultyCard = ({ faculty, slide }) => {
+    const { image, name, background_of_study, job_experience, designation, contact, email
+    } = faculty;
+    console.log(faculty);
+
     return (
 
-        
 
-        <div className={`card max-w-[160px] sm:max-w-[320px] sm:w-[320px] border border-gray-500 bg-base-100 shadow-xl ${slide ? 'w-[60vw]' : 'w-[45%] md:w-[30%] lg:w-[20%]'}`}>
-            <figure className="px-2 sm:px-10 pt-2 sm:pt-10 h-40 sm:h-60 w-full overflow-hidden">
-                <img
-                    src={faculty.image}
-                    alt="Faculty"
-                    className="rounded-xl w-full h-full object-cover"
-                />
-            </figure>
-            <div className="card-body text-center flex flex-col justify-between p-2 sm:p-4">
-                <div className="flex justify-center items-center flex-col">
-                    <h2 className="card-title font-semibold text-sm sm:text-lg">
-                        {slide ? (faculty?.name || 'Not Given') : (faculty?.name || 'Not Given')}
-                    </h2>
-                    <p className="font-semibold text-sm sm:text-lg">
-                        {slide ? (faculty?.background_of_study?.slice(0, 20) || 'Not Given') : (faculty?.background_of_study || 'Not Given')}
-                    </p>
+
+        <div className="bg-primary/30 p-2.5 w-[290px] rounded-lg">
+            <div className="bg-[#dad1c1]">
+                <div className='flex gap-1 justify-end p-5 pb-3 items-center'>
+                    <img className='h-6 object-cover' src={log21} alt="" />
+                    {/* <h2 className='font-bold text-xs'>Universe IT <br /> Institute</h2> */}
+
+
                 </div>
-                <p className="font-semibold flex items-end justify-center text-xs sm:text-base">
-                    Experience: {faculty?.job_experience ? `${faculty?.job_experience}+` : 'Not given'}
-                </p>
+                <div className=' h-[120px] relative  flex flex-col justify-center items-center gap-5'>
+                    <div className='w-full h-3.5 bg-gray-800'></div>
+                    <div className='w-full h-3.5 bg-gray-800'></div>
+                    <div className='w-full h-full absolute top-0 flex justify-center items-center '>
+                        <img className='size-24 rounded-full object-cover border-4 border-gray-800' src={image} alt="" />
+                    </div>
+                </div>
+                <div className='flex flex-col justify-center items-center'>
+                    <h2 className='text-base font-bold capitalize'>{name}</h2>
+                    <h2 className='text-sm'>{designation}</h2>
+                    <h2 className='text-sm pt-1'>{contact}</h2>
+                    <h2 className='text-sm break-words'>{email}</h2>
+                </div>
+
+                <div className='pb-7'>
+                    <div className='bg-gray-800 w-[50%] text-white mt-5 ml-auto py-1 text-sm pl-5'>
+                        <p>Experience:</p>
+                        <p>{job_experience} Years +</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        
+
 
 
 
