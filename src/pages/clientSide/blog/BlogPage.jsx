@@ -43,7 +43,7 @@ const BlogPage = () => {
         <div className='sm:px-20 px-5 my-10 min-h-screen'>
             <p className="text-4xl m-10"><span className='text-primary border-b-2'>Latest</span> News</p>
 
-            <div className='flex gap-10 flex-wrap justify-center'>
+            <div className='flex gap-10 flex-col'>
                 {
                     (showingBlogs.slice(firstCardId, firstCardId + cardPerSlice)).map((blog, idx) => <BlogCard key={idx} blog={blog} />)
                 }

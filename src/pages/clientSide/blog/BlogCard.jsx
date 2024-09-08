@@ -5,54 +5,18 @@ import { makeVisibleTime } from "../../../makeVisibleTime";
 import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 
 const BlogCard = ({ blog, slide = false }) => {
-    const description = blog?.description || 'No description available.';
-    const truncatedDescription = description.slice(0, 20).split(' ').slice(0, -1).join(' ') + (description.length > 200 ? '...' : '');
+
+    const { blogImageUrl, title, description, _id, date } = blog
     return (
-
-
-
-        <div className={`card max-w-[160px] sm:max-w-[320px] sm:w-[320px] border border-gray-500 bg-base-100 ml-5 shadow-xl ${slide ? 'w-[60vw]' : 'w-[45%] md:w-[30%] lg:w-[20%]'}`}>
-            <figure className="px-2 sm:px-10 pt-2 sm:pt-10 h-40 lg:h-full w-full ">
-                <img
-                    src={blog?.blogImageUrl}
-                    alt="Blog"
-                    className="rounded-xl w-full h-full object-cover"
-                />
-            </figure>
-            <div className="card-body text-center flex flex-col justify-between p-2 sm:p-4">
-                <div className="flex justify-center items-center flex-col">
-                    <h2 className="card-title font-semibold text-sm sm:text-2xl">
-                        {slide ? (blog?.title || 'Not Given') : (blog?.title || 'Not Given')}
-                    </h2>
-                    <p className=" overflow-hidden text-[10px] lg:text-sm" dangerouslySetInnerHTML={{ __html: truncatedDescription }}>
-                    </p>
-                </div>
-                {/* <div className="px-3 mx-auto mb-5 lg:flex justify-center lg:justify-between  items-center">
-                    <ResponsiveButton title={ "Read More" } link={`/blogDetails/${blog?._id}`} />
-                    <p className="text-sm">{makeVisibleTime(blog?.date)}</p>
-
-                </div> */}
-
-                <div className="px-3 mx-auto mb-5 lg:flex justify-center lg:justify-between items-center">
-                    <div className="flex flex-col lg:flex-row lg:gap-5 items-center">
-                        <div className="pl-7 lg:pl-0">
-                            {/* <ResponsiveButton title="Read More" link={`/blogDetails/${blog?._id}`} /> */}
-                            <div className="lg:py-5 pb-2 lg:text-xl mt-2 text-[10px] flex  justify-center items-center">
-                                <Link to={`/blogDetails/${blog?._id}`}>
-                                    <ButtonStrong text={'Read More'} />
-                                </Link>
-
-                            </div>
-                        </div>
-                        <p className="text-[8px] lg:text-sm -ml-2 lg:ml-0">{makeVisibleTime(blog?.date)}</p>
-                    </div>
-                </div>
-
-
+        <div className="w-full max-w-[340px] sm:max-w-[400px]  md:max-w-[800px] flex flex-col md:flex-row gap-10 bg-gray-200 shadow-lg py-5  md:py-10 px-3 md:px-5 rounded-3xl mx-auto md:items-center">
+            <img className="w-full md:size-44 object-cover rounded-lg shadow-lg shadow-primary/50" src={blogImageUrl} alt="" />
+            <div className="space-y-3">
+                <p className="font-bold text-gray-600 text-sm">{makeVisibleTime(date)}</p>
+                <p className="font-bold text-sm md:text-base">{title}</p>
+                <div className=" max-h-[100px] md:h-[100px] overflow-hidden text-gray-600" dangerouslySetInnerHTML={{ __html: description }}></div>
+                <Link to={`/blogDetails/${_id}`}><ButtonStrong text={'Read More'} /></Link>
             </div>
         </div>
-
-
     );
 };
 
