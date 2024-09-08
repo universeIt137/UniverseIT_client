@@ -58,6 +58,7 @@ const AddCourse = () => {
         const title = form.title.value;
         const videoUrl = form.videoUrl.value;
         const courseFee = form.courseFee.value
+        const discountFee = form.discountFee.value
         let isValid = true;
         setImageInputErr('');
         setSubVideoErr('')
@@ -91,7 +92,7 @@ const AddCourse = () => {
         }
 
 
-        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures, instructors: allInstructors };
+        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures, instructors: allInstructors, discountFee };
 
         axiosPublic.post(`/course`, data)
             .then(res => {
@@ -172,13 +173,6 @@ const AddCourse = () => {
 
                                             </div>
 
-                                            {/* Main course video */}
-                                            <div className="p-2 w-full">
-                                                <div className="relative">
-                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Upload Course Main Video</label><br />
-                                                    <input required type="text" name='videoUrl' className="file-input file-input-bordered file-input-md w-full" />
-                                                </div>
-                                            </div>
                                             {/* Fee */}
                                             <div className="p-2 w-full">
                                                 <div className="relative">
@@ -186,6 +180,22 @@ const AddCourse = () => {
                                                     <input required type="number" name="courseFee" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                                 </div>
                                             </div>
+
+                                            {/*discount Fee */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Course discount Fee</label>
+                                                    <input required type="number" name="discountFee" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
+                                            </div>
+                                            {/* Main course video */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Upload Course Main Video</label><br />
+                                                    <input required type="text" name='videoUrl' className="file-input file-input-bordered file-input-md w-full" />
+                                                </div>
+                                            </div>
+
                                             {/* Sub Video */}
                                             <div className='w-full md:col-span-2 p-2  space-y-2'>
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Sub Videos</label>

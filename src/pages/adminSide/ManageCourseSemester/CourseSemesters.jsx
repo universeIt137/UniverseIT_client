@@ -52,7 +52,7 @@ const CourseSemesters = ({ courseSemesters, courseSemestersRefetch }) => {
                             <button onClick={() => handleDelete(semester?._id)}><MdDelete className="text-2xl text-red-600" /></button>
                         </td>
                     </div>
-                    <SemesterTable semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} classNum={idx + 1} /></div>) : <p className="pb-10 pt-5 text-center">No Semester Found</p>
+                    <SemesterTable semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} classNum={idx + 1} idx={idx} /></div>) : <p className="pb-10 pt-5 text-center">No Semester Found</p>
             }
         </div>
     );
