@@ -95,9 +95,9 @@ const CourseDetailsTab = () => {
                 showingCategory?.name && <CourseCategory category={showingCategory} />
             }
             {TabName === 'Course Details' && <div>
-                <div >
+                <div  className='space-y-5'>
                     {
-                        courseSemesters.map((semester, idx) => <SemesterTable classNum={idx + 1} key={semester._id} semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} />)
+                        courseSemesters.map((semester, idx) => <SemesterTable classNum={idx + 1} key={semester._id} semesterTitle={semester?.semesterTitle} subjects={semester?.subjects} idx={idx} />)
                     }
                     {
                         courseSemesters?.length < 1 && <p className='py-5 text-center'>No Class Available!!</p>
