@@ -12,8 +12,6 @@ const AddStudentGallery = ({ studentGallery, refetch, handleDelete, allCategory 
     const [showingImage, setShowingImage] = useState([]);
     const [selectedImages, setSelectedImages] = useState([]);
     const axiosPublic = useAxiosPublic();
-    const imgHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-    const imgHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
 
     useEffect(() => {
         const images = category === '' ? [] : studentGallery?.filter(gallery => gallery?.category === category);
