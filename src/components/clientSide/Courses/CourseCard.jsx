@@ -10,18 +10,17 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
     // const { name, enrolled, profileImage } = instructor;
     // console.log(profileImage);
 
-    const cardStyle = 'w-[80vw] max-w-[280px] sm:w-[340px] sm:max-w-[300px] min-h-[380px]';
+    const cardStyle = 'w-[80vw] max-w-[280px] sm:w-[340px] sm:max-w-[300px] min-h-[350px]';
     const cardStyleForCoursePage = 'w-full max-w-[80vw] sm:max-w-[400px] '
     const courseFeeInNum = parseInt(courseFee);
     const discountFeeInNum = parseInt(discountFee)
-    const discount = discountFee === '0' ? '0' : Math.round((courseFeeInNum - discountFeeInNum) / courseFeeInNum * 100);
-    console.log(discount);
+    const discount = discountFee === '0' ? '0' : Math.round((courseFeeInNum - discountFeeInNum) / courseFeeInNum * 100).toString();
 
     return (
         <div className={`card bg-base-100 mx-auto ${isCoursePage ? cardStyleForCoursePage : cardStyle}`}>
             <figure className="h-[180px] relative">
                 {
-                    discount!=='0' && <div className="absolute top-0 right-0 bg-primary text-white text-xs px-5 py-0.5 rounded-bl-lg">{discount}% off</div>
+                    discount!=='0' && <div className="absolute top-0 right-0 bg-primary text-white text-xs px-3 py-0.5 rounded-bl-lg">{discount}% off</div>
                 }
                 <img
                     className="h-full object-cover w-full"
