@@ -7,9 +7,14 @@ import { Link } from 'react-router-dom';
 import CourseDetailsPageSubVideos from './CourseDetailsPageSubVideos';
 import MainVideo from './MainVideo';
 import { useState } from 'react';
+import CourseDetailsTab from './CourseDetailsTab';
+import Share from './Share';
+import SuccessStory from './SuccessStory';
+import RelatedCourse from './RelatedCourse';
+import CourseTabsAndShare from './CourseTabsAndShare';
 
 const BannerSection = ({ courseData }) => {
-   
+
     const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee, technologies = [], keyFeatures = [], instructors = [] } = courseData;
     const handleClick = () => {
         window.location.href = `tel:+8801755450127`;
@@ -47,12 +52,17 @@ const BannerSection = ({ courseData }) => {
                 <div className='rounded-2xl'>
                     <CourseDetailsPageSubVideos subVideos={subVideos} />
                 </div>
+                {/* courseDetailsSection  */}
+               <div className='hidden lg:block'>
+                    <CourseTabsAndShare/>
+    
+               </div>
             </div>
 
             {/* sidebar */}
-            <div className="lg:w-1/3 w-auto bg-white rounded-2xl overflow-hidden">
+            <div className="lg:w-1/3 w-auto bg-white rounded-2xl overflow-hidden h-max">
                 <img src={bannerImages[0] || ''} alt="" />
-                <div className='px-4 md:px-8 py-5'>
+                <div className='px-2 py-5'>
                     <div className='flex justify-between'>
                         <div>
                             <p className='font-bold text-lg'>{title}</p>
@@ -130,7 +140,9 @@ const BannerSection = ({ courseData }) => {
 
 
                 </div>
-
+                <div className='block lg:hidden'><CourseTabsAndShare/></div>
+                <SuccessStory />
+                <RelatedCourse />
             </div>
         </div>
     );
