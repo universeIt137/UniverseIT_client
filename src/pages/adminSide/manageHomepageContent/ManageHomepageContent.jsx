@@ -10,6 +10,7 @@ import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { uploadImg } from '../../../UploadFile/uploadImg';
 import { useEffect, useState } from 'react';
 import AddBenefits from './AddBenefits';
+import Loading from '../../../Shared/Loading/Loading';
 
 const ManageHomepageContent = () => {
     const [allBenefits, setAllBenefits] = useState([]);
@@ -27,7 +28,9 @@ const ManageHomepageContent = () => {
             setAllBenefits(homepageContent[0]?.benefits);
         }
     }, [homepageContent, isLoading]);
-
+if(isLoading){
+    return <Loading/>
+}
     const {
         title: incomingTitle,
         imageUrl: incomingImageUrl,

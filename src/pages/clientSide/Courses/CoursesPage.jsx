@@ -14,6 +14,7 @@ import { useQuery } from '@tanstack/react-query'
 import CourseTab from '../../../Shared/CourseTab/CourseTab';
 import CoursesRadioStyle from './CoursesRadioStyle';
 import Share from '../courseDetails/Share';
+import Loading from '../../../Shared/Loading/Loading';
 const CoursesPage = () => {
     const axiosPublic = useAxiosPublic();
     const [tabName, setTabName] = useState('All Courses')
@@ -30,7 +31,9 @@ const CoursesPage = () => {
     console.log(courses);
 
 
-
+    if (isLoading) {
+        return <Loading />
+    }
 
 
 

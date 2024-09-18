@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import CertificateRow from './CertificateRow';
+import Loading from '../../../Shared/Loading/Loading';
 
 const ManageCertificate = () => {
     const axiosPublic = useAxiosPublic();
@@ -13,7 +14,9 @@ const ManageCertificate = () => {
             return res.data;
         }
     })
-    console.log(certificates);
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <>

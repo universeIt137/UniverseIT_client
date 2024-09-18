@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import serviceImage from '../../../assets/banner/servicesBanner.jpg'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosPublic from '../../../hooks/useAxiosPublic'
+import Loading from '../../../Shared/Loading/Loading'
 const Services = () => {
     const [servicesActive, setServicesActive] = useState('Industry Expert Mentor')
     const [allBenefits, setAllBenefits] = useState([])
@@ -49,7 +50,7 @@ const Services = () => {
         }
     }, [homepageContent, isLoading]);
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     const data = homepageContent[0] || {};
     return (

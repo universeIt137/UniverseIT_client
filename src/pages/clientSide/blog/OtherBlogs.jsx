@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { makeVisibleTime } from "../../../makeVisibleTime";
 import { Link } from "react-router-dom";
+import Loading from "../../../Shared/Loading/Loading";
 
 const OtherBlogs = ({ detailsBlogId }) => {
     const axiosPublic = useAxiosPublic();
@@ -13,7 +14,7 @@ const OtherBlogs = ({ detailsBlogId }) => {
         }
     });
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     const showingBlogs = blogs?.filter(blog => blog?._id !== detailsBlogId);
     console.log(showingBlogs?.length);

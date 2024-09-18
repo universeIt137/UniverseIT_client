@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
+import Loading from "../../../Shared/Loading/Loading";
  
 const UpdateCourseCategory = () => {
     const axiosPublic = useAxiosPublic()
@@ -24,7 +25,7 @@ const UpdateCourseCategory = () => {
         }
     })
     if (isLoading || courseCategoryIsLoading) {
-        return ''
+        return <Loading/>
     }
     const { name: incomingName, qualification: incomingQualification, courseFee: incomingCourseFee, durationDetails: incomingDurationDetails, executiveBatch: incomingExecutiveBatch, regularBatch: incomingRegularBatch, duration: incomingDuration, totalClass: incomingTotalClass, type: incomingType } = courseCategory;
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import BlogCard from './BlogCard';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../../../Shared/Loading/Loading';
 
 const BlogPage = () => {
     const [firstCardId, setFirstCardId] = useState(0);
@@ -14,7 +15,9 @@ const BlogPage = () => {
             return res.data;
         }
     });
-
+    if (isLoading) {
+        return <Loading />
+    }
     let showingBlogs = blogs.map((data, idx) => {
         const newData = {
             ...data,

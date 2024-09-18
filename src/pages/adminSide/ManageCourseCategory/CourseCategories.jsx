@@ -6,6 +6,7 @@ import { MdDelete, MdEditSquare } from "react-icons/md";
 import Swal from "sweetalert2";
 import CourseCategory from "../../../Shared/CourseCategory";
 import ManageCourseCategoryTabs from "./ManageCourseCategoryTabs";
+import Loading from "../../../Shared/Loading/Loading";
 
 const CourseCategories = ({ id, courseCategories, courseCategoriesIsLoading, courseCategoriesRefetch }) => {
     const axiosPublic = useAxiosPublic()
@@ -18,7 +19,7 @@ const CourseCategories = ({ id, courseCategories, courseCategoriesIsLoading, cou
         }
     }, [courseCategories, courseCategoriesIsLoading])
     if (courseCategoriesIsLoading) {
-        return ''
+        return <Loading/>
     }
     const showingCategory = courseCategories?.find(category => category?._id === TabName) || {}
   

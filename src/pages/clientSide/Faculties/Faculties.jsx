@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import FacultyCard from './FacultyCard';
+import Loading from '../../../Shared/Loading/Loading';
 
 const Faculties = () => {
     const [firstCardId, setFirstCardId] = useState(0);
     const [cardPerSlice, setCardPerSlice] = useState(6);
     const axiosPublic = useAxiosPublic();
-    const { data: faculties = [] } = useQuery({
+    const { data: faculties = [], isLoading } = useQuery({
         queryKey: ['faculties'],
         queryFn: async () => {
             const res = await axiosPublic.get('/faculty');
@@ -15,7 +16,9 @@ const Faculties = () => {
         }
     })
 
-
+if(isLoading){
+    return <Loading/>
+}
     let showingFaculties = faculties.map((data, idx) => {
         const newData = {
             ...data,

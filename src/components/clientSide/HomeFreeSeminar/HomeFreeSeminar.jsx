@@ -4,6 +4,7 @@ import seminarBanner from '../../../assets/banner/seminarBanner.jpg'
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import Loading from "../../../Shared/Loading/Loading";
 const HomeFreeSeminar = () => {
     const [seeMore, setSeeMore] = useState(false)
     const axiosPublic = useAxiosPublic()
@@ -24,7 +25,7 @@ const HomeFreeSeminar = () => {
         }
     })
     if (isLoading || homeDataIsLoading) {
-        return ''
+        return <Loading/>
     }
     const data = homepageContent[0] || [];
     const weekDays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
@@ -57,7 +58,7 @@ const HomeFreeSeminar = () => {
                         <p className="font-medium text-sm sm:text-base text-justify text-text_color">Need guidelines to choose a suitable course? Unlock new insights and opportunities by joining our complimentary seminars.</p>
                     </div>
                     <div className="py-5 space-y-5">
-                        <div className={`space-y-4 ${seeMore ? 'max-h-[2000px]' : 'max-h-[300px]'} overflow-hidden transition-all duration-500`}>
+                        <div className={`space-y-4 ${seeMore ? 'max-h-[5000px]' : 'max-h-[300px]'} overflow-hidden transition-all duration-500`}>
                             {
                                 allSeminar?.map((seminar, idx) => <div className="w-full  bg-primary/35 rounded-xl flex overflow-hidden gap-3" key={idx}>
                                     <p className="flex flex-col min-w-max max-w-max justify-center items-center pl-5 pr-2 sm:pr-4">

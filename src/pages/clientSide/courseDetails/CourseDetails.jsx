@@ -13,6 +13,7 @@ import BannerSection from './BannerSection';
 import CourseDetailsPageSubVideos from './CourseDetailsPageSubVideos';
 import SuccessStory from './SuccessStory';
 import RelatedCourse from './RelatedCourse';
+import Loading from '../../../Shared/Loading/Loading';
 
 const CourseDetails = () => {
     const axiosPublic = useAxiosPublic();
@@ -26,7 +27,9 @@ const CourseDetails = () => {
         }
     })
 
-
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <section className='px-3 mx-auto'>
@@ -37,10 +40,10 @@ const CourseDetails = () => {
             <section className='flex flex-col lg:flex-row gap-6 my-5'>
                 <div className='lg:w-4/6'>
 
-                    
+
                 </div>
                 <div className='lg:w-1/3 rounded-xl'>
-                    
+
                 </div>
             </section>
         </section>

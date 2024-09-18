@@ -9,6 +9,7 @@ import Faq from 'react-faq-component';
 import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
+import Loading from '../../../Shared/Loading/Loading';
 const ManageCourseObjective = () => {
     const axiosPublic = useAxiosPublic();
     const [rows, setRowsOption] = useState(null)
@@ -40,7 +41,7 @@ const ManageCourseObjective = () => {
 
 
     if (isLoading || courseObjectivesIsLoading) {
-        return '';
+        return <Loading/>;
     }
 
     const courseObjective = courseObjectives[0] || {};

@@ -5,17 +5,20 @@ import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import Loading from '../../../Shared/Loading/Loading';
 
 const ManageSuccessStory = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: successStories = [], refetch } = useQuery({
+    const { data: successStories = [], refetch, isLoading } = useQuery({
         queryKey: ['successStory'],
         queryFn: async () => {
             const res = await axiosPublic.get('/successStory');
             return res.data;
         }
     });
-
+    if (isLoading) {
+        return <Loading />
+    }
     const handleDelete = (story) => {
         Swal.fire({
             title: "Are you sure?",
@@ -79,9 +82,9 @@ const ManageSuccessStory = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            <video 
-                                                src={story.video} 
-                                                controls 
+                                            <video
+                                                src={story.video}
+                                                controls
                                                 className="w-32 h-20"
                                             />
                                         </td>

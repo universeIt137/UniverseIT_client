@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import logo from '../../../assets/logo/mainLogo.png'
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
+import Loading from '../../../Shared/Loading/Loading';
 
 const AdmissionPage = () => {
     const axiosPublic = useAxiosPublic();
@@ -19,7 +20,7 @@ const AdmissionPage = () => {
         }
     })
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     const handleSubmit = (event) => {
         event.preventDefault();

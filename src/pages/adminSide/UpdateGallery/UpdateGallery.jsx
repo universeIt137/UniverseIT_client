@@ -8,6 +8,7 @@ import { FaFacebook } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
 import ButtonStrong from "../../../Shared/Button/ButtonStrong";
+import Loading from "../../../Shared/Loading/Loading";
 
 const UpdateGallery = () => {
     const { id } = useParams();
@@ -22,7 +23,7 @@ const UpdateGallery = () => {
         }
     })
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     console.log(galleryData);
     const { _id, category: incomingCategory, image: incomingImage } = galleryData;

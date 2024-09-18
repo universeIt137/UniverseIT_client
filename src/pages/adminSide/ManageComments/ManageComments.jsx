@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import CommentRow from "./CommentRow";
 import { useState } from "react";
+import Loading from "../../../Shared/Loading/Loading";
 
 const ManageComments = () => {
     const [selectFieldValue, setSelectFieldValue] = useState('')
@@ -23,7 +24,7 @@ const ManageComments = () => {
         }
     })
     if (commentIsLoading || blogIsLoading) {
-        return ''
+        return <Loading/>
     }
     console.log(selectFieldValue);
 
