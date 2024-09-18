@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { uploadImg } from '../../../UploadFile/uploadImg';
+import Loading from '../../../Shared/Loading/Loading';
 
 const UpdateFacultyPage = () => {
     const { id } = useParams();
@@ -20,7 +21,7 @@ const UpdateFacultyPage = () => {
         }
     })
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     console.log(facultyData);
     const { _id, name: incomingName, email: incomingEmail, contact: incomingContact, designation: incomingDesignation, facebook: incomingFacebook, twitter: incomingTwitter, whatsapp: incomingWhatsapp, image: incomingImage, background_of_study: incomingBackground_of_study, job_experience: incomingJob_experience } = facultyData;

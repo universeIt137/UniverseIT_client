@@ -10,6 +10,7 @@ import ButtonStrong from '../../../Shared/Button/ButtonStrong'
 import { Link, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosPublic from '../../../hooks/useAxiosPublic'
+import Loading from '../../../Shared/Loading/Loading'
 const RelatedCourse = () => {
     const { id } = useParams();
     console.log(id);
@@ -20,6 +21,9 @@ const RelatedCourse = () => {
             return res.data;
         }
     })
+    if (isLoading) {
+        return <Loading />
+    }
     const filteredCourse = courses?.filter(course => course?._id !== id)
 
     return (

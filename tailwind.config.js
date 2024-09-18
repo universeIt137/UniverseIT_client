@@ -7,6 +7,14 @@ module.exports = withMT({
   ],
   theme: {
     extend: {
+      screens: {
+        xs: '400px',
+        sm: '676px',
+        md: '768px',
+        lg: '976px',
+        subxl: '1150px',
+        xl: '1440px',
+      },
       colors: {
         primary: '#F49401',
         text_color: '#2C265F',

@@ -2,6 +2,7 @@ import CountUp from "react-countup";
 import ComponentsTitle from '../../../Shared/ComponentsTitle/ComponentsTitle';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import Loading from "../../../Shared/Loading/Loading";
 const Milestones = () => {
     const axiosPublic = useAxiosPublic()
     const { data: homepageContent = [], isLoading } = useQuery({
@@ -12,13 +13,13 @@ const Milestones = () => {
         }
     })
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     const data = homepageContent[0] || [];
     const { enrolled, instructors, expert, successRatio, milestoneImage } = data;
     console.log(milestoneImage);
 
-    const countStyle = 'w-[210px] sm:w-[240px] lg:w-[20vw] xl:w-[260px] h-[145px] lg:h-[11vw] xl:h-[155px] rounded-lg text-4xl flex justify-center px-5 sm:px-10 font-bold flex-col'
+    const countStyle = 'w-[200px] sm:w-[240px] lg:w-[20vw] xl:w-[260px] h-[145px] lg:h-[11vw] xl:h-[155px] rounded-lg text-4xl flex justify-center px-5 sm:px-10 font-bold flex-col'
     return (
         <div className="max-w-7xl mx-auto py-10 px-5">
             <ComponentsTitle title={'Milestones'} description={'Explore our significant achievements, success stories, and impressive statistics all in one place'} />
@@ -27,20 +28,20 @@ const Milestones = () => {
                 <div className='flex flex-wrap sm:grid sm:grid-cols-2 sm:w-max sm:h-max gap-10 mx-auto justify-center items-center'>
                     <div className={`${countStyle} bg-[#E0F7FA]`}>
                         <span> <CountUp end={enrolled || 0} duration={9} /> +</span>
-                        <p className='text-text_color font-medium sm:text-lg'>Enrolled Students</p>
+                        <p className='text-text_color font-medium text-lg'>Enrolled Students</p>
                     </div>
 
                     <div className={`${countStyle} bg-[#FFEBEE]`}>
                         <span><CountUp end={instructors || 0} duration={9} /> +</span>
-                        <p className='text-text_color font-medium sm:text-lg'>Instructors</p>
+                        <p className='text-text_color font-medium text-lg'>Instructors</p>
                     </div>
                     <div className={`${countStyle} bg-[#E1BEE7]`}>
                         <span><CountUp end={expert || 0} duration={9} /> +</span>
-                        <p className='text-text_color font-medium sm:text-lg'>Industry Experts</p>
+                        <p className='text-text_color font-medium text-lg'>Industry Experts</p>
                     </div>
                     <div className={`${countStyle} bg-[#f3edaf]`}>
                         <span><CountUp end={successRatio || 0} duration={9} />%</span>
-                        <p className='text-text_color font-medium sm:text-lg'>Successful ratio</p>
+                        <p className='text-text_color font-medium text-lg'>Successful ratio</p>
                     </div>
                 </div>
             </div>

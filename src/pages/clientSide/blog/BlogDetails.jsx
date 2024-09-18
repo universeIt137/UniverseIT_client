@@ -5,6 +5,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { makeVisibleTime } from '../../../makeVisibleTime';
 import OtherBlogs from './OtherBlogs';
 import Comments from './Comments';
+import Loading from '../../../Shared/Loading/Loading';
  
 const BlogDetails = () => {
     const { id } = useParams();
@@ -17,7 +18,7 @@ const BlogDetails = () => {
         }
     })
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     console.log(blogData);
     const { author, blogImageUrl, date, description, meta_word, title, _id } = blogData;

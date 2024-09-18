@@ -5,6 +5,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import CourseCategories from "./CourseCategories";
+import Loading from "../../../Shared/Loading/Loading";
 
 const ManageCourseCategory = () => {
     const axiosPublic = useAxiosPublic()
@@ -25,7 +26,7 @@ const ManageCourseCategory = () => {
         }
     })
     if (isLoading || courseCategoriesIsLoading) {
-        return ''
+        return <Loading/>
     }
     const onSubmit = (data) => {
         const toastId = toast.loading("Category is adding...");

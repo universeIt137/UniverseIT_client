@@ -22,7 +22,11 @@ const Navbar = () => {
         <NavLink to={'/successStory'} className={`${navStyle}`}><a>Success Story</a>
             {stylingComponents}
         </NavLink>
-        
+        <div className="block xs:hidden pb-4">
+            <Link to="/courses">
+                <button className="text-sm sm:text-base bg-primary text-white hover:bg-text_color px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses <FaAngleDown /></button>
+            </Link>
+        </div>
         <div className='relative block xl:hidden'>
             <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full xl:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
             <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
@@ -31,7 +35,7 @@ const Navbar = () => {
     return (
         <div className="bg-white w-full border-b-[3px] border-gray-300">
             <div className="navbar bg-base-100 max-w-7xl mx-auto flex justify-between items-center">
-                <div className=" ">
+                <div className="flex justify-between w-full xs:w-max">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost xl:hidden">
                             <svg
@@ -68,7 +72,7 @@ const Navbar = () => {
                         {navli}
                     </ul>
                 </div>
-                <div className="">
+                <div className="hidden xs:block">
                     <Link to="/courses">
                         <button className="text-sm sm:text-base bg-primary text-white hover:bg-text_color px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses <FaAngleDown /></button>
                     </Link>

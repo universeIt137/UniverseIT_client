@@ -1,21 +1,24 @@
-import React from 'react'; 
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { GiConfirmed } from 'react-icons/gi';
 import { MdDelete } from 'react-icons/md';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import Loading from '../../../Shared/Loading/Loading';
 
 const SeminarPage = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: seminarRequests = [], refetch } = useQuery({
+    const { data: seminarRequests = [], refetch, isLoading } = useQuery({
         queryKey: ['seminarRequests'],
         queryFn: async () => {
             const res = await axiosPublic.get('/seminarRequest');
             return res.data;
         }
     })
-
+    if (isLoading) {
+        return <Loading />
+    }
     const handleDelete = (request) => {
         Swal.fire({
             title: "Are you sure?",

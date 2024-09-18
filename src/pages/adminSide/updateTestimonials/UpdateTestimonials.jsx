@@ -12,6 +12,7 @@ import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 import { uploadImg } from "../../../UploadFile/uploadImg";
 import Rating from "react-rating";
 import { useEffect, useState } from "react";
+import Loading from "../../../Shared/Loading/Loading";
 
 const UpdateTestimonials = () => {
     const { id } = useParams();
@@ -35,7 +36,7 @@ const UpdateTestimonials = () => {
         }
     }, [testimonialData])
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     const { _id, name: upcomingName, opinion: upcomingOpinion, designation: upcomingDesignation, image: upcomingImage } = testimonialData;
 

@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { Editor } from '@tinymce/tinymce-react';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
 import { uploadImg } from '../../../UploadFile/uploadImg';
+import Loading from '../../../Shared/Loading/Loading';
 const UpdateBlog = () => {
     const [tinyDescription, setTinyDescription] = useState('')
     const { id } = useParams();
@@ -31,7 +32,7 @@ const UpdateBlog = () => {
         console.log(isLoading);
     }, [blogData, isLoading]);
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     const { title: incomingTitle, blogImageUrl: incomingBlogImageUrl, date: incomingDate, meta_word: incomingMeta_word, author: incomingAuthor, description: incomingDescription, } = blogData;
     const showingData = new Date(incomingDate || 0);

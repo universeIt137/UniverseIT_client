@@ -13,6 +13,7 @@ import { uploadImg } from "../../../UploadFile/uploadImg";
 import AddTechnology from "../addCourse/AddTechnology";
 import KeyFeatures from "../addCourse/KeyFeatures";
 import AddInstructors from "../addCourse/AddInstructors";
+import Loading from "../../../Shared/Loading/Loading";
 
 
 const UpdateCoursePage = () => {
@@ -44,7 +45,7 @@ const UpdateCoursePage = () => {
         }
     }, [courseData, isLoading])
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
 
 

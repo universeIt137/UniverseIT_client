@@ -10,6 +10,7 @@ import { TbBrandYoutubeFilled } from "react-icons/tb";
 import { FaFacebook } from "react-icons/fa";
 import { uploadImg } from "../../../UploadFile/uploadImg";
 import Swal from "sweetalert2";
+import Loading from "../../../Shared/Loading/Loading";
 
 const UpdateCertificate = () => {
     const { id } = useParams();
@@ -63,7 +64,7 @@ const UpdateCertificate = () => {
     }, [givenCertificateNumber])
 
     if (isLoading || coursesIsLoading) {
-        return ''
+        return <Loading/>
     }
 
     const onSubmit = async (data) => {

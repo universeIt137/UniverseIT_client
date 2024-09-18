@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 import SemesterTable from "../../../Shared/SemesterTable";
+import Loading from "../../../Shared/Loading/Loading";
 
  
 const UpdateCourseSemester = () => {
@@ -39,10 +40,10 @@ const UpdateCourseSemester = () => {
         }
     }, [courseSemestersIsLoading, courseSemester]);
     if (courseSemestersIsLoading) {
-        return ''
+        return <Loading/>
     }
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     console.log(courseSemester, course);
     const handleSemester = (e) => {

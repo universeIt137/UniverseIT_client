@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import VideoPlayingModal from "../../../Shared/VideoPlayingModal";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Loading from "../../../Shared/Loading/Loading";
 
 
 
@@ -17,14 +18,16 @@ const SuccessStories = ({ isHomePage = false }) => {
     const [seeMore, setSeeMore] = useState(false);
     const [modalVideoSrc, setModalVideoSrc] = useState(null);
     const axiosPublic = useAxiosPublic();
-    const { data: successStories = [], refetch } = useQuery({
+    const { data: successStories = [], refetch, isLoading } = useQuery({
         queryKey: ['successStory'],
         queryFn: async () => {
             const res = await axiosPublic.get('/successStory');
             return res.data;
         }
     });
-
+    if (isLoading) {
+        return <Loading />
+    }
 
     const handlePlayButtonClick = (videoSrc) => {
         setModalVideoSrc(videoSrc);

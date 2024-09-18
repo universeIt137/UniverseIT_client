@@ -7,16 +7,21 @@ import { MdDelete } from 'react-icons/md';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import Loading from '../../../Shared/Loading/Loading';
 
 const AdmissionRequest = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: admissionRequests = [], refetch } = useQuery({
+    const { data: admissionRequests = [], refetch, isLoading } = useQuery({
         queryKey: ['admissionRequests'],
         queryFn: async () => {
             const res = await axiosPublic.get('/admission');
             return res.data;
         }
     })
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     const handleRequest = (request) => {
 

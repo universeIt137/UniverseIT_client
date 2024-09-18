@@ -6,17 +6,20 @@ import logo from '../../../assets/logo/mainLogo.png'
 import { useQuery } from '@tanstack/react-query';
 import ButtonLight from '../../../Shared/Button/ButtonLight';
 import ButtonStrong from '../../../Shared/Button/ButtonStrong';
+import Loading from '../../../Shared/Loading/Loading';
 const SeminarForm = () => {
     const { id } = useParams()
     const axiosPublic = useAxiosPublic();
-    const { data: seminar = {}, refetch } = useQuery({
+    const { data: seminar = {}, refetch, isLoading } = useQuery({
         queryKey: ['seminars', id],
         queryFn: async () => {
             const res = await axiosPublic.get(`/seminar/${id}`);
             return res.data;
         }
     })
-    console.log(seminar);
+    if (isLoading) {
+        return <Loading />
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();

@@ -6,17 +6,20 @@ import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import Loading from '../../../Shared/Loading/Loading';
 
 const ManageFacultyPage = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: faculties = [], refetch } = useQuery({
+    const { data: faculties = [], refetch, isLoading } = useQuery({
         queryKey: ['faculty'],
         queryFn: async () => {
             const res = await axiosPublic.get('/faculty');
             return res.data;
         }
     })
-
+if(isLoading){
+    return <Loading/>
+}
 
 
     const handleDelete = (faculty) => {

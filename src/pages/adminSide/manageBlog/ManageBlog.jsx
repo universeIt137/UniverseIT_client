@@ -3,18 +3,22 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import BlogRow from "./BlogRow";
+import Loading from "../../../Shared/Loading/Loading";
 
 const ManageBlog = () => {
 
 
     const axiosPublic = useAxiosPublic();
-    const { data: blogs = [], refetch } = useQuery({
+    const { data: blogs = [], refetch, isLoading } = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
             const res = await axiosPublic.get('/blog');
             return res.data;
         }
     })
+    if (isLoading) {
+        return <Loading />
+    }
     const handleDelete = (id) => {
 
         Swal.fire({
@@ -56,7 +60,7 @@ const ManageBlog = () => {
             <Helmet>
                 <title>Dashboard | Manage Blogs</title>
             </Helmet>
-           <div className="pb-20">
+            <div className="pb-20">
                 <div className="bg-white rounded-lg  w-full lg:w-[calc(100vw-300px)] overflow-x-auto mx-auto overflow-y-auto">
                     <p className="text-2xl font-bold text-center py-2">Manage Blogs</p>
                     <table className="table table-zebra overflow-x-auto">
@@ -77,20 +81,20 @@ const ManageBlog = () => {
                         </thead>
                         <tbody>
                             {/* row 1 */}
-    
+
                             {
-                                blogs?.map((blog, index) =><BlogRow blog={blog} index={index} handleDelete={handleDelete} key={index} />
+                                blogs?.map((blog, index) => <BlogRow blog={blog} index={index} handleDelete={handleDelete} key={index} />
                                 )
                             }
-    
-    
-    
+
+
+
                         </tbody>
-    
-    
+
+
                     </table>
                 </div>
-           </div>
+            </div>
         </>
     );
 };

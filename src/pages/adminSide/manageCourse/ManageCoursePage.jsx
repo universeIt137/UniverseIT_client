@@ -6,17 +6,21 @@ import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import CourseRow from './CourseRow';
+import Loading from '../../../Shared/Loading/Loading';
  
 const ManageCoursePage = () => {
 
     const axiosPublic = useAxiosPublic();
-    const { data: courses = [], refetch: coursesRefetch } = useQuery({
+    const { data: courses = [], refetch: coursesRefetch, isLoading } = useQuery({
         queryKey: ['courses'],
         queryFn: async () => {
             const res = await axiosPublic.get('/course');
             return res.data;
         }
     })
+    if(isLoading){
+        return <Loading/>
+    }
     console.log(courses);
     const objectives = "6000tk";
 

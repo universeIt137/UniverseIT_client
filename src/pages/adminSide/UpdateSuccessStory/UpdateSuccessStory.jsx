@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { uploadVideo } from '../../../UploadFile/uploadVideo';
 import { uploadImg } from '../../../UploadFile/uploadImg';
 import toast from 'react-hot-toast';
+import Loading from '../../../Shared/Loading/Loading';
 
 const UpdateSuccessStoryPage = () => {
     const { id } = useParams();
@@ -20,7 +21,7 @@ const UpdateSuccessStoryPage = () => {
     });
 
     if (isLoading) {
-        return '';  // You can replace this with a loading spinner or message if needed
+        return <Loading/>;  // You can replace this with a loading spinner or message if needed
     }
 
     const { _id, title: incomingTitle, description: incomingDescription, video: incomingVideo, name: incomingStudentName, image: incomingStudentImage } = successStoryData;

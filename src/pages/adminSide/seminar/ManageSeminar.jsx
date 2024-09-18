@@ -5,10 +5,11 @@ import { GiConfirmed } from 'react-icons/gi';
 import { MdDelete } from 'react-icons/md';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import Loading from '../../../Shared/Loading/Loading';
 
 const ManageSeminar = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: seminars = [], refetch } = useQuery({
+    const { data: seminars = [], refetch, isLoading } = useQuery({
         queryKey: ['seminars'],
         queryFn: async () => {
             const res = await axiosPublic.get('/seminar');
@@ -16,7 +17,9 @@ const ManageSeminar = () => {
         }
     })
 
-
+    if (isLoading) {
+        return <Loading />
+    }
     const handleDelete = (request) => {
         Swal.fire({
             title: "Are you sure?",
@@ -37,8 +40,8 @@ const ManageSeminar = () => {
                                 icon: "success"
                             });
                             refetch();
-                    }
-                })
+                        }
+                    })
             }
         })
     }
@@ -60,9 +63,9 @@ const ManageSeminar = () => {
                                 <th>Topic</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                
-                                
-                              
+
+
+
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -70,14 +73,14 @@ const ManageSeminar = () => {
                             {
                                 seminars?.map((seminar, index) =>
                                     <tr key={seminar._id}>
-                                        <td>{ index + 1 }</td>
-                                        <td>{ seminar.topic }</td>
-                                        <td>{ seminar.date }</td>
-                                        <td>{ seminar.time }</td>
-                                        
-                                       
-                                        
-                                        <td className='text-2xl text-red-500'><button onClick={()=>handleDelete(seminar)}><MdDelete /></button></td>
+                                        <td>{index + 1}</td>
+                                        <td>{seminar.topic}</td>
+                                        <td>{seminar.date}</td>
+                                        <td>{seminar.time}</td>
+
+
+
+                                        <td className='text-2xl text-red-500'><button onClick={() => handleDelete(seminar)}><MdDelete /></button></td>
                                     </tr>
                                 )
                             }

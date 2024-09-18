@@ -6,17 +6,20 @@ import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import TestimonialsTableRow from './TestimonialsTableRow';
+import Loading from '../../../Shared/Loading/Loading';
 
-const ManageTestimonialPage = () => { 
+const ManageTestimonialPage = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: testimonials = [], refetch } = useQuery({
+    const { data: testimonials = [], refetch, isLoading } = useQuery({
         queryKey: ['testimonials'],
         queryFn: async () => {
             const res = await axiosPublic.get('/testimonial');
             return res.data;
         }
     })
-
+    if (isLoading) {
+        return <Loading />
+    }
     return (
         <>
             <Helmet>

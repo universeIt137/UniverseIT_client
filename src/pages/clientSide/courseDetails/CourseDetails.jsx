@@ -13,6 +13,7 @@ import BannerSection from './BannerSection';
 import CourseDetailsPageSubVideos from './CourseDetailsPageSubVideos';
 import SuccessStory from './SuccessStory';
 import RelatedCourse from './RelatedCourse';
+import Loading from '../../../Shared/Loading/Loading';
 
 const CourseDetails = () => {
     const axiosPublic = useAxiosPublic();
@@ -26,10 +27,12 @@ const CourseDetails = () => {
         }
     })
 
-
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
-        <section className='w-11/12 mx-auto'>
+        <section className='px-3 mx-auto'>
             {/* banner */}
             <BannerSection courseData={courseData} />
 
@@ -37,18 +40,10 @@ const CourseDetails = () => {
             <section className='flex flex-col lg:flex-row gap-6 my-5'>
                 <div className='lg:w-4/6'>
 
-                    <div className="p-5 bg-white rounded-2xl z-10 relative">
-                        <div className="flex justify-between flex-col sm:flex-row">
-                            <p className="lg:text-4xl font-bold py-5">Course Details</p>
-                            <div className="w-full md:w-max flex justify-end items-end"><Share /></div>
-                        </div>
-                        <CourseDetailsTab></CourseDetailsTab>
 
-                    </div>
                 </div>
                 <div className='lg:w-1/3 rounded-xl'>
-                    <SuccessStory />
-                    <RelatedCourse />
+
                 </div>
             </section>
         </section>

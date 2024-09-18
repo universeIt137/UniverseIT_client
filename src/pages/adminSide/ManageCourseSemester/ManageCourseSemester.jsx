@@ -7,6 +7,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import CourseSemesters from "./CourseSemesters";
 import SemesterTable from "../../../Shared/SemesterTable";
+import Loading from "../../../Shared/Loading/Loading";
 
 const ManageCourseSemester = () => { 
     const axiosPublic = useAxiosPublic()
@@ -31,10 +32,10 @@ const ManageCourseSemester = () => {
         }
     })
     if (courseSemestersIsLoading) {
-        return ''
+        return <Loading/>
     }
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     const handleSemester = (e) => {
         setSemesterTitleErr('')

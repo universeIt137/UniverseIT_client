@@ -5,6 +5,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import Loading from '../../../Shared/Loading/Loading';
 const Comments = ({ blogId }) => {
     const axiosPublic = useAxiosPublic()
     // comments/668bcc19bee6da3058c06601
@@ -16,7 +17,7 @@ const Comments = ({ blogId }) => {
         }
     })
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     console.log(blogComments);
     const handleSubmit = (e) => {

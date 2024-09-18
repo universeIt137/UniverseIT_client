@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { Grommet, Tab, Tabs } from 'grommet';
 import toast from 'react-hot-toast';
 import StudentGalleryTabs from './StudentGalleryTabs';
+import Loading from '../../../Shared/Loading/Loading';
  
 const ManageStudentGallary = () => {
     const axiosPublic = useAxiosPublic();
@@ -28,7 +29,7 @@ const ManageStudentGallary = () => {
         }
     })
     if (isLoading || allCategoryIsLoading) {
-        return ''
+        return <Loading/>
     }
     const showingGallery = categoryName === 'All' ? studentGallery : studentGallery.filter(gallery => gallery?.category === categoryName)
     const handleDelete = (id) => {

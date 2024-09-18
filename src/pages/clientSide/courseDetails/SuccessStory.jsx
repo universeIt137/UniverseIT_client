@@ -6,26 +6,29 @@ import { Link } from "react-router-dom";
 import VideoPlayingModal from "../../../Shared/VideoPlayingModal";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "../../../Shared/Loading/Loading";
 
 // Modal Component
 
 
 const SuccessStory = () => {
     const [modalVideoSrc, setModalVideoSrc] = useState(null);
-
+    const videoRefs = useRef([]);
     const axiosPublic = useAxiosPublic();
-    const { data: successStories = [], refetch } = useQuery({
+    const { data: successStories = [], refetch, isLoading } = useQuery({
         queryKey: ['successStory'],
         queryFn: async () => {
             const res = await axiosPublic.get('/successStory');
             return res.data;
         }
     });
+    if (isLoading) {
+        return <Loading />
+    }
+
     
 
-    const videoRefs = useRef([]);
 
-   
 
 
     const handlePlayButtonClick = (videoSrc) => {

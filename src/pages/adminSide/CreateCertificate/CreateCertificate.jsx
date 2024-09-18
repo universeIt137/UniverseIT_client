@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { uploadImg } from '../../../UploadFile/uploadImg';
+import Loading from '../../../Shared/Loading/Loading';
 
 const CreateCertificate = () => {
     const axiosPublic = useAxiosPublic();
@@ -73,7 +74,7 @@ const CreateCertificate = () => {
         }
     }, [givenCertificateNumber])
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
 
 

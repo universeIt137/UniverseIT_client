@@ -8,6 +8,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import CourseCategory from '../../../Shared/CourseCategory';
 import SemesterTable from '../../../Shared/SemesterTable';
 import Tabs from './Tabs';
+import Loading from '../../../Shared/Loading/Loading';
 
 
 const CourseDetailsTab = () => {
@@ -44,7 +45,7 @@ const CourseDetailsTab = () => {
     }, [courseObjectives, rows])
 
     if (courseSemestersIsLoading || courseCategoriesIsLoading || courseObjectivesIsLoading) {
-        return ''
+        return <Loading/>
     }
     const allSubjects = courseSemesters?.reduce((a, b) => {
         return a.concat(b.subjects)

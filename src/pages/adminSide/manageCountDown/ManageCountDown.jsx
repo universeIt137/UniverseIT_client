@@ -6,6 +6,7 @@ import { FaFacebook } from 'react-icons/fa';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import Loading from '../../../Shared/Loading/Loading';
 
 const ManageCountDown = () => {
     const axiosPublic = useAxiosPublic()
@@ -17,7 +18,7 @@ const ManageCountDown = () => {
         }
     });
     if (isLoading) {
-        return ''
+        return <Loading/>
     }
     console.log(homepageContent);
     const { enrolled: incomingEnrolled, instructors: incomingInstructors, expert: incomingExpert, successRatio: incomingSuccessRatio } = homepageContent[0];

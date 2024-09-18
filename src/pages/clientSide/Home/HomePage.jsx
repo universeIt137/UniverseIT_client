@@ -11,6 +11,7 @@ import CallUs from '../../../components/clientSide/CallUs/CallUs';
 import { motion } from 'framer-motion';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../../../Shared/Loading/Loading';
 
 const HomePage = () => {
     const axiosPublic = useAxiosPublic()
@@ -22,20 +23,21 @@ const HomePage = () => {
         }
     })
     if (isLoading) {
-        return ''
+        return <Loading />
     }
     const data = homepageContent[0] || [];
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
     };
-    
+
 
     return (
         <>
             <Helmet>
                 <title>Universe IT | Home</title>
             </Helmet>
+
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -46,26 +48,26 @@ const HomePage = () => {
             </motion.div>
 
 
-            <motion.div
+            {/* <motion.div
                 initial="hidden"
                 whileInView="visible"
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
                 <Courses />
-            </motion.div>
+            </motion.div> */}
 
 
-            <motion.div
+            {/* <motion.div
                 initial="hidden"
                 whileInView="visible"
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
                 <Services />
-            </motion.div>
+            </motion.div> */}
 
-            
+
             <motion.div
                 initial="hidden"
                 whileInView="visible"
