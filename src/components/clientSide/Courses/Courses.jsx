@@ -12,6 +12,8 @@ import ComponentsTitle from "../../../Shared/ComponentsTitle/ComponentsTitle";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import CourseTab from "../../../Shared/CourseTab/CourseTab";
+import { Link } from "react-router-dom";
+import ButtonStrong from "../../../Shared/Button/ButtonStrong";
 const Courses = () => {
     const axiosPublic = useAxiosPublic()
     const [tabName, setTabName] = useState('All Courses')
@@ -76,6 +78,13 @@ const Courses = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="flex justify-center -mt-5">
+                <Link to={'/courses'}>
+                    <div className="w-max">
+                        <ButtonStrong text={'View All'} />
+                    </div>
+                </Link>
             </div>
         </div>
     );
