@@ -2,6 +2,7 @@ import { IoIosCall, IoIosMail } from 'react-icons/io';
 import logo from '../../../assets/logo/whiteLogo.png'
 import { FaLinkedin, FaLocationDot } from "react-icons/fa6";
 import { FaFacebook, FaGithubSquare, FaTwitterSquare } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <div className='bg-neutral'>
@@ -25,9 +26,9 @@ const Footer = () => {
                         <a className="link link-hover  flex gap-2"> <span className='pt-2'><FaLocationDot /></span>House # 21/A (Lift 5th Floor),Road-2,Block-A,Aftabnagar(Beside East West University),Merul Badda,Dhaka.</a>
                         <a className="link link-hover flex gap-2">
                             <IoIosMail className="text-xl" />
-                            learn.universeit@gmail.com
+                            universeitinstitute@gmail.com
                         </a>
-                        <a className="link link-hover"><span className="flex items-center gap-2"><IoIosCall /> +8801958536781</span></a>
+                        <a className="link link-hover"><span className="flex items-center gap-2"><IoIosCall /> 01886-061401</span></a>
                     </nav>
                     <nav>
                         <h6 className="footer-title">Popular Courses</h6>
@@ -39,11 +40,11 @@ const Footer = () => {
                     </nav>
                     <nav>
                         <h6 className="footer-title">Quick Link</h6>
-                        <a className="link link-hover">About us</a>
-                        <a className="link link-hover">Our faculty</a>
+                        <Link to={"/aboutUs"} className="link link-hover">About us</Link>
+                        <Link to={"/faculties"} className="link link-hover">Our faculty</Link>
                         <a className="link link-hover">Career</a>
-                        <a className="link link-hover">Free lancing</a>
-                        <a className="link link-hover">Success Story</a>
+                        <Link to={"/blogs"} className="link link-hover">Blogs</Link>
+                        <Link to={"/successStory"} className="link link-hover">Success Story</Link>
                     </nav>
 
                 </footer>
@@ -53,18 +54,18 @@ const Footer = () => {
                         <p>© {new Date().getFullYear()} Universe IT. All right reserved.</p>
                     </aside>
                     <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-                        <a className='text-2xl sm:text-3xl'>
+                        <Link to={"https://www.facebook.com/UniverseITInstitute"} target='_blank' className='text-2xl sm:text-3xl'>
                             <FaFacebook />
-                        </a>
-                        <a className='text-2xl sm:text-3xl'>
+                        </Link>
+                        <Link to={"https://www.linkedin.com/"} target='_blank' className='text-2xl sm:text-3xl'>
                             <FaLinkedin />
-                        </a>
-                        <a className='text-2xl sm:text-3xl'>
+                        </Link>
+                        <Link to={"https://x.com/?lang=en"} target='_blank' className='text-2xl sm:text-3xl'>
                             <FaTwitterSquare />
-                        </a>
-                        <a className='text-2xl sm:text-3xl'>
+                        </Link>
+                        <Link to={"https://github.com/universeIt137"} target='_blank' className='text-2xl sm:text-3xl'>
                             <FaGithubSquare />
-                        </a>
+                        </Link>
                     </nav>
                 </footer>
             </div>

@@ -14,6 +14,7 @@ import StudentGalleryTabs from '../../adminSide/manageStudentGallary/StudentGall
 import AddStudentGallery from '../../adminSide/addStudentGallary/AddStudentGallary';
 import SuccessStories from '../../../components/clientSide/SuccessStories/SuccessStories';
 const AboutUs = () => {
+    window.scrollTo(0, 0);
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
