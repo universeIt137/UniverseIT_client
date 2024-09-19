@@ -69,7 +69,7 @@ const UpdateFacultyPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dashboard | Add Blog</title>
+                <title>Dashboard | Update Faculty</title>
             </Helmet>
             <div className='bg-gray-100 text-black'>
 
