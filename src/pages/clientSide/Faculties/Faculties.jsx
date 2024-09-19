@@ -3,6 +3,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import FacultyCard from './FacultyCard';
 import Loading from '../../../Shared/Loading/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const Faculties = () => {
     window.scrollTo(0, 0);
@@ -46,6 +47,9 @@ if(isLoading){
 
     return (
         <div className='sm:px-20 my-10 min-h-screen'>
+            <Helmet>
+                <title>Universe IT | Faculty</title>
+            </Helmet>
             <p className="text-4xl m-10"><span className='text-primary border-b-2'>Faculties</span></p>
 
             <div className='flex gap-10 flex-wrap justify-center'>
