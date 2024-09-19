@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Shared/Loading/Loading';
 
 const BlogPage = () => {
+    window.scrollTo(0, 0);
     const [firstCardId, setFirstCardId] = useState(0);
     const [cardPerSlice, setCardPerSlice] = useState(6);
     const axiosPublic = useAxiosPublic();
