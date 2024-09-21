@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import BlogRow from "./BlogRow";
 import Loading from "../../../Shared/Loading/Loading";
+import TeamRow from "../teamRelatedPages/manageMember/TeamRow";
 
 const ManageBlog = () => {
 

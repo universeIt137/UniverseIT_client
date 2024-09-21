@@ -27,19 +27,22 @@ const BannerSection = ({ courseData }) => {
             <div className="lg:w-4/6 bg-white p-5 rounded-2xl ">
                 {/* main video  */}
                 <MainVideo videoUrl={videoUrl} />
-                <section className=' my-4 bg-gray-200 rounded-xl p-5'>
+
+                <section className=' mt-2 bg-gray-200 rounded-xl p-5'>
                     <p className='font-bold text-xl mb-2' >Technologies you will learn</p>
-                    <div className='grid lg:grid-cols-3 gap-3'>
+                    <div className='grid lg:grid-cols-8'>
 
                         {
-                            technologies?.map((item, idx) => <div key={idx} className="flex lg:justify-center  gap-2 ">
+                            technologies?.map((item, idx) =>
+                                <div key={idx} className="flex flex-col items-center lg:justify-between">
                                 <div className="avatar">
                                     <div className="w-12 rounded-full ">
                                         <img src={item?.image} />
                                     </div>
                                 </div>
                                 <p className='font-bold  mb-2 text-center'>{item?.name}</p>
-                            </div>)
+                                </div>
+                            )
                         }
                         {
                             technologies?.length < 1 && <p className='font-bold  mb-2 text-center'>No Technology added!!!</p>
@@ -101,19 +104,19 @@ const BannerSection = ({ courseData }) => {
                     </div>
 
                     <div className='flex flex-col justify-between min-h-full'>
-                        <div className='mt-20'>
-                            <p className='text-lg font-bold py-2'>This course includes:</p>
-                            <ul className=' text-sm md:text-base  lg:text-start space-y-3'>
+                        <div className=''>
+                            <p className='text-2xl text-secondary font-bold py-2'>This course includes:</p>
+                            <ul className=' text-sm md:text-base  lg:text-start space-y-3 px-4'>
                                 {
                                     keyFeatures?.map((item, idx) => <>
-                                        <li key={idx} className='  flex items-center text-primary gap-2'> <span>{item}</span></li>
+                                        <li key={idx} className='  flex items-center text-black gap-2'> <span>{item}</span></li>
                                         <hr className='border-primary' />
                                     </>)
                                 }
                                 {
                                     keyFeatures?.length < 1 &&
                                     <>
-                                        <li className=' text-primary text-center'> No key features added!!</li>
+                                        <li className=' text-black text-center'> No key features added!!</li>
                                         <hr className='border-primary' />
                                     </>
                                 }
@@ -121,7 +124,7 @@ const BannerSection = ({ courseData }) => {
                         </div>
 
 
-                        <div className='mt-20'>
+                        <div className='mt-5'>
                             <div className='grid grid-cols-1  sm:grid-cols-2 gap-5 '>
                                 <button className='w-full' onClick={handleClick}>
                                     <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm py-0.5'>CALL NOW</span>} />
@@ -141,8 +144,10 @@ const BannerSection = ({ courseData }) => {
 
                 </div>
                 <div className='block lg:hidden'><CourseTabsAndShare/></div>
+                <div className="px-5">
                 <SuccessStory />
                 <RelatedCourse />
+                </div>
             </div>
         </div>
     );
