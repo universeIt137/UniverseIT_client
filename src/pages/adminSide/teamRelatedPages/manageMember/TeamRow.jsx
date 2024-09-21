@@ -35,7 +35,7 @@ const TeamRow = ({ index, member, handleDelete }) => {
                     
                 </div>
 
-            </td>
+            </td><td>{member.employeeID}</td>
             <td>{member.email}</td>
             <td>
                 {member.phone}

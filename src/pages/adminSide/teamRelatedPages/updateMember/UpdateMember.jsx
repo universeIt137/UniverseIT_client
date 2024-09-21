@@ -15,7 +15,7 @@ const UpdateMember = () => {
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
 
-    const { data: memberData = {}, refetch: memberDataRefetch, isLoading } = useQuery({
+    const { data: memberData = {}, refetch, isLoading } = useQuery({
         queryKey: ['memberData', id],
         queryFn: async () => {
             const res = await axiosPublic.get(`/team-member/${id}`)
@@ -26,17 +26,17 @@ const UpdateMember = () => {
     const { firstName: incomingFirstName, lastName: incomingLastName, position: incomingPosition, email: incomingEmail, phone: incomingPhone, memberImageUrl: incomingMemberImageUrl } = memberData;
     console.log(memberData);
 
-    
+
     if (isLoading) {
         return <Loading />
     }
-    
 
-   
+
+
 
 
     const handleSubmit = async (event) => {
-        
+
         event.preventDefault();
         const form = event.target;
         const firstName = form.firstName.value;
@@ -45,7 +45,7 @@ const UpdateMember = () => {
         const email = form.email.value;
         const phone = form.phone.value;
         const memberImage = form.memberImg.files[0];
-       
+
         let memberImageUrl = incomingMemberImageUrl
         if (!memberImage?.name) {
 
@@ -55,13 +55,13 @@ const UpdateMember = () => {
         }
 
         const data = { firstName, lastName, position, email, phone, memberImageUrl };
-        
+
         console.log(data);
 
         axiosPublic.put(`/team-member/${id}`, data)
             .then(res => {
                 console.log(res.data)
-                
+
                 if (res.data.modifiedCount) {
                     console.log('data updated')
                     Swal.fire({
@@ -71,6 +71,7 @@ const UpdateMember = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    refetch()
 
                 }
             })
@@ -105,13 +106,19 @@ const UpdateMember = () => {
                         </div>
                     </div>
                     {/* job description  */}
-                    <div className="">
-                        <div className="form-control">
+                    <div className="lg:flex gap-10">
+                        <div className="form-control lg:w-1/2">
                             <label className="label">
                                 <span className="label-text">Job Position</span>
                             </label>
                             <input type="text" defaultValue={memberData.position} name='position' placeholder="Enter Job position" className="input input-bordered" required />
+                        </div>
 
+                        <div className="form-control lg:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Employee ID</span>
+                            </label>
+                            <input type="text" defaultValue={memberData.employeeID} name='employeeID' placeholder="Enter Email Address" className="input input-bordered" required />
                         </div>
                     </div>
 
@@ -135,7 +142,7 @@ const UpdateMember = () => {
                     <div className="p-2 Lg:w-1/2">
                         <div className="relative">
                             <label className="leading-7 text-sm text-gray-600 font-bold">Blog Banner Image</label><br />
-                            <input type="file"  name='memberImg' className="file-input file-input-bordered file-input-md w-full max-w-xs" />
+                            <input type="file" name='memberImg' className="file-input file-input-bordered file-input-md w-full max-w-xs" />
                         </div>
                     </div>
 

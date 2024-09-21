@@ -55,45 +55,46 @@ const ManageMember = () => {
 
     return (
         <>
-        <Helmet>
-            <title>Dashboard | Manage Members</title>
-        </Helmet>
-        <div className="pb-20">
-            <div className="bg-white rounded-lg  w-full lg:w-[calc(100vw-300px)] overflow-x-auto mx-auto overflow-y-auto">
-                <p className="text-2xl font-bold text-center py-2">Manage Members</p>
-                <table className="table table-zebra overflow-x-auto">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* row 1 */}
+            <Helmet>
+                <title>Dashboard | Manage Members</title>
+            </Helmet>
+            <div className="pb-20">
+                <div className="bg-white rounded-lg  w-full lg:w-[calc(100vw-300px)] overflow-x-auto mx-auto overflow-y-auto">
+                    <p className="text-2xl font-bold text-center py-2">Manage Members</p>
+                    <table className="table table-zebra overflow-x-auto">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Employee ID</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* row 1 */}
 
-                        {
-                            members?.map((member, index) => <TeamRow member={member} index={index} handleDelete={handleDelete} key={index} />
-                            )
-                        }
-
-
-
-                    </tbody>
+                            {
+                                members?.map((member, index) => <TeamRow member={member} index={index} handleDelete={handleDelete} key={index} />
+                                )
+                            }
 
 
-                </table>
+
+                        </tbody>
+
+
+                    </table>
+                </div>
             </div>
-        </div>
-    </>
+        </>
     );
 };
 

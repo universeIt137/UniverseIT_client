@@ -13,6 +13,7 @@ import Services from '../../../components/clientSide/Services/Services';
 import StudentGalleryTabs from '../../adminSide/manageStudentGallary/StudentGalleryTabs';
 import AddStudentGallery from '../../adminSide/addStudentGallary/AddStudentGallary';
 import SuccessStories from '../../../components/clientSide/SuccessStories/SuccessStories';
+import TeamMember from './TeamMember';
 const AboutUs = () => {
     window.scrollTo(0, 0);
     const scrollAnimationVariants = {
@@ -37,6 +38,16 @@ const AboutUs = () => {
                 viewport={{ once: false, amount: 0.2 }}
             >
                 <AboutBanner></AboutBanner>
+            </motion.div>
+
+
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={scrollAnimationVariants}
+                viewport={{ once: false, amount: 0.2 }}
+            >
+                <TeamMember></TeamMember>
             </motion.div>
 
            
