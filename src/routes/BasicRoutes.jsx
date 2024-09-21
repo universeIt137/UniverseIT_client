@@ -52,6 +52,9 @@ import UpdateSuccessStory from "../pages/adminSide/UpdateSuccessStory/UpdateSucc
 import Login from "../pages/clientSide/Login/Login";
 import Register from "../pages/clientSide/Register/Register";
 import PrivateRouts from "../PrivateRouts/PrivateRouts";
+import AddMember from "../pages/adminSide/teamRelatedPages/addMember/AddMember";
+import ManageMember from "../pages/adminSide/teamRelatedPages/manageMember/ManageMember";
+import UpdateMember from "../pages/adminSide/teamRelatedPages/updateMember/UpdateMember";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -261,6 +264,21 @@ const BasicRoutes = createBrowserRouter([
                 path: "/dashboard/updateSuccessStory/:id",
                 element: <UpdateSuccessStory />
             },
+
+            {
+                path: "add-member",
+                element: <AddMember></AddMember>
+            },
+            {
+                path: "manage-member",
+                element: <ManageMember></ManageMember>
+            },
+            {
+                path: "update-member/:id",
+                element: <UpdateMember></UpdateMember>
+            }
+
+
 
 
         ]

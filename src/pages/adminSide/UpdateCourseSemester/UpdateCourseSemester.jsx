@@ -127,7 +127,7 @@ const UpdateCourseSemester = () => {
                                     />
                                 </div>
                                
-                                <div className="pt-3">
+                                <div className="pt-10">
                                     <button className="flex flex-col justify-center items-center px-5 py-1.5 rounded-md bg-primary text-white hover:font-bold transition-all duration-300 hover:bg-[#e55633]  active:bg-primary focus:outline-none focus:ring focus:ring-red-300 active:scale-90 focus:text-white w-max">Add Subject</button>
                                 </div>
                             </form>
