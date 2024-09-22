@@ -55,6 +55,7 @@ import PrivateRouts from "../PrivateRouts/PrivateRouts";
 import AddMember from "../pages/adminSide/teamRelatedPages/addMember/AddMember";
 import ManageMember from "../pages/adminSide/teamRelatedPages/manageMember/ManageMember";
 import UpdateMember from "../pages/adminSide/teamRelatedPages/updateMember/UpdateMember";
+import TeamMemberPage from "../pages/clientSide/teamMemberpage/TeamMemberPage";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -89,6 +90,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "faculties",
                 element: <Faculties />
+            },
+            {
+                path: "/team-members",
+                element: <TeamMemberPage></TeamMemberPage>
             },
             {
                 path: "/courseDetails/:id",

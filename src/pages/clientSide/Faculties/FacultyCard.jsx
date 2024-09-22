@@ -5,7 +5,7 @@ import log21 from '../../../assets/logo/mainLogo.png'
 const FacultyCard = ({ faculty, slide }) => {
     const { image, name, background_of_study, job_experience, designation, contact, email
     } = faculty;
-    console.log(faculty);
+    
 
     return (
 
