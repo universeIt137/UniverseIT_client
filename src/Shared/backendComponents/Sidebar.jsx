@@ -98,7 +98,7 @@ const Sidebar = () => {
             <NavigationItem
               to="/dashboard"
               icon={FaCircleUser}
-              label="Profile"
+              label="Dashboard"
             />
 
             <li className="mb-4">

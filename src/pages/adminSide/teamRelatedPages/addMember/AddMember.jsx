@@ -2,6 +2,7 @@ import React from 'react';
 import { uploadImg } from '../../../../UploadFile/uploadImg';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AddMember = () => {
 
@@ -47,74 +48,82 @@ const AddMember = () => {
         form.reset();
     }
     return (
-        <div className='m-4 lg:w-3/5'>
-            <p className='text-4xl'>Add New Employee</p>
-            <form onSubmit={handleSubmit} className="">
-                {/* first name, last name  */}
-                <div className="lg:flex gap-10">
-                    <div className="form-control lg:w-1/2">
-                        <label className="label">
-                            <span className="label-text">First Name</span>
-                        </label>
-                        <input type="text" name='firstName' placeholder="Enter First Name" className="input input-bordered" required />
+        <>
+             <Helmet>
+                <title>Dashboard | Add Employee</title>
+            </Helmet>
+            <div className='m-4 lg:w-3/5'>
+
+
+
+                <p className='text-4xl'>Add New Employee</p>
+                <form onSubmit={handleSubmit} className="">
+                    {/* first name, last name  */}
+                    <div className="lg:flex gap-10">
+                        <div className="form-control lg:w-1/2">
+                            <label className="label">
+                                <span className="label-text">First Name</span>
+                            </label>
+                            <input type="text" name='firstName' placeholder="Enter First Name" className="input input-bordered" required />
+                        </div>
+
+                        <div className="form-control lg:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Last Name</span>
+                            </label>
+                            <input type="text" name="lastName" placeholder="Enter Last Name" className="input input-bordered" required />
+                        </div>
+                    </div>
+                    {/* job description  */}
+                    <div className="lg:flex gap-10">
+                        <div className="form-control lg:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Job Position</span>
+                            </label>
+                            <input type="text" name='position' placeholder="Enter Job position" className="input input-bordered" required />
+
+                        </div>
+
+                        <div className="form-control lg:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Employee ID</span>
+                            </label>
+                            <input type="text" name='employeeID' placeholder="Enter Email Address" className="input input-bordered" required />
+                        </div>
                     </div>
 
-                    <div className="form-control lg:w-1/2">
-                        <label className="label">
-                            <span className="label-text">Last Name</span>
-                        </label>
-                        <input type="text" name="lastName" placeholder="Enter Last Name" className="input input-bordered" required />
+                    {/* email, phone  */}
+                    <div className="lg:flex gap-10">
+                        <div className="form-control lg:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email" name='email' placeholder="Enter Email Address" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control lg:w-1/2">
+                            <label className="label">
+                                <span className="label-text">Phone Number</span>
+                            </label>
+                            <input type="text" placeholder="Enter Phone Number" name='phone' className="input input-bordered" required />
+                        </div>
                     </div>
-                </div>
-                {/* job description  */}
-                <div className="lg:flex gap-10">
-                    <div className="form-control lg:w-1/2">
-                        <label className="label">
-                            <span className="label-text">Job Position</span>
-                        </label>
-                        <input type="text" name='position' placeholder="Enter Job position" className="input input-bordered" required />
 
+                    {/* image upload */}
+                    <div className="p-2 w-full">
+                        <div className="relative">
+                            <label className="leading-7 text-sm text-gray-600 font-bold">Blog Banner Image</label><br />
+                            <input type="file" name='memberImg' className="file-input file-input-bordered file-input-md w-full max-w-xs" />
+                        </div>
                     </div>
 
-                    <div className="form-control lg:w-1/2">
-                        <label className="label">
-                            <span className="label-text">Employee ID</span>
-                        </label>
-                        <input type="text" name='employeeID' placeholder="Enter Email Address" className="input input-bordered" required />
+
+
+                    <div className="form-control mt-6 lg:w-1/4">
+                        <button className="btn bg-primary text-white">Add Member</button>
                     </div>
-                </div>
-
-                {/* email, phone  */}
-                <div className="lg:flex gap-10">
-                    <div className="form-control lg:w-1/2">
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                        </label>
-                        <input type="email" name='email' placeholder="Enter Email Address" className="input input-bordered" required />
-                    </div>
-                    <div className="form-control lg:w-1/2">
-                        <label className="label">
-                            <span className="label-text">Phone Number</span>
-                        </label>
-                        <input type="text" placeholder="Enter Phone Number" name='phone' className="input input-bordered" required />
-                    </div>
-                </div>
-
-                {/* image upload */}
-                <div className="p-2 w-full">
-                    <div className="relative">
-                        <label className="leading-7 text-sm text-gray-600 font-bold">Blog Banner Image</label><br />
-                        <input type="file" name='memberImg' className="file-input file-input-bordered file-input-md w-full max-w-xs" />
-                    </div>
-                </div>
-
-
-
-                <div className="form-control mt-6 lg:w-1/4">
-                    <button className="btn bg-primary text-white">Add Member</button>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        </>
     );
 };
 

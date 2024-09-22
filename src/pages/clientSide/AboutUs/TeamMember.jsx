@@ -81,7 +81,7 @@ const TeamMember = () => {
                 </div>
             </div>
             <div className="flex justify-center -mt-5">
-                <Link to={'/courses'}>
+                <Link to={'/team-members'}>
                     <div className="w-max">
                         <ButtonStrong text={'View All'} />
                     </div>
