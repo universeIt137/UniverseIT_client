@@ -61,6 +61,8 @@ import AddCareerPage from "../pages/adminSide/careerRelatedPages/addCareer/AddCa
 import ManageCareerPage from "../pages/adminSide/careerRelatedPages/manageCareer/ManageCareerPage";
 import UpdateCareerPage from "../pages/adminSide/careerRelatedPages/updateCareer/UpdateCareerPage";
 import CareerDetailsPage from "../pages/clientSide/careerRelatedPage/CareerDetailsPage";
+import ApplicationPage from "../pages/clientSide/careerRelatedPage/applicationPage/ApplicationPage";
+import ManageJob from "../pages/adminSide/applyJobRelatedPage/manageJob/ManageJob";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -128,6 +130,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "/career/:id",
                 element: <CareerDetailsPage></CareerDetailsPage>
+            },
+            {
+                path: "/apply-job/:id",
+                element: <ApplicationPage></ApplicationPage>
             },
             {
                 path: "login",
@@ -310,7 +316,13 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "update-career/:id",
                 element: <UpdateCareerPage></UpdateCareerPage>
+            },
+            // apply job related api 
+            {
+                path: "manage-job",
+                element: <ManageJob></ManageJob>
             }
+
 
 
 

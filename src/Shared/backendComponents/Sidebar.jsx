@@ -67,6 +67,7 @@ const Sidebar = () => {
     <>
       <NavigationItem to="/dashboard/admissionRequest" icon={FaFileWaveform} label="Admission Requests" />
       <NavigationItem to="/dashboard/seminar" icon={FaUsers} label="Seminar Requests" />
+      <NavigationItem to="/dashboard/manage-job" icon={FaUsers} label="Job Requests" />
     </>
 
   const seminarUrls =

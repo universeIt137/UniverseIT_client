@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Shared/Loading/Loading';
@@ -17,6 +17,7 @@ const CareerDetailsPage = () => {
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
     const company_logo = `https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png`
+    
     const { data: careerData = {}, refetch: blogDataRefetch, isLoading } = useQuery({
         queryKey: ['careerData', id],
         queryFn: async () => {
@@ -25,7 +26,7 @@ const CareerDetailsPage = () => {
         }
     })
 
-    const { position, salary, experience, education, skills, responsibilities, employment_status, job_location, workplace } = careerData;
+    const { position, salary, experience, education, skills, responsibilities, employment_status, job_location, workplace, _id } = careerData;
     if (isLoading) {
         return <Loading />
     }
@@ -39,14 +40,13 @@ const CareerDetailsPage = () => {
                 <h1 className='text-3xl text-secondary font-bold'>{position}</h1>
                 <div className='flex justify-between flex-col lg:flex-row gap-5 my-5'>
                     <div className='flex gap-5 flex-wrap-reverse'>
-                        <button className='bg-secondary hover:scale-105 hover:duration-300  text-white font-bold rounded-md px-5 py-2.5'>Apply Now</button>
-                        
-
-                        
+                        <Link to={`/apply-job/${_id}`}>
+                            <button className='bg-secondary hover:scale-105 hover:duration-300  text-white font-bold rounded-md px-5 py-2.5'>Apply Now</button>
+                        </Link>
                     </div>
                 </div>
 
-               
+
 
                 {/* summary */}
                 <div className='bg-[#F4F4F4] rounded-md p-4 border-2 border-[#DDD]'>
