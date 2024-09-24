@@ -56,6 +56,11 @@ import AddMember from "../pages/adminSide/teamRelatedPages/addMember/AddMember";
 import ManageMember from "../pages/adminSide/teamRelatedPages/manageMember/ManageMember";
 import UpdateMember from "../pages/adminSide/teamRelatedPages/updateMember/UpdateMember";
 import TeamMemberPage from "../pages/clientSide/teamMemberpage/TeamMemberPage";
+import CareerPage from "../pages/clientSide/careerRelatedPage/CareerPage";
+import AddCareerPage from "../pages/adminSide/careerRelatedPages/addCareer/AddCareerPage";
+import ManageCareerPage from "../pages/adminSide/careerRelatedPages/manageCareer/ManageCareerPage";
+import UpdateCareerPage from "../pages/adminSide/careerRelatedPages/updateCareer/UpdateCareerPage";
+import CareerDetailsPage from "../pages/clientSide/careerRelatedPage/CareerDetailsPage";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -115,6 +120,15 @@ const BasicRoutes = createBrowserRouter([
                 path: "/successStory",
                 element: <SuccessStoryPage />
             },
+            // career related routes 
+            {
+                path: "/career",
+                element: <CareerPage></CareerPage>
+            },
+            {
+                path: "/career/:id",
+                element: <CareerDetailsPage></CareerDetailsPage>
+            },
             {
                 path: "login",
                 element: <Login />
@@ -123,6 +137,7 @@ const BasicRoutes = createBrowserRouter([
                 path: "register",
                 element: <Register />
             },
+            
 
         ]
     },
@@ -281,7 +296,23 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "update-member/:id",
                 element: <UpdateMember></UpdateMember>
+            },
+
+            // career related routes 
+            {
+                path: "add-career",
+                element: <AddCareerPage></AddCareerPage>
+            },
+            {
+                path: "manage-career",
+                element: <ManageCareerPage></ManageCareerPage>
+            },
+            {
+                path: "update-career/:id",
+                element: <UpdateCareerPage></UpdateCareerPage>
             }
+
+
 
 
 

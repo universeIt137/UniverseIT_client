@@ -111,7 +111,7 @@ const AddMember = () => {
                     {/* image upload */}
                     <div className="p-2 w-full">
                         <div className="relative">
-                            <label className="leading-7 text-sm text-gray-600 font-bold">Blog Banner Image</label><br />
+                            <label className="leading-7 text-sm text-gray-600 font-bold">Member Image</label><br />
                             <input type="file" name='memberImg' className="file-input file-input-bordered file-input-md w-full max-w-xs" />
                         </div>
                     </div>
