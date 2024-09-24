@@ -7,7 +7,7 @@ import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 const MainLayout = () => {
     return (
-        <div className='relative bg-gray-100'>
+        <div className='relative bg-white'>
             <ScrollToTop />
             <AddressNavbar />
             <div className='sticky top-0 z-40'>

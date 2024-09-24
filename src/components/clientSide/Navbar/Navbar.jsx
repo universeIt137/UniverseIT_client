@@ -34,7 +34,7 @@ const Navbar = () => {
     </>
     return (
         <div className="bg-white w-full border-b-[3px] border-gray-300">
-            <div className="navbar bg-base-100 max-w-7xl mx-auto flex justify-between items-center">
+            <div className="navbar max-w-7xl mx-auto flex justify-between items-center">
                 <div className="flex justify-between w-full xs:w-max">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

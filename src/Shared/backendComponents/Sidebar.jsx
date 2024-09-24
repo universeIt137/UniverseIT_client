@@ -17,6 +17,13 @@ const Sidebar = () => {
       <NavigationItem to="/dashboard/manageCourses" icon={SiNginxproxymanager} label="Manage Courses" />
     </>
 
+
+  const careerUrls =
+    <>
+      <NavigationItem to="/dashboard/add-career" icon={MdAddCircle} label="Add Career" />
+      <NavigationItem to="/dashboard/manage-career" icon={SiNginxproxymanager} label="Manage Career" />
+    </>
+
   const blogUrls =
     <>
       <NavigationItem to="/dashboard/addBlog" icon={MdAddCircle} label="Add Blog" />
@@ -107,6 +114,10 @@ const Sidebar = () => {
 
             <li className="mb-4">
               <Dropdown buttonText="Seminar" urls={seminarUrls} />
+            </li>
+
+            <li className="mb-4">
+              <Dropdown buttonText="Careers" urls={careerUrls} />
             </li>
 
             <li className="mb-4">
