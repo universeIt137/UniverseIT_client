@@ -305,7 +305,7 @@ const ApplicationPage = () => {
                                 type="text"
                                 name='reference_relationship'
                                 className="w-full p-2 border border-gray-300 rounded-md"
-                                required
+                                
                             />
                         </div>
                     </div>
