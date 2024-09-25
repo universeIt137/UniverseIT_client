@@ -4,6 +4,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { Spinner } from '@material-tailwind/react'; // Material Tailwind spinner
 import { FaExclamationTriangle } from 'react-icons/fa';
 import Loading from '../../../Shared/Loading/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const scrollAnimationVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -40,6 +41,9 @@ const CertificateVerification = () => {
 
     return (
         <div className="mx-auto">
+            <Helmet>
+                <title>Universe IT | Certificate Verification</title>
+            </Helmet>
             <div className="bg-white shadow-lg p-3  gap-6 border rounded-md grid grid-cols-1 md:grid-cols-2">
                 <motion.div
                     initial="hidden"
