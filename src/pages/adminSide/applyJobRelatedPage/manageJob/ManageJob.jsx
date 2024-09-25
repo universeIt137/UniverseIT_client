@@ -89,59 +89,59 @@ const ManageJob = () => {
 
     return (
         <>
-        <Helmet>
-            <title>Dashboard | Manage Application</title>
-        </Helmet>
-        <div className="bg-white p-5 rounded-lg w-full lg:w-[calc(100vw-300px)] overflow-x-auto mx-auto">
-            <p className='text-2xl font-bold text-center'>Seminar Requests</p>
+            <Helmet>
+                <title>Dashboard | Manage Application</title>
+            </Helmet>
+            <div className="bg-white p-5 rounded-lg w-full lg:w-[calc(100vw-300px)] overflow-x-auto mx-auto">
+                <p className='text-2xl font-bold text-center'>Seminar Requests</p>
 
-            <div className="overflow-x-auto">
-                <table className="table table-zebra">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Position</th>
+                <div className="overflow-x-auto">
+                    <table className="table table-zebra">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Position</th>
 
-                            <th>Phone No</th>
-                            <th>Resume link</th>
-                            <th>Confirm</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            jobRequests?.map((jobApply, index) =>
-                                <tr key={jobApply._id}>
-                                    <td>{index + 1}</td>
-                                    <td>{jobApply.fullName}</td>
-                                    <td>{jobApply.email}</td>
-                                    <td>{jobApply.position}</td>
+                                <th>Phone No</th>
+                                <th>Resume link</th>
+                                <th>Confirm</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                jobRequests?.map((jobApply, index) =>
+                                    <tr key={jobApply._id}>
+                                        <td>{index + 1}</td>
+                                        <td>{jobApply.fullName}</td>
+                                        <td>{jobApply.email}</td>
+                                        <td>{jobApply.position}</td>
 
-                                    <td>{jobApply.phoneNumber}</td>
-                                    <td>
-                                        <Link to={jobApply.resume}>
-                                        <button className='btn text-secondary'>CV link</button>
-                                        </Link>
-                                    </td>
+                                        <td>{jobApply.phoneNumber}</td>
+                                        <td>
+                                            <Link to={jobApply.resume}>
+                                                <button className='btn text-secondary'>CV link</button>
+                                            </Link>
+                                        </td>
 
-                                    <td className='text-2xl text-green-600'><button onClick={() => handleRequest(jobApply)}>
-                                        {jobApply?.status ? <p className='text-sm'>confirmed</p> : <GiConfirmed />}</button></td>
-                                    <td className='text-2xl text-red-500'><button onClick={() => handleDelete(jobApply)}><MdDelete /></button></td>
-                                </tr>
-                            )
-                        }
-
-
+                                        <td className='text-2xl text-green-600'><button onClick={() => handleRequest(jobApply)}>
+                                            {jobApply?.status ? <p className='text-sm'>confirmed</p> : <GiConfirmed />}</button></td>
+                                        <td className='text-2xl text-red-500'><button onClick={() => handleDelete(jobApply)}><MdDelete /></button></td>
+                                    </tr>
+                                )
+                            }
 
 
-                    </tbody>
-                </table>
+
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </>
+        </>
     );
 };
 

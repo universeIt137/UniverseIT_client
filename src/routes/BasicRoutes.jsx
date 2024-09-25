@@ -63,6 +63,7 @@ import UpdateCareerPage from "../pages/adminSide/careerRelatedPages/updateCareer
 import CareerDetailsPage from "../pages/clientSide/careerRelatedPage/CareerDetailsPage";
 import ApplicationPage from "../pages/clientSide/careerRelatedPage/applicationPage/ApplicationPage";
 import ManageJob from "../pages/adminSide/applyJobRelatedPage/manageJob/ManageJob";
+import CourseCategoryPage from "../pages/adminSide/courseRelatedPage/CourseCategoryPage";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -159,6 +160,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "addCourse",
                 element: <AddCourse></AddCourse>
+            },
+            {
+                path: "course-category",
+                element: <CourseCategoryPage></CourseCategoryPage>
             },
             {
                 path: "admissionRequest",

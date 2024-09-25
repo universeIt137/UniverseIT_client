@@ -14,6 +14,7 @@ const Sidebar = () => {
   const courseUrls =
     <>
       <NavigationItem to="/dashboard/addCourse" icon={MdAddCircle} label="Add Courses" />
+      <NavigationItem to="/dashboard/course-category" icon={MdAddCircle} label="Course Category" />
       <NavigationItem to="/dashboard/manageCourses" icon={SiNginxproxymanager} label="Manage Courses" />
     </>
 
