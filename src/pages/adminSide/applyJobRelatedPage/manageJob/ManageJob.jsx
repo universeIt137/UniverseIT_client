@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { MdDelete } from 'react-icons/md';
 import { GiConfirmed } from 'react-icons/gi';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 const ManageJob = () => {
 
@@ -102,10 +103,10 @@ const ManageJob = () => {
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Seminar Topic</th>
+                            <th>Position</th>
 
-                            <th>WhatsApp No</th>
-                            <th>Degree</th>
+                            <th>Phone No</th>
+                            <th>Resume link</th>
                             <th>Confirm</th>
                             <th>Delete</th>
                         </tr>
@@ -120,7 +121,11 @@ const ManageJob = () => {
                                     <td>{jobApply.position}</td>
 
                                     <td>{jobApply.phoneNumber}</td>
-                                    <td>{jobApply.degree}</td>
+                                    <td>
+                                        <Link to={jobApply.resume}>
+                                        <button className='btn text-secondary'>CV link</button>
+                                        </Link>
+                                    </td>
 
                                     <td className='text-2xl text-green-600'><button onClick={() => handleRequest(jobApply)}>
                                         {jobApply?.status ? <p className='text-sm'>confirmed</p> : <GiConfirmed />}</button></td>

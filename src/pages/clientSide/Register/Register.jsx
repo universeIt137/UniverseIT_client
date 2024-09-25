@@ -67,11 +67,11 @@ const Register = () => {
     return (
         <>
             <Helmet>
-                <title>BIFDT | Register</title>
+                <title>Universe IT | Admin Register</title>
             </Helmet>
             <div className="p-2">
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-[600px] mx-auto space-y-5">
-                    <p className='text-center text-2xl font-bold pb-5'>Register</p>
+                    <p className='text-center text-2xl font-bold pb-5'>Admin Register</p>
                     {/* your Name  */}
                     <div className="flex flex-col gap-2">
                         <InputLabel text={'Your Name'} />
@@ -92,9 +92,7 @@ const Register = () => {
                         <div className="flex">
                             <input type={showPass ? 'text' : 'password'} className={`${inputStyle} rounded-r-none border-r-0`} placeholder="Password" {...register("password", {
                                 required: true,
-                                minLength: 8,
-                                maxLength: 20,
-                                pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/
+                                
                             })} />
                             <p onClick={() => setShowPass(!showPass)} className="text-xs font-medium uppercase bottom-[18px] right-2 p-1 cursor-pointer  hover:font-semibold w-[70px] border border-gray-500 flex justify-center items-center border-l-0 rounded-r-md">{showPass ? 'Hide' : 'Show'}</p>
                         </div>
@@ -113,8 +111,7 @@ const Register = () => {
                         <button className={`${btnStyle}`}>
                             Register
                         </button>
-                        Or
-                        <GoogleLogin />
+                        
                     </div>
                 </form>
             </div>

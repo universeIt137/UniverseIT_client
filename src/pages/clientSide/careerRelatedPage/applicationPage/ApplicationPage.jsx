@@ -319,6 +319,7 @@ const ApplicationPage = () => {
                             <input
                                 type="text"
                                 name="availability"
+                                placeholder='Enter Date from when you can join'
                                 required
                                 className="w-full p-2 border border-gray-300 rounded-md"
                             />

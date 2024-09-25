@@ -3,6 +3,7 @@ import BlogCard from './BlogCard';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Shared/Loading/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const BlogPage = () => {
     window.scrollTo(0, 0);
@@ -45,6 +46,9 @@ const BlogPage = () => {
 
     return (
         <div className='sm:px-20 px-5 my-10 min-h-screen'>
+            <Helmet>
+                <title>Universe IT | Blogs</title>
+            </Helmet>
             <p className="text-4xl m-10"><span className='text-primary border-b-2'>Latest</span> News</p>
 
             <div className='flex gap-10 flex-col'>
