@@ -19,6 +19,16 @@ const CoursesPage = () => {
     const axiosPublic = useAxiosPublic();
     const [tabName, setTabName] = useState('All Courses')
 
+    const { data: popularCategories = [], refetch } = useQuery({
+        queryKey: ['popularCategories'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/popular-category');
+            return res.data;
+        }
+    })
+
+    console.log(popularCategories);
+    
     const popularCategory = [{ "name": 'Digital Marketing' }, { "name": 'Web Development' }, { "name": 'App Development' }, { "name": 'Online' }];
 
     const { data: courses = [], isLoading } = useQuery({
@@ -28,7 +38,7 @@ const CoursesPage = () => {
             return res.data;
         }
     })
-    console.log(courses);
+
 
 
     if (isLoading) {
@@ -37,7 +47,13 @@ const CoursesPage = () => {
 
 
 
-    const filteredCourse = tabName === 'All Courses' ? courses : courses?.filter(course => course?.category === tabName)
+    const filteredCourse = tabName === 'All Courses' 
+    ? courses 
+    : courses?.filter(course => 
+        course?.category === tabName || course?.popularCategory === tabName
+      );
+  
+
     const handleCategoryChange = (e) => {
         e.preventDefault();
         console.log(e.target.value);
@@ -86,11 +102,13 @@ const CoursesPage = () => {
                             <div className='p-5 space-y-2'>
                                 <p className='font-semibold'>Search By Popular Courses</p>
                                 {
-                                    popularCategory.map((category, idx) => 
-                                    
-                                <CoursesRadioStyle key={idx} tabName={tabName} setTabName={setTabName} name={`${category.name   }`} />
+                                    isLoading ? <Loading /> : 
+                                        popularCategories.map((category, idx) =>
 
-                                )
+                                        <CoursesRadioStyle key={idx} tabName={tabName} setTabName={setTabName} name={`${category.popularCategory}`} />
+
+                                    )
+                                    
                                 }
 
                             </div>
