@@ -76,23 +76,30 @@ const Footer = () => {
                         </a>
                         <a className="link link-hover"><span className="flex items-center gap-2"><IoIosCall /> 01886-061401</span></a>
                     </nav>
-                    <nav>
-                        <h6 className="footer-title">Popular Courses</h6>
-                        {
-                            popularCategories?.map((category) =>
-                                <Link to={`/courses/${category.popularCategory}`} key={category._id} className="link link-hover">{category.popularCategory}</Link>
-                            )
-                        }
+                    <div className="flex justify-between gap-24 lg:footer">
+                        <div className="footer w-3/4">
+                            <nav>
+                                <h6 className="footer-title">Popular Courses</h6>
+                                {
+                                    popularCategories?.map((category) =>
+                                        <Link to={`/courses/${category.popularCategory}`} key={category._id} className="link link-hover">{category.popularCategory}</Link>
+                                    )
+                                }
 
-                    </nav>
-                    <nav>
-                        <h6 className="footer-title">Quick Link</h6>
-                        <Link to={"/aboutUs"} className="link link-hover">About us</Link>
-                        <Link to={"/faculties"} className="link link-hover">Our faculty</Link>
-                        <Link to={"/career"} className="link link-hover">Career</Link>
-                        <Link to={"/blogs"} className="link link-hover">Blogs</Link>
-                        <Link to={"/successStory"} className="link link-hover">Success Story</Link>
-                    </nav>
+                            </nav>
+                        </div>
+
+                        <div className="footer">
+                        <nav>
+                            <h6 className="footer-title">Quick Link</h6>
+                            <Link to={"/aboutUs"} className="link link-hover">About us</Link>
+                            <Link to={"/faculties"} className="link link-hover">Our faculty</Link>
+                            <Link to={"/career"} className="link link-hover">Career</Link>
+                            <Link to={"/blogs"} className="link link-hover">Blogs</Link>
+                            <Link to={"/successStory"} className="link link-hover">Success Story</Link>
+                        </nav>
+                        </div>
+                    </div>
 
                 </footer>
                 <footer className="footer bg-neutral text-neutral-content items-center p-4 px-10">
