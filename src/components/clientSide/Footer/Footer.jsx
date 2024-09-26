@@ -5,10 +5,36 @@ import { FaFacebook, FaGithubSquare, FaTwitterSquare } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
+
 const Footer = () => {
 
     const axiosPublic = useAxiosPublic();
-    
+    const formRef = useRef();
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs
+            .sendForm('service_saos63c', 'template_x1ajmyn', formRef.current, {
+                publicKey: 'PbUISmrSE9uXrKvsb',
+            })
+            .then(
+                () => {
+                    setSuccess(true);
+                    console.log('SUCCESS!');
+                },
+                (error) => {
+                    setError(true);
+                    console.log('FAILED...', error.text);
+                },
+            );
+    };
+
+
     const { data: popularCategories = [], refetch } = useQuery({
         queryKey: ['popularCategories'],
         queryFn: async () => {
@@ -22,18 +48,24 @@ const Footer = () => {
         <div className='bg-neutral'>
             <div className='max-w-7xl mx-auto'>
                 <footer className="footer bg-neutral text-neutral-content p-10">
-                    <form >
+                    <form
+                        ref={formRef}
+                        onSubmit={sendEmail}
+                    >
                         <img className='w-40' src={logo} alt="" />
                         <p className="max-w-[400px] font-medium text-gray-300">Universe IT is dedicated to providing IT training that equips students with the skills and expertise to thrive in today's competitive marketplace.</p>
                         <fieldset className="form-control sm:w-80">
                             <div className="join">
                                 <input
                                     type="text"
+                                    name="email"
                                     placeholder="username@site.com"
                                     className="input input-bordered join-item  w-[80%]" />
                                 <button className="btn btn-primary join-item  bg-primary/95 border-none hover:bg-primary px-1 sm:px-5">Subscribe</button>
                             </div>
                         </fieldset>
+                        {error && <p className='text-white'>Error</p>}
+                        {success && <p className='text-white'>Success</p>}
                     </form>
                     <nav className='max-w-[220px] text-sm'>
                         <h6 className="footer-title">Contact</h6>
@@ -48,10 +80,10 @@ const Footer = () => {
                         <h6 className="footer-title">Popular Courses</h6>
                         {
                             popularCategories?.map((category) =>
-                                <Link to={`/courses/${category.popularCategory}`} key={category._id} className="link link-hover">{ category.popularCategory }</Link>
+                                <Link to={`/courses/${category.popularCategory}`} key={category._id} className="link link-hover">{category.popularCategory}</Link>
                             )
                         }
-                       
+
                     </nav>
                     <nav>
                         <h6 className="footer-title">Quick Link</h6>
