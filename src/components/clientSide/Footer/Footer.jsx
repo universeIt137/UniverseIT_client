@@ -3,7 +3,21 @@ import logo from '../../../assets/logo/whiteLogo.png'
 import { FaLinkedin, FaLocationDot } from "react-icons/fa6";
 import { FaFacebook, FaGithubSquare, FaTwitterSquare } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 const Footer = () => {
+
+    const axiosPublic = useAxiosPublic();
+    
+    const { data: popularCategories = [], refetch } = useQuery({
+        queryKey: ['popularCategories'],
+        queryFn: async () => {
+            const res = await axiosPublic('/popular-category');
+            return res.data;
+        }
+    })
+
+
     return (
         <div className='bg-neutral'>
             <div className='max-w-7xl mx-auto'>
@@ -32,11 +46,12 @@ const Footer = () => {
                     </nav>
                     <nav>
                         <h6 className="footer-title">Popular Courses</h6>
-                        <a className="link link-hover">Digital Marketing</a>
-                        <a className="link link-hover">Web Development</a>
-                        <a className="link link-hover">App Development</a>
-                        <a className="link link-hover">Graphics Design</a>
-                        <a className="link link-hover">UI/UX Design</a>
+                        {
+                            popularCategories?.map((category) =>
+                                <Link to={`/courses/${category.popularCategory}`} key={category._id} className="link link-hover">{ category.popularCategory }</Link>
+                            )
+                        }
+                       
                     </nav>
                     <nav>
                         <h6 className="footer-title">Quick Link</h6>

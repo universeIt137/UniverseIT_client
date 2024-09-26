@@ -36,6 +36,18 @@ const UpdateCoursePage = () => {
             return res?.data
         }
     })
+
+
+    const { data: popularCategories = [] } = useQuery({
+        queryKey: ['popularCategory'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/popular-category');
+            return res.data;
+        }
+    })
+
+
+
     useEffect(() => {
         if (courseData) {
             setAllTechnology(courseData?.technologies || [])
@@ -84,6 +96,7 @@ const UpdateCoursePage = () => {
         event.preventDefault();
         const form = event.target;
         const category = form.category.value;
+        const popularCategory = form.popularCategory.value;
         const title = form.title.value;
         const videoUrl = form.videoUrl.value;
         const courseFee = form.courseFee.value;
@@ -128,7 +141,7 @@ const UpdateCoursePage = () => {
         //     const data = { category, image: imageUrl };
         //     return axiosPublic.post('/studentGallery', data);
         // });
-        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures, instructors: allInstructors, discountFee };
+        const data = { category, popularCategory, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures, instructors: allInstructors, discountFee };
         console.log(data);
 
         axiosPublic.put(`/course/${id}`, data)
@@ -208,6 +221,21 @@ const UpdateCoursePage = () => {
 
                                                 </div>
 
+                                            </div>
+
+                                            {/* Popular category */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Course Popular Category</label>
+
+                                                    <select defaultValue={courseData?.popularCategory} required name="popularCategory" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out h-[40px]" >
+                                                        <option value="">Select a popular Category</option>
+                                                        {
+                                                            popularCategories.map(category => <option key={category._id} value={`${category.popularCategory}`}>{category.popularCategory}</option>)
+                                                        }
+
+                                                    </select>
+                                                </div>
                                             </div>
 
                                             {/* Fee */}

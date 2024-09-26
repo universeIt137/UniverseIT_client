@@ -64,6 +64,7 @@ import CareerDetailsPage from "../pages/clientSide/careerRelatedPage/CareerDetai
 import ApplicationPage from "../pages/clientSide/careerRelatedPage/applicationPage/ApplicationPage";
 import ManageJob from "../pages/adminSide/applyJobRelatedPage/manageJob/ManageJob";
 import CourseCategoryPage from "../pages/adminSide/courseRelatedPage/CourseCategoryPage";
+import PopularCoursePage from "../pages/clientSide/Courses/PopularCoursePage";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -86,6 +87,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: 'courses',
                 element: <CoursesPage />
+            },
+            {
+                path: '/courses/:category',
+                element: <PopularCoursePage></PopularCoursePage>
             },
             {
                 path: "blogs",
