@@ -19,28 +19,28 @@ const Milestones = () => {
     const { enrolled, instructors, expert, successRatio, milestoneImage } = data;
     console.log(milestoneImage);
 
-    const countStyle = 'w-[200px] sm:w-[240px] lg:w-[20vw] xl:w-[260px] h-[145px] lg:h-[11vw] xl:h-[155px] rounded-lg text-4xl flex justify-center px-5 sm:px-10 font-bold flex-col'
+    const countStyle = ' h-[145px] lg:h-[11vw] xl:h-[155px] rounded-lg text-4xl flex justify-center px-5 sm:px-10 font-bold flex-col'
     return (
-        <div className="max-w-7xl mx-auto py-10 px-5">
+        <div className="max-w-7xl mx-auto py-10 px-5 ">
             <ComponentsTitle title={'Milestones'} description={'Explore our significant achievements, success stories, and impressive statistics all in one place'} />
-            <div className='grid grid-cols-1 lg:grid-cols-2 pt-10 gap-10'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 pt-10 gap-10 '>
                 <img className='order-2 lg:order-1 w-full max-w-[650px] mx-auto' src={milestoneImage} alt="" />
-                <div className='flex flex-wrap sm:grid sm:grid-cols-2 sm:w-max sm:h-max gap-10 mx-auto justify-center items-center'>
+                <div className=' grid grid-cols-2 sm:w-max sm:h-max gap-3 lg:gap-10 mx-auto justify-center items-center '>
                     <div className={`${countStyle} bg-[#E0F7FA]`}>
-                        <span> <CountUp end={enrolled || 0} duration={9} /> +</span>
+                        <span className="text-xl lg:text-3xl"> <CountUp end={enrolled || 0} duration={9} /> +</span>
                         <p className='text-text_color font-medium text-lg'>Enrolled Students</p>
                     </div>
 
                     <div className={`${countStyle} bg-[#FFEBEE]`}>
-                        <span><CountUp end={instructors || 0} duration={9} /> +</span>
+                        <span className="text-xl lg:text-3xl"><CountUp end={instructors || 0} duration={9} /> +</span>
                         <p className='text-text_color font-medium text-lg'>Instructors</p>
                     </div>
                     <div className={`${countStyle} bg-[#E1BEE7]`}>
-                        <span><CountUp end={expert || 0} duration={9} /> +</span>
+                        <span className="text-xl lg:text-3xl"><CountUp end={expert || 0} duration={9} /> +</span>
                         <p className='text-text_color font-medium text-lg'>Industry Experts</p>
                     </div>
                     <div className={`${countStyle} bg-[#f3edaf]`}>
-                        <span><CountUp end={successRatio || 0} duration={9} />%</span>
+                        <span className="text-xl lg:text-3xl"><CountUp end={successRatio || 0} duration={9} />%</span>
                         <p className='text-text_color font-medium text-lg'>Successful ratio</p>
                     </div>
                 </div>
