@@ -15,9 +15,9 @@ const Banner = ({ bannerImg = '', data = {} }) => {
     const secondTitle = SecondTitleArray?.join(' ');
     return (
         <div className='bg-[#fefaee]'>
-            <div className="px-5 lg:px-16 xl:px-20 flex gap-10 min-h-[70vh] md:min-h-[73vh] max-w-7xl mx-auto ">
-                <div className="md:min-h-[73vh] flex justify-center items-center">
-                    <div className="max-w-[532px] space-y-6 mx-auto">
+            <div className="px-5 lg:px-16 xl:px-20 flex gap-10 min-h-[40vh] md:min-h-[73vh] max-w-7xl mx-auto">
+                <div className="lg:min-h-[73vh] flex justify-center items-center">
+                    <div className="lg:max-w-[532px] space-y-6 mx-auto">
                         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-text_color">
                             {firstTitle} <span className="text-primary">{secondTitle}</span>
                         </h1>

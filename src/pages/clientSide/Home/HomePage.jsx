@@ -77,6 +77,8 @@ const HomePage = () => {
             >
                 <Milestones />
             </motion.div>
+
+            
             <motion.div
                 initial="hidden"
                 whileInView="visible"

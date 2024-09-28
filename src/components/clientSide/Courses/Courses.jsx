@@ -30,12 +30,13 @@ const Courses = () => {
 
     const filteredCourse = tabName === 'All Courses' ? courses : courses?.filter(course => course?.category === tabName)
 
+    const mobileCourse = courses.slice(0, 4);
 
     return (
         <div className="bg-gray-100">
             <div className=" py-10 pb-20 sm:pb-10 space-y-5 max-w-7xl mx-auto">
                 <ComponentsTitle title={'Our Demanding Courses'} description={'Elevate your skills with our demanding courses designed to push your boundaries and unlock your full potential.'} />
-                <div className="px-5 space-y-10">
+                <div className="px-5 space-y-10 hidden lg:block">
                     <CourseTab setTabName={setTabName} tabName={tabName} />
                     <div className="sm:px-16">
                         <div className="relative">
@@ -78,6 +79,13 @@ const Courses = () => {
                         </div>
                     </div>
                 </div>
+
+                <div className='lg:hidden grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
+                    {
+                        mobileCourse?.map((course, idx) => <CourseCard key={idx} course={course} isCoursePage={true} />)
+                    }
+                </div>
+
             </div>
             <div className="flex justify-center -mt-5">
                 <Link to={'/courses'}>
