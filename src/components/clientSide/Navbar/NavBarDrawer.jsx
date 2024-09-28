@@ -108,9 +108,9 @@ const NavBarDrawer = ({ open, setOpen }) => {
                             </NavLink>)
                         }
                     </List>
-                    <div className="block xs:hidden pb-4 px-5 w-max">
+                    <div className=" pb-4 px-5 w-max">
                         <Link to="/courses">
-                            <button className="text-sm sm:text-base bg-primary text-white hover:bg-text_color px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses <FaAngleDown /></button>
+                            <button className="text-sm sm:text-base bg-primary text-white hover:bg-text_color px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses</button>
                         </Link>
                     </div>
                     <div className="px-4">
