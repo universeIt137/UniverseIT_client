@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
 import logo from '../../../assets/logo/mainLogo.png'
 import { FiSearch } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6";
 import { Link, NavLink } from 'react-router-dom';
-const Navbar = () => {
+import NavBarDrawer from './NavBarDrawer';
+import Hamburger from 'hamburger-react';
+const Navbar = ({open, setOpen}) => {
     const navStyle = `text-base font-semibold hover:text-primary ml-3 px-1 py-1 xl:py-2 rounded-lg relative navbarStylingComponentsParent w-max`
     const stylingComponents = <div className='h-[2px] bg-primary absolute bottom-0 left-0 navbarStylingComponents transition-all duration-300'></div>
     const navli = <>
@@ -32,30 +35,13 @@ const Navbar = () => {
             <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
         </div>
     </>
+     const openDrawer = () => setOpen(true);
     return (
-        <div className="bg-white w-full border-b-[3px] border-gray-300">
+        <div className="bg-white w-full border-b-2 border-gray-300">
             <div className="navbar bg-base-100 max-w-7xl mx-auto flex justify-between items-center">
                 <div className="flex justify-between w-full xs:w-max">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost xl:hidden">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path
-                                    strokeNavLinknecap="round"
-                                    strokeNavLinknejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h8m-8 6h16" />
-                            </svg>
-                        </div>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-72 p-2 shadow bg-white text-black">
-                            {navli}
-                        </ul>
+                    <div className="xl:hidden sm:px-3">
+                    <Hamburger toggled={open} toggle={setOpen} onClick={openDrawer} size={20} duration={0.6} />
                     </div>
                     <div className='flex gap-5'>
                         <Link to={"/"}>
