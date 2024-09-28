@@ -23,7 +23,7 @@ const Login = () => {
             .then(res => {
                 toast.success("Logged in Successfully!!", { id: toastId });
 
-                navigate('/', { replace: true })
+                navigate('/dashboard', { replace: true })
             })
             .catch(err => {
                 toast.error(err?.message, { id: toastId });
@@ -38,11 +38,11 @@ const Login = () => {
     return (
         <>
             <Helmet>
-                <title>BIFDT | Register</title>
+                <title>Universe IT | Admin Login</title>
             </Helmet>
             <div className="p-2">
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-[600px] mx-auto space-y-5">
-                    <p className='text-center text-2xl font-bold pb-5'>Login</p>
+                    <p className='text-center text-2xl font-bold pb-5'>Admin Login</p>
 
                     {/* your Email  */}
                     <div className="flex flex-col gap-2">
@@ -58,9 +58,7 @@ const Login = () => {
                         <div className="flex">
                             <input type={showPass ? 'text' : 'password'} className={`${inputStyle} rounded-r-none border-r-0`} placeholder="Password" {...register("password", {
                                 required: true,
-                                minLength: 8,
-                                maxLength: 20,
-                                pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/
+                               
                             })} />
                             <p onClick={() => setShowPass(!showPass)} className="text-xs font-medium uppercase bottom-[18px] right-2 p-1 cursor-pointer  hover:font-semibold w-[70px] border border-gray-500 flex justify-center items-center border-l-0 rounded-r-md">{showPass ? 'Hide' : 'Show'}</p>
                         </div>
@@ -71,16 +69,13 @@ const Login = () => {
                             {errors?.password?.type === 'pattern' && 'Password must contain at least one digit, one lowercase letter, and one uppercase letter.'}
                         </p>
                     </div>
-                    <div className="flex flex-col gap-2">
-                        <p>Don't have an account? <Link to={'/register'}><span className="font-bold underline hover:text-primary">Register</span></Link></p>
-                    </div>
+                    
 
                     <div className="flex gap-3 items-center flex-col xs:flex-row">
                         <button className={`${btnStyle}`}>
                             Login
                         </button>
-                        Or
-                        <GoogleLogin />
+                       
                     </div>
                 </form>
             </div>

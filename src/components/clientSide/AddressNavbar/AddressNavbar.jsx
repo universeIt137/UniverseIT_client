@@ -10,11 +10,19 @@ const AddressNavbar = () => {
     const handleBanglaLanguage = () => setLanguage('ban')
     const socialIconsStyle = `text-lg sm:text-sm size-7 sm:size-9 bg-black/20 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 active:scale-90`
     const socialIcons = <>
-       <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full">
             <div className="flex gap-4 ">
-                <p className={`${socialIconsStyle}`}><FaFacebookF /></p>
-                <p className={`${socialIconsStyle}`}><FaLinkedinIn /></p>
-                <p className={`${socialIconsStyle}`}><IoLogoYoutube /></p>
+                <Link to={"https://www.facebook.com/UniverseITInstitute"} target="_blank">
+                    <p className={`${socialIconsStyle}`}><FaFacebookF /></p>
+                </Link>
+
+                <Link to={"https://www.linkedin.com/"} target="_blank">
+                    <p className={`${socialIconsStyle}`}><FaLinkedinIn /></p>
+                </Link>
+
+                <Link to={"https://www.youtube.com/@universeitinstitute9947"} target="_blank">
+                    <p className={`${socialIconsStyle}`}><IoLogoYoutube /></p>
+                </Link>
             </div>
             <div className="flex sm:hidden w-max h-10 px-4 bg-white  rounded-md  justify-center items-center gap-3">
                 <button onClick={handleBanglaLanguage} className={`size-7  text-xs relative rounded-md transition-all duration-300 active:scale-90 ${language === 'ban' ? 'bg-text_color text-white font-bold' : 'text-primary'}`}>
@@ -25,7 +33,7 @@ const AddressNavbar = () => {
                     EN
                 </button>
             </div>
-       </div>
+        </div>
     </>
     return (
         <div className="w-full bg-primary text-white py-2 px-3 sm:px-10">
@@ -33,11 +41,11 @@ const AddressNavbar = () => {
                 <div className="hidden lg:flex gap-x-10 flex-col lg:flex-row">
                     <div className="flex items-center gap-2">
                         <IoIosMail className="text-xl" />
-                        <p className="text-sm sm:text-base">learn.universeit@gmail.com</p>
+                        <p className="text-sm sm:text-base">universeitinstitute@gmail.com</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <BiSolidPhoneCall className="text-xl" />
-                        <p className="text-sm sm:text-base">01919435672</p>
+                        <p className="text-sm sm:text-base">01886-061401</p>
                     </div>
                 </div>
                 <div className="flex gap-y-2 gap-x-4 sm:gap-10 flex-wrap">
@@ -52,7 +60,7 @@ const AddressNavbar = () => {
                                 EN
                             </button>
                         </div>
-                        <button className="h-10 px-4 xs:px-7 bg-white text-primary rounded-md text-sm font-bold hover:text-white hover:bg-text_color">Log In</button>
+                        
                         <Link to={"/certified"}>
                             <button className="h-10 px-4 xs:px-7 bg-white text-primary rounded-md text-sm font-bold hover:text-white hover:bg-text_color">Certificate Verification</button>
                         </Link>

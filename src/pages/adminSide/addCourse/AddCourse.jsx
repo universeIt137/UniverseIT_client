@@ -8,6 +8,7 @@ import { uploadImg } from '../../../UploadFile/uploadImg';
 import AddTechnology from './AddTechnology';
 import KeyFeatures from './KeyFeatures';
 import AddInstructors from './AddInstructors';
+import { useQuery } from '@tanstack/react-query';
 
 const AddCourse = () => {
     const axiosPublic = useAxiosPublic()
@@ -24,6 +25,15 @@ const AddCourse = () => {
 
 
 
+    const { data: categories = [], refetch, isLoading } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/popular-category');
+            return res.data;
+        }
+    })
+
+    
 
 
     const handleImageInputField = (e) => {
@@ -53,8 +63,10 @@ const AddCourse = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log('hello world')
         const form = event.target;
         const category = form.category.value;
+        const popularCategory = form.popularCategory.value;
         const title = form.title.value;
         const videoUrl = form.videoUrl.value;
         const courseFee = form.courseFee.value
@@ -92,7 +104,10 @@ const AddCourse = () => {
         }
 
 
-        const data = { category, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures, instructors: allInstructors, discountFee };
+        const data = { category, popularCategory, title, videoUrl, bannerImages: allImagesArray, subVideos: subVideosArray, courseFee, technologies: allTechnology, keyFeatures: allKeyFeatures, instructors: allInstructors, discountFee };
+
+        console.log(data);
+        console.log('after data')
 
         axiosPublic.post(`/course`, data)
             .then(res => {
@@ -125,6 +140,13 @@ const AddCourse = () => {
                                     <form action="" onSubmit={handleSubmit} className=''>
 
                                         <div className='grid grid-cols-1 md:grid-cols-2'>
+                                            {/* title */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Course Title</label>
+                                                    <input required type="text" id="title" name="title" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
+                                            </div>
                                             {/* category */}
                                             <div className="p-2 w-full">
                                                 <div className="relative">
@@ -138,13 +160,7 @@ const AddCourse = () => {
                                                     </select>
                                                 </div>
                                             </div>
-                                            {/* title */}
-                                            <div className="p-2 w-full">
-                                                <div className="relative">
-                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Course Title</label>
-                                                    <input required type="text" id="title" name="title" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                                                </div>
-                                            </div>
+
                                             {/* Banner images */}
                                             <div className='w-full md:col-span-2'>
                                                 <label className="leading-7 text-sm text-gray-600 font-bold">Upload Course Banner images</label>
@@ -171,6 +187,21 @@ const AddCourse = () => {
 
                                                 </div>
 
+                                            </div>
+
+                                            {/* Popular category */}
+                                            <div className="p-2 w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Course Popular Category</label>
+
+                                                    <select required name="popularCategory" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out h-[40px]" >
+                                                        <option value="">Select a popular Category</option>
+                                                        {
+                                                            categories.map(category => <option key={category._id} value={`${category.popularCategory}`}>{category.popularCategory}</option>)
+                                                        }
+
+                                                    </select>
+                                                </div>
                                             </div>
 
                                             {/* Fee */}

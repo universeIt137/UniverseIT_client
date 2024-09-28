@@ -4,6 +4,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { Spinner } from '@material-tailwind/react'; // Material Tailwind spinner
 import { FaExclamationTriangle } from 'react-icons/fa';
 import Loading from '../../../Shared/Loading/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const scrollAnimationVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -11,6 +12,7 @@ const scrollAnimationVariants = {
 };
 
 const CertificateVerification = () => {
+    window.scrollTo(0, 0);
     const axiosPublic = useAxiosPublic();
     const [student, setStudent] = useState({});
     const [loading, setLoading] = useState(false);
@@ -39,6 +41,9 @@ const CertificateVerification = () => {
 
     return (
         <div className="mx-auto">
+            <Helmet>
+                <title>Universe IT | Certificate Verification</title>
+            </Helmet>
             <div className="bg-white shadow-lg p-3  gap-6 border rounded-md grid grid-cols-1 md:grid-cols-2">
                 <motion.div
                     initial="hidden"
@@ -109,9 +114,9 @@ const CertificateVerification = () => {
                             </div>
                         </div>
                     ) : student && Object.keys(student).length === 0 ? (
-                        <div className="alert alert-info shadow-lg flex justify-center items-center py-10 text-lg font-semibold">
-                            {/* <FaExclamationTriangle className="h-8 w-8 text-blue-500 mr-2" /> */}
-                            <span className=''>Write your certificate number to verify it.</span>
+                        <div className="alert bg-text_color shadow-lg flex justify-center items-center py-10 text-lg font-semibold">
+                            <FaExclamationTriangle className="h-8 w-8 text-white mr-2" />
+                            <span className='text-white'>Write your certificate number to verify it.</span>
                         </div>
                     ) : (
                         <div className="alert alert-warning shadow-lg flex justify-center items-center">

@@ -8,7 +8,7 @@ const CallUs = () => {
                     <h2 className="capitalize font-bold text-base sm:text-xl md:text-2xl">Stay Tuned For Our Latest Course Offerings! Please Call Us At</h2>
                     <p className="text-sm sm:text-base">9:00 am - 8:00 pm</p>
                 </div>
-                <ButtonStrong text={<span className="flex items-center gap-1"><IoIosCall /> 01958536781</span>} />
+                <ButtonStrong text={<span className="flex items-center gap-1"><IoIosCall /> 01886-061401</span>} />
             </div>
         </div>
     );

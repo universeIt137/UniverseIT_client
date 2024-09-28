@@ -19,7 +19,17 @@ const CoursesPage = () => {
     const axiosPublic = useAxiosPublic();
     const [tabName, setTabName] = useState('All Courses')
 
+    const { data: popularCategories = [], refetch } = useQuery({
+        queryKey: ['popularCategories'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/popular-category');
+            return res.data;
+        }
+    })
 
+    console.log(popularCategories);
+    
+    const popularCategory = [{ "name": 'Digital Marketing' }, { "name": 'Web Development' }, { "name": 'App Development' }, { "name": 'Online' }];
 
     const { data: courses = [], isLoading } = useQuery({
         queryKey: ['courses'],
@@ -28,7 +38,7 @@ const CoursesPage = () => {
             return res.data;
         }
     })
-    console.log(courses);
+
 
 
     if (isLoading) {
@@ -37,7 +47,13 @@ const CoursesPage = () => {
 
 
 
-    const filteredCourse = tabName === 'All Courses' ? courses : courses?.filter(course => course?.category === tabName)
+    const filteredCourse = tabName === 'All Courses' 
+    ? courses 
+    : courses?.filter(course => 
+        course?.category === tabName || course?.popularCategory === tabName
+      );
+  
+
     const handleCategoryChange = (e) => {
         e.preventDefault();
         console.log(e.target.value);
@@ -50,11 +66,11 @@ const CoursesPage = () => {
             <Helmet>
                 <title>Universe IT | Courses</title>
             </Helmet>
-            <div className="bg-gray-100">
+            <div className="bg-gray-100 ">
                 <div className=" py-2 max-w-7xl mx-auto">
 
                     <div className='flex gap-5'>
-                        <div className='min-w-[240px] bg-white hidden md:block rounded-sm overflow-hidden'>
+                        <div className='min-w-[240px] bg-white hidden md:block rounded-sm overflow-hidden '>
                             {/* <div className='bg-primary text-white  flex gap-1 items-center'>
                                 <select className='bg-primary py-2 max-w-[95px]' name="" id="">
                                     <option value="">Country</option>
@@ -82,11 +98,25 @@ const CoursesPage = () => {
                                 <CoursesRadioStyle tabName={tabName} setTabName={setTabName} name={'Corporate'} />
 
                             </div>
+
+                            <div className='p-5 space-y-2'>
+                                <p className='font-semibold'>Search By Popular Courses</p>
+                                {
+                                    isLoading ? <Loading /> : 
+                                        popularCategories.map((category, idx) =>
+
+                                        <CoursesRadioStyle key={idx} tabName={tabName} setTabName={setTabName} name={`${category.popularCategory}`} />
+
+                                    )
+                                    
+                                }
+
+                            </div>
                         </div>
                         <div>
                             <ComponentsTitle title={'Our Demanding Courses'} description={'Elevate your skills with our demanding courses designed to push your boundaries and unlock your full potential.'} />
                             <CourseTab setTabName={setTabName} tabName={tabName} isCoursePage={true} />
-                            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
                                 {
                                     filteredCourse?.map((course, idx) => <CourseCard key={idx} course={course} isCoursePage={true} />)
                                 }

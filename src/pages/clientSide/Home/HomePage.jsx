@@ -14,6 +14,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Shared/Loading/Loading';
 
 const HomePage = () => {
+    window.scrollTo(0, 0);
     const axiosPublic = useAxiosPublic()
     const { data: homepageContent = [], refetch: homepageContentRefetch, isLoading } = useQuery({
         queryKey: ['homepageContent'],
@@ -48,14 +49,14 @@ const HomePage = () => {
             </motion.div>
 
 
-            {/* <motion.div
+            <motion.div
                 initial="hidden"
                 whileInView="visible"
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
                 <Courses />
-            </motion.div> */}
+            </motion.div>
 
 
             {/* <motion.div

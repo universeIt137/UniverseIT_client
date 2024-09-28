@@ -27,10 +27,10 @@ const Navbar = ({open, setOpen}) => {
         </NavLink>
         <div className="block xs:hidden pb-4">
             <Link to="/courses">
-                <button className="text-sm sm:text-base bg-primary text-white hover:bg-text_color px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses <FaAngleDown /></button>
+                <button className="text-sm sm:text-base bg-primary text-white hover:bg-text_color px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-bold">Browse Courses</button>
             </Link>
         </div>
-        <div className='relative block xl:hidden'>
+        <div className='relative block lg:hidden'>
             <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full xl:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
             <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
         </div>
@@ -49,18 +49,18 @@ const Navbar = ({open, setOpen}) => {
                         </Link>
                     </div>
                 </div>
-                <div className='relative hidden xl:block'>
+                <div className='relative hidden lg:block'>
                     <input className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full xl:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
                     <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
                 </div>
-                <div className="hidden xl:flex  ">
+                <div className="hidden lg:flex  ">
                     <ul className="menu menu-horizontal px-1">
                         {navli}
                     </ul>
                 </div>
-                <div className="hidden xs:block">
+                <div className="hidden lg:block">
                     <Link to="/courses">
-                        <button className="text-sm sm:text-base bg-primary text-white hover:bg-text_color px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-medium">Browse Courses <FaAngleDown /></button>
+                        <button className="text-sm sm:text-base bg-primary text-white hover:bg-text_color px-2 py-2 sm:px-4 sm:py-3 flex sm:gap-2 items-center justify-center rounded-lg hover:rounded-xl transition-all duration-300 active:scale-90 font-bold">Browse Courses </button>
                     </Link>
                 </div>
             </div>

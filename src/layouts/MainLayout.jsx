@@ -14,7 +14,7 @@ const MainLayout = () => {
         setOpen(false)
     }, [pathname])
     return (
-        <div className='relative bg-gray-100'>
+        <div className='relative bg-white'>
             <NavBarDrawer open={open} setOpen={setOpen} />
             <ScrollToTop />
             <AddressNavbar />
