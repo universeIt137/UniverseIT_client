@@ -102,11 +102,9 @@ const ManageJob = () => {
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Email</th>
                                 <th>Position</th>
-
                                 <th>Phone No</th>
-                                <th>Resume link</th>
+                                <th>Applicant CV</th>
                                 <th>Confirm</th>
                                 <th>Delete</th>
                             </tr>
@@ -117,12 +115,10 @@ const ManageJob = () => {
                                     <tr key={jobApply._id}>
                                         <td>{index + 1}</td>
                                         <td>{jobApply.fullName}</td>
-                                        <td>{jobApply.email}</td>
                                         <td>{jobApply.position}</td>
-
-                                        <td>{jobApply.phoneNumber}</td>
+                                        <td>{jobApply.mobileNo}</td>                                   
                                         <td>
-                                            <Link to={jobApply.resume}>
+                                            <Link target='_blank' to={jobApply.resume_link}>
                                                 <button className='btn text-secondary'>CV link</button>
                                             </Link>
                                         </td>
