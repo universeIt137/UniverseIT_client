@@ -42,11 +42,12 @@ const ApplicationPage = () => {
         const mobileNo = form.mobileNo.value;
         const location = form.location.value;
         const position = form.position.value;
-        const imageName = form.imageName.value;
+        // const imageName = form.imageName.value;
+        const resume_link = form.resume_link.value;
 
 
 
-        const data = { fullName, mobileNo, location, position, imageName };
+        const data = { fullName, mobileNo, location, position, resume_link };
         console.log(data);
 
         axiosPublic.post('/apply-job', data)
@@ -99,14 +100,29 @@ const ApplicationPage = () => {
                                     <span className="text-green-600 text-2xl">+ Upload Your CV</span>
                                     <span className="text-sm text-gray-500">Supported Format:pdf</span>
                                 </label>
-                                
+
                                 {/* Display the uploaded image name if available */}
                                 {imageName && (
                                     <span className="text-gray-700 mt-2 text-sm">
                                         Uploaded: {imageName}
                                     </span>
                                 )}
+
+                                {/*  Drive Link */}
+                                <div className='w-full mt-5'>
+                                    <label className="block text-gray-700 text-sm mb-2">or CV Link</label>
+                                    <input
+                                        type="text"
+                                        name="resume_link"
+                                        className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        placeholder="Paste your resume link"
+                                    />
+                                </div>
+
                             </div>
+
+
+
 
                             {/* Right Column - Form Fields */}
                             <div className="space-y-4">
@@ -134,7 +150,7 @@ const ApplicationPage = () => {
 
 
                                 <div>
-                                    <label className="block text-gray-700 text-sm mb-2">Enter Your Location</label>
+                                    <label className="block text-gray-700 text-sm mb-2">Enter Your Present Address</label>
                                     <input
                                         type="text"
                                         name="location"
