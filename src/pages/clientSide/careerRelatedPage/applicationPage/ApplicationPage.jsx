@@ -5,12 +5,22 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../../Shared/Loading/Loading';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const ApplicationPage = () => {
     window.scrollTo(0, 0);
 
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
+
+    const [imageName, setImageName] = useState('');
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImageName(file.name); // Set the image file name in state
+        }
+    };
 
 
     const { data: career = {}, refetch: blogDataRefetch, isLoading } = useQuery({
@@ -29,30 +39,14 @@ const ApplicationPage = () => {
         e.preventDefault();
         const form = e.target;
         const fullName = form.fullName.value;
-        const email = form.email.value;
-        const phoneNumber = form.phoneNumber.value;
-        const address = form.address.value;
-        const linkedInProfile = form.linkedInProfile.value;
-        const portfolio = form.portfolio.value;
-        const resume = form.resume.value;
-        const coverLetter = form.coverLetter.value;
+        const mobileNo = form.mobileNo.value;
+        const location = form.location.value;
         const position = form.position.value;
-        const technicalSkills = form.technicalSkills.value;
-        const previous_job = form.previous_job.value;
-        const previous_company = form.previous_company.value;
-        const start_date = form.start_date.value;
-        const end_date = form.end_date.value;
-        const description = form.description.value;
-        const degree = form.degree.value;
-        const institution = form.institution.value;
-        const graduation_year = form.graduation_year.value;
-        const reference_name = form.reference_name.value;
-        const reference_no = form.reference_name.value;
-        const reference_relationship = form.reference_relationship.value;
-        const availability = form.availability.value;
-        const salaryExpectations = form.salaryExpectations.value;
+        const imageName = form.imageName.value;
 
-        const data = { fullName, email, phoneNumber, address, linkedInProfile, portfolio, resume, coverLetter, position, technicalSkills, previous_job, previous_company, start_date, end_date, description, degree, institution, graduation_year, reference_name, reference_no, reference_relationship, availability, salaryExpectations };
+
+
+        const data = { fullName, mobileNo, location, position, imageName };
         console.log(data);
 
         axiosPublic.post('/apply-job', data)
@@ -74,264 +68,93 @@ const ApplicationPage = () => {
         form.reset();
     };
 
+    console.log(career);
+
     return (
         <div className="bg-gray-100">
+            <Helmet>
+                <title>Universe IT | Career Form</title>
+            </Helmet>
             <div className="container mx-auto px-4 py-8">
                 <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8 space-y-6">
 
-                    <div className="flex flex-col gap-5 lg:flex-row bg-blue-950 py-5 px-3 items-center justify-between mb-6">
+                    <div className="flex  flex-col-reverse gap-5 lg:flex-row bg-blue-950 py-5 px-3 items-center justify-between mb-6">
                         <h1 className="text-[10px] lg:text-3xl p-3 rounded-lg flex bg-secondary items-center gap-1 font-bold text-white"><IoDocumentTextOutline /><span>Job Application Form </span>( {career.position} )</h1>
                         <img src='https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png' alt="Company Logo" className="h-12" /> {/* Adjust height as needed */}
                     </div>
-                    {/* Basic Info Fields */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-gray-700 mb-1">Full Name*</label>
-                            <input
-                                type="text"
-                                name="fullName"
+                    <div className="max-w-5xl mx-auto border p-5 rounded-lg">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Left Column - pdf Upload */}
+                            <div className="flex flex-col items-center">
 
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Email*</label>
-                            <input
-                                type="email"
-                                name="email"
-
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Phone Number*</label>
-                            <input
-                                type="text"
-                                name="phoneNumber"
-
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Address*</label>
-                            <input
-                                type="text"
-                                name="address"
-                                required
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">LinkedIn Profile*</label>
-                            <input
-                                type="url"
-                                name="linkedInProfile"
-                                required
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Portfolio</label>
-                            <input
-                                type="url"
-                                name="portfolio"
-
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Resume* (Drive URL)</label>
-                            <input
-                                type="url"
-                                name="resume"
-
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Cover Letter (Drive URL)</label>
-                            <input
-                                type="url"
-                                name="coverLetter"
-
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Technical Skills */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-gray-700 mb-1">Job Position</label>
-                            <input
-                                type="text"
-                                name="position"
-                                value={career.position}
-                                readOnly
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-gray-700 mb-1">Technical Skills* (comma separated)</label>
-                            <input
-                                type="text"
-                                name="technicalSkills"
-
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-                    </div>
-
-
-                    {/* Work Experience Section */}
-                    <h2 className="text-xl font-semibold mb-4">Work Experience</h2>
-                    <div className="mb-6 border rounded p-4 border-gray-300 bg-gray-50">
-                        <h3 className="font-bold mb-2">Experience </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-gray-700 mb-1">Job Title</label>
-                                <input
-                                    type="text"
-                                    name="previous_job"
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700 mb-1">Company Name</label>
-                                <input
-                                    type="text"
-                                    name="previous_company"
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-
-                                />
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                            <div>
-                                <label className="block text-gray-700 mb-1">Start Date</label>
-                                <input
-                                    type="date"
-                                    name="start_date"
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700 mb-1">End Date</label>
-                                <input
-                                    type="date"
-                                    name="end_date"
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-
-                                />
-                            </div>
-                        </div>
-                        <div className="mt-2">
-                            <label className="block text-gray-700 mb-1">Description</label>
-                            <textarea
-                                name='description'
-                                className="w-full p-2 border border-gray-300 rounded-md"
-
-                            />
-                        </div>
-                    </div>
-
-                    {/* Education Section */}
-                    <h2 className="text-xl font-semibold mb-4">Education</h2>
-                    <div className="mb-6 border rounded p-4 border-gray-300 bg-gray-50">
-                        <h3 className="font-bold mb-2">Last Educational Qualification*</h3>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Degree*</label>
-                            <input
-                                type="text"
-                                name="degree"
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Institution*</label>
-                            <input
-                                type="text"
-                                name="institution"
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Graduation Year*</label>
-                            <input
-                                type="number"
-                                name="graduation_year"
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    {/* References Section */}
-                    <h2 className="text-xl font-semibold mb-4">References</h2>
-                    <div className="mb-6 border rounded p-4 border-gray-300 bg-gray-50">
-                        <h3 className="font-bold mb-2">Reference </h3>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Name</label>
-                            <input
-                                type="text"
-                                name="reference_name"
-                                className="w-full p-2 border border-gray-300 rounded-md"
+                                <label className="block border-2 border-dashed border-gray-300 w-full h-64 flex flex-col justify-center items-center cursor-pointer">
+                                    {/* Hidden file input field */}
+                                    <input
+                                        type="file"
+                                        className="hidden"
+                                        name="imageName"
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                    />
+                                    <span className="text-green-600 text-2xl">+ Upload Your CV</span>
+                                    <span className="text-sm text-gray-500">Supported Format:pdf</span>
+                                </label>
                                 
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Contact Info</label>
-                            <input
-                                type="text"
-                                name='reference_no'
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Relationship</label>
-                            <input
-                                type="text"
-                                name='reference_relationship'
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                
-                            />
-                        </div>
-                    </div>
+                                {/* Display the uploaded image name if available */}
+                                {imageName && (
+                                    <span className="text-gray-700 mt-2 text-sm">
+                                        Uploaded: {imageName}
+                                    </span>
+                                )}
+                            </div>
+
+                            {/* Right Column - Form Fields */}
+                            <div className="space-y-4">
+                                {/*  Full Name */}
+                                <div>
+                                    <label className="block text-gray-700 text-sm mb-2">Name</label>
+                                    <input
+                                        type="text"
+                                        name="fullName"
+                                        className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        placeholder="Enter your Full Name"
+                                    />
+                                </div>
+
+                                {/* Mobile No */}
+                                <div>
+                                    <label className="block text-gray-700 text-sm mb-2">Enter Mobile No</label>
+                                    <input
+                                        type="text"
+                                        name="mobileNo"
+                                        className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        placeholder="Enter your mobile number"
+                                    />
+                                </div>
 
 
+                                <div>
+                                    <label className="block text-gray-700 text-sm mb-2">Enter Your Location</label>
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        placeholder="Enter your location"
+                                    />
+                                </div>
 
-                    {/* Availability & Salary Expectations */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-gray-700 mb-1">Availability*</label>
-                            <input
-                                type="text"
-                                name="availability"
-                                placeholder='Enter Date from when you can join'
-                                required
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 mb-1">Salary Expectations*</label>
-                            <input
-                                type="number"
-                                name="salaryExpectations"
-                                required
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                            />
+                                <div>
+                                    <label className="block text-gray-700 text-sm mb-2">Job Post</label>
+                                    <input
+                                        type="text"
+                                        name="position"
+                                        value={career.position}
+                                        readOnly
+                                        className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        placeholder="Enter your location"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -339,7 +162,7 @@ const ApplicationPage = () => {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="mt-4 bg-secondary text-white font-semibold py-2 px-4 rounded-lg hover:bg-primary transition duration-300"
+                            className=" bg-secondary text-white font-semibold py-2 px-4 rounded-lg hover:bg-primary transition duration-300"
                         >
                             Submit Application
                         </button>

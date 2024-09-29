@@ -91,11 +91,11 @@ const CertificateVerification = () => {
                     whileInView="visible"
                     variants={scrollAnimationVariants}
                     viewport={{ once: true, amount: 0.2 }}
-                    className="border w-full p-8 rounded-2xl flex justify-center items-center"
+                    className="border w-full lg:p-8 rounded-2xl flex justify-center items-center"
                 >
                     {/* Loading and Result Section */}
                     {loading ? <Loading /> : student?.studentName ? (
-                        <div className="w-full max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-2xl text-gray-900">
+                        <div className="w-full max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto lg:mt-16 my2 bg-white shadow-xl rounded-2xl text-gray-900">
                             {/* Display student information */}
                             <div className="rounded-t-lg h-32 overflow-hidden bg-primary"></div>
                             <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
