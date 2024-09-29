@@ -34,11 +34,11 @@ const TeamMember = () => {
 
     return (
         <div className="bg-gray-100">
-            <div className=" py-10 pb-20 sm:pb-10 space-y-5 max-w-7xl mx-auto">
+            <div className=" py-10 pb-20 sm:pb-10 space-y-5 max-w-7xl mx-auto ">
                 <ComponentsTitle title={'Our Passionate Team Members'} description={'Meet our dedicated team of experts who are passionate about delivering exceptional results.'} />
-                <div className="px-5 space-y-10">
+                <div className="px-5 space-y-10 ">
                    
-                    <div className="sm:px-16">
+                    <div className="lg:px-16 ml-6 ">
                         <div className="relative">
                             <div className="absolute w-full flex sm:justify-between h-full items-end justify-center sm:items-center top-14 gap-7 sm:top-0">
                                 <div className="courses-prev-btn text-xl p-2 sm:p-3 rounded-full  cursor-pointer bg-primary/40 shadow-2xl hover:bg-primary/50 transition-all duration-100 active:scale-90 "><GrFormPrevious /></div>

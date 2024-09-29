@@ -49,7 +49,7 @@ const BlogPage = () => {
             <Helmet>
                 <title>Universe IT | Blogs</title>
             </Helmet>
-            <p className="text-4xl m-10"><span className='text-primary border-b-2'>Latest</span> News</p>
+            <p className="text-4xl m-10 text-center"><span className='text-primary border-b-2'>Latest</span> Blogs</p>
 
             <div className='flex gap-10 flex-col'>
                 {
