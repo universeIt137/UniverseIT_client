@@ -19,10 +19,10 @@ const MainLayout = () => {
             <NavBarDrawer open={open} setOpen={setOpen} />
             <ScrollToTop />
             <AddressNavbar />
-            <div className='subxl:sticky top-0 z-40'>
+            <div className='sm:sticky top-0 z-40'>
                 <Navbar open={open} setOpen={setOpen} />
             </div>
-            <div className='fixed bottom-0 left-0 w-full z-20 block subxl:hidden'>
+            <div className='fixed bottom-0 left-0 w-full z-20 block sm:hidden'>
                 <BottomNavbar/>
             </div>
             <Outlet></Outlet>
