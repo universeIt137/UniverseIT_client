@@ -17,7 +17,13 @@
     background: #F49401;
 }
 
-@media (max-width: 1440px) {
+.bottom .active {
+    color: #F49401;
+    background: transparent;
+    
+}
+
+@media (max-width: 1150px) {
     .active {
         color: white;
         background: #2C265F;
@@ -29,7 +35,7 @@
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1150px) {
     .active {
         color: #F49401;
     }

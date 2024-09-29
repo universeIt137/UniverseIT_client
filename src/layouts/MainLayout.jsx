@@ -5,6 +5,7 @@ import Navbar from '../components/clientSide/Navbar/Navbar';
 import Footer from '../components/clientSide/Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import NavBarDrawer from '../components/clientSide/Navbar/NavBarDrawer';
+import BottomNavbar from '../pages/clientSide/BottomNavbar/BottomNavbar';
 
 const MainLayout = () => {
     const [open, setOpen] = useState(false);
@@ -18,8 +19,11 @@ const MainLayout = () => {
             <NavBarDrawer open={open} setOpen={setOpen} />
             <ScrollToTop />
             <AddressNavbar />
-            <div className='sticky top-0 z-40'>
+            <div className='subxl:sticky top-0 z-40'>
                 <Navbar open={open} setOpen={setOpen} />
+            </div>
+            <div className='fixed bottom-0 left-0 w-full z-20 block subxl:hidden'>
+                <BottomNavbar/>
             </div>
             <Outlet></Outlet>
             <Footer />
