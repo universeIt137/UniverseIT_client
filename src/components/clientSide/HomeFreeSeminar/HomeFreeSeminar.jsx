@@ -25,7 +25,7 @@ const HomeFreeSeminar = () => {
         }
     })
     if (isLoading || homeDataIsLoading) {
-        return <Loading/>
+        return <Loading />
     }
     const data = homepageContent[0] || [];
     const weekDays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
@@ -57,22 +57,27 @@ const HomeFreeSeminar = () => {
                         <h2 className="text-3xl sm:text-5xl font-bold text-text_color">Free Seminar Schedule</h2>
                         <p className="font-medium text-sm sm:text-base text-justify text-text_color">Need guidelines to choose a suitable course? Unlock new insights and opportunities by joining our complimentary seminars.</p>
                     </div>
-                    <div className="py-5 space-y-5">
+                    <div className="py-5 space-y-5 ">
                         <div className={`space-y-4 ${seeMore ? 'max-h-[5000px]' : 'max-h-[300px]'} overflow-hidden transition-all duration-500`}>
                             {
-                                allSeminar?.map((seminar, idx) => <div className="w-full  bg-primary/35 rounded-xl flex overflow-hidden gap-3" key={idx}>
-                                    <p className="flex flex-col min-w-max max-w-max justify-center items-center pl-5 pr-2 sm:pr-4">
-                                        {returnDate(seminar?.date)}
-                                    </p>
-                                    <div className="w-full h-full bg-white py-5 rounded-xl flex justify-between items-center flex-wrap gap-3 pl-3 sm:pl-5 pr-5 sm:pr-10">
-                                        <div>
-                                            <h2 className="text-sm sm:text-base font-bold">{seminar?.topic}</h2>
-                                            <p className="text-xs sm:text-sm font-medium">{weekDays[new Date(seminar?.date).getDay()] || 0} | Time: {returnTime(seminar?.time)}</p>
-                                        </div>
-                                        <Link to={`/seminarForm/${seminar?._id}`}><ButtonStrong text={'Register Now'} /></Link>
-                                    </div>
+                                allSeminar?.map((seminar, idx) =>
+                                    <div className="w-full  bg-primary/35 rounded-xl flex overflow-hidden gap-3 " key={idx}>
+                                        <p className="flex flex-col min-w-max max-w-max justify-center items-center pl-5 pr-2 sm:pr-4">
+                                            {returnDate(seminar?.date)}
+                                        </p>
+                                        <div className="w-full h-full bg-white lg:py-5 rounded-xl flex justify-between items-center flex-wrap gap-3 pl-3 sm:pl-5 pr-5 sm:pr-10 py-1">
+                                            <div>
+                                                <h2 className="text-[] sm:text-base font-bold">{seminar?.topic}</h2>
+                                                <p className="text-xs sm:text-sm font-medium">{weekDays[new Date(seminar?.date).getDay()] || 0} | Time: {returnTime(seminar?.time)}</p>
+                                            </div>
+                                            <Link to={`/seminarForm/${seminar?._id}`}>
 
-                                </div>)
+                                                <button className={`bg-primary/95 px-1 lg:px-6 py-[2px] mb-1 lg:py-2.5 text-sm lg:text-base rounded-md  text-white lg:font-bold flex justify-center items-center hover:bg-text_color hover:text-white transition-all duration-300 active:scale-90  `}>Register Now</button>
+                                            </Link>
+                                        </div>
+
+                                    </div>
+                                )
                             }
                         </div>
                         <div className="flex">

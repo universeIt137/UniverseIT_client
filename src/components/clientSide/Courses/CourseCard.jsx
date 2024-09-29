@@ -18,12 +18,12 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
 
     return (
         <div className={`card bg-base-100 mx-auto ${isCoursePage ? cardStyleForCoursePage : cardStyle}`}>
-            <figure className="h-[180px] relative">
+            <figure className="lg:h-[180px] h-[100px] relative">
                 {
                     discount!=='0' && <div className="absolute top-0 right-0 bg-primary text-white text-xs px-3 py-0.5 rounded-bl-lg">{discount}% off</div>
                 }
                 <img
-                    className="h-full object-cover w-full"
+                    className="lg:h-full object-cover lg:w-full"
                     src={bannerImages[0]}
                     alt="Shoes" />
             </figure>
@@ -32,11 +32,11 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
                     <div className="space-y-3 flex flex-col justify-between min-h-full">
                         <div className="space-y-2">
                             <div className="flex justify-between">
-                                <p className=" max-w-max px-3 rounded-sm text-xs bg-primary/40 py-1">{category}</p>
+                                <p className=" max-w-max px-3 rounded-sm text-[8px] lg:text-xs bg-primary/40 py-1">{category}</p>
                                 <Link to={`/courseDetails/${_id}`}><p className="flex justify-end text-xl sm:text-2xl"><LuArrowUpRight /></p></Link>
                             </div>
                             <div className="">
-                                <h2 className="font-bold text-text_color text-base ">{title}</h2>
+                                <h2 className="font-bold text-text_color text-[12px] lg:text-base ">{title}</h2>
 
                             </div>
                             {/* <div className="flex gap-2 font-medium text-sm sm:text-base items-center">
@@ -56,10 +56,10 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
                         <div className="flex items-end">
 
                             {
-                                discountFee === '0' ? <p className="text-center text-base  font-bold text-primary">
+                                discountFee === '0' ? <p className="text-center text-[12px] lg:text-base  font-bold text-primary">
 
                                     {courseFee}৳
-                                </p> : <p className="text-center text-base  font-bold text-primary ">
+                                </p> : <p className="text-center text-[12px] lg:text-base  font-bold text-primary ">
 
                                     <span className="font-normal">{discountFee}৳</span> <span className="line-through">{courseFee}৳</span>
                                 </p>
