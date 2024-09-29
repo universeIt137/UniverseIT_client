@@ -70,7 +70,7 @@ const TeamMemberPage = () => {
                 </div>
             </div>
 
-            <div className='grid lg:grid-cols-4 gap-10 justify-center'>
+            <div className='flex flex-wrap gap-10 justify-center'>
                 {/* {
                     members.map((member, idx) => <MemberCard member={member} />
                 } */}

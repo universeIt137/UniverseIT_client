@@ -70,7 +70,7 @@ const TeamMember = () => {
                                 >
                                     {
                                         members?.map((member, idx) => <SwiperSlide key={idx} className="">
-                                            <MemberCard member={ member } />
+                                            <MemberCard member={ member } isSlider={true} />
                                         </SwiperSlide>)
                                     }
 
