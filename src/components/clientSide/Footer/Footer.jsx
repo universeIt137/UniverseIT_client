@@ -76,8 +76,8 @@ const Footer = () => {
                         </a>
                         <a className="link link-hover"><span className="flex items-center gap-2"><IoIosCall /> 01886-061401</span></a>
                     </nav>
-                    <div className="flex justify-between gap-24 lg:footer">
-                        <div className="footer w-3/4">
+                    <div className="flex justify-between lg:gap-24  gap-10 lg:footer">
+                        <div className="footer w-full">
                             <nav>
                                 <h6 className="footer-title">Popular Courses</h6>
                                 {
