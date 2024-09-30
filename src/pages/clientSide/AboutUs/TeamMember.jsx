@@ -10,6 +10,7 @@ import ComponentsTitle from '../../../Shared/ComponentsTitle/ComponentsTitle';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import MemberCard from './MemberCard';
+import SliderMemberCard from './SliderMemberCard';
 
 const TeamMember = () => {
 
@@ -51,10 +52,10 @@ const TeamMember = () => {
                                         prevEl: '.courses-prev-btn',
                                     }}
                                     modules={[Navigation]}
-                                    spaceBetween={0}
+                                    spaceBetween={10}
                                     breakpoints={{
-                                        640: {
-                                            slidesPerView: 1,
+                                        0: {
+                                            slidesPerView: 2,
                                         },
                                         890: {
                                             slidesPerView: 2,
@@ -70,7 +71,7 @@ const TeamMember = () => {
                                 >
                                     {
                                         members?.map((member, idx) => <SwiperSlide key={idx} className="">
-                                            <MemberCard member={ member } isSlider={true} />
+                                            <SliderMemberCard member={ member } isSlider={true} />
                                         </SwiperSlide>)
                                     }
 
