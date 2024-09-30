@@ -65,6 +65,7 @@ import ApplicationPage from "../pages/clientSide/careerRelatedPage/applicationPa
 import ManageJob from "../pages/adminSide/applyJobRelatedPage/manageJob/ManageJob";
 import CourseCategoryPage from "../pages/adminSide/courseRelatedPage/CourseCategoryPage";
 import PopularCoursePage from "../pages/clientSide/Courses/PopularCoursePage";
+import ViewPdf from "../components/clientSide/ViewPdf/ViewPdf";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -340,6 +341,10 @@ const BasicRoutes = createBrowserRouter([
 
 
         ]
+    },
+    {
+        path: '/viewPdf',
+        element: <ViewPdf/>
     }
 ]);
 

@@ -14,8 +14,8 @@ const Navbar = ({open, setOpen}) => {
             <a>About us</a>
             {stylingComponents}
         </NavLink>
-        <NavLink to={'/blogs'} className={`${navStyle}`}>
-            <a>Blogs</a>
+        <NavLink to={'/career'} className={`${navStyle}`}>
+            <a>Career</a>
             {stylingComponents}
         </NavLink>
         <NavLink to={'/faculties'} className={`${navStyle}`}>
@@ -40,7 +40,7 @@ const Navbar = ({open, setOpen}) => {
         <div className="bg-white w-full border-b-2 border-gray-300">
             <div className="navbar bg-base-100 max-w-7xl mx-auto flex justify-between items-center">
                 <div className="flex flex-row-reverse subxl:flex-row justify-between w-full subxl:w-max">
-                    <div className="xl:hidden sm:px-3">
+                    <div className="subxl:hidden sm:px-3">
                     <Hamburger toggled={open} toggle={setOpen} onClick={openDrawer} size={20} duration={0.6} />
                     </div>
                     <div className='flex gap-5'>
