@@ -14,8 +14,8 @@ const Navbar = ({open, setOpen}) => {
             <a>About us</a>
             {stylingComponents}
         </NavLink>
-        <NavLink to={'/blogs'} className={`${navStyle}`}>
-            <a>Blogs</a>
+        <NavLink to={'/career'} className={`${navStyle}`}>
+            <a>Career</a>
             {stylingComponents}
         </NavLink>
         <NavLink to={'/faculties'} className={`${navStyle}`}>
