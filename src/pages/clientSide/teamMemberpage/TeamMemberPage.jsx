@@ -4,6 +4,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Shared/Loading/Loading';
 import MemberCard from '../AboutUs/MemberCard';
+import SliderMemberCard from '../AboutUs/SliderMemberCard';
 
 const TeamMemberPage = () => {
 
@@ -70,13 +71,13 @@ const TeamMemberPage = () => {
                 </div>
             </div>
 
-            <div className='flex flex-wrap gap-10 justify-center'>
+            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-5  justify-center px-2'>
                 {/* {
                     members.map((member, idx) => <MemberCard member={member} />
                 } */}
 
                 {
-                    otherEmployees.map((member, idx) => <MemberCard key={member._id} member={member}></MemberCard>)
+                    otherEmployees.map((member, idx) => <SliderMemberCard key={member._id} member={member}></SliderMemberCard>)
                 }
             </div>
             {/* <div className="mt-4 flex justify-center items-center gap-6">

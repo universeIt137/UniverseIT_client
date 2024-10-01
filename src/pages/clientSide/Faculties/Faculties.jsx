@@ -106,7 +106,7 @@ const Faculties = () => {
                 }
             </div>
 
-            <div className='grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-10  justify-center px-2'>
+            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-5  justify-center px-2'>
                 {
                     (showingFaculties.slice(firstCardId, firstCardId + cardPerSlice)).map((faculty, idx) => <FacultyCard key={idx} faculty={faculty} />)
                 }
