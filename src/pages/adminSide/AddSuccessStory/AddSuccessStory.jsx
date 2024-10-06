@@ -11,9 +11,12 @@ import { uploadVideo } from '../../../UploadFile/uploadVideo'; // Assuming you h
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import StoryTable from './StoryTable';
+import { useState } from 'react';
 
 const AddSuccessStory = () => {
     const { id } = useParams();
+    
+
 
     const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, reset } = useForm();
@@ -137,7 +140,7 @@ const AddSuccessStory = () => {
                                         {/* Title */}
                                         <div className="p-2 w-full sm:w-1/2">
                                             <div className="relative">
-                                                <label className="leading-7 text-sm text-gray-600 font-bold">Story Title</label>
+                                                <label className="leading-7 text-sm text-gray-600 font-bold">Batch Number</label>
                                                 <input type="text" {...register("title", { required: true })} name="title" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                             </div>
                                         </div>
@@ -197,21 +200,8 @@ const AddSuccessStory = () => {
                                     </form>
 
                                     <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-                                        <a className="text-indigo-500">info@UniverstIT.com</a>
-                                        <p className="leading-normal my-5">House # 3/GA,
-                                            <br />Shyamoli, Road # 1. Dhaka-1207.
-                                        </p>
-                                        <span className="inline-flex">
-                                            <a className="text-gray-500">
-                                                <Link to="https://x.com/"><BiLogoTwitter className="text-2xl" /></Link>
-                                            </a>
-                                            <a className="ml-4 text-gray-500">
-                                                <Link to="https://www.youtube.com/"><TbBrandYoutubeFilled className="text-2xl" /></Link>
-                                            </a>
-                                            <a className="ml-4 text-gray-500">
-                                                <Link to="https://www.facebook.com/"><FaFacebook className="text-xl" /></Link>
-                                            </a>
-                                        </span>
+                                        
+                                        
                                     </div>
                                 </div>
                             </div>

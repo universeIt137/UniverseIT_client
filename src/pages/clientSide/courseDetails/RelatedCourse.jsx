@@ -13,7 +13,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic'
 import Loading from '../../../Shared/Loading/Loading'
 const RelatedCourse = () => {
     const { id } = useParams();
-    console.log(id);
+    // console.log(id);
     const { data: courses = [], isLoading } = useQuery({
         queryKey: ['courses'],
         queryFn: async () => {

@@ -13,13 +13,13 @@ import SuccessStory from './SuccessStory';
 import RelatedCourse from './RelatedCourse';
 import CourseTabsAndShare from './CourseTabsAndShare';
 
-const BannerSection = ({ courseData }) => {
+const BannerSection = ({ filteredSuccessStories, courseData }) => {
 
     const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee, technologies = [], keyFeatures = [], instructors = [] } = courseData;
     const handleClick = () => {
         window.location.href = `tel:+8801755450127`;
     };
-    console.log(instructors);
+    // console.log(instructors);
 
     return (
         <div className='flex flex-col-reverse lg:flex-row  my-5 gap-1 md:gap-5'>
@@ -86,7 +86,7 @@ const BannerSection = ({ courseData }) => {
                             readonly
                         />
                     </p>
-                    <div>
+                    <div className=''>
                         <p className='text-lg font-bold py-2'>Instructors:</p>
                         <div className=' gap-2 grid grid-cols-3'>
                             {instructors.map((item, index) => (
@@ -103,9 +103,24 @@ const BannerSection = ({ courseData }) => {
                                 </div>
                             ))}
                         </div>
+
+                        <div className='mt-5'>
+                            <div className='grid grid-cols-2  sm:grid-cols-2 gap-5 '>
+                                <button className='w-full' onClick={handleClick}>
+                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm py-0.5'>CALL NOW</span>} />
+                                </button>
+                                <Link to={'/freeSeminar'}>
+                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm lg:text-xs xl:text-sm py-0.5 lg:py-1 xl:py-0.5'>JOIN FREE SEMINAR</span>} />
+                                </Link>
+                            </div>
+
+                            <Link to={'/onlineAdmission'}>
+                                <div className='py-3'><ButtonStrong text={'ENROLL NOW'} isWidthFull={true} /></div>
+                            </Link>
+                        </div>
                     </div>
 
-                    <div className='flex flex-col justify-between min-h-full'>
+                    <div className='flex flex-col justify-between min-h-full '>
                         <div className='hidden lg:block'>
                             <p className='text-2xl text-secondary font-bold py-2'>This course includes:</p>
                             <ul className=' text-sm md:text-base  lg:text-start space-y-3 px-4'>
@@ -126,20 +141,7 @@ const BannerSection = ({ courseData }) => {
                         </div>
 
 
-                        <div className='mt-5'>
-                            <div className='grid grid-cols-2  sm:grid-cols-2 gap-5 '>
-                                <button className='w-full' onClick={handleClick}>
-                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm py-0.5'>CALL NOW</span>} />
-                                </button>
-                                <Link to={'/freeSeminar'}>
-                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm lg:text-xs xl:text-sm py-0.5 lg:py-1 xl:py-0.5'>JOIN FREE SEMINAR</span>} />
-                                </Link>
-                            </div>
-
-                            <Link to={'/onlineAdmission'}>
-                                <div className='py-3'><ButtonStrong text={'ENROLL NOW'} isWidthFull={true} /></div>
-                            </Link>
-                        </div>
+                        
                     </div>
 
 
@@ -180,7 +182,7 @@ const BannerSection = ({ courseData }) => {
                 {/* course video and technology section for mobile view  */}
 
                 <div className="px-5">
-                    <SuccessStory />
+                    <SuccessStory filteredSuccessStories={ filteredSuccessStories} />
                     <RelatedCourse />
                 </div>
             </div>
