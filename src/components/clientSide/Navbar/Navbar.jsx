@@ -22,7 +22,7 @@ const Navbar = ({open, setOpen}) => {
             <a>Faculties</a>
             {stylingComponents}
         </NavLink>
-        <NavLink to={'/successStory'} className={`${navStyle}`}><a>Success Story</a>
+        <NavLink to={'/contact-us'} className={`${navStyle}`}><a>Contact Us</a>
             {stylingComponents}
         </NavLink>
         <div className="block xs:hidden pb-4">

@@ -66,6 +66,7 @@ import ManageJob from "../pages/adminSide/applyJobRelatedPage/manageJob/ManageJo
 import CourseCategoryPage from "../pages/adminSide/courseRelatedPage/CourseCategoryPage";
 import PopularCoursePage from "../pages/clientSide/Courses/PopularCoursePage";
 import ViewPdf from "../components/clientSide/ViewPdf/ViewPdf";
+import ContactUsPage from "../pages/clientSide/contactUs/ContactUsPage";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -150,6 +151,10 @@ const BasicRoutes = createBrowserRouter([
                 path: "register",
                 element: <Register />
             },
+            {
+                path: "/contact-us",
+                element: <ContactUsPage/>
+            }
             
 
         ]
@@ -290,7 +295,7 @@ const BasicRoutes = createBrowserRouter([
                 element: <UpdateCertificate />
             },
             {
-                path: "addSuccessStory",
+                path: "addSuccessStory/:id",
                 element: <AddSuccessStory />
             },
             {

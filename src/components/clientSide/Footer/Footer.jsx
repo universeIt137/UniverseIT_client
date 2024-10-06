@@ -69,6 +69,7 @@ const Footer = () => {
                     </form>
                     <nav className='max-w-[220px] text-sm'>
                         <h6 className="footer-title">Contact</h6>
+                        <Link to={"/contact-us"}>Contact Us</Link>
                         <a className="link link-hover  flex gap-2"> <span className='pt-2'><FaLocationDot /></span>House # 21/A (Lift 5th Floor),Road-2,Block-A,Aftabnagar(Beside East West University),Merul Badda,Dhaka.</a>
                         <a className="link link-hover flex gap-2">
                             <IoIosMail className="text-xl" />
