@@ -47,6 +47,7 @@ const ManageCoursePage = () => {
                                 
                                 <th>Add Course Details</th>
                                 <th>Add Course Objective</th>
+                                <th>Add SuccessFul Students</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 

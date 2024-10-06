@@ -8,6 +8,7 @@ import Marquee from "react-fast-marquee";
 import { TbCategoryPlus, TbInfoHexagonFilled } from "react-icons/tb";
 import semesterImg from '../../../assets/icons/semister.png'
 import { PiTargetBold } from "react-icons/pi";
+import { IoPersonAdd } from "react-icons/io5";
 const CourseRow = ({ course, idx, coursesRefetch }) => {
     const axiosPublic = useAxiosPublic()
     const videoDivStyle = 'rounded-md overflow-hidden'
@@ -108,6 +109,15 @@ const CourseRow = ({ course, idx, coursesRefetch }) => {
                     </div>
                 </Link>
             </td>
+
+            <td className='text-2xl '>
+                <Link to={`/dashboard/addSuccessStory/${_id}`}>
+                    <div className="text-green-600 flex justify-center">
+                    <IoPersonAdd />
+                    </div>
+                </Link>
+            </td>
+            
             <td className='text-2xl text-green-500'>
                 <Link to={`/dashboard/updateCourse/${_id}`}><MdEditSquare /></Link>
             </td>

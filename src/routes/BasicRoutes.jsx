@@ -295,7 +295,7 @@ const BasicRoutes = createBrowserRouter([
                 element: <UpdateCertificate />
             },
             {
-                path: "addSuccessStory",
+                path: "addSuccessStory/:id",
                 element: <AddSuccessStory />
             },
             {

@@ -1,2 +1,2 @@
-export const backendURL = 'https://bifdt-server-ashikur.vercel.app'
-// export const backendURL = 'http://localhost:5000'
+export default   'https://universe-it-server.vercel.app/'
+// export default  'http://localhost:5000'
