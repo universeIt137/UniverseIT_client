@@ -103,12 +103,12 @@ const AdmissionRequest = () => {
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Email</th>
+                                <th>Payment Number</th>
                                 <th>Course</th>
                                 <th>Gender</th>
-                                <th>Contact No</th>
+                                <th>Transaction ID</th>
                                 <th>Address</th>
-                                <th>How you know</th>
+                                
                                 <th>Confirm</th>
                                 <th>Delete</th>
                             </tr>
@@ -119,12 +119,12 @@ const AdmissionRequest = () => {
                                     <tr key={request._id}>
                                         <td>{index + 1}</td>
                                         <td>{request.name}</td>
-                                        <td>{request.email}</td>
+                                        <td>{request.payment_number}</td>
                                         <td>{request.course}</td>
                                         <td>{request.gender}</td>
-                                        <td>{request.contact}</td>
+                                        <td>{request.transaction_id}</td>
                                         <td>{request.address}</td>
-                                        <td>{request.website}</td>
+                                       
                                         <td onClick={() => handleRequest(request)} className='text-xl text-green-600'>
                                             {request?.status ? <p className='text-sm text-green-600'>Confirmed</p> : <GiConfirmed />}
                                         </td>

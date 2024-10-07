@@ -13,18 +13,18 @@ import SuccessStory from './SuccessStory';
 import RelatedCourse from './RelatedCourse';
 import CourseTabsAndShare from './CourseTabsAndShare';
 
-const BannerSection = ({ courseData }) => {
+const BannerSection = ({ filteredSuccessStories, courseData }) => {
 
     const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee, technologies = [], keyFeatures = [], instructors = [] } = courseData;
     const handleClick = () => {
         window.location.href = `tel:+8801755450127`;
     };
-    console.log(instructors);
+    // console.log(instructors);
 
     return (
-        <div className='flex flex-col lg:flex-row  my-5 gap-1 md:gap-5'>
+        <div className='flex flex-col-reverse lg:flex-row  my-5 gap-1 md:gap-5'>
             {/* video and technology section  */}
-            <div className="lg:w-4/6 bg-white p-5 rounded-2xl ">
+            <div className="lg:w-4/6 bg-white p-5 rounded-2xl  hidden lg:block">
                 {/* main video  */}
                 <MainVideo videoUrl={videoUrl} />
 
@@ -35,12 +35,12 @@ const BannerSection = ({ courseData }) => {
                         {
                             technologies?.map((item, idx) =>
                                 <div key={idx} className="flex flex-col items-center lg:justify-between">
-                                <div className="avatar">
-                                    <div className="w-12 rounded-full ">
-                                        <img src={item?.image} />
+                                    <div className="avatar">
+                                        <div className="w-12 rounded-full ">
+                                            <img src={item?.image} />
+                                        </div>
                                     </div>
-                                </div>
-                                <p className='font-bold  mb-2 text-center'>{item?.name}</p>
+                                    <p className='font-bold  mb-2 text-center'>{item?.name}</p>
                                 </div>
                             )
                         }
@@ -56,10 +56,10 @@ const BannerSection = ({ courseData }) => {
                     <CourseDetailsPageSubVideos subVideos={subVideos} />
                 </div>
                 {/* courseDetailsSection  */}
-               <div className='hidden lg:block'>
-                    <CourseTabsAndShare/>
-    
-               </div>
+                <div className='hidden lg:block'>
+                    <CourseTabsAndShare />
+
+                </div>
             </div>
 
             {/* sidebar */}
@@ -86,25 +86,42 @@ const BannerSection = ({ courseData }) => {
                             readonly
                         />
                     </p>
-                    <div>
+                    <div className=''>
                         <p className='text-lg font-bold py-2'>Instructors:</p>
-                        <div className='space-y-4 py-4'>
+                        <div className=' gap-2 grid grid-cols-3'>
                             {instructors.map((item, index) => (
-                                <div key={index} className="flex gap-2 sm:gap-4 relative">
+                                <div key={index} className="border p-2 rounded-lg gap-2 sm:gap-4 relative">
+                                    <div className="flex flex-col items-center">
+                                        <img className="size-16 rounded-full object-cover" src={item?.image} alt="" />
+                                        <div className="text-base font-medium">
 
-                                    <img className="size-16 rounded-full object-cover" src={item?.image} alt="" />
-                                    <div className="text-base font-medium">
+                                            <p className='text-center'>{item?.name}</p>
 
-                                        <p>{item?.name}</p>
-
+                                        </div>
                                     </div>
+
                                 </div>
                             ))}
                         </div>
+
+                        <div className='mt-5'>
+                            <div className='grid grid-cols-2  sm:grid-cols-2 gap-5 '>
+                                <button className='w-full' onClick={handleClick}>
+                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm py-0.5'>CALL NOW</span>} />
+                                </button>
+                                <Link to={'/freeSeminar'}>
+                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm lg:text-xs xl:text-sm py-0.5 lg:py-1 xl:py-0.5'>JOIN FREE SEMINAR</span>} />
+                                </Link>
+                            </div>
+
+                            <Link to={'/onlineAdmission'}>
+                                <div className='py-3'><ButtonStrong text={'ENROLL NOW'} isWidthFull={true} /></div>
+                            </Link>
+                        </div>
                     </div>
 
-                    <div className='flex flex-col justify-between min-h-full'>
-                        <div className=''>
+                    <div className='flex flex-col justify-between min-h-full '>
+                        <div className='hidden lg:block'>
                             <p className='text-2xl text-secondary font-bold py-2'>This course includes:</p>
                             <ul className=' text-sm md:text-base  lg:text-start space-y-3 px-4'>
                                 {
@@ -124,29 +141,49 @@ const BannerSection = ({ courseData }) => {
                         </div>
 
 
-                        <div className='mt-5'>
-                            <div className='grid grid-cols-1  sm:grid-cols-2 gap-5 '>
-                                <button className='w-full' onClick={handleClick}>
-                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm py-0.5'>CALL NOW</span>} />
-                                </button>
-                                <Link to={'/freeSeminar'}>
-                                    <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm lg:text-xs xl:text-sm py-0.5 lg:py-1 xl:py-0.5'>JOIN FREE SEMINAR</span>} />
-                                </Link>
-                            </div>
-
-                            <Link to={'/onlineAdmission'}>
-                                <div className='py-3'><ButtonStrong text={'ENROLL NOW'} isWidthFull={true} /></div>
-                            </Link>
-                        </div>
+                        
                     </div>
 
 
 
                 </div>
-                <div className='block lg:hidden'><CourseTabsAndShare/></div>
+
+                {/* mobile view related video and technologies  */}
+                <div className="lg:hidden">
+                    <div className="ml-6">
+                    <MainVideo videoUrl={videoUrl} />
+                    </div>
+
+                    <section className=' mt-2 bg-gray-200 rounded-xl p-5'>
+                        <p className='font-bold text-xl mb-2' >Technologies you will learn</p>
+                        <div className='grid grid-cols-3 lg:grid-cols-8'>
+
+                            {
+                                technologies?.map((item, idx) =>
+                                    <div key={idx} className=" flex flex-col items-center lg:justify-between">
+                                        <div className="avatar">
+                                            <div className="w-7 rounded-full bg-white">
+                                                <img src={item?.image} />
+                                            </div>
+                                        </div>
+                                        <p className='font-bold text-xs  mb-2 text-center'>{item?.name}</p>
+                                    </div>
+                                )
+                            }
+                            {
+                                technologies?.length < 1 && <p className='font-bold  mb-2 text-center'>No Technology added!!!</p>
+                            }
+
+                        </div>
+                    </section>
+                </div>
+
+                <div className='block lg:hidden'><CourseTabsAndShare /></div>
+                {/* course video and technology section for mobile view  */}
+
                 <div className="px-5">
-                <SuccessStory />
-                <RelatedCourse />
+                    <SuccessStory filteredSuccessStories={ filteredSuccessStories} />
+                    <RelatedCourse />
                 </div>
             </div>
         </div>

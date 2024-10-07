@@ -69,6 +69,7 @@ const Footer = () => {
                     </form>
                     <nav className='max-w-[220px] text-sm'>
                         <h6 className="footer-title">Contact</h6>
+                        <Link to={"/contact-us"}>Contact Us</Link>
                         <a className="link link-hover  flex gap-2"> <span className='pt-2'><FaLocationDot /></span>House # 21/A (Lift 5th Floor),Road-2,Block-A,Aftabnagar(Beside East West University),Merul Badda,Dhaka.</a>
                         <a className="link link-hover flex gap-2">
                             <IoIosMail className="text-xl" />
@@ -76,8 +77,8 @@ const Footer = () => {
                         </a>
                         <a className="link link-hover"><span className="flex items-center gap-2"><IoIosCall /> 01886-061401</span></a>
                     </nav>
-                    <div className="flex justify-between gap-24 lg:footer">
-                        <div className="footer w-3/4">
+                    <div className="flex justify-between lg:gap-24  gap-10 lg:footer">
+                        <div className="footer w-full">
                             <nav>
                                 <h6 className="footer-title">Popular Courses</h6>
                                 {

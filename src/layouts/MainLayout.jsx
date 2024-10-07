@@ -6,6 +6,7 @@ import Footer from '../components/clientSide/Footer/Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import NavBarDrawer from '../components/clientSide/Navbar/NavBarDrawer';
 import BottomNavbar from '../pages/clientSide/BottomNavbar/BottomNavbar';
+import WhatsAppButton from '../components/clientSide/WhatsAppButton';
 
 const MainLayout = () => {
     const [open, setOpen] = useState(false);
@@ -27,6 +28,7 @@ const MainLayout = () => {
             </div>
             <Outlet></Outlet>
             <Footer />
+            <WhatsAppButton></WhatsAppButton>
         </div>
     );
 };

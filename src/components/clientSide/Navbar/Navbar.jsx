@@ -14,15 +14,15 @@ const Navbar = ({open, setOpen}) => {
             <a>About us</a>
             {stylingComponents}
         </NavLink>
-        <NavLink to={'/blogs'} className={`${navStyle}`}>
-            <a>Blogs</a>
+        <NavLink to={'/career'} className={`${navStyle}`}>
+            <a>Career</a>
             {stylingComponents}
         </NavLink>
         <NavLink to={'/faculties'} className={`${navStyle}`}>
             <a>Faculties</a>
             {stylingComponents}
         </NavLink>
-        <NavLink to={'/successStory'} className={`${navStyle}`}><a>Success Story</a>
+        <NavLink to={'/contact-us'} className={`${navStyle}`}><a>Contact Us</a>
             {stylingComponents}
         </NavLink>
         <div className="block xs:hidden pb-4">
