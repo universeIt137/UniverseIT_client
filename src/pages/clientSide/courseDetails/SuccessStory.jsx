@@ -46,7 +46,7 @@ const SuccessStory = ({ filteredSuccessStories }) => {
                                 {/* Video Thumbnail with click to open modal */}
                                 <div
                                     onClick={() => handlePlayButtonClick(story?.youtube_link || story?.video)}
-                                    className="h-[15.9vw] cursor-pointer"
+                                    className="h-[35.9vw]  lg:h-[15.9vw] cursor-pointer"
                                 >
                                     <ReactPlayer
                                         

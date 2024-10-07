@@ -35,6 +35,8 @@ const CourseDetailsTab = () => {
         }
     });
 
+    // Filter success stories based on Course id 
+    const filteredSuccessStories = successStories.filter(story => story.course_id === id);
 
 
 
@@ -130,19 +132,21 @@ const CourseDetailsTab = () => {
                 </div>}
             </div>
 
+            <p className="text-xs lg:text-4xl text-center text-secondary font-bold mt-5">What you will get <span className='text-primary'>from this course</span></p>
+            
             <div className="lg:my-8 ">
-                <p className="text-primary font-bold text-5xl text-center">Cirtificate</p>
+                <p className="text-primary font-bold text-xl lg:text-3xl text-center">Cirtificate</p>
                 <div className="w-11/12 mx-auto flex justify-center mt-2">
                     <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1728218178/UniverseIT/nitgzsu14eguukizmcch.jpg" alt="" className='w-1/2 rounded-2xl' />
                 </div>
             </div>
 
 
-            <p className="text-secondary font-bold text-5xl text-center lg:my-14">Listen From Our <span className="text-primary">Learner</span></p>
-            <div className="grid grid-cols-3 gap-5">
-                {successStories?.map(story =>
+            <p className="text-secondary font-bold text-xs mt-3 lg:text-3xl text-center lg:my-14">Listen From Our <span className="text-primary">Learner</span></p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                {filteredSuccessStories?.map(story =>
                     <div key={story?._id} className="border p-2 rounded-xl">
-                        <p className="">{story?.description.slice(0, 300)}</p>
+                        <p className="font-body text-xs">{story?.description.slice(0, 300)}</p>
                         <div className="avatar">
                             <div className="ring-primary ring-offset-base-100 w-14 mt-2 rounded-full ring ring-offset-2">
                                 <img src={story?.image} />
