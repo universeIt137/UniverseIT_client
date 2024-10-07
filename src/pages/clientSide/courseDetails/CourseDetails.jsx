@@ -27,14 +27,32 @@ const CourseDetails = () => {
         }
     })
 
+    // successful student's data
+
+    const { data: stories = [] } = useQuery({
+        queryKey: ['stories'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/successStory');
+            return res.data;
+        }
+    })
+
+    
+
+    // Filter success stories based on course_id
+    const filteredSuccessStories = stories.filter(story => story.course_id === id);
+
+
     if (isLoading) {
         return <Loading />
     }
 
+    // console.log(filteredSuccessStories);
+
     return (
         <section className='px-3 mx-auto'>
             {/* banner */}
-            <BannerSection courseData={courseData} />
+            <BannerSection filteredSuccessStories={filteredSuccessStories} courseData={courseData} />
 
             {/* sub video and success story  */}
             <section className='flex flex-col lg:flex-row gap-6 my-5'>
