@@ -6,14 +6,15 @@ import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
- 
+
 const Login = () => {
     const [showPass, setShowPass] = useState(false)
     const navigate = useNavigate()
     const { loginUser } = useAuth()
 
-
+    const axiosPublic = useAxiosPublic()
     const { register, handleSubmit, formState: { errors }, } = useForm()
 
 
@@ -21,9 +22,18 @@ const Login = () => {
         const toastId = toast.loading("Logging in...");
         loginUser(email, password)
             .then(res => {
-                toast.success("Logged in Successfully!!", { id: toastId });
 
-                navigate('/dashboard', { replace: true })
+                axiosPublic.get(`/usersByEmail/${email}`)
+                    .then(res => {
+
+                        if (res.data.admin) {
+                            toast.success("Logged in Successfully!!", { id: toastId });
+                            navigate('/dashboard', { replace: true })
+                        } else {
+                            toast.error("You are not authorized!! Contact admin..", { id: toastId });
+                        }
+
+                    })
             })
             .catch(err => {
                 toast.error(err?.message, { id: toastId });
@@ -58,7 +68,7 @@ const Login = () => {
                         <div className="flex">
                             <input type={showPass ? 'text' : 'password'} className={`${inputStyle} rounded-r-none border-r-0`} placeholder="Password" {...register("password", {
                                 required: true,
-                               
+
                             })} />
                             <p onClick={() => setShowPass(!showPass)} className="text-xs font-medium uppercase bottom-[18px] right-2 p-1 cursor-pointer  hover:font-semibold w-[70px] border border-gray-500 flex justify-center items-center border-l-0 rounded-r-md">{showPass ? 'Hide' : 'Show'}</p>
                         </div>
@@ -69,13 +79,15 @@ const Login = () => {
                             {errors?.password?.type === 'pattern' && 'Password must contain at least one digit, one lowercase letter, and one uppercase letter.'}
                         </p>
                     </div>
-                    
 
+                    <div className="flex flex-col gap-2">
+                        <p>Don't have an account? <Link to={'/register'}><span className="font-bold underline hover:text-primary">Register</span></Link></p>
+                    </div>
                     <div className="flex gap-3 items-center flex-col xs:flex-row">
                         <button className={`${btnStyle}`}>
                             Login
                         </button>
-                       
+
                     </div>
                 </form>
             </div>

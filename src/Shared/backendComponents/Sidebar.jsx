@@ -9,6 +9,7 @@ import Dropdown from './Dropdown';
 import { FaRegComments } from "react-icons/fa";
 import logo from '../../assets/logo/mainLogo.png'
 import LogOut from '../../components/adminSide/LogOut/LogOut';
+import { GrUserSettings } from 'react-icons/gr';
 const Sidebar = () => {
 
   const courseUrls =
@@ -86,7 +87,10 @@ const Sidebar = () => {
       <NavigationItem to="/dashboard/addSuccessStory" icon={MdAddCircle} label="Add Success Story" />
       <NavigationItem to="/dashboard/manageSuccessStory" icon={SiNginxproxymanager} label="Manage Success Story" />
     </>
-
+  const userUrls =
+    <>
+      <NavigationItem to="/dashboard/manageUsers" icon={GrUserSettings} label="Manage Users" />
+    </>
   return (
     <>
       <div className="w-64 lg:w-64 bg-white flex flex-col justify-start py-8 border rounded-lg lg:max-h-screen lg:overflow-x-auto">
@@ -165,6 +169,12 @@ const Sidebar = () => {
               <Dropdown
                 buttonText="Success Story"
                 urls={addsSuccessStory}
+              />
+            </li>
+            <li className="mb-4">
+              <Dropdown
+                buttonText="Users"
+                urls={userUrls}
               />
             </li>
             <div className='ml-4'>   <LogOut /></div>

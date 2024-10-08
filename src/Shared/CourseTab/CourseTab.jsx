@@ -11,7 +11,7 @@ const CourseTab = ({ tabName, setTabName, isCoursePage=false }) => {
 
     const categories = ['Online', 'Offline', 'Corporate']
     return (
-        <div className={`${isCoursePage && 'w-[90vw] md:w-[calc(95vw-240px)]'} max-w-[800px] mx-auto relative px-12 `}>
+        <div className={`${isCoursePage && 'w-[calc(90vw-40px)]  md:w-[calc(95vw-240px)]'} max-w-[800px] mx-auto relative px-12 `}>
             <Swiper
                 spaceBetween={10}
 

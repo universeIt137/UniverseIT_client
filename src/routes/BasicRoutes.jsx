@@ -67,6 +67,7 @@ import CourseCategoryPage from "../pages/adminSide/courseRelatedPage/CourseCateg
 import PopularCoursePage from "../pages/clientSide/Courses/PopularCoursePage";
 import ViewPdf from "../components/clientSide/ViewPdf/ViewPdf";
 import ContactUsPage from "../pages/clientSide/contactUs/ContactUsPage";
+import ManageUsers from "../pages/adminSide/ManageUsers/ManageUsers";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -333,11 +334,14 @@ const BasicRoutes = createBrowserRouter([
                 path: "update-career/:id",
                 element: <UpdateCareerPage></UpdateCareerPage>
             },
-            // apply job related api 
             {
                 path: "manage-job",
                 element: <ManageJob></ManageJob>
-            }
+            },
+            {
+                path: "manageUsers",
+                element: <ManageUsers />
+            },
 
 
 
