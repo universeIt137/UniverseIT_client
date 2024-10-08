@@ -2,23 +2,26 @@
 // import React from 'react';
 
 import { Navigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 import useAuth from "../hooks/useAuth";
+import useAdmin from "../hooks/useAdmin";
+import auth from "../firebase/firebase.init";
 
 const PrivateRouts = ({ children }) => {
     const { user, loading } = useAuth();
-
-    if (loading) {
-        return
+    const [isAdmin, isAdminLoading] = useAdmin();
+    
+    if (loading || isAdminLoading) {
+        return 
     }
-    console.log(user);
+    
+    if (user && isAdmin) {
+        return <div>
+            {children}
+        </div>
 
-    if (user) {
-        return (
-            <div>
-                {children}
-            </div>
-        )
-
+    } else {
+        signOut(auth)
     }
     return <Navigate to={'/login'}></Navigate>;
 };

@@ -1,19 +1,25 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { MdAddCircle, MdArrowDropDown } from 'react-icons/md';
 import NavigationItem from './NavigationItem';
 import { SiNginxproxymanager } from 'react-icons/si';
 
-const Dropdown = ({ buttonText, urls }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const Dropdown = ({ buttonText, urls, openBox, setOpenBox, id }) => {
 
-
-
+    const handleOpen = () => {
+        if (openBox === id) {
+            setOpenBox(null);
+        } else {
+            setOpenBox(id)
+        }
+    }
+    const isOpen = openBox === id ? true : false
     return (
 
         <>
             <div className="w-full relative">
                 <button
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={handleOpen}
                     className={`bg-white flex items-center justify-between  px-4 py-2 rounded-md w-full text-left`}
                 >
                     {buttonText}
