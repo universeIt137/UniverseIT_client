@@ -1,18 +1,7 @@
-import React from 'react';
-import { FaRegStar, FaStar } from 'react-icons/fa';
-import Rating from 'react-rating';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
-import ReactPlayer from 'react-player';
-import Marquee from "react-fast-marquee";
-import Share from './Share';
 import { useParams } from 'react-router-dom';
-import CourseDetailsTab from './CourseDetailsTab';
-import SuccessStories from '../../../components/clientSide/SuccessStories/SuccessStories';
 import BannerSection from './BannerSection';
-import CourseDetailsPageSubVideos from './CourseDetailsPageSubVideos';
-import SuccessStory from './SuccessStory';
-import RelatedCourse from './RelatedCourse';
 import Loading from '../../../Shared/Loading/Loading';
 
 const CourseDetails = () => {
@@ -20,7 +9,7 @@ const CourseDetails = () => {
     const { id } = useParams()
 
     const { data: courseData = {}, isLoading } = useQuery({
-        queryKey: ['course'],
+        queryKey: ['course', id],
         queryFn: async () => {
             const res = await axiosPublic.get(`/course/${id}`);
             return res?.data;
