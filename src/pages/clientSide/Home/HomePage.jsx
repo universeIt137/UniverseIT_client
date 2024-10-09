@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Banner from '../../../components/clientSide/Banner/Banner';
 import Courses from '../../../components/clientSide/Courses/Courses';
 import Services from '../../../components/clientSide/Services/Services';
@@ -12,9 +12,12 @@ import { motion } from 'framer-motion';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Shared/Loading/Loading';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
     window.scrollTo(0, 0);
+    const location = useLocation();
+    const navigate = useNavigate();
     const axiosPublic = useAxiosPublic()
     const { data: homepageContent = [], refetch: homepageContentRefetch, isLoading } = useQuery({
         queryKey: ['homepageContent'],
@@ -23,6 +26,20 @@ const HomePage = () => {
             return res?.data
         }
     })
+    useEffect(() => {
+        const milestones = document.getElementById('milestones');
+        const seminar = document.getElementById('seminar');
+        const successStory = document.getElementById('successStory');
+        if (location.state?.scrollToMilestones && milestones) {
+            milestones.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (location.state?.scrollToSeminar && seminar) {
+            seminar.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (location.state?.scrollToSuccessStory && successStory) {
+            successStory.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [location]);
     if (isLoading) {
         return <Loading />
     }
@@ -33,12 +50,15 @@ const HomePage = () => {
     };
 
 
+
+
+
     return (
         <>
             <Helmet>
                 <title>Universe IT | Home</title>
             </Helmet>
-
+            {/* <p onClick={handleNavigate}>hello</p> */}
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -72,14 +92,16 @@ const HomePage = () => {
             <motion.div
                 initial="hidden"
                 whileInView="visible"
+                id='milestones'
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
                 <Milestones />
             </motion.div>
 
-            
+
             <motion.div
+                id='seminar'
                 initial="hidden"
                 whileInView="visible"
                 variants={scrollAnimationVariants}
@@ -90,6 +112,7 @@ const HomePage = () => {
             <motion.div
                 initial="hidden"
                 whileInView="visible"
+                id='successStory'
                 variants={scrollAnimationVariants}
                 viewport={{ once: false, amount: 0.2 }}
             >
