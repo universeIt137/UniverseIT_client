@@ -106,7 +106,7 @@ const CourseDetailsTab = () => {
         <>
             <div className='overflow-x-hidden bg-white rounded-lg'>
                 <Tabs tabName={TabName} setTabName={setTabName} courseCategories={courseCategories} />
-                {TabName === 'Career Objective' && <div className='pl-2  '>
+                {TabName === 'FAQ' && <div className='pl-2  '>
                     {
                         objectiveFAQ.length < 1 ? <p className="pb-10 pt-5 text-center">No FAQ Found</p> : <Faq config={config} getRowOptions={setRowsOption} data={showingDataAtFAQ} />
                     }

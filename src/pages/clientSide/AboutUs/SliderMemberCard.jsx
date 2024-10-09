@@ -23,12 +23,12 @@ const SliderMemberCard = ({ member }) => {
                     </div>
                 </div>
                 <div className='flex flex-col px-1 xs:px-3'>
-                    <div className="pt-2 md:pt-10">
-                        <h2 className='text-[10px] xs:text-xs sm:text-base font-bold capitalize'>Name: {member.firstName} {member.lastName}</h2>
-                        <h2 className='text-[10px] xs:text-xs sm:text-sm'><span className='font-bold'>Employee ID:</span>{member.employeeID}</h2>
-                        <h2 className='text-[10px] xs:text-xs sm:text-sm'><span className="font-bold">Position:</span> {member.position}</h2>
-                        <h2 className='text-[10px] xs:text-xs sm:text-sm pt-1'><span className="font-bold">Phone:</span> {member.phone}</h2>
-                        <h2 className='text-[10px] xs:text-xs sm:text-sm break-words'><span className="font-bold">Email:</span> {member.email}</h2>
+                    <div className="pt-2 md:pt-10 text-[10px] sm:text-sm">
+                        <h2 className=' font-bold capitalize'>Name: {member.firstName} {member.lastName}</h2>
+                        <h2 className=''><span className='font-bold'>Employee ID:</span>{member.employeeID}</h2>
+                        <h2 className=''><span className="font-bold">Position:</span> {member.position}</h2>
+                        <h2 className=''><span className="font-bold">Phone:</span> {member.phone}</h2>
+                        <h2 className='break-words'><span className="font-bold">Email:</span> {member.email}</h2>
                     </div>
                 </div>
             </div>

@@ -88,9 +88,9 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
                     </p>
                     <div className=''>
                         <p className='text-lg font-bold py-2'>Instructors:</p>
-                        <div className=' gap-2 grid grid-cols-3'>
+                        <div className='flex flex-wrap justify-center items-center gap-2'>
                             {instructors.map((item, index) => (
-                                <div key={index} className="border p-2 rounded-lg gap-2 sm:gap-4 relative">
+                                <div key={index} className="border p-2 flex flex-col justify-center items-center rounded-lg gap-2 sm:gap-4 relative h-32">
                                     <div className="flex flex-col items-center">
                                         <img className="size-16 rounded-full object-cover" src={item?.image} alt="" />
                                         <div className="text-base font-medium">

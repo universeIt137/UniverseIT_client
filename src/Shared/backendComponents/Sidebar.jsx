@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaHome, FaUsers, FaWpforms } from 'react-icons/fa';
 import { FaCircleUser, FaFileWaveform } from 'react-icons/fa6';
 import { MdAdd, MdAddCircle, MdLogout } from 'react-icons/md';
@@ -9,83 +9,109 @@ import Dropdown from './Dropdown';
 import { FaRegComments } from "react-icons/fa";
 import logo from '../../assets/logo/mainLogo.png'
 import LogOut from '../../components/adminSide/LogOut/LogOut';
+import { GrUserSettings } from 'react-icons/gr';
 const Sidebar = () => {
+  const [openBox, setOpenBox] = useState(null)
+  const allUrls = [
+    {
+      name: 'Courses',
+      data: <>
+        <NavigationItem to="/dashboard/addCourse" icon={MdAddCircle} label="Add Courses" />
+        <NavigationItem to="/dashboard/course-category" icon={MdAddCircle} label="Course Category" />
+        <NavigationItem to="/dashboard/manageCourses" icon={SiNginxproxymanager} label="Manage Courses" />
+      </>
+    },
+    {
+      name: 'Careers',
+      data: <>
+        <NavigationItem to="/dashboard/add-career" icon={MdAddCircle} label="Add Career" />
+        <NavigationItem to="/dashboard/manage-career" icon={SiNginxproxymanager} label="Manage Career" />
+      </>
+    },
+    {
+      name: 'Blogs',
+      data: <>
+        <NavigationItem to="/dashboard/addBlog" icon={MdAddCircle} label="Add Blog" />
+        <NavigationItem to="/dashboard/manageBlog" icon={SiNginxproxymanager} label="Manage Blogs" />
+      </>
+    },
+    {
+      name: 'Comments',
+      data: <>
+        <NavigationItem to="/dashboard/manageComments" icon={FaRegComments} label="Manage Comments" />
+      </>
+    },
+    {
+      name: 'Homepage content',
+      data: <>
+        <NavigationItem to="/dashboard/manageHomepageContent" icon={SiNginxproxymanager} label="Manage Homepage Content" />
+        <NavigationItem to="/dashboard/manageCountDown" icon={SiNginxproxymanager} label="Manage CountDown" />
+      </>
+    },
 
-  const courseUrls =
-    <>
-      <NavigationItem to="/dashboard/addCourse" icon={MdAddCircle} label="Add Courses" />
-      <NavigationItem to="/dashboard/course-category" icon={MdAddCircle} label="Course Category" />
-      <NavigationItem to="/dashboard/manageCourses" icon={SiNginxproxymanager} label="Manage Courses" />
-    </>
-
-
-  const careerUrls =
-    <>
-      <NavigationItem to="/dashboard/add-career" icon={MdAddCircle} label="Add Career" />
-      <NavigationItem to="/dashboard/manage-career" icon={SiNginxproxymanager} label="Manage Career" />
-    </>
-
-  const blogUrls =
-    <>
-      <NavigationItem to="/dashboard/addBlog" icon={MdAddCircle} label="Add Blog" />
-      <NavigationItem to="/dashboard/manageBlog" icon={SiNginxproxymanager} label="Manage Blogs" />
-    </>
-  const comments =
-    <>
-      <NavigationItem to="/dashboard/manageComments" icon={FaRegComments} label="Manage Comments" />
-    </>
-
-  const homepageUrls =
-    <>
-      <NavigationItem to="/dashboard/manageHomepageContent" icon={SiNginxproxymanager} label="Manage Homepage Content" />
-      <NavigationItem to="/dashboard/manageCountDown" icon={SiNginxproxymanager} label="Manage CountDown" />
-    </>
-
-  const facultyUrls =
-    <>
-      <NavigationItem to="/dashboard/addFaculty" icon={MdAddCircle} label="Add Faculty" />
-      <NavigationItem to="/dashboard/manageFaculty" icon={SiNginxproxymanager} label="Manage Faculty" />
-    </>
-
-  const memberUrls =
-    <>
-      <NavigationItem to="/dashboard/add-member" icon={MdAddCircle} label="Add Member" />
-      <NavigationItem to="/dashboard/manage-member" icon={SiNginxproxymanager} label="Manage Member" />
-    </>
-
-  const testimonialUrls =
-    <>
-      <NavigationItem to="/dashboard/addTestimonial" icon={MdAddCircle} label="Add Testimonial" />
-      <NavigationItem to="/dashboard/manageTestimonial" icon={SiNginxproxymanager} label="Manage Testimonial" />
-    </>
-
-  const studentGallaryUrls =
-    <>
-      <NavigationItem to="/dashboard/manageStudentGallary" icon={SiNginxproxymanager} label="Manage Student Gallary" />
-    </>
-
-  const requestUrls =
-    <>
-      <NavigationItem to="/dashboard/admissionRequest" icon={FaFileWaveform} label="Admission Requests" />
-      <NavigationItem to="/dashboard/seminar" icon={FaUsers} label="Seminar Requests" />
-      <NavigationItem to="/dashboard/manage-job" icon={FaUsers} label="Job Requests" />
-    </>
-
-  const seminarUrls =
-    <>
-      <NavigationItem to="/dashboard/createSeminar" icon={MdAddCircle} label="Create Seminar" />
-      <NavigationItem to="/dashboard/manageSeminar" icon={SiNginxproxymanager} label="Manage Seminar" />
-    </>
-  const CertificateUrls =
-    <>
-      <NavigationItem to="/dashboard/createCertificate" icon={MdAddCircle} label="Create Certificate" />
-      <NavigationItem to="/dashboard/manageCertificate" icon={SiNginxproxymanager} label="Manage Certificate" />
-    </>
-  const addsSuccessStory =
-    <>
-      <NavigationItem to="/dashboard/addSuccessStory" icon={MdAddCircle} label="Add Success Story" />
-      <NavigationItem to="/dashboard/manageSuccessStory" icon={SiNginxproxymanager} label="Manage Success Story" />
-    </>
+    {
+      name: 'Faculty',
+      data: <>
+        <NavigationItem to="/dashboard/addFaculty" icon={MdAddCircle} label="Add Faculty" />
+        <NavigationItem to="/dashboard/manageFaculty" icon={SiNginxproxymanager} label="Manage Faculty" />
+      </>
+    },
+    {
+      name: 'Executive Member',
+      data: <>
+        <NavigationItem to="/dashboard/add-member" icon={MdAddCircle} label="Add Member" />
+        <NavigationItem to="/dashboard/manage-member" icon={SiNginxproxymanager} label="Manage Member" />
+      </>
+    },
+    {
+      name: 'Testimonial',
+      data: <>
+        <NavigationItem to="/dashboard/addTestimonial" icon={MdAddCircle} label="Add Testimonial" />
+        <NavigationItem to="/dashboard/manageTestimonial" icon={SiNginxproxymanager} label="Manage Testimonial" />
+      </>
+    },
+    {
+      name: 'Student Gallery',
+      data: <>
+        <NavigationItem to="/dashboard/manageStudentGallary" icon={SiNginxproxymanager} label="Manage Student Gallary" />
+      </>
+    },
+    {
+      name: 'All Requests',
+      data: <>
+        <NavigationItem to="/dashboard/admissionRequest" icon={FaFileWaveform} label="Admission Requests" />
+        <NavigationItem to="/dashboard/seminar" icon={FaUsers} label="Seminar Requests" />
+        <NavigationItem to="/dashboard/manage-job" icon={FaUsers} label="Job Requests" />
+      </>
+    },
+    {
+      name: 'Seminar',
+      data: <>
+        <NavigationItem to="/dashboard/createSeminar" icon={MdAddCircle} label="Create Seminar" />
+        <NavigationItem to="/dashboard/manageSeminar" icon={SiNginxproxymanager} label="Manage Seminar" />
+      </>
+    },
+    {
+      name: 'Certificate',
+      data: <>
+        <NavigationItem to="/dashboard/createCertificate" icon={MdAddCircle} label="Create Certificate" />
+        <NavigationItem to="/dashboard/manageCertificate" icon={SiNginxproxymanager} label="Manage Certificate" />
+      </>
+    },
+    {
+      name: 'Success Story',
+      data: <>
+        <NavigationItem to="/dashboard/addSuccessStory" icon={MdAddCircle} label="Add Success Story" />
+        <NavigationItem to="/dashboard/manageSuccessStory" icon={SiNginxproxymanager} label="Manage Success Story" />
+      </>
+    },
+    {
+      name: 'Manage Users',
+      data: <>
+        <NavigationItem to="/dashboard/manageUsers" icon={GrUserSettings} label="Manage Users" />
+      </>
+    }
+  ];
 
   return (
     <>
@@ -109,64 +135,12 @@ const Sidebar = () => {
               icon={FaCircleUser}
               label="Dashboard"
             />
+            {
+              allUrls.map((item, idx) => <li key={idx} className="mb-4">
+                <Dropdown buttonText={item.name} urls={item.data} openBox={openBox} setOpenBox={setOpenBox} id={idx} />
+              </li>)
+            }
 
-            <li className="mb-4">
-              <Dropdown buttonText="Courses" urls={courseUrls} />
-            </li>
-
-            <li className="mb-4">
-              <Dropdown buttonText="Seminar" urls={seminarUrls} />
-            </li>
-
-            <li className="mb-4">
-              <Dropdown buttonText="Careers" urls={careerUrls} />
-            </li>
-
-            <li className="mb-4">
-              <Dropdown buttonText="All Requests" urls={requestUrls} />
-            </li>
-
-            <li className="mb-4">
-              <Dropdown buttonText="Blogs" urls={blogUrls} />
-            </li>
-            <li className="mb-4">
-              <Dropdown buttonText="Comments" urls={comments} />
-            </li>
-
-            <li className="mb-4">
-              <Dropdown buttonText="HomePage content" urls={homepageUrls} />
-            </li>
-
-            <li className="mb-4">
-              <Dropdown buttonText="Faculty" urls={facultyUrls} />
-            </li>
-
-            <li className="mb-4">
-              <Dropdown buttonText="Executive Member" urls={memberUrls} />
-            </li>
-
-            <li className="mb-4">
-              <Dropdown buttonText="Testimonial" urls={testimonialUrls} />
-            </li>
-
-            <li className="mb-4">
-              <Dropdown
-                buttonText="Student Gallary"
-                urls={studentGallaryUrls}
-              />
-            </li>
-            <li className="mb-4">
-              <Dropdown
-                buttonText="Certificate"
-                urls={CertificateUrls}
-              />
-            </li>
-            <li className="mb-4">
-              <Dropdown
-                buttonText="Success Story"
-                urls={addsSuccessStory}
-              />
-            </li>
             <div className='ml-4'>   <LogOut /></div>
           </ul>
         </nav>

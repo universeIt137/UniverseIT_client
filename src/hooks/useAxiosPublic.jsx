@@ -1,7 +1,6 @@
 import axios from "axios";
-import backendURL from '../backendURL'
 const axiosPublic = axios.create({
-    baseURL: backendURL
+    baseURL: 'http://localhost:5000'
 })
 
 const useAxiosPublic = () => {
