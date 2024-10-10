@@ -50,6 +50,26 @@ const SearchInput = () => {
             name: 'Success Stories',
             navigate: () =>  navigate('/', { state: { scrollToSuccessStory: true } })
         },
+        {
+            name: 'Student Feedback or Review',
+            navigate: () =>  navigate('/', { state: { scrollToFeedback: true } })
+        },
+        {
+            name: 'Contact Us',
+            navigate: () =>  navigate('/contact-us')
+        },
+        {
+            name: 'Certificate Verification',
+            navigate: () =>  navigate('/certified')
+        },
+        {
+            name: 'Team Members',
+            navigate: () =>  navigate('/team-members')
+        },
+        {
+            name: 'Benefits You will get from us',
+            navigate: () =>  navigate('/aboutUs',{ state: { scrollToBenefit: true } })
+        },
     ]
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -111,7 +131,7 @@ const SearchInput = () => {
                                 </div>
                             ))
                         ) : (
-                            <p className="text-sm text-gray-500 text-center py-4">No airports found</p>
+                            <p className="text-sm text-gray-500 text-center py-4">No result found</p>
                         )
                         }
                     </>
