@@ -131,7 +131,7 @@ const SearchInput = () => {
                                 </div>
                             ))
                         ) : (
-                            <p className="text-sm text-gray-500 text-center py-4">No result found</p>
+                            <p className="text-sm text-gray-500 text-center py-4">search popular courses...</p>
                         )
                         }
                     </>

@@ -10,6 +10,7 @@ import emailjs from '@emailjs/browser';
 const ContactForm = () => {
 
     const formRef = useRef();
+    
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
 
