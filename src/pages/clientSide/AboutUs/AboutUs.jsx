@@ -24,8 +24,8 @@ const AboutUs = () => {
     const location = useLocation();
 
     useEffect(() => {
-        if (location.state?.scrollToHello) {
-            const element = document.getElementById('hello');
+        if (location.state?.scrollToBenefit) {
+            const element = document.getElementById('benefit');
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
             }
@@ -72,6 +72,7 @@ const AboutUs = () => {
             </motion.div>
 
             <motion.div
+                id='benefit'
                 initial="hidden"
                 whileInView="visible"
                 variants={scrollAnimationVariants}

@@ -30,6 +30,7 @@ const HomePage = () => {
         const milestones = document.getElementById('milestones');
         const seminar = document.getElementById('seminar');
         const successStory = document.getElementById('successStory');
+        const feedback = document.getElementById('feedback');
         if (location.state?.scrollToMilestones && milestones) {
             milestones.scrollIntoView({ behavior: 'smooth' });
         }
@@ -38,6 +39,9 @@ const HomePage = () => {
         }
         if (location.state?.scrollToSuccessStory && successStory) {
             successStory.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (location.state?.scrollToFeedback && successStory) {
+            feedback.scrollIntoView({ behavior: 'smooth' });
         }
     }, [location]);
     if (isLoading) {
@@ -119,6 +123,7 @@ const HomePage = () => {
                 <SuccessStories isHomePage={true} />
             </motion.div>
             <motion.div
+                id='feedback'
                 initial="hidden"
                 whileInView="visible"
                 variants={scrollAnimationVariants}
