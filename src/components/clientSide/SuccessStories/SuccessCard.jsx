@@ -60,7 +60,7 @@ const SuccessCard = ({ filteredSuccessStories }) => {
                                     </div>
                                 </div>
                                 <div className="p-4">
-                                    <p className="font-bold text-xs">{story.name}</p>
+                                    <p className="font-bold text-xs lg:text-xl">{story.name}</p>
                                     {/* title used as a batch no  */}
                                     <p className="text-xs text-gray-600">{story.title}</p>
                                 </div>
