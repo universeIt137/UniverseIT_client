@@ -89,7 +89,7 @@ const CoursesPage = () => {
                                 <CourseTab setTabName={setTabName} tabName={tabName} isCoursePage={true} />
                                 <div className='w-full block md:hidden'><FilterDrawer tabName={tabName} setTabName={setTabName} isLoading={isLoading} popularCategories={popularCategories} /></div>
                             </div>
-                            <div className=' grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-10 md:gap-y-20 gap-5 md:gap-x-10 pt-10 px-5'>
+                            <div className=' grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-10  gap-5 md:gap-x-10 pt-10 px-5'>
                                 {
                                     filteredCourse?.map((course, idx) => <CourseCard key={idx} course={course} isCoursePage={true} />)
                                 }
