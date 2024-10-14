@@ -98,13 +98,13 @@ const Sidebar = () => {
         <NavigationItem to="/dashboard/manageCertificate" icon={SiNginxproxymanager} label="Manage Certificate" />
       </>
     },
-    {
-      name: 'Success Story',
-      data: <>
-        <NavigationItem to="/dashboard/addSuccessStory" icon={MdAddCircle} label="Add Success Story" />
-        <NavigationItem to="/dashboard/manageSuccessStory" icon={SiNginxproxymanager} label="Manage Success Story" />
-      </>
-    },
+    // {
+    //   name: 'Success Story',
+    //   data: <>
+    //     <NavigationItem to="/dashboard/addSuccessStory" icon={MdAddCircle} label="Add Success Story" />
+    //     <NavigationItem to="/dashboard/manageSuccessStory" icon={SiNginxproxymanager} label="Manage Success Story" />
+    //   </>
+    // },
     {
       name: 'Manage Users',
       data: <>
