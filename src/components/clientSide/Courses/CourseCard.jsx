@@ -14,7 +14,7 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
 
     return (
         <div className={`card bg-base-100 mx-auto ${isCoursePage ? cardStyleForCoursePage : cardStyle}`}>
-            <figure className="h-[120px] sm:h-[180px] relative">
+            <figure className="h-[100px] sm:h-[140px] relative">
                 {discount !== '0' && (
                     <div className="absolute top-0 right-0 bg-primary text-white text-xs px-3 py-0.5 rounded-bl-lg">
                         {discount}% off
