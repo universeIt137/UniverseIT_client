@@ -63,14 +63,10 @@ const HomePage = () => {
                 <title>Universe IT | Home</title>
             </Helmet>
             {/* <p onClick={handleNavigate}>hello</p> */}
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                variants={scrollAnimationVariants}
-                viewport={{ once: false, amount: 0.2 }}
+            <div
             >
                 <Banner bannerImg={data?.imageUrl || ''} data={data} notice={data?.notice || ''} />
-            </motion.div>
+            </div>
 
 
             <motion.div
