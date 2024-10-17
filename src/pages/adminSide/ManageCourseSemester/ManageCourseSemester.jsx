@@ -92,14 +92,14 @@ const ManageCourseSemester = () => {
             <div className='w-full lg:w-[1000px] lg:max-w-[calc(100vw-400px)] mx-auto'>
                 <div className="shadow-2xl px-10 rounded-2xl lg:w-full mx-auto bg-white mt-2">
                     <p className='text-center text-2xl font-bold py-2'>Manage Class of {`"${course?.title}"`}</p>
-                    <p className='text-lg font-bold pt-10'>Add Class</p>
+                    {/* add class name  */}
+                    <p className='text-lg font-bold pt-10'>Add Main Topic</p>
                     <div className='flex flex-wrap -m-2'>
                         {/* Title */}
                         <div className="grid grid-cols-1 w-full">
                             {/* category title  */}
                             <div className="p-2 w-full">
 
-                                <label className="leading-7 text-sm text-gray-600 font-bold">Class Title</label>
                                 <input
                                     type="text"
                                     onChange={handleSemester}
@@ -112,7 +112,8 @@ const ManageCourseSemester = () => {
                                 
                                 <form className="grid grid-cols-1 md:grid-cols-2 w-full" action="" onSubmit={handleSubmit(onSubmit)}>
                                     <div className="p-2 w-full">
-                                        <label className="leading-7 text-sm text-gray-600 font-bold">Topic</label>
+                                        {/* for class topic  */}
+                                        <label className="leading-7 text-sm text-gray-600 font-bold">Put dummy text</label> 
                                         <input
                                             type="text"
                                             {...register("name", { required: true })}
