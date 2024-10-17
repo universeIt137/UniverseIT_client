@@ -108,7 +108,7 @@ const SearchInput = () => {
                 onClick={() => setShowResult(true)}
                 value={searchTerm}
                 onChange={handleSearchChange}
-                className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full xl:w-[400px] rounded-lg' type="text" placeholder='What do you want to learn?' />
+                className=' pl-10 px-5 py-3 border-[2.5px] border-gray-200 w-full xl:w-[250px] rounded-lg' type="text" placeholder='What do you want to learn?' />
             <FiSearch className='absolute top-4 left-3 text-gray-500 text-lg' />
             <div className="w-full max-h-[350px] overflow-y-auto space-y-3 absolute top-14 bg-white">
                 {

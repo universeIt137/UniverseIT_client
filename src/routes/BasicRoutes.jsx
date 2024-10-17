@@ -68,6 +68,10 @@ import PopularCoursePage from "../pages/clientSide/Courses/PopularCoursePage";
 import ViewPdf from "../components/clientSide/ViewPdf/ViewPdf";
 import ContactUsPage from "../pages/clientSide/contactUs/ContactUsPage";
 import ManageUsers from "../pages/adminSide/ManageUsers/ManageUsers";
+import Feedback from "../pages/clientSide/feedbackPage/Feedback";
+import AddFeedback from "../pages/adminSide/feedbackRelatedPages/addFeedback/AddFeedback";
+import ManageFeedback from "../pages/adminSide/feedbackRelatedPages/manageFeedback/ManageFeedback";
+import UpdateFeedback from "../pages/adminSide/feedbackRelatedPages/updateFeedback/UpdateFeedback";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -155,6 +159,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "/contact-us",
                 element: <ContactUsPage/>
+            },
+            {
+                path: "/feedback",
+                element:<Feedback></Feedback>
             }
             
 
@@ -343,6 +351,18 @@ const BasicRoutes = createBrowserRouter([
                 element: <ManageUsers />
             },
 
+            {
+                path: "add-feedback",
+                element: <AddFeedback></AddFeedback>
+            },
+            {
+                path: "manage-feedback",
+                element: <ManageFeedback></ManageFeedback>
+            },
+            {
+                path: "update-feedback/:id",
+                element: <UpdateFeedback></UpdateFeedback>
+            }
 
 
 

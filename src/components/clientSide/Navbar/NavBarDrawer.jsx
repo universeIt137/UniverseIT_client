@@ -18,6 +18,7 @@ import { FiSearch } from "react-icons/fi";
 import { IoIosPeople } from "react-icons/io";
 import { FaHome, FaBlog, FaUsers, FaTrophy } from 'react-icons/fa';
 import { IoSchool } from "react-icons/io5";
+import { MdOutlineReviews } from "react-icons/md";
 const NavBarDrawer = ({ open, setOpen }) => {
     const closeDrawer = () => setOpen(false);
     const navLi = [
@@ -27,6 +28,7 @@ const NavBarDrawer = ({ open, setOpen }) => {
         { name: 'Faculties', link: '/faculties', icon: <FaUsers /> },
         { name: 'Success Story', link: '/successStory', icon: <FaTrophy /> },
         { name: 'Courses', link: '/courses', icon: <IoSchool /> },
+        { name: "Student's Feedback", link: '/feedback', icon: <MdOutlineReviews /> },
     ];
     // const navli = <>
 

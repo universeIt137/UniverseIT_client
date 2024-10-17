@@ -21,6 +21,8 @@ const RelatedCourse = () => {
             return res.data;
         }
     })
+
+    
     if (isLoading) {
         return <Loading />
     }
@@ -36,7 +38,7 @@ const RelatedCourse = () => {
                         <div className='flex flex-wrap  gap-5 lg:gap-0 justify-between w-full'>
                             <div>
                                 <h2 className='font-bold'>{course?.title}</h2>
-                                <p className='text-sm'>Atik Md Alavi</p>
+                                <p className='text-sm'>{ course?.instructors[0]?.name }</p>
                                 <div className="text-base sm:text-xl text-primary">
                                     <Rating
                                         className="space-x-1"

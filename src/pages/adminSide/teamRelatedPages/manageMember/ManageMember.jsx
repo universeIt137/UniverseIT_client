@@ -51,7 +51,8 @@ const ManageMember = () => {
         });
 
     }
-    console.log(members);
+    
+    // console.log(members);
 
     return (
         <>
