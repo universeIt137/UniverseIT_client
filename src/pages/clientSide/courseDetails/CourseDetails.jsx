@@ -46,7 +46,7 @@ const CourseDetails = () => {
             {/* sub video and success story  */}
             <section className='flex flex-col lg:flex-row gap-6 my-5'>
                 <div className='lg:w-4/6'>
-
+                    
 
                 </div>
                 <div className='lg:w-1/3 rounded-xl'>

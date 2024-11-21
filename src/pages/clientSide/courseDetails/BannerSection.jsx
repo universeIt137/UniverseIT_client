@@ -87,8 +87,8 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
                         />
                     </p>
                     <div className=''>
-                        <p className='text-lg font-bold py-2'>Instructors:</p>
-                        <div className='flex flex-wrap justify-center items-center gap-2'>
+                        {/* <p className='text-lg font-bold py-2'>Instructors:</p> */}
+                        {/* <div className='flex flex-wrap justify-center items-center gap-2'>
                             {instructors.map((item, index) => (
                                 <div key={index} className="border p-2 flex flex-col justify-center items-center rounded-lg gap-2 sm:gap-4 relative h-32">
                                     <div className="flex flex-col items-center">
@@ -102,9 +102,9 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
 
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
 
-                        <div className='mt-5'>
+                        {/* <div className='mt-5'>
                             <div className='grid grid-cols-2  sm:grid-cols-2 gap-5 '>
                                 <button className='w-full' onClick={handleClick}>
                                     <ButtonStrong isWidthFull={true} text={<span className='text-nowrap text-sm py-0.5'>CALL NOW</span>} />
@@ -117,32 +117,31 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
                             <Link to={'/onlineAdmission'}>
                                 <div className='py-3'><ButtonStrong text={'ENROLL NOW'} isWidthFull={true} /></div>
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
 
-                    <div className='flex flex-col justify-between min-h-full '>
-                        <div className='hidden lg:block'>
-                            <p className='text-2xl text-secondary font-bold py-2'>This course includes:</p>
-                            <ul className=' text-sm md:text-base  lg:text-start space-y-3 px-4'>
-                                {
-                                    keyFeatures?.map((item, idx) => <>
-                                        <li key={idx} className='  flex items-center text-black gap-2'> <span>{item}</span></li>
-                                        <hr className='border-primary' />
-                                    </>)
-                                }
-                                {
-                                    keyFeatures?.length < 1 &&
-                                    <>
-                                        <li className=' text-black text-center'> No key features added!!</li>
-                                        <hr className='border-primary' />
-                                    </>
-                                }
+                    <div className="flex flex-col justify-between min-h-full">
+                        <div className="hidden lg:block">
+                            <p className="text-2xl text-secondary font-bold py-2">This course includes:</p>
+                            <ul className="text-sm md:text-base lg:text-start space-y-3 px-4 pl-5">
+                                {keyFeatures?.map((item, idx) => (
+                                    <li key={idx} className="flex items-start text-black gap-3">
+                                        {/* Custom Bullet */}
+                                        <span
+                                            className="w-2 h-2 mt-2 rounded-full bg-black flex-shrink-0"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span>{item}</span>
+                                    </li>
+                                ))}
+                                {keyFeatures?.length < 1 && (
+                                    <li className="text-black text-center">No key features added!!</li>
+                                )}
                             </ul>
                         </div>
-
-
-                        
                     </div>
+
+
 
 
 
@@ -151,7 +150,7 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
                 {/* mobile view related video and technologies  */}
                 <div className="lg:hidden">
                     <div className="ml-6">
-                    <MainVideo videoUrl={videoUrl} />
+                        <MainVideo videoUrl={videoUrl} />
                     </div>
 
                     <section className=' mt-2 bg-gray-200 rounded-xl p-5'>
@@ -182,7 +181,7 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
                 {/* course video and technology section for mobile view  */}
 
                 <div className="px-5">
-                    <SuccessStory filteredSuccessStories={ filteredSuccessStories} />
+                    <SuccessStory filteredSuccessStories={filteredSuccessStories} />
                     <RelatedCourse />
                 </div>
             </div>
