@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
-import { MdDelete, MdEditSquare } from 'react-icons/md';
+import { MdDelete, MdDeleteForever, MdEditSquare } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import AddStudentGallary from '../addStudentGallary/AddStudentGallary';
 import AddCategory from './AddCategory';
@@ -10,60 +10,83 @@ import { Grommet, Tab, Tabs } from 'grommet';
 import toast from 'react-hot-toast';
 import StudentGalleryTabs from './StudentGalleryTabs';
 import Loading from '../../../Shared/Loading/Loading';
- 
+import ButtonStrong from '../../../Shared/Button/ButtonStrong';
+import { uploadImg } from '../../../UploadFile/uploadImg';
+
 const ManageStudentGallary = () => {
+
+    const [imageInput, setImageInput] = useState('');
+    const [imageInputErr, setImageInputErr] = useState('');
+    const [allImages, setAllImages] = useState([]);
+
     const axiosPublic = useAxiosPublic();
     const [categoryName, setCategoryName] = useState('All')
-    const { data: studentGallery = [], refetch, isLoading } = useQuery({
+
+
+    const { data: allPhotos = [], refetch, isLoading } = useQuery({
         queryKey: ['studentGallery'],
         queryFn: async () => {
             const res = await axiosPublic.get('/studentGallery');
             return res.data;
         }
     })
-    const { data: allCategory = [], refetch: allCategoryRefetch, isLoading: allCategoryIsLoading } = useQuery({
-        queryKey: ['allCategory'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/allCategory');
-            return res.data;
+
+
+
+
+
+
+    if (isLoading) {
+        return <Loading />
+    }
+
+
+
+
+
+
+
+
+
+    const handleDeleteImage = (id) => {
+        const toastId = toast.loading("Photo is deleting...");
+        axiosPublic.delete(`/studentGallery/${id}`)
+            .then(res => {
+                if (res) {
+                    toast.success("Photo has been deleted successfully", { id: toastId });
+                    refetch();
+                }
+            })
+    }
+
+    const handleSubmit = async (event) => {
+        const toastId = toast.loading("Photo is uploading...");
+        event.preventDefault();
+
+        const form = event.target;
+
+        const GalleryImage = form.image1.files[0];
+        console.log(GalleryImage)
+
+
+        let ImageUrl = '';
+        if (GalleryImage?.name) {
+            ImageUrl = await uploadImg(GalleryImage);
         }
-    })
-    if (isLoading || allCategoryIsLoading) {
-        return <Loading/>
-    }
-    const showingGallery = categoryName === 'All' ? studentGallery : studentGallery.filter(gallery => gallery?.category === categoryName)
-    const handleDelete = (id) => {
 
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
+        const data = { ImageUrl };
 
-            if (result.isConfirmed) {
-                const toastId = toast.loading("Photo is deleting...");
-                axiosPublic.delete(`/studentGallery/${id}`)
-                    .then(res => {
-                        if (res?.data?.deletedCount) {
-                            toast.success("Deleted Successfully!!", { id: toastId });
-                            refetch()
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        toast.error(err?.message, { id: toastId });
-                    })
+        axiosPublic.post(`/studentGallery`, data)
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.success("Photos has been added Successfully!!", { id: toastId });
+                    refetch();
+                    form.reset();
+                }
+            })
+    };
 
-            }
-        });
 
-    }
-
-    
     return (
         <>
             <Helmet>
@@ -71,27 +94,53 @@ const ManageStudentGallary = () => {
             </Helmet>
             <div className="bg-white p-5 mx-4 rounded-lg">
                 <p className='text-2xl font-bold text-center'>Manage Student Gallery</p>
-                <div className='grid md:grid-cols-2 gap-3'>
-                    <AddStudentGallary refetch={refetch} studentGallery={studentGallery} handleDelete={handleDelete} allCategory={allCategory} />
-                    <AddCategory allCategory={allCategory} allCategoryRefetch={allCategoryRefetch} />
+                <div className='grid md:grid-cols-2 gap-3  mx-auto w-11/12'>
+
+                    <form action="" onSubmit={handleSubmit} className=''>
+
+                        <div className='grid grid-cols-1 '>
+
+                            {/* Banner images */}
+                            <div className='w-full md:col-span-2'>
+                                <label className="leading-7 text-sm text-gray-600 font-bold">Upload Photo Gallery Images</label>
+                                <div className='w-full'>
+                                    <div className="p-2 w-full">
+                                        <div className="relative space-y-2">
+                                            <label className="leading-7 text-sm text-gray-600 font-medium">Select Image</label><br />
+                                            <input id='courseImageInputField' type="file" name='image1' className="file-input file-input-bordered file-input-md w-full" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="p-2 w-full">
+                            <div className='flex justify-center items-center'><ButtonStrong text={'Submit'} /></div>
+                        </div>
+
+                    </form>
                 </div>
-                <div className="mt-10">
-                    <div className='w-full lg:w-[1000px] lg:max-w-[calc(100vw-400px)]'>
-                       <div className=' pb-10'><StudentGalleryTabs tabName={categoryName} setTabName={setCategoryName} studentCategory={allCategory} /></div>
-                    </div>
+                <p className=' text-2xl text-center font-bold my-5'>Already Uploaded Images</p>
+                <div className="grid grid-cols-3 gap-3  w-10/12 mx-auto">
                     {
-                        showingGallery?.length > 0 ? <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+                        allPhotos?.map(photo =>
+                            <div key={photo?._id} className="">
+                                <div onClick={() => handleDeleteImage(photo?._id)} className="text-4xl ">
+                                    <MdDeleteForever className='text-red-700' />
+                                </div>
+                                <div className="avatar">
+                                    <div className="rounded-xl">
+                                        <img src={photo?.ImageUrl}  />
 
-                            {
-                                showingGallery?.map(gallery => <div key={gallery?._id} className='w-full h-full relative'>
+                                    </div>
+                                </div>
+                            </div>
 
-                                    <img className='w-full h-full rounded-2xl shadow-2xl' src={gallery?.image} alt="" />
-                                    <button onClick={() => handleDelete(gallery?._id)} className='absolute top-4 right-4 size-7 rounded-md bg-red-500 hover:bg-red-600 flex justify-center items-center text-lg text-white active:scale-90 transition-all duration-300'><MdDelete /></button>
-                                </div>)
-                            }
-                        </div> : <p className='p-5 text-center'>No Photo Found !!</p>
+
+
+                        )
                     }
                 </div>
+
             </div>
         </>
     );

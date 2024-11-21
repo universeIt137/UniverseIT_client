@@ -20,7 +20,7 @@ const StoryTable = ({ handleDelete, successStories }) => {
                             <th>Image</th>
                             <th>Video</th>
                             <th>Youtube Video</th>
-                            <th>Description</th>
+                            <th>Banner Image</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -51,7 +51,15 @@ const StoryTable = ({ handleDelete, successStories }) => {
                                     <Link to={`${story.youtube_link}`}>Youtube Link</Link>
                                     </td>
 
-                                    <td>{story.description.slice(0, 59)}</td>
+                                    <td>
+                                        <div className="flex items-center gap-3">
+                                            <div className="avatar">
+                                                <div className="mask mask-squircle w-12 h-12">
+                                                    <img src={story.banner} alt={story.studentName} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td className='text-2xl text-green-500'>
                                         <Link to={`/dashboard/updateSuccessStory/${story._id}`}><MdEditSquare /></Link>
                                     </td>

@@ -15,6 +15,8 @@ import AddStudentGallery from '../../adminSide/addStudentGallary/AddStudentGalla
 import SuccessStories from '../../../components/clientSide/SuccessStories/SuccessStories';
 import TeamMember from './TeamMember';
 import { useEffect } from 'react';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 const AboutUs = () => {
     window.scrollTo(0, 0);
     const scrollAnimationVariants = {
@@ -22,6 +24,9 @@ const AboutUs = () => {
         visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
     };
     const location = useLocation();
+
+
+
 
     useEffect(() => {
         if (location.state?.scrollToBenefit) {

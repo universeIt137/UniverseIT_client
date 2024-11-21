@@ -21,11 +21,11 @@ const UpdateSuccessStoryPage = () => {
     });
 
     if (isLoading) {
-        return <Loading/>;  // You can replace this with a loading spinner or message if needed
+        return <Loading />;  // You can replace this with a loading spinner or message if needed
     }
 
-    const { _id, title: incomingTitle, description: incomingDescription, video: incomingVideo, name: incomingStudentName, image: incomingStudentImage, youtube_link: incomingYoutubeLink } = successStoryData;
-console.log(incomingStudentImage);
+    const { _id, title: incomingTitle, description: incomingDescription, video: incomingVideo, name: incomingStudentName, image: incomingStudentImage, banner: incomingBanner, youtube_link: incomingYoutubeLink } = successStoryData;
+    console.log(incomingStudentImage);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -35,9 +35,11 @@ console.log(incomingStudentImage);
         const youtube_link = form.youtube.value;
         const name = form.studentName.value;
         const selectedImage = form.studentImage.files[0];
+        const selectedBanner = form.bannerImage.files[0];
         const selectedVideo = form.video.files[0];
         let videoUrl = incomingVideo;
         let imageUrl = incomingStudentImage;
+        let bannerUrl = incomingBanner;
         const toastId = toast.loading("Story is updating...");
         if (selectedVideo) {
             videoUrl = await uploadVideo(selectedVideo);
@@ -46,7 +48,13 @@ console.log(incomingStudentImage);
             imageUrl = await uploadImg(selectedImage);
         }
 
-        const data = { title, description, name, youtube_link, image: imageUrl, video: videoUrl };
+        if (selectedBanner) {
+            bannerUrl = await uploadImg(selectedBanner);
+            
+        }
+
+        const data = { title, description, name, youtube_link, image: imageUrl, banner: bannerUrl, video: videoUrl };
+        console.log(data);
 
         axiosPublic.put(`/successStory/${_id}`, data)
             .then(res => {
@@ -71,8 +79,8 @@ console.log(incomingStudentImage);
 
                                 <div className="shadow-2xl px-10 rounded-2xl">
                                     <form onSubmit={handleSubmit} className='flex flex-wrap -m-2'>
-                                         {/* Student Name */}
-                                         <div className="p-2 w-full sm:w-1/2">
+                                        {/* Student Name */}
+                                        <div className="p-2 w-full sm:w-1/2">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600">Student Name</label>
                                                 <input type="text" name="studentName"
@@ -94,13 +102,13 @@ console.log(incomingStudentImage);
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <label className="leading-7 text-sm text-gray-600">Description</label>
-                                                <textarea name="description" 
+                                                <textarea name="description"
                                                     defaultValue={incomingDescription}
                                                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                                             </div>
                                         </div>
 
-                                       
+
 
                                         {/* Student Image */}
                                         <div className="p-2 w-full sm:w-1/2">
@@ -110,14 +118,14 @@ console.log(incomingStudentImage);
                                             </div>
 
                                             <p className='font-bold my-2'>Already Uploaded Image</p>
-                                            
+
                                             <div className="flex items-center gap-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={incomingStudentImage} alt={incomingStudentName} />
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle w-12 h-12">
+                                                        <img src={incomingStudentImage} alt={incomingStudentName} />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         </div>
 
                                         {/* Video */}
@@ -128,10 +136,28 @@ console.log(incomingStudentImage);
                                             </div>
                                             <p className='font-bold my-2'>Already Uploaded Video</p>
                                             <video
-                                            src={incomingVideo}
-                                            controls
-                                            className="w-32 h-20"
-                                        />
+                                                src={incomingVideo}
+                                                controls
+                                                className="w-32 h-20"
+                                            />
+                                        </div>
+
+                                        {/* Banner Image */}
+                                        <div className="p-2 w-full sm:w-1/2">
+                                            <div className="relative">
+                                                <label className="leading-7 text-sm text-gray-600">Upload Banner Image</label><br />
+                                                <input type="file" name='bannerImage' accept="image/*" className="file-input file-input-bordered file-input-md w-full" />
+                                            </div>
+
+                                            <p className='font-bold my-2'>Already Uploaded Image</p>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle w-12 h-12">
+                                                        <img src={incomingBanner} alt={incomingStudentName} />
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div className="p-2 w-full sm:w-1/2">
@@ -142,7 +168,7 @@ console.log(incomingStudentImage);
                                                     name="youtube" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                             </div>
                                         </div>
-                                        
+
 
                                         {/* Submit Button */}
                                         <div className="p-2 w-full">
@@ -150,7 +176,7 @@ console.log(incomingStudentImage);
                                         </div>
                                     </form>
 
-                                   
+
                                 </div>
                             </div>
                         </div>

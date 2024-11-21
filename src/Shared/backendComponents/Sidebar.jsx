@@ -42,9 +42,9 @@ const Sidebar = () => {
       </>
     },
     {
-      name: 'Homepage content',
+      name: 'Website content',
       data: <>
-        <NavigationItem to="/dashboard/manageHomepageContent" icon={SiNginxproxymanager} label="Manage Homepage Content" />
+        <NavigationItem to="/dashboard/manageHomepageContent" icon={SiNginxproxymanager} label="Manage Website Content" />
         <NavigationItem to="/dashboard/manageCountDown" icon={SiNginxproxymanager} label="Manage CountDown" />
       </>
     },
@@ -71,9 +71,9 @@ const Sidebar = () => {
       </>
     },
     {
-      name: 'Student Gallery',
+      name: 'Photo Gallery',
       data: <>
-        <NavigationItem to="/dashboard/manageStudentGallary" icon={SiNginxproxymanager} label="Manage Student Gallary" />
+        <NavigationItem to="/dashboard/managePhotoGallary" icon={SiNginxproxymanager} label="Manage Photo Gallary" />
       </>
     },
     {

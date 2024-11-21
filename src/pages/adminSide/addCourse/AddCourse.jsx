@@ -41,6 +41,8 @@ const AddCourse = () => {
         setImageInput(e.target.files[0] || '')
 
     }
+
+
     const handleStoreImages = () => {
         if (imageInput === '') {
             return
@@ -50,10 +52,14 @@ const AddCourse = () => {
         setImageInput('');
         document.getElementById('courseImageInputField').value = '';
     }
+
+
     const handleDeleteImage = (comingImage) => {
         const newImageArray = allImages.filter(image => image.id !== comingImage.id)
         setAllImages(newImageArray)
     }
+
+    
     const handleAddSubVideo = () => {
         setSubVideos([...subVideosArray, { id: new Date().getTime(), title: subVideoTitle, url: subVideoUrl }])
         setSubVideoTitle('')
@@ -81,10 +87,10 @@ const AddCourse = () => {
             isValid = false;
         }
 
-        if (subVideosArray.length < 1) {
-            setSubVideoErr('Please add minimum 1 sub Video');
-            isValid = false;
-        }
+        // if (subVideosArray.length < 1) {
+        //     setSubVideoErr('Please add minimum 1 sub Video');
+        //     isValid = false;
+        // }
 
         if (!isValid) {
             return
@@ -223,7 +229,7 @@ const AddCourse = () => {
                                             <div className="p-2 w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Upload Course Main Video</label><br />
-                                                    <input required type="text" name='videoUrl' className="file-input file-input-bordered file-input-md w-full" />
+                                                    <input  type="text" name='videoUrl' className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
                                             </div>
 

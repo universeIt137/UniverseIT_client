@@ -2,7 +2,7 @@
 import React from 'react';
 
 const SliderMemberCard = ({ member }) => {
-    console.log(member);
+    // console.log(member);
     return (
         <div className={`bg-primary/70 sm:p-1.5 w-full max-w-[290px] rounded-lg text-black overflow-hidden mx-auto`}>
             <div className={` relative bg-gray-100 min-h-full h-[240px] sm:h-[360px] border-2 sm:border-none rounded-lg border-primary`}>

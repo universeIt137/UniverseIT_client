@@ -18,7 +18,8 @@ import { FiSearch } from "react-icons/fi";
 import { IoIosPeople } from "react-icons/io";
 import { FaHome, FaBlog, FaUsers, FaTrophy } from 'react-icons/fa';
 import { IoSchool } from "react-icons/io5";
-import { MdOutlineReviews } from "react-icons/md";
+import { MdOutlineReviews, MdOutlineVideoLibrary } from "react-icons/md";
+import { RiGalleryLine } from "react-icons/ri";
 const NavBarDrawer = ({ open, setOpen }) => {
     const closeDrawer = () => setOpen(false);
     const navLi = [
@@ -27,6 +28,8 @@ const NavBarDrawer = ({ open, setOpen }) => {
         { name: 'Blogs', link: '/blogs', icon: <FaBlog /> },
         { name: 'Faculties', link: '/faculties', icon: <FaUsers /> },
         { name: 'Success Story', link: '/successStory', icon: <FaTrophy /> },
+        { name: 'Photo Gallery', link: '/photoGallery', icon: <RiGalleryLine /> },
+        { name: 'Video Gallery', link: '/videoGallery', icon: <MdOutlineVideoLibrary /> },
         { name: 'Courses', link: '/courses', icon: <IoSchool /> },
         { name: "Student's Feedback", link: '/feedback', icon: <MdOutlineReviews /> },
     ];

@@ -69,7 +69,7 @@ const FeedbackComponent = ({ isHomePage = false }) => {
                                     url={story?.video || story?.youtube_link}
                                     width="100%"
                                     height="100%"
-                                    light={story?.image} // Display image thumbnail before the video plays
+                                    light={story?.banner} // Display image thumbnail before the video plays
                                     playIcon={<IoPlayCircleSharp className="text-4xl text-white" />} // Custom play button
                                 />
                             </div>

@@ -60,7 +60,7 @@ const HomeFreeSeminar = () => {
                     <div className="py-5 space-y-5 ">
                         <div className={`space-y-4 ${seeMore ? 'max-h-[5000px]' : 'max-h-[300px]'} overflow-hidden transition-all duration-500`}>
                             {
-                                allSeminar?.map((seminar, idx) =>
+                                allSeminar?.slice().reverse().map((seminar, idx) =>
                                     <div className="w-full  bg-primary/35 rounded-xl flex overflow-hidden gap-3 " key={idx}>
                                         <p className="flex flex-col min-w-max max-w-max justify-center items-center pl-5 pr-2 sm:pr-4">
                                             {returnDate(seminar?.date)}

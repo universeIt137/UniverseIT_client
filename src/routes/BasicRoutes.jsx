@@ -72,6 +72,7 @@ import Feedback from "../pages/clientSide/feedbackPage/Feedback";
 import AddFeedback from "../pages/adminSide/feedbackRelatedPages/addFeedback/AddFeedback";
 import ManageFeedback from "../pages/adminSide/feedbackRelatedPages/manageFeedback/ManageFeedback";
 import UpdateFeedback from "../pages/adminSide/feedbackRelatedPages/updateFeedback/UpdateFeedback";
+import PhotoGallery from "../pages/clientSide/SuccessStoryPage/PhotoGallery";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -132,8 +133,13 @@ const BasicRoutes = createBrowserRouter([
                 element: <SeminarForm />
             },
             {
-                path: "/successStory",
+                path: "/videoGallery",
                 element: <SuccessStoryPage />
+            },
+
+            {
+                path: "/photoGallery",
+                element: <PhotoGallery></PhotoGallery>
             },
             // career related routes 
             {
@@ -259,7 +265,7 @@ const BasicRoutes = createBrowserRouter([
             },
 
             {
-                path: "manageStudentGallary",
+                path: "managePhotoGallary",
                 element: <ManageStudentGallary></ManageStudentGallary>
             },
 

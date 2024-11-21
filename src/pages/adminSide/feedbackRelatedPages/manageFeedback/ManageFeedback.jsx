@@ -63,7 +63,7 @@ const ManageFeedback = () => {
                             <th>Image</th>
                             <th>Video</th>
                             <th>Youtube Video</th>
-                            <th>Description</th>
+                            <th>Banner Image</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -94,7 +94,15 @@ const ManageFeedback = () => {
                                     <Link to={`${feedback.youtube_link}`}>Youtube Link</Link>
                                     </td>
 
-                                    <td>{feedback.description.slice(0, 59)}</td>
+                                    <td>
+                                        <div className="flex items-center gap-3">
+                                            <div className="avatar">
+                                                <div className="mask mask-squircle w-12 h-12">
+                                                    <img src={feedback.banner} alt={feedback.studentName} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td className='text-2xl text-green-500'>
                                         <Link to={`/dashboard/update-feedback/${feedback._id}`}><MdEditSquare /></Link>
                                     </td>

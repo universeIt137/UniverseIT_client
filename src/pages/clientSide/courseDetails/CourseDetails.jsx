@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import BannerSection from './BannerSection';
 import Loading from '../../../Shared/Loading/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const CourseDetails = () => {
     const axiosPublic = useAxiosPublic();
@@ -40,6 +41,9 @@ const CourseDetails = () => {
 
     return (
         <section className='px-3 mx-auto'>
+            <Helmet>
+                <title>Universe IT | Course Details</title>
+            </Helmet>
             {/* banner */}
             <BannerSection filteredSuccessStories={filteredSuccessStories} courseData={courseData} />
 

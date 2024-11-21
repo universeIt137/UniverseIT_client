@@ -109,10 +109,10 @@ const UpdateCoursePage = () => {
 
 
 
-        if (subVideosArray.length < 1) {
-            setSubVideoErr('Please add minimum 1 sub Video');
-            isValid = false;
-        }
+        // if (subVideosArray.length < 1) {
+        //     setSubVideoErr('Please add minimum 1 sub Video');
+        //     isValid = false;
+        // }
 
         if (!isValid) {
             return
@@ -258,7 +258,7 @@ const UpdateCoursePage = () => {
                                             <div className="p-2 w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Upload Course Main Video</label><br />
-                                                    <input defaultValue={courseData.videoUrl} required type="text" name='videoUrl' className="file-input file-input-bordered file-input-md w-full" />
+                                                    <input defaultValue={courseData.videoUrl}  type="text" name='videoUrl' className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
                                             </div>
 

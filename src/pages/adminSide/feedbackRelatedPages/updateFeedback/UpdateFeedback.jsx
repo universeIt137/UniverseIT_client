@@ -24,7 +24,7 @@ const UpdateFeedback = () => {
         return <Loading/>;  // You can replace this with a loading spinner or message if needed
     }
 
-    const { _id, title: incomingTitle, description: incomingDescription, video: incomingVideo, name: incomingStudentName, image: incomingStudentImage, youtube_link: incomingYoutubeLink } = feedbackData;
+    const { _id, title: incomingTitle, description: incomingDescription, video: incomingVideo, name: incomingStudentName, image: incomingStudentImage, banner: incomingBanner, youtube_link: incomingYoutubeLink } = feedbackData;
 console.log(incomingStudentImage);
 
     const handleSubmit = async (event) => {
@@ -35,9 +35,12 @@ console.log(incomingStudentImage);
         const youtube_link = form.youtube.value;
         const name = form.studentName.value;
         const selectedImage = form.studentImage.files[0];
+        const selectedBanner = form.bannerImage.files[0];
         const selectedVideo = form.video.files[0];
         let videoUrl = incomingVideo;
         let imageUrl = incomingStudentImage;
+        let bannerUrl = incomingBanner;
+
         const toastId = toast.loading("Story is updating...");
         if (selectedVideo) {
             videoUrl = await uploadVideo(selectedVideo);
@@ -45,8 +48,12 @@ console.log(incomingStudentImage);
         if (selectedImage) {
             imageUrl = await uploadImg(selectedImage);
         }
+        if (selectedBanner) {
+            bannerUrl = await uploadImg(selectedBanner);
+            
+        }
 
-        const data = { title, description, name, youtube_link, image: imageUrl, video: videoUrl };
+        const data = { title, description, name, youtube_link, image: imageUrl, banner: bannerUrl, video: videoUrl };
 
         axiosPublic.put(`/feedback/${_id}`, data)
             .then(res => {
@@ -133,6 +140,24 @@ console.log(incomingStudentImage);
                                             controls
                                             className="w-32 h-20"
                                         />
+                                        </div>
+
+                                        {/* Banner Image */}
+                                        <div className="p-2 w-full sm:w-1/2">
+                                            <div className="relative">
+                                                <label className="leading-7 text-sm text-gray-600">Upload Banner Image</label><br />
+                                                <input type="file" name='bannerImage' accept="image/*" className="file-input file-input-bordered file-input-md w-full" />
+                                            </div>
+
+                                            <p className='font-bold my-2'>Already Uploaded Image</p>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle w-12 h-12">
+                                                        <img src={incomingBanner} alt={incomingStudentName} />
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div className="p-2 w-full sm:w-1/2">

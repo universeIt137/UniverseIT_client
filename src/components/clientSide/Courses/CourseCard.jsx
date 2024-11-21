@@ -21,7 +21,7 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
             </div>
           )}
           <img
-            className="h-full  object-cover"
+            className="w-full h-full object-fill rounded-lg shadow-md"
             src={bannerImages[0]}
             alt="Course Banner"
           />
@@ -29,7 +29,7 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
         <div className="card-body  flex flex-col justify-between px-3 sm:px-8 h-full ">
           <div className=" lg:space-y-3 flex-grow">
             <div className="flex justify-between">
-              <p className="max-w-max px-3 rounded-sm text-[8px] lg:text-xs bg-primary/40 py-1">
+              <p className="max-w-max px-3 rounded-sm text-[8px] lg:text-xs bg-primary text-white py-1">
                 {category}
               </p>
               <Link to={`/courseDetails/${_id}`}>
@@ -48,7 +48,7 @@ const CourseCard = ({ course = {}, isCoursePage = false }) => {
                 {courseFee}৳
               </p>
             ) : (
-              <p className="text-center text-[12px] lg:text-base font-bold text-primary">
+              <p className="text-center text-[12px] lg:text-base font-bold text-secondary">
                 <span className="font-normal">{discountFee}৳</span>{" "}
                 <span className="line-through">{courseFee}৳</span>
               </p>

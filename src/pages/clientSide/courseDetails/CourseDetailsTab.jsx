@@ -120,9 +120,10 @@ const CourseDetailsTab = () => {
                         {
 
                             courseSemesters.map((semester, idx) =>
-                                <p className='flex items-center gap-2' key={semester._id}>
-                                    <MdOutlineCheckBoxOutlineBlank />{semester?.semesterTitle}
-                                </p>
+                                <div className='flex items-center gap-2' key={semester._id}>
+                                    <div><MdOutlineCheckBoxOutlineBlank /></div>
+                                    <p>{semester?.semesterTitle}</p>
+                                </div>
                             )
                         }
                         {
@@ -135,7 +136,7 @@ const CourseDetailsTab = () => {
             <p className="text-xs lg:text-4xl text-center text-secondary font-bold mt-5">What you will get <span className='text-primary'>from this course</span></p>
             
             <div className="lg:my-8 ">
-                <p className="text-primary font-bold text-xl lg:text-3xl text-center">Cirtificate</p>
+                {/* <p className="text-primary font-bold text-xl lg:text-3xl text-center">Cerrtificate</p> */}
                 <div className="w-11/12 mx-auto flex justify-center mt-2">
                     <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1728218178/UniverseIT/nitgzsu14eguukizmcch.jpg" alt="" className='w-1/2 rounded-2xl' />
                 </div>
