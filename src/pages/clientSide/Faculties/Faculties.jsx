@@ -108,10 +108,13 @@ const Faculties = () => {
 
             <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-5  justify-center px-2'>
                 {
-                    (showingFaculties.slice(firstCardId, firstCardId + cardPerSlice)).map((faculty, idx) => <FacultyCard key={idx} faculty={faculty} />)
+                    otherMembers.map(
+                        (faculty, idx) => <FacultyCard key={idx} faculty={faculty} />
+                    )
+                    // (showingFaculties.slice(firstCardId, firstCardId + cardPerSlice)).map((faculty, idx) => <FacultyCard key={idx} faculty={faculty} />)
                 }
             </div>
-            <div className="mt-4 flex justify-center items-center gap-6">
+            {/* <div className="mt-4 flex justify-center items-center gap-6">
                 <button
                     onClick={handlePrev}
                     disabled={firstCardId === 0}
@@ -129,7 +132,7 @@ const Faculties = () => {
                 >
                     Next
                 </button>
-            </div>
+            </div> */}
         </div>
     );
 };

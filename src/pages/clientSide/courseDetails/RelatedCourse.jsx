@@ -23,17 +23,20 @@ const RelatedCourse = () => {
     })
 
     
+
+    
     if (isLoading) {
         return <Loading />
     }
     const filteredCourse = courses?.filter(course => course?._id !== id)
 
+    const relatedCourses = filteredCourse?.slice(0, 3);
     return (
         <div className=" py-5">
             <h2 className='text-lg font-bold'>Related Courses</h2>
             <div className='flex flex-col gap-5 py-5 overflow-hidden '>
                 {
-                    filteredCourse?.map((course, idx) => <div key={idx} className='flex flex-col sm:flex-row  gap-5 max-w-[500px]'>
+                    relatedCourses?.map((course, idx) => <div key={idx} className='flex flex-col sm:flex-row  gap-5 max-w-[500px]'>
                         <img className='object-cover rounded-md sm:size-[130px]' src={course?.bannerImages[0] || ''} alt="" />
                         <div className='flex flex-wrap  gap-5 lg:gap-0 justify-between w-full'>
                             <div>

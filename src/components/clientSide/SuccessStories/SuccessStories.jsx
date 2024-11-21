@@ -43,7 +43,7 @@ const SuccessStories = ({ isHomePage = false }) => {
     return (
         <div className="bg-[#fefaee] lg:py-10 ">
             <div className="max-w-7xl mx-auto">
-                <ComponentsTitle title={'Success Stories'} description={'Shine a spotlight on the stories of our determined students who have achieved remarkable feats through their unwavering dedication.'} />
+                <ComponentsTitle title={'Video Gallery'} description={'Shine a spotlight on the stories of our determined students who have achieved remarkable feats through their unwavering dedication.'} />
 
 
                 {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-wrap px-5 sm:px-10 pt-10">

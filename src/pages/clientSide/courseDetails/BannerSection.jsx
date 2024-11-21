@@ -15,7 +15,7 @@ import CourseTabsAndShare from './CourseTabsAndShare';
 
 const BannerSection = ({ filteredSuccessStories, courseData }) => {
 
-    const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee, technologies = [], keyFeatures = [], instructors = [] } = courseData;
+    const { category, title, videoUrl, bannerImages = [], subVideos, notice, bangla, admissionNotice, courseFee, discountFee, technologies = [], keyFeatures = [], instructors = [] } = courseData;
     const handleClick = () => {
         window.location.href = `tel:+8801755450127`;
     };
@@ -26,7 +26,10 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
             {/* video and technology section  */}
             <div className="lg:w-4/6 bg-white p-5 rounded-2xl  hidden lg:block">
                 {/* main video  */}
-                <MainVideo videoUrl={videoUrl} />
+                {
+                    videoUrl ? <MainVideo videoUrl={videoUrl} /> : <></>
+                }
+
 
                 <section className=' mt-2 bg-gray-200 rounded-xl p-5'>
                     <p className='font-bold text-xl mb-2' >Technologies you will learn</p>
@@ -74,7 +77,16 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
                         <p className="text-end text-base sm:text-xl font-bold text-primary">
                             Fee
                             <br />
-                            {courseFee}<span className='font-bold text-2xl'>৳</span>
+                            {discountFee === '0' ? (
+                                <p className="text-center text-[12px] lg:text-base font-bold text-primary">
+                                    {courseFee}৳
+                                </p>
+                            ) : (
+                                <p className="text-center text-[12px] lg:text-base font-bold text-primary">
+                                    <span className="font-normal">{discountFee}৳</span>{" "}
+                                    <span className="line-through">{courseFee}৳</span>
+                                </p>
+                            )}
                         </p>
                     </div>
                     <p className='text-primary'>
@@ -141,7 +153,7 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
                         </div>
 
 
-                        
+
                     </div>
 
 
@@ -151,7 +163,7 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
                 {/* mobile view related video and technologies  */}
                 <div className="lg:hidden">
                     <div className="ml-6">
-                    <MainVideo videoUrl={videoUrl} />
+                        <MainVideo videoUrl={videoUrl} />
                     </div>
 
                     <section className=' mt-2 bg-gray-200 rounded-xl p-5'>
@@ -182,7 +194,7 @@ const BannerSection = ({ filteredSuccessStories, courseData }) => {
                 {/* course video and technology section for mobile view  */}
 
                 <div className="px-5">
-                    <SuccessStory filteredSuccessStories={ filteredSuccessStories} />
+                    <SuccessStory filteredSuccessStories={filteredSuccessStories} />
                     <RelatedCourse />
                 </div>
             </div>

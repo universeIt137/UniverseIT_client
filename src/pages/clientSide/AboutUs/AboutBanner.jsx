@@ -1,16 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const AboutBanner = () => {
+
+    const axiosPublic = useAxiosPublic()
+    const { data: homepageContent = [], refetch: homepageContentRefetch, isLoading } = useQuery({
+        queryKey: ['homepageContent'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/homepageContent')
+            return res?.data
+        }
+    })
+
+    console.log(homepageContent);
+    const {
+        title: incomingTitle,
+        imageUrl: incomingImageUrl,
+        subtitle: incomingSubtitle,
+        aboutTitle: incomingAboutTitle,
+        aboutSubTitle: incomingAboutSubTitle,
+        aboutdesc: incomingAboutDesc,
+        video_url: incomingVideo_url,
+        milestoneImage: incomingMilestoneImg,
+        seminarImage: incomingFreeSeminarImg,
+        servicesImage: incomingServicesImg, // Added
+        aboutImage: incomingAboutImg // Added
+    } = homepageContent[0] || [];
+
+
     return (
         <>
             <div className='md:flex justify-between max-w-7xl mx-auto px-5 gap-4 mt-10 pb-10'>
                 <div className=' md:w-1/2'>
                     <div className='text-center md:text-left'>
-                        <p className='text-primary text-2xl font-bold'>Successfully 5 Year's</p>
-                        <p className='md:text-5xl font-bold'>World-Renowned  IT  Expert Making Organization</p>
+                        <p className='text-primary text-2xl font-bold'>{ incomingAboutSubTitle }</p>
+                        <p className='md:text-5xl font-bold'>{ incomingAboutTitle }</p>
 
-                        <p className='md:py-10 md:text-xl'>Universe IT Institute has been working with a vision to create IT experts for the past 5 years. In a fast pacing world, where every sector relies on technology, you need to develop IT skills to secure a better future.
+                        <p className='md:py-10 md:text-xl'>
+                            {incomingAboutDesc}
                         </p>
                     </div>
 
@@ -22,7 +51,7 @@ const AboutBanner = () => {
 
                 </div>
                 <div className='md:w-1/2 mt-5'>
-                    <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1724062702/UniverseIT/mocgjw9vdp1xrwbu0m53.jpg" className='rounded-2xl' alt="" />
+                    <img src={incomingAboutImg} className='rounded-2xl' alt="" />
                 </div>
             </div>
         </>

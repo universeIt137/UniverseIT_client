@@ -28,17 +28,21 @@ const ManageHomepageContent = () => {
             setAllBenefits(homepageContent[0]?.benefits);
         }
     }, [homepageContent, isLoading]);
-if(isLoading){
-    return <Loading/>
-}
+    if (isLoading) {
+        return <Loading />
+    }
     const {
         title: incomingTitle,
         imageUrl: incomingImageUrl,
         subtitle: incomingSubtitle,
+        aboutTitle: incomingAboutTitle,
+        aboutSubTitle: incomingAboutSubTitle,
+        aboutdesc: incomingAboutDesc,
         video_url: incomingVideo_url,
         milestoneImage: incomingMilestoneImg,
         seminarImage: incomingFreeSeminarImg,
-        servicesImage: incomingServicesImg // Added
+        servicesImage: incomingServicesImg, // Added
+        aboutImage: incomingAboutImg // Added
     } = homepageContent[0] || [];
 
     const handleSubmit = async (event) => {
@@ -48,14 +52,19 @@ if(isLoading){
         const video_url = form.video_url.value || '';
         const selectedImage = form.image.files[0] || {};
         const title = form.title.value || '';
+        const aboutTitle = form.aboutTitle.value || '';
+        const aboutSubTitle = form.aboutSubTitle.value || '';
+        const aboutdesc = form.aboutdesc.value || '';
         const subtitle = form.subtitle.value || '';
         const milestoneImage = form.milestoneImage.files[0] || {};
         const seminarImage = form.seminarImage.files[0] || {};
         const servicesImage = form.servicesImage.files[0] || {}; // Added
+        const aboutImage = form.aboutImage.files[0] || {}; // Added
         let imageUrl = '';
         let milestoneImageUrl = '';
         let seminarImageUrl = '';
         let servicesImageUrl = ''; // Added
+        let aboutImageUrl = ''; // Added
 
         if (!selectedImage?.name) {
             imageUrl = incomingImageUrl;
@@ -82,16 +91,30 @@ if(isLoading){
             servicesImageUrl = await uploadImg(servicesImage);
         }
 
+
+        // Handle about Banner Image Upload
+        if (!aboutImage?.name) {
+            aboutImageUrl = incomingAboutImg;
+        } else {
+            aboutImageUrl = await uploadImg(aboutImage);
+        }
+
         const data = {
             video_url,
             title,
+            aboutTitle,
+            aboutSubTitle,
+            aboutdesc,
             imageUrl: imageUrl ? imageUrl : '',
             subtitle,
             milestoneImage: milestoneImageUrl,
             seminarImage: seminarImageUrl,
             servicesImage: servicesImageUrl, // Added
+            aboutImage: aboutImageUrl, // Added
             benefits: allBenefits
         };
+
+        // console.log(data);
 
         axiosPublic.post(`/updateHomepageContent/${homepageContent[0]?._id || 'notAvailable'}`, data)
             .then(res => {
@@ -155,12 +178,25 @@ if(isLoading){
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Banner Image</label><br />
                                                     <input name='image' type="file" className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
+                                                <div className="avatar">
+                                                    <p>Uploaded Image:</p>
+                                                    <div className="mask mask-squircle w-24">
+                                                        <img src={incomingImageUrl} />
+                                                    </div>
+                                                </div>
                                             </div>
                                             {/* milestone image upload  */}
                                             <div className=" w-full">
                                                 <div className="relative">
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Milestone Image</label><br />
                                                     <input name='milestoneImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
+                                                </div>
+
+                                                <div className="avatar">
+                                                    <p>Uploaded Image:</p>
+                                                    <div className="mask mask-squircle w-24">
+                                                        <img src={incomingMilestoneImg} />
+                                                    </div>
                                                 </div>
                                             </div>
                                             {/* seminar image upload  */}
@@ -169,16 +205,78 @@ if(isLoading){
                                                     <label className="leading-7 text-sm text-gray-600 font-bold">Free Seminar Image</label><br />
                                                     <input name='seminarImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
                                                 </div>
+                                                <div className="avatar">
+                                                    <p>Uploaded Image:</p>
+                                                    <div className="mask mask-squircle w-24">
+                                                        <img src={incomingFreeSeminarImg} />
+                                                    </div>
+                                                </div>
                                             </div>
                                             {/* services image upload  */}
                                             <div className=" w-full">
                                                 <div className="relative">
-                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Services Image</label><br />
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">Benefit Section Banner Image</label><br />
                                                     <input name='servicesImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
+                                                </div>
+                                                <div className="avatar">
+                                                    <p>Uploaded Image:</p>
+                                                    <div className="mask mask-squircle w-24">
+                                                        <img src={incomingServicesImg} />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div className="w-full my-10">
+                                            <p className='text-center text-2xl font-bold pb-2'>Manage About Us Content</p>
+                                        </div>
+
+
+                                        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+                                            {/* about us Banner image upload  */}
+                                            <div className="">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">About Page Banner Image</label><br />
+                                                    <input name='aboutImage' type="file" className="file-input file-input-bordered file-input-md w-full" />
+                                                </div>
+
+                                                <div className="avatar">
+                                                    <p>Uploaded Image:</p>
+                                                    <div className="mask mask-squircle w-24">
+                                                        <img src={incomingAboutImg} />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className=" w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">About Title</label><br />
+                                                    <input name='aboutTitle' defaultValue={incomingAboutTitle} type="text" placeholder='About Title' className="file-input file-input-bordered file-input-md w-full px-2" />
+                                                </div>
+                                            </div>
+
+                                            <div className=" w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">About Sub Title</label><br />
+                                                    <input name='aboutSubTitle' defaultValue={incomingAboutSubTitle} type="text" placeholder='about Sub Title' className="file-input file-input-bordered file-input-md w-full px-2" />
+                                                </div>
+                                            </div>
+
+                                            <div className=" w-full">
+                                                <div className="relative">
+                                                    <label className="leading-7 text-sm text-gray-600 font-bold">About Page Description</label><br />
+                                                    <textarea defaultValue={incomingAboutDesc} name='aboutdesc' type="text" placeholder='About page description' className="file-input file-input-bordered file-input-md w-full px-2 h-[100px]" />
                                                 </div>
                                             </div>
 
                                         </div>
+
+
+
                                         <div className="p-2 w-full">
                                             <div className='flex justify-center items-center'><ButtonStrong text={'Submit'} /></div>
                                         </div>

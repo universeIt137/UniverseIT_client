@@ -6,7 +6,7 @@ const SuccessStoryPage = () => {
     return (
         <div>
             <Helmet>
-                <title>Universe IT | Success Story</title>
+                <title>Universe IT | video Gallary</title>
             </Helmet>
             <SuccessStories />
         </div>

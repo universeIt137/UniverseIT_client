@@ -15,7 +15,7 @@ import { useState } from 'react';
 
 const AddSuccessStory = () => {
     const { id } = useParams();
-    
+
 
 
     const axiosPublic = useAxiosPublic();
@@ -40,18 +40,19 @@ const AddSuccessStory = () => {
         }
     })
 
-    
+
 
     // Filter success stories based on course_id
     const filteredSuccessStories = stories.filter(story => story.course_id === id);
 
-    
+
 
 
 
     const onSubmit = async (data) => {
         const toastId = toast.loading("Story is adding...");
         const imageUrl = await uploadImg(data.image[0]);
+        const bannerUrl = await uploadImg(data.banner[0]);
         const videoUrl = await uploadVideo(data.video[0]); // Handle video upload
 
         const information = {
@@ -61,6 +62,7 @@ const AddSuccessStory = () => {
             course_id: id,
             description: data.description,
             image: imageUrl,
+            banner: bannerUrl,
             video: videoUrl
 
         }
@@ -185,6 +187,20 @@ const AddSuccessStory = () => {
                                             </div>
                                         </div>
 
+                                        {/*  banner */}
+                                        <div className="p-2 w-full sm:w-1/2">
+                                            <div className="relative">
+                                                <label className="leading-7 text-sm text-gray-600 font-bold">Upload Video Banner Image</label><br />
+                                                <input
+                                                    type="file"
+                                                    {...register('banner', { required: true })}
+                                                    name='banner'
+                                                    accept="image/*" // This restricts the file selection to image files only
+                                                    className="file-input file-input-bordered file-input-md w-full"
+                                                />
+                                            </div>
+                                        </div>
+
 
                                         {/* Youtube Link */}
                                         <div className="p-2 w-full sm:w-1/2">
@@ -200,8 +216,8 @@ const AddSuccessStory = () => {
                                     </form>
 
                                     <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-                                        
-                                        
+
+
                                     </div>
                                 </div>
                             </div>

@@ -100,7 +100,7 @@ const CertificateVerification = () => {
                             <div className="rounded-t-lg h-32 overflow-hidden bg-primary"></div>
                             <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
                                 <img
-                                    className="object-cover object-center h-32"
+                                    className="object-cover object-center"
                                     src={student?.studentProfile}
                                     alt="Student"
                                 />

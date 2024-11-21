@@ -21,7 +21,7 @@ const CertificateRow = ({ idx, certificate, refetch }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.delete(`/testimonial/${_id}`)
+                axiosPublic.delete(`/certificate/${_id}`)
                     .then(res => {
                         if (res?.data?.deletedCount) {
                             Swal.fire({
@@ -42,7 +42,7 @@ const CertificateRow = ({ idx, certificate, refetch }) => {
     }
     return (
         <tr >
-            <td>1</td>
+            <td>{}</td>
             <td>{studentName || 'Not Given'}</td>
             <td>{email || 'Not Given'}</td>
             <td>

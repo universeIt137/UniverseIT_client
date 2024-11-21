@@ -17,7 +17,7 @@ const Milestones = () => {
     }
     const data = homepageContent[0] || [];
     const { enrolled, instructors, expert, successRatio, milestoneImage } = data;
-    console.log(milestoneImage);
+    // console.log(milestoneImage);
 
     const countStyle = ' h-[145px] lg:h-[11vw] xl:h-[155px] rounded-lg text-4xl flex justify-center px-5 sm:px-10 font-bold flex-col'
     return (

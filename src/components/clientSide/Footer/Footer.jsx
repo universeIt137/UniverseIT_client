@@ -53,7 +53,7 @@ const Footer = () => {
                         onSubmit={sendEmail}
                     >
                         <img className='w-40' src={logo} alt="" />
-                        <p className="max-w-[400px] font-medium text-gray-300">Universe IT is dedicated to providing IT training that equips students with the skills and expertise to thrive in today's competitive marketplace.</p>
+                        <p className="max-w-[400px] font-medium text-gray-300">Universe IT Institute is dedicated to providing IT training that equips students with the skills and expertise to thrive in today's competitive marketplace.</p>
                         <fieldset className="form-control sm:w-80">
                             <div className="join">
                                 <input
@@ -70,12 +70,13 @@ const Footer = () => {
                     <nav className='max-w-[220px] text-sm'>
                         <h6 className="footer-title">Contact</h6>
                         <Link to={"/contact-us"}>Contact Us</Link>
-                        <a className="link link-hover  flex gap-2"> <span className='pt-2'><FaLocationDot /></span>House # 21/A (Lift 5th Floor),Road-2,Block-A,Aftabnagar(Beside East West University),Merul Badda,Dhaka.</a>
+                        <a className="link link-hover  flex gap-2"> <span className='pt-2'><FaLocationDot /></span>House# 39/C (Siraj Convention Centre,Lift 4th floor),Main Road, Block-C,  Aftabnagar, Merul Badda,Dhaka , Dhaka, Bangladesh, 1212</a>
                         <a className="link link-hover flex gap-2">
                             <IoIosMail className="text-xl" />
                             universeitinstitute@gmail.com
                         </a>
                         <a className="link link-hover"><span className="flex items-center gap-2"><IoIosCall /> 01886-061401</span></a>
+                        <a className="link link-hover"><span className="flex items-center gap-2"><IoIosCall /> 01821-779282</span></a>
                     </nav>
                     <div className="flex justify-between lg:gap-24  gap-10 lg:footer">
                         <div className="footer w-full">
@@ -97,7 +98,8 @@ const Footer = () => {
                             <Link to={"/faculties"} className="link link-hover">Our faculty</Link>
                             <Link to={"/career"} className="link link-hover">Career</Link>
                             <Link to={"/blogs"} className="link link-hover">Blogs</Link>
-                            <Link to={"/successStory"} className="link link-hover">Success Story</Link>
+                            <Link to={"/photoGallery"} className="link link-hover">Photo Gallery</Link>
+                            <Link to={"/videoGallery"} className="link link-hover">Video Gallery</Link>
                         </nav>
                         </div>
                     </div>

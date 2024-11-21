@@ -28,7 +28,7 @@ const TeamMember = () => {
         }
     })
 
-    console.log(members);
+    // console.log(members);
 
 
 
