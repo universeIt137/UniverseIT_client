@@ -75,6 +75,7 @@ import UpdateFeedback from "../pages/adminSide/feedbackRelatedPages/updateFeedba
 import PhotoGallery from "../pages/clientSide/SuccessStoryPage/PhotoGallery";
 import ManageRepresentative from "../pages/adminSide/representativeRelatedPages/ManageRepresentative";
 import UpdateRepresentative from "../pages/adminSide/representativeRelatedPages/UpdateRepresentative";
+import RepresentativeList from './../pages/clientSide/representativePage/RepresentativeList';
 
 
 const BasicRoutes = createBrowserRouter([
@@ -171,6 +172,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "/feedback",
                 element:<Feedback></Feedback>
+            },
+            {
+                path : "/representative",
+                element : <RepresentativeList></RepresentativeList>
             }
             
 
