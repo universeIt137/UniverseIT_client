@@ -73,6 +73,8 @@ import AddFeedback from "../pages/adminSide/feedbackRelatedPages/addFeedback/Add
 import ManageFeedback from "../pages/adminSide/feedbackRelatedPages/manageFeedback/ManageFeedback";
 import UpdateFeedback from "../pages/adminSide/feedbackRelatedPages/updateFeedback/UpdateFeedback";
 import PhotoGallery from "../pages/clientSide/SuccessStoryPage/PhotoGallery";
+import ManageRepresentative from "../pages/adminSide/representativeRelatedPages/ManageRepresentative";
+import UpdateRepresentative from "../pages/adminSide/representativeRelatedPages/UpdateRepresentative";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -368,7 +370,18 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "update-feedback/:id",
                 element: <UpdateFeedback></UpdateFeedback>
+            },
+
+            // representative related routes 
+            {
+                path: "manage-representative",
+                element: <ManageRepresentative></ManageRepresentative>
+            },
+            {
+                path: "update-representative/:id",
+                element: <UpdateRepresentative></UpdateRepresentative>
             }
+
 
 
 
