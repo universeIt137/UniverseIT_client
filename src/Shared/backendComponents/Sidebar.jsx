@@ -64,6 +64,12 @@ const Sidebar = () => {
       </>
     },
     {
+      name: 'Representative Members',
+      data: <>
+        <NavigationItem to="/dashboard/manage-representative" icon={MdAddCircle} label="Manage Representative" />
+      </>
+    },
+    {
       name: 'Testimonial',
       data: <>
         <NavigationItem to="/dashboard/addTestimonial" icon={MdAddCircle} label="Add Testimonial" />
