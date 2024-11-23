@@ -11,7 +11,7 @@ import { useState } from 'react';
 const Navbar = ({ open, setOpen }) => {
     const [galleryOpen, setGalleryOpen] = useState(false); // state to control the dropdown
 
-    const navStyle = `text-base font-semibold hover:text-primary ml-3 px-1 py-1 xl:py-2 rounded-lg relative navbarStylingComponentsParent w-max`;
+    const navStyle = `text-base font-semibold hover:text-primary  px-1 py-1 xl:py-2 rounded-lg relative navbarStylingComponentsParent w-max`;
     const stylingComponents = (
         <div className='h-[2px] bg-primary absolute bottom-0 left-0 navbarStylingComponents transition-all duration-300'></div>
     );
@@ -24,6 +24,10 @@ const Navbar = ({ open, setOpen }) => {
             </NavLink>
             <NavLink to={'/faculties'} className={`${navStyle}`}>
                 <a>Faculties</a>
+                {stylingComponents}
+            </NavLink>
+            <NavLink to={'/representative'} className={`${navStyle}`}>
+                <a>Representative</a>
                 {stylingComponents}
             </NavLink>
 
