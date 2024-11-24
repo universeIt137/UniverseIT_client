@@ -100,6 +100,7 @@ const Footer = () => {
                             <Link to={"/blogs"} className="link link-hover">Blogs</Link>
                             <Link to={"/photoGallery"} className="link link-hover">Photo Gallery</Link>
                             <Link to={"/videoGallery"} className="link link-hover">Video Gallery</Link>
+                            <Link to={"/representative"} className="link link-hover"> Representative</Link>
                         </nav>
                         </div>
                     </div>

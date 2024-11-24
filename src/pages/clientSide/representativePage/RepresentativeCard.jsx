@@ -38,9 +38,9 @@ const RepresentativeCard = ({ representative, slide }) => {
                         {/* <h2 className='text-[10px] lg:text-sm break-words w-full text-center'>{email}</h2> */}
                     </div>
 
-                    <div className='pb-2 lg:pb-7'>
-                        <div className='bg-gradient-to-r from-primary to-primary/70 w-[50%] text-white lg:font-semibold lg:mt-5 mt-2 ml-auto py-1 text-[10px] lg:text-sm   pl-1 sm:pl-5'>
-                            <p>Experience:</p>
+                    <div className='pb-2  lg:pb-7'>
+                        <div className='bg-gradient-to-r from-primary to-primary/70 w-[80%] text-white lg:font-semibold lg:mt-5 mt-2 ml-auto py-2 text-[10px] lg:text-sm   pl-1 sm:pl-5'>
+                            <p>Representative Id : {representativeID} </p>
                             {/* <p>{job_experience} Years +</p> */}
                         </div>
                     </div>
