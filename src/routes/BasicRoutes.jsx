@@ -75,6 +75,8 @@ import UpdateFeedback from "../pages/adminSide/feedbackRelatedPages/updateFeedba
 import PhotoGallery from "../pages/clientSide/SuccessStoryPage/PhotoGallery";
 import ManageRepresentative from "../pages/adminSide/representativeRelatedPages/ManageRepresentative";
 import UpdateRepresentative from "../pages/adminSide/representativeRelatedPages/UpdateRepresentative";
+import ManageGeneration from "../pages/adminSide/certificateGenerateRelatedPages/ManageGeneration";
+import UpdateGeneration from "../pages/adminSide/certificateGenerateRelatedPages/UpdateGeneration";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -380,6 +382,16 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "update-representative/:id",
                 element: <UpdateRepresentative></UpdateRepresentative>
+            },
+            
+            // Certification Generation related Routes 
+            {
+                path: "manage-generation",
+                element: <ManageGeneration></ManageGeneration>
+            },
+            {
+                path: "update-generation/:id",
+                element: <UpdateGeneration></UpdateGeneration>
             }
 
 

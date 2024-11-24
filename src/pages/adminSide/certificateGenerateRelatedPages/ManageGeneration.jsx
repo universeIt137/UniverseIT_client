@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-import RepresentativeTable from './RepresentativeTable';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
-import { uploadImg } from '../../../UploadFile/uploadImg';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { uploadImg } from '../../../UploadFile/uploadImg';
+import GenerationTable from './GenerationTable';
 
-const ManageRepresentative = () => {
+
+const ManageGeneration = () => {
 
     const axiosPublic = useAxiosPublic();
-
     const { data: contents = [], refetch } = useQuery({
-        queryKey: ['all dta'],
+        queryKey: ['something'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/representative');
+            const res = await axiosPublic.get('/certificate-generate');
             return res.data;
         }
     })
+   
+
+    
 
 
 
@@ -31,13 +34,13 @@ const ManageRepresentative = () => {
         const form = e.target;
 
         const name = form.name.value;
-        const representativeID = form.representativeID.value;
-        const phone = form.phone.value;
-        const email = form.email.value;
-        const institute = form.institute.value;
-        const division = form.division.value;
-        const district = form.district.value;
-        const semester = form.semester.value;
+        const hours = form.hours.value;
+        const course_category = form.course_category.value;
+        const course_name = form.course_name.value;
+        const student_ID = form.student_ID.value;
+        const duration = form.duration.value;
+        const year = form.year.value;
+        const date_of_issue = form.date_of_issue.value;
        
         const image = form.image.files[0];
        
@@ -45,11 +48,11 @@ const ManageRepresentative = () => {
 
 
 
-        let ImageUrl = ''
+        let qr_code_url = ''
         if (!image?.name) {
-            ImageUrl = ''
+            qr_code_url = ''
         } else {
-            ImageUrl = await uploadImg(image);
+            qr_code_url = await uploadImg(image);
 
         }
 
@@ -59,10 +62,10 @@ const ManageRepresentative = () => {
 
         // Simulate form submission
         try {
-            const data = { name, representativeID, phone, email, institute, division, district, ImageUrl, semester }
+            const data = { name, hours, course_category, course_name, student_ID, duration, year, qr_code_url, date_of_issue }
 
             console.log(data);
-            axiosPublic.post(`/representative`, data)
+            axiosPublic.post(`/certificate-generate`, data)
                 .then(res => {
                     if (res) {
                         Swal.fire({
@@ -89,7 +92,7 @@ const ManageRepresentative = () => {
                 <Helmet>
                     <title>Dashboard | Manage Representative</title>
                 </Helmet>
-                <h2 className="text-2xl font-semibold mb-4">Upload Representative Info</h2>
+                <h2 className="text-2xl font-semibold mb-4">Upload Student Info</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {loading && <p className="text-blue-500">Uploading data...</p>}
 
@@ -99,38 +102,38 @@ const ManageRepresentative = () => {
                             <input type="text" required name="name" className="w-full px-4 py-2 border rounded-md" />
                         </div>
                         <div className="">
-                            <label htmlFor="name">Representative ID</label>
-                            <input type="text" required name="representativeID" className="w-full px-4 py-2 border rounded-md" />
+                            <label htmlFor="name">Course Hours</label>
+                            <input type="text" name="hours" className="w-full px-4 py-2 border rounded-md" />
                         </div>
 
                         <div className="">
-                            <label htmlFor="name">Phone</label>
-                            <input type="text" required name="phone" className="w-full px-4 py-2 border rounded-md" />
+                            <label htmlFor="name">Course Category</label>
+                            <input type="text" name="course_category" className="w-full px-4 py-2 border rounded-md" />
                         </div>
 
                         <div className="">
-                            <label htmlFor="name">Email</label>
-                            <input type="email" name="email" className="w-full px-4 py-2 border rounded-md" />
+                            <label htmlFor="name">Course Name</label>
+                            <input type="text" name="course_name" className="w-full px-4 py-2 border rounded-md" />
                         </div>
 
                         <div className="">
-                            <label htmlFor="name">Instittue</label>
-                            <input type="text" name="institute" className="w-full px-4 py-2 border rounded-md" />
+                            <label htmlFor="name">Student ID</label>
+                            <input type="text" name="student_ID" className="w-full px-4 py-2 border rounded-md" />
                         </div>
 
                         <div className="">
-                            <label htmlFor="name">Division</label>
-                            <input type="text"  name="division" className="w-full px-4 py-2 border rounded-md" />
+                            <label htmlFor="name">Month Duration</label>
+                            <input type="text" name="duration" className="w-full px-4 py-2 border rounded-md" />
                         </div>
 
                         <div className="">
-                            <label htmlFor="name">District</label>
-                            <input type="text" name="district" className="w-full px-4 py-2 border rounded-md" />
+                            <label htmlFor="name">Year</label>
+                            <input type="text" name="year" className="w-full px-4 py-2 border rounded-md" />
                         </div>
                         
                         <div className="">
-                            <label htmlFor="name">Semester</label>
-                            <input type="text" name="semester" className="w-full px-4 py-2 border rounded-md" />
+                            <label htmlFor="name">Date of Issue</label>
+                            <input type="text" name="date_of_issue" className="w-full px-4 py-2 border rounded-md" />
                         </div>
                         
 
@@ -158,9 +161,11 @@ const ManageRepresentative = () => {
 
 
             </div>
-            <RepresentativeTable contents={contents} refetch={refetch} ></RepresentativeTable>
+            {
+                contents ? <GenerationTable allData={contents} refetch={refetch}></GenerationTable> : <></>
+            }
         </div>
     );
 };
 
-export default ManageRepresentative;
+export default ManageGeneration;

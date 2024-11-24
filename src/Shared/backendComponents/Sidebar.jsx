@@ -105,6 +105,12 @@ const Sidebar = () => {
       </>
     },
     {
+      name: 'Generate Certificate',
+      data: <>
+        <NavigationItem to="/dashboard/manage-generation" icon={SiNginxproxymanager} label="Manage Generation" />
+      </>
+    },
+    {
       name: 'Feedback',
       data: <>
         <NavigationItem to="/dashboard/add-feedback" icon={MdAddCircle} label="Add Feedback" />
