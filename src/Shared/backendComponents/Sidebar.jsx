@@ -10,8 +10,12 @@ import { FaRegComments } from "react-icons/fa";
 import logo from '../../assets/logo/mainLogo.png'
 import LogOut from '../../components/adminSide/LogOut/LogOut';
 import { GrUserSettings } from 'react-icons/gr';
+import useAdmin from '../../hooks/useAdmin';
+import useRepresentative from '../../hooks/useRepresentative';
 const Sidebar = () => {
-  const [openBox, setOpenBox] = useState(null)
+  const [openBox, setOpenBox] = useState(null);
+  const [isAdmin,] = useAdmin();
+  const [isRepresentative,] = useRepresentative();
   const allUrls = [
     {
       name: 'Courses',
@@ -125,9 +129,19 @@ const Sidebar = () => {
     }
   ];
 
+  const representativeUrls = [
+    {
+      name: 'Blogs',
+      data: <>
+        <NavigationItem to="/dashboard/addBlog" icon={MdAddCircle} label="Add Blog" />
+        <NavigationItem to="/dashboard/manageBlog" icon={SiNginxproxymanager} label="Manage Blogs" />
+      </>
+    },
+  ]
+
   return (
     <>
-      <div className="w-64 lg:w-64 bg-white flex flex-col justify-start py-8 border rounded-lg lg:max-h-screen lg:overflow-x-auto">
+      <div className="w-64 lg:w-64 bg-white flex flex-col justify-start py-8 border rounded-lg h-screen lg:overflow-x-auto">
         <Link to="/">
           <div className="mb-5 w-1/2 mx-auto">
             <img
@@ -142,15 +156,36 @@ const Sidebar = () => {
         <nav className="flex-1 p-4">
           <ul className="space-y-2 pb-20 list-none">
             {/* <NavigationItem to="/dashboard" icon={FaHome} label="Dashboard" /> */}
+
+
             <NavigationItem
               to="/dashboard"
               icon={FaCircleUser}
               label="Dashboard"
             />
+
             {
-              allUrls.map((item, idx) => <li key={idx} className="mb-4">
-                <Dropdown buttonText={item.name} urls={item.data} openBox={openBox} setOpenBox={setOpenBox} id={idx} />
-              </li>)
+              isAdmin &&
+              <>
+                {
+                  allUrls.map((item, idx) => <li key={idx} className="mb-4">
+                    <Dropdown buttonText={item.name} urls={item.data} openBox={openBox} setOpenBox={setOpenBox} id={idx} />
+                  </li>)
+                }
+              </>
+            }
+
+
+
+            {
+              isRepresentative &&
+              <>
+                {
+                  representativeUrls.map((item, idx) => <li key={idx} className="mb-4">
+                    <Dropdown buttonText={item.name} urls={item.data} openBox={openBox} setOpenBox={setOpenBox} id={idx} />
+                  </li>)
+                }
+              </>
             }
 
             <div className='ml-4'>   <LogOut /></div>

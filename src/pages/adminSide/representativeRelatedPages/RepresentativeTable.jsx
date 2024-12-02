@@ -53,9 +53,9 @@ const RepresentativeTable = ({contents, refetch}) => {
                     <tr>
                         <th className="px-4 py-2 border">#</th>
                         <th className="px-4 py-2 border">Name</th>
-                        <th className="px-4 py-2 border">Institute</th>
-                        <th className="px-4 py-2 border">phone No</th>
-                        <th className="px-4 py-2 border">District</th>
+                        <th className="px-4 py-2 border">Rep. ID</th>
+                        <th className="px-4 py-2 border">Status</th>
+                        
                         <th className="px-4 py-2 border">Actions</th>
                     </tr>
                 </thead>
@@ -65,11 +65,25 @@ const RepresentativeTable = ({contents, refetch}) => {
                             <tr key={content?._id} className="text-center">
                                 <td className="px-4 py-2 border font-semibold">{index + 1}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.name}</td>
-                                <td className="px-4 py-2 border font-semibold">{content?.institute}</td>
-                                <td className="px-4 py-2 border font-semibold">{content?.phone}</td>
-                                <td className="px-4 py-2 border font-semibold">{content?.district}</td>
+                                <td className="px-4 py-2 border font-semibold">{content?.representative_id}</td>
+                                <td className="px-4 py-2 border font-semibold">{
+                                    content?.representative ?
+                                        <span className='text-green-600 font-bold'>Active</span>
+                                        :
+                                        <span className='text-red-600 font-bold'>Deactive</span>
+                                }</td>
+                                
+                                
                                
                                 <td className="px-4 py-2 border">
+
+                                <button
+                                       
+                                       className="px-2 py-1 bg-blue-500 text-white rounded mr-2"
+                                   >
+                                       <Link to={`/dashboard/details-representative/${content?._id}`}>Details</Link>
+                                   </button>
+
                                     <button
                                        
                                         className="px-2 py-1 bg-blue-500 text-white rounded mr-2"

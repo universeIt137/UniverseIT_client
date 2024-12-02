@@ -15,10 +15,11 @@ const UpdateRepresentative = () => {
     const { data: content = {}, refetch } = useQuery({
         queryKey: ['content'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/representative/${id}`);
+            const res = await axiosPublic.get(`/users/${id}`);
             return res.data;
         }
     })
+    console.log(content);
 
 
 
@@ -64,7 +65,7 @@ const UpdateRepresentative = () => {
             const data = { name, representativeID, phone, email, institute, division, district, ImageUrl, semester }
 
             console.log(data);
-            axiosPublic.put(`/representative/${id}`, data)
+            axiosPublic.put(`/users/${id}`, data)
                 .then(res => {
                     if (res) {
                         Swal.fire({
@@ -102,7 +103,7 @@ const UpdateRepresentative = () => {
                         </div>
                         <div className="">
                             <label htmlFor="name">Representative ID</label>
-                            <input type="text" defaultValue={content?.representativeID} name="representativeID" className="w-full px-4 py-2 border rounded-md" />
+                            <input type="text" defaultValue={content?.representative_id} name="representativeID" className="w-full px-4 py-2 border rounded-md" />
                         </div>
 
                         <div className="">

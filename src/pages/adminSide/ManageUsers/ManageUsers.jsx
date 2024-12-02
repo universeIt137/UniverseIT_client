@@ -34,6 +34,26 @@ const ManageUsers = () => {
             })
 
     };
+
+
+    const handleRepresentativeChange = (data) => {
+        const id = data?._id;
+        const representative = !data?.representative;
+        const newData = { id, representative }
+        const toastId = toast.loading("User Role Changing...");
+        axiosPublic.put('/users/role/representative', newData)
+            .then(res => {
+                if (res) {
+                    toast.success("Role has changed!!", { id: toastId });
+                }
+                refetch()
+            })
+            .catch(err => {
+                toast.error(err?.message, { id: toastId });
+            })
+
+    };
+
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -78,6 +98,7 @@ const ManageUsers = () => {
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Admin</th>
+                                <th>Representative</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -97,6 +118,21 @@ const ManageUsers = () => {
                                                             className="toggle toggle-success toggle-sm"
                                                             checked={item?.admin || false}
                                                             onChange={() => handleOfficialStateChange(item)}
+                                                        />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td className="font-bold">
+                                            <div className="form-control">
+                                                <div className="flex items-center gap-2">
+                                                    <label className="label cursor-pointer">
+                                                        <input
+                                                            type="checkbox"
+                                                            className="toggle toggle-success toggle-sm"
+                                                            checked={item?.representative || false}
+                                                            onChange={() => handleRepresentativeChange(item)}
                                                         />
                                                     </label>
                                                 </div>

@@ -54,7 +54,7 @@ const RepresentativeList = () => {
 
             <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-5  justify-center px-2'>
                 {
-                    representative.map(
+                    representative?.map(
                         (representative, idx) => <RepresentativeCard key={idx} representative={representative} />
                     )
                 }

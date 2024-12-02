@@ -27,9 +27,14 @@ const Login = () => {
                     .then(res => {
 
                         if (res.data.admin) {
-                            toast.success("Logged in Successfully!!", { id: toastId });
+                            toast.success("Logged in Successfully as Admin!!", { id: toastId });
                             navigate('/dashboard', { replace: true })
-                        } else {
+                        }
+                        else if (res.data.representative) {
+                            toast.success("Logged in Successfully as Representative!!", { id: toastId });
+                            navigate('/dashboard', { replace: true })
+                        }
+                        else {
                             toast.error("You are not authorized!! Contact admin..", { id: toastId });
                         }
 

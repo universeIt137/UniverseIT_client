@@ -6,8 +6,11 @@ import { Link } from 'react-router-dom';
 import { Fade as Hamburger } from 'hamburger-react'
 import Sidebar from './Sidebar';
 import logo from '../../assets/logo/mainLogo.png'
+import useAuth from '../../hooks/useAuth';
 const BackendNavbar = () => {
     const [isOpen, setOpenMenu] = useState(false)
+    const { user } = useAuth();
+    // console.log(user);
     return (
         <>
             <div className="flex items-center bg-white justify-between  p-5 ">
@@ -15,7 +18,7 @@ const BackendNavbar = () => {
                <Link to={'/'}> <img className='max-w-28 block lg:hidden' src={logo} alt="" /></Link>
                 <div className="flex items-center flex-wrap gap-2">
 
-                    <Link to={'/dashboard'}><FaRegCircleUser className='ml-5 text-2xl' /></Link>
+                    <Link className='flex' to={'/dashboard'}>{ user?.displayName }<FaRegCircleUser className='ml-5 text-2xl' /></Link>
 
                     <div className='z-20 block lg:hidden'>
                         <input id="my-drawer" type="checkbox" className="drawer-toggle" />

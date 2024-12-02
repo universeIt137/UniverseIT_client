@@ -78,6 +78,7 @@ import UpdateRepresentative from "../pages/adminSide/representativeRelatedPages/
 import ManageGeneration from "../pages/adminSide/certificateGenerateRelatedPages/ManageGeneration";
 import UpdateGeneration from "../pages/adminSide/certificateGenerateRelatedPages/UpdateGeneration";
 import RepresentativeList from './../pages/clientSide/representativePage/RepresentativeList';
+import RepresentativeDetails from "../pages/adminSide/representativeRelatedPages/RepresentativeDetails";
 
 
 const BasicRoutes = createBrowserRouter([
@@ -387,6 +388,10 @@ const BasicRoutes = createBrowserRouter([
             {
                 path: "update-representative/:id",
                 element: <UpdateRepresentative></UpdateRepresentative>
+            },
+            {
+                path: "details-representative/:id",
+                element: <RepresentativeDetails></RepresentativeDetails>
             },
             
             // Certification Generation related Routes 
