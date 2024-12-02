@@ -13,13 +13,16 @@ const RepresentativeList = () => {
     const [firstCardId, setFirstCardId] = useState(0);
     const [cardPerSlice, setCardPerSlice] = useState(6);
     const axiosPublic = useAxiosPublic();
-    const { data: representative = [], isLoading } = useQuery({
-        queryKey: ['representative'],
+
+    const { data: contents = [], refetch, isLoading } = useQuery({
+        queryKey: ['all dta'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/representative');
+            const res = await axiosPublic.get('/users');
             return res.data;
         }
     })
+
+    const representatives = contents?.filter(item => item.hasOwnProperty('representative'));
 
     if (isLoading) {
         return <Loading />
@@ -54,7 +57,7 @@ const RepresentativeList = () => {
 
             <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-5  justify-center px-2'>
                 {
-                    representative?.map(
+                    representatives?.map(
                         (representative, idx) => <RepresentativeCard key={idx} representative={representative} />
                     )
                 }
